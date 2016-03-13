@@ -1,0 +1,8 @@
+/activeMQ/
+/configuration.properties
+/controller/
+/http/
+/integration2metier.xsd
+/metier2presentation.xsd
+/model/
+/xml/

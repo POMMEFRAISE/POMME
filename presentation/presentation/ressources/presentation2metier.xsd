@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://pds.m1.upec.fr/xml/presentation2metier" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://pds.m1.upec.fr/xml/presentation2metier">
+
+    <complexType name="Joueur">
+    	<attribute name="nomJoueur" type="string"></attribute>
+    	<attribute name="prenomJoueur" type="string"></attribute>
+    	<attribute name="loginJoueur" type="string"></attribute>
+    </complexType>
+
+    <complexType name="Partie">
+    	<sequence>
+    		<element name="listeJoueurs" type="tns:Joueur" minOccurs="1" maxOccurs="7"></element>
+    		<element name="listeDe" type="tns:De" minOccurs="1" maxOccurs="5"></element>
+    	</sequence>
+    	<attribute name="nomPartie" type="string"></attribute>
+    	<attribute name="nbJoueur" type="string"></attribute>
+    	<attribute name="statutPartie" type="string"></attribute>
+    	<attribute name="dateCreationPartie" type="dateTime"></attribute>
+    </complexType>
+
+
+
+    <complexType name="De">
+    	<attribute name="identifiantDe" type="int"></attribute>
+    	<attribute name="resultatDe" type="int"></attribute>
+    	<attribute name="positionDe" type="string"></attribute>
+    </complexType>
+
+
+    <complexType name="RequeteHead" abstract="true"><attribute name="idMessage" type="string"></attribute>
+                    	
+        <attribute name="statutMessage" type="string" default="Créé"></attribute>
+                            	
+                
+                            	
+                
+        <attribute name="dateCreationMessage" type="dateTime"></attribute>
+                            
+            
+    </complexType>
+
+    <element name="demanderAuthentification">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:RequeteHead"></extension>
+    		</complexContent>
+    	</complexType></element>
+
+    <complexType name="Authentification">
+    	<attribute name="loginAuthentification" type="string"></attribute>
+    	<attribute name="mdpAuthentification" type="string"></attribute>
+    </complexType>
+
+    <element name="seConnecter">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:RequeteHead">
+    				<sequence>
+    					<element name="Authentification" type="tns:Authentification"></element>
+    				</sequence>
+    			</extension>
+    		</complexContent>
+    	</complexType></element>
+</schema>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://pds.m1.upec.fr/xml/integration2metier" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://pds.m1.upec.fr/xml/integration2metier">
+
+    <complexType name="ReponseHead" abstract="true">
+    	<attribute name="statutMessage" type="string" default="Traitée"></attribute>
+    	<attribute name="dateCreationMessage" type="dateTime"></attribute>
+    	<attribute name="idMessageMetier2Integration" type="string"></attribute>
+    </complexType>
+
+    <complexType name="Joueur">
+    	<attribute name="nomJoueur" type="string"></attribute>
+    	<attribute name="prenomJoueur" type="string"></attribute>
+    	<attribute name="loginJoueur" type="string"></attribute>
+    </complexType>
+
+    <element name="reponseDemanderAuthentification">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:ReponseHead"></extension>
+    		</complexContent>
+    	</complexType></element>
+
+    <element name="reponseSeConnecter">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:ReponseHead">
+    				<sequence>
+    					<element name="Authentification" type="tns:Authentification"></element>
+    				</sequence>
+    			</extension>
+    		</complexContent>
+    	</complexType></element>
+
+    <complexType name="Authentification">
+    	<sequence>
+    		<element name="joueur" type="tns:Joueur"></element>
+    	</sequence>
+    	<attribute name="messageErreur" type="string"></attribute>
+    </complexType>
+</schema>

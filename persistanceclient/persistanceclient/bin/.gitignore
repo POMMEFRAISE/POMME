@@ -1,0 +1,9 @@
+/activeMQ/
+/clientRMI/
+/configuration.properties
+/http/
+/integration2metier.xsd
+/jndi.properties
+/lanceur/
+/metier2integration.xsd
+/xml/
