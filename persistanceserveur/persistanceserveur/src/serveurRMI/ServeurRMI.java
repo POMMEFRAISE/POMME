@@ -6,6 +6,7 @@ import java.rmi.registry.Registry;
 
 import serviceRMI.ServiceRMI;
 
+
 public class ServeurRMI {	
 	public static void main (String[] argv) {
 		try {	
