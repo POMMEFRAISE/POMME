@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 import entites.JoueurEntite;
 
-public class JoueurDAO implements JoueurDAOInterface{
+public class JoueurDAOImpl implements JoueurDAOInterface{
 	private ResultSet resultat = null;
 	
-	public JoueurDAO(){
+	public JoueurDAOImpl(){
 		RecupererRequete.recupererRequete();
 	}
 	
