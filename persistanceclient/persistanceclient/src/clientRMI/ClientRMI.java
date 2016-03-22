@@ -25,7 +25,7 @@ import com.sun.webkit.plugin.Plugin;
 
 import activeMQ.Producteur;
 import dto.JoueurDTO;
-import serviceRMI.ServiceRMIInterface;
+import serviceRMIInterface.ServiceRMIInterface;
 import xml.integration2metier.Authentification;
 import xml.integration2metier.Joueur;
 import xml.integration2metier.ObjectFactory;
