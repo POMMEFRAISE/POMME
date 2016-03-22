@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-Created-By: 1.4.1_01 (Sun Microsystems Inc.)
-Class-Path: libAppele/mysql-connector-java-5.1.38-bin.jar
-Main-Class: serveurRMI.ServeurRMI

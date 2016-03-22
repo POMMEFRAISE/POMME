@@ -1,5 +1,4 @@
-/dao/
-/dto/
-/entites/
 /serveurRMI/
-/serviceRMI/
+/Pds.security.policy
+/intropectionRMI/
+/registry/
