@@ -26,13 +26,10 @@ public class ConnexionDAO {
 		properties = new Properties();
 		InputStream inStream = ConnexionDAO.class.getResourceAsStream("requetes.properties");
 		try {
-			properties.load(inStream);
-			String driverName = properties.getProperty("driver");
-			Class.forName(driverName);
-			System.out.println("# Le driver est correctement chargé : " +driverName);
-		} catch (IOException e) {
-			System.err.println("# Le fichier properties est introuvable ! ");
-			e.printStackTrace();
+			//properties.load(inStream);
+			//String driverName = properties.getProperty("driver");
+			Class.forName("com.mysql.jdbc.Driver");
+			System.out.println("# Le driver est correctement chargé : " );
 		} catch (Exception e) {
 			System.err.println("# Mauvais nom du driver MySQL.");
 			e.printStackTrace();
