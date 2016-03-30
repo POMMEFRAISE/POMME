@@ -32,7 +32,7 @@ public class RejoindrePartie extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		Joueur j = (Joueur) session.getAttribute("utilisateur");
-		request.getRequestDispatcher("RejoindrePartie.jsp").forward(request, response);
+		request.getRequestDispatcher("rejoindrepartie.jsp").forward(request, response);
 	}
 
 	/**

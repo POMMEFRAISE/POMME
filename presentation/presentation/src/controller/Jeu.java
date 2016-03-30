@@ -26,7 +26,7 @@ public class Jeu extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("Jeu.jsp").forward(request, response);
+		request.getRequestDispatcher("jeu.jsp").forward(request, response);
 	}
 
 	/**
