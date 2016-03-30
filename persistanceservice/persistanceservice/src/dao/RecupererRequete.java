@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
-import java.util.ResourceBundle;
 
 public class RecupererRequete {
 	private static Connection connection = null;
@@ -14,15 +13,16 @@ public class RecupererRequete {
 	
 	public static void recupererRequete(){
 		connexiondao = ConnexionDAO.getInstance();
-		//properties = new Properties();
-		//InputStream inStream = RecupererRequete.class.getResourceAsStream("requetes.properties");
-		ResourceBundle resourceBundle = ResourceBundle.getBundle("dao.requetes");
+		properties = new Properties();
+		InputStream inStream = RecupererRequete.class.getResourceAsStream("requetes.properties");
 
 		try {
-			//properties.load(inStream);
+			properties.load(inStream);
 			connexiondao.getConnection();
-			setConnection(connexiondao.getConnection());
+//			setConnection(connexiondao.getConnection());
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

@@ -1,6 +1,5 @@
 package dao;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -26,9 +25,9 @@ public class ConnexionDAO {
 		properties = new Properties();
 		InputStream inStream = ConnexionDAO.class.getResourceAsStream("requetes.properties");
 		try {
-			//properties.load(inStream);
-			//String driverName = properties.getProperty("driver");
-			Class.forName("com.mysql.jdbc.Driver");
+			properties.load(inStream);
+			String driverName = properties.getProperty("driver");
+			Class.forName(driverName);
 			System.out.println("# Le driver est correctement chargé : " );
 		} catch (Exception e) {
 			System.err.println("# Mauvais nom du driver MySQL.");
