@@ -52,21 +52,17 @@ public class ClientRMI extends Thread {
 		
 		//Policy
 		if (System.getSecurityManager() == null) 
-			System.setProperty("java.security.policy", "file:/C:/Users/Cyrielle/git/PDS/persistanceclient/persistanceclient/bin/client.policy");
+			System.setProperty("java.security.policy", "file:/C:/Users/Cyrielle/git/PDS/persistanceclient/persistanceclient/bin/clientRMI/client.policy");
 			System.setSecurityManager(new SecurityManager());
-			
 			try {
+				//url
 				String url="file:/C:/Users/Cyrielle/git/PDS/persistanceservice/persistanceservice/bin/";
-
 				//Appelle de la classe JoueurDTO
 				Class<?> joueurDTO = RMIClassLoader.loadClass(url,"dto.JoueurDTO");
 				Object objectJoueurDTO = joueurDTO.newInstance();
 				
 				
 				//Charger interface 
-				Class serviceRMIInterface = RMIClassLoader.loadClass(url,"serviceRMIInterface.ServiceRMIInterface");
-				Object objectServiceRMIInterface = serviceRMIInterface.newInstance();
-				objectServiceRMIInterface = Naming.lookup ("rmi://10.0.2.15:1099/ServiceJoueurDTO");
 				
 				
 				
@@ -82,78 +78,10 @@ public class ClientRMI extends Thread {
 			} catch (IllegalAccessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (NotBoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 			
-			
-	    
 	}
 			
-		
-			/*//charger interface
-			if (System.getSecurityManager() == null) 
-				System.setSecurityManager(new SecurityManager());
-			Properties p = System.getProperties();
-		    String url = p.getProperty("java.rmi.server.codebase");
-			Class serviceRMIInterface = RMIClassLoader.loadClass(url,"serviceRMIIterface.ServiceRMIIterface");
-			Object objectServiceRMIInterface;
-			objectServiceRMIInterface = serviceRMIInterface.newInstance();
-			objectServiceRMIInterface = Naming.lookup ("rmi://10.0.2.15:1099/ServiceJoueurDTO");
-			
-			//Appelle Message 
-			Object typeMessage;
-	        typeMessage = unmarshaller(message);
-	        if(typeMessage instanceof DemanderAuthentification){
-	    		System.out.println("DemanderAuthentification");
-				boolean trouve = objectServiceRMIInterface.demanderAuthentification();
-				System.out.println("DemanderAuthentification : "+trouve);
-	        }else if(typeMessage instanceof SeConnecter){
-	    		objectJoueurDTOInstance.getClass().getDeclaredMethod("setLogin", String.class).invoke(objectJoueurDTOInstance, "cyrielle");
-	    		objectJoueurDTOInstance.getClass().getDeclaredMethod("setMotDePasse", String.class).invoke(objectJoueurDTOInstance, "jeu");
-	    		boolean trouveJoueur = objectJoueurDTOInstance.verificationJoueur(objectJoueurDTOInstance);
-				System.out.println("SeConnecter : "+trouveJoueur);
-				if(trouveJoueur == true){
-					joueurDTO = objectJoueurDTOInstance.recupererJoueur(objectJoueurDTOInstance);
-					System.out.println("Nom joueur : "+objectJoueurDTOInstance.getClass().getMethod("getNom", noparams).invoke(objectJoueurDTOInstance, null));
-					Joueur joueur = objFactory.createJoueur();
-					joueur.setLoginJoueur((String) objectJoueurDTOInstance.getClass().getMethod("getLogin", null).invoke(objectJoueurDTOInstance, null));
-					joueur.setNomJoueur((String) objectJoueurDTOInstance.getClass().getMethod("getNom", null).invoke(objectJoueurDTOInstance, null));
-					joueur.setPrenomJoueur((String) objectJoueurDTOInstance.getClass().getMethod("getPrenom", null).invoke(objectJoueurDTOInstance, null));
-					Authentification auth = objFactory.createAuthentification();
-					auth.setJoueur(joueur);
-					ReponseSeConnecter reponseSeConencter = objFactory.createReponseSeConnecter();
-					reponseSeConencter.setAuthentification(auth);
-					new Producteur(reponseSeConencter);
-				}
-	        }
-				
-				
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (NotBoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InstantiationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	}*/
-	
 	public Object unmarshaller(String message){
 		Object object = null;
 		Unmarshaller unmarshaller;
