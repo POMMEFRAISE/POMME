@@ -24,8 +24,6 @@ import javax.xml.bind.Unmarshaller;
 import com.sun.webkit.plugin.Plugin;
 
 import activeMQ.Producteur;
-import dto.JoueurDTO;
-import serviceRMIInterface.ServiceRMIInterface;
 import xml.integration2metier.Authentification;
 import xml.integration2metier.Joueur;
 import xml.integration2metier.ObjectFactory;
@@ -44,70 +42,38 @@ public class ClientRMI extends Thread {
 	public ClientRMI(String message, String idMessage) {
 		this.message = message;
 		this.idMessage = idMessage;
-		System.out.println("Bonjour");
 		run();
 	}
-	
-/*	public ClientRMI() {
 
-	}*/
 
 	// Methode Run
 
 	public void run() {	
-		try {
+		
+		//Policy
+		if (System.getSecurityManager() == null) 
+			System.setProperty("java.security.policy", "file:/C:/Users/Cyrielle/git/PDS/persistanceclient/persistanceclient/bin/client.policy");
+			System.setSecurityManager(new SecurityManager());
 			
-			
-			Class<JoueurDTO> maClass = (Class<JoueurDTO>) telechargerClasse("dto.JoueurDTO");
-			System.out.println("Ma Classe :"+maClass.getTypeName());			
-			JoueurDTO joueurDTO = maClass.newInstance();
-			System.out.println(joueurDTO.getClass());
-			System.out.println("joueurDTO login:"+joueurDTO.getLogin());
+			try {
+				String url="file:/C:/Users/Cyrielle/git/PDS/persistanceservice/persistanceservice/bin/";
 
-			try {		
-				if (System.getSecurityManager() == null) 
-					System.setSecurityManager(new SecurityManager());
-				//System.setProperty("java.rmi.server.codebase", "http://127.0.0.1:80/persistanceservice.jar");
-				Class maClass2 = telechargerClasse("serviceRMI.ServiceRMIInterface");
-				ServiceRMIInterface serviceRmi = (ServiceRMIInterface) maClass2.newInstance();
-				serviceRmi = (ServiceRMIInterface) Naming.lookup ("//127.0.0.1/ServiceRMIExporte");
-
-				Object typeMessage;
-		        typeMessage = unmarshaller(message);
-		        if(typeMessage instanceof DemanderAuthentification){
-		    		System.out.println("DemanderAuthentification");
-					boolean trouve = serviceRmi.demanderAuthentification();
-					System.out.println("DemanderAuthentification : "+trouve);
-		        }else if(typeMessage instanceof SeConnecter){
-					((JoueurDTO) joueurDTO).setLogin(((SeConnecter) typeMessage).getAuthentification().getLoginAuthentification());
-					((JoueurDTO) joueurDTO).setMotDePasse(((SeConnecter) typeMessage).getAuthentification().getMdpAuthentification());
-					
-		        	boolean trouveJoueur = serviceRmi.verificationJoueur((JoueurDTO) joueurDTO);
-					System.out.println("SeConnecter : "+trouveJoueur);
-					if(trouveJoueur == true){
-						joueurDTO = serviceRmi.recupererJoueur((JoueurDTO) joueurDTO);
-						System.out.println("Nom joueur : "+((JoueurDTO) joueurDTO).getNom());
-						Joueur joueur = objFactory.createJoueur();
-						joueur.setLoginJoueur(((JoueurDTO) joueurDTO).getLogin());
-						joueur.setNomJoueur(((JoueurDTO) joueurDTO).getNom());
-						joueur.setPrenomJoueur(((JoueurDTO) joueurDTO).getPrenom());
-						Authentification auth = objFactory.createAuthentification();
-						auth.setJoueur(joueur);
-						ReponseSeConnecter reponseSeConencter = objFactory.createReponseSeConnecter();
-						reponseSeConencter.setAuthentification(auth);
-						new Producteur(reponseSeConencter);
-					}
-		        }
+				//Appelle de la classe JoueurDTO
+				Class<?> joueurDTO = RMIClassLoader.loadClass(url,"dto.JoueurDTO");
+				Object objectJoueurDTO = joueurDTO.newInstance();
 				
 				
-			} catch (RemoteException e) {
-				e.printStackTrace();
-			} catch (NotBoundException e) {
-				e.printStackTrace();
-			} catch (IllegalArgumentException e) {
+				//Charger interface 
+				Class serviceRMIInterface = RMIClassLoader.loadClass(url,"serviceRMIInterface.ServiceRMIInterface");
+				Object objectServiceRMIInterface = serviceRMIInterface.newInstance();
+				objectServiceRMIInterface = Naming.lookup ("rmi://10.0.2.15:1099/ServiceJoueurDTO");
+				
+				
+				
+			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (MalformedURLException e) {
+			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (InstantiationException e) {
@@ -116,26 +82,77 @@ public class ClientRMI extends Thread {
 			} catch (IllegalAccessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}	
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NotBoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
-		} catch (InstantiationException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IllegalAccessException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
+			
+	    
 	}
-	
-
+			
+		
+			/*//charger interface
+			if (System.getSecurityManager() == null) 
+				System.setSecurityManager(new SecurityManager());
+			Properties p = System.getProperties();
+		    String url = p.getProperty("java.rmi.server.codebase");
+			Class serviceRMIInterface = RMIClassLoader.loadClass(url,"serviceRMIIterface.ServiceRMIIterface");
+			Object objectServiceRMIInterface;
+			objectServiceRMIInterface = serviceRMIInterface.newInstance();
+			objectServiceRMIInterface = Naming.lookup ("rmi://10.0.2.15:1099/ServiceJoueurDTO");
+			
+			//Appelle Message 
+			Object typeMessage;
+	        typeMessage = unmarshaller(message);
+	        if(typeMessage instanceof DemanderAuthentification){
+	    		System.out.println("DemanderAuthentification");
+				boolean trouve = objectServiceRMIInterface.demanderAuthentification();
+				System.out.println("DemanderAuthentification : "+trouve);
+	        }else if(typeMessage instanceof SeConnecter){
+	    		objectJoueurDTOInstance.getClass().getDeclaredMethod("setLogin", String.class).invoke(objectJoueurDTOInstance, "cyrielle");
+	    		objectJoueurDTOInstance.getClass().getDeclaredMethod("setMotDePasse", String.class).invoke(objectJoueurDTOInstance, "jeu");
+	    		boolean trouveJoueur = objectJoueurDTOInstance.verificationJoueur(objectJoueurDTOInstance);
+				System.out.println("SeConnecter : "+trouveJoueur);
+				if(trouveJoueur == true){
+					joueurDTO = objectJoueurDTOInstance.recupererJoueur(objectJoueurDTOInstance);
+					System.out.println("Nom joueur : "+objectJoueurDTOInstance.getClass().getMethod("getNom", noparams).invoke(objectJoueurDTOInstance, null));
+					Joueur joueur = objFactory.createJoueur();
+					joueur.setLoginJoueur((String) objectJoueurDTOInstance.getClass().getMethod("getLogin", null).invoke(objectJoueurDTOInstance, null));
+					joueur.setNomJoueur((String) objectJoueurDTOInstance.getClass().getMethod("getNom", null).invoke(objectJoueurDTOInstance, null));
+					joueur.setPrenomJoueur((String) objectJoueurDTOInstance.getClass().getMethod("getPrenom", null).invoke(objectJoueurDTOInstance, null));
+					Authentification auth = objFactory.createAuthentification();
+					auth.setJoueur(joueur);
+					ReponseSeConnecter reponseSeConencter = objFactory.createReponseSeConnecter();
+					reponseSeConencter.setAuthentification(auth);
+					new Producteur(reponseSeConencter);
+				}
+	        }
+				
+				
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NotBoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}*/
 	
 	public Object unmarshaller(String message){
 		Object object = null;
@@ -161,29 +178,5 @@ public class ClientRMI extends Thread {
     	ResourceBundle prop = ResourceBundle.getBundle("configuration");
 		String value = prop.getString(pro);
 		return value;
-    }
-    
-    //Permet de charger une classe 
-    public Class<?> telechargerClasse(String maClasse){
-		Class<?> classeACharger = null;
-
-    	try {
-    		URL[] urls = {new URL("http://127.0.0.1:80/persistanceservice.jar")};
-    		URLClassLoader urlClassLoader = URLClassLoader.newInstance(urls);				
-			classeACharger = Class.forName(maClasse, true, urlClassLoader);
-			System.out.println("Classe Instancier : "+classeACharger);
-			//Ligne a supprimer?
-			//urlClassLoader.close();			
-		} catch (MalformedURLException e) {
-			System.out.println("Jar non chargé");
-			e.printStackTrace();
-		} catch (IOException e) {
-			System.out.println("Jar non chargé");
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	return classeACharger;
-    }
+    }  
 }
