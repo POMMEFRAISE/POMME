@@ -13,13 +13,6 @@ public class Serveur {
 			//System.setProperty("java.rmi.server.codebase", "file:/C:/Users/Dylan/git/PDS/persistanceservice/persistanceservice/bin/");
 			System.setSecurityManager(new SecurityManager());
 		try {
-			//Class<?> ServiceJoueurDTO = RMIClassLoader.loadClass("file:/C:/Users/Cyrielle/Desktop/bin/","serviceRMIImplementation.ServiceJoueurDTO");
-			//Class<?> ServiceJoueurDTO = RMIClassLoader.loadClass("file:/C:/Users/Dylan/git/PDS/persistanceservice/persistanceservice/bin/serviceRMIImplementation","serviceRMIImplementation.ServiceJoueurDTO");
-			//System.out.println("Serveur Bonjour "+ ServiceJoueurDTO.getName());
-			//Object o = ServiceJoueurDTO.newInstance();
-			//Registry registry = LocateRegistry.createRegistry(1099);
-			//registry.rebind("//127.0.0.1/ServiceJoueurDTO",(Remote) ServiceJoueurDTO.newInstance());
-			
 			Registry registry = LocateRegistry.createRegistry(1099);
 			String url="file:/C:/Users/Dylan/git/PDS/persistanceservice/persistanceservice/bin/";
 			Class<?> serviceJoueurDTO = RMIClassLoader.loadClass(url,"serviceRMIImplementation.ServiceJoueurDTO");
