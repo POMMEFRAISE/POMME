@@ -10,14 +10,14 @@ public class JoueurDAOImpl implements JoueurDAOInterface{
 	private ResultSet resultat = null;
 	
 	public JoueurDAOImpl(){
-		RecupererRequete.recupererRequete();
+
 	}
 	
 	public synchronized JoueurEntite recupererJoueur(JoueurEntite joueur) {
 		JoueurEntite joueurEntite = new JoueurEntite();
 		try {
-			String recupererJoueurSQL = RecupererRequete.getProperties().getProperty("recupererJoueurSQL");
-			PreparedStatement preparedStatement = RecupererRequete.getConnection().prepareCall(recupererJoueurSQL);
+			String recupererJoueurSQL = ConnexionDAO.getProperties().getProperty("recupererJoueurSQL");
+			PreparedStatement preparedStatement = ConnexionDAO.getInstance().prepareCall(recupererJoueurSQL);
 			preparedStatement.setString(1, joueur.getLogin());
 			preparedStatement.setString(2, joueur.getMotDePasse());
 			resultat = preparedStatement.executeQuery();
@@ -39,8 +39,8 @@ public class JoueurDAOImpl implements JoueurDAOInterface{
 		System.out.println("Login : "+login);
 		System.out.println("MDP :" + motdepasse);
 		try {
-			String verificationSQL = RecupererRequete.getProperties().getProperty("verificationJoueurSQL");
-			PreparedStatement preparedStatement = RecupererRequete.getConnection().prepareCall(verificationSQL);
+			String verificationSQL = ConnexionDAO.getProperties().getProperty("verificationJoueurSQL");
+			PreparedStatement preparedStatement = ConnexionDAO.getInstance().prepareCall(verificationSQL);
 			preparedStatement.setString(1, login);
 			preparedStatement.setString(2, motdepasse);
 			resultat = preparedStatement.executeQuery();
