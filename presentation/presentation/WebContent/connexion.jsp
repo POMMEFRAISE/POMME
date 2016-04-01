@@ -29,11 +29,11 @@
                      
                     <label><fmt:message key="connexion.login" /> : </label> 
                     <input type="text" name="login"  value="" id="login" size="30" required /><br /><br />
-                    <label><fmt:message key="connexion.motdepasse" /> : </label> 
+                    <label><fmt:message key="connexion.mot.de.passe" /> : </label> 
                     <input type="password" name="pwd" value="" id="pwd" size="30" required /><br /><br /><br />
                      
                     <input type="submit" value="<fmt:message key="connexion.confirmer" />" class="buttonsubmit" />
-                    <input type="reset" value="Effacer" class="buttonreset" />
+                    <input type="reset" value="<fmt:message key="connexion.effacer" />" class="buttonreset" />
             </fieldset>
         </form>
 </body>
