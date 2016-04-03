@@ -1,13 +1,15 @@
 package controller;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import activeMQ.Lecteur;
 import activeMQ.Producteur;
 import model.AuthentificationPresentation;
 import model.Joueur;
@@ -29,8 +31,15 @@ public class ConnexionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DemanderAuthentification demandeAuthentification = objFactory.createDemanderAuthentification();
-		new Producteur(demandeAuthentification);
 		
+		URL url = null;
+		try {
+			url = new URL(getClass().getProtectionDomain().getCodeSource().getLocation(),"configuration.properties");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		new Producteur(demandeAuthentification, url);
+
         request.getRequestDispatcher("/connexion.jsp").forward(request, response);	
     }
 
@@ -48,7 +57,14 @@ public class ConnexionServlet extends HttpServlet {
 	    
 		SeConnecter seConnecter = objFactory.createSeConnecter();
 		seConnecter.setAuthentification(authentification);
-		new Producteur(seConnecter);
+		
+		URL url = null;
+		try {
+			url = new URL(getClass().getProtectionDomain().getCodeSource().getLocation(),"configuration.properties");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		new Producteur(seConnecter, url);
 		
 	    Joueur joueur = new Joueur(login);
 		HttpSession session = request.getSession();
@@ -57,4 +73,5 @@ public class ConnexionServlet extends HttpServlet {
                 
         response.sendRedirect("accueil");          
 	}
+	
 }

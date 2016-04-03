@@ -4,7 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
-import java.util.ResourceBundle;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +18,7 @@ import javax.xml.bind.Unmarshaller;
 
 import model.AuthentificationMetier;
 import model.ControleMetier;
+import util.RecupererValueProperty;
 import xml.presentation2metier.DemanderAuthentification;
 import xml.presentation2metier.SeConnecter;
 
@@ -64,7 +66,13 @@ public class AccueilServlet extends HttpServlet
 		StringReader reader;
 		
 		try {
-			context = JAXBContext.newInstance(recupererValueProperty("XML_LECTEUR"));
+			URL url = null;
+			try {
+				url = new URL(getClass().getProtectionDomain().getCodeSource().getLocation(),"configuration.properties");
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+			context = JAXBContext.newInstance(RecupererValueProperty.recupererValueProperty("XML_LECTEUR", url));
 			unmarshaller = context.createUnmarshaller();
 			reader = new StringReader(message);
 			object = unmarshaller.unmarshal(reader);
@@ -75,11 +83,4 @@ public class AccueilServlet extends HttpServlet
 		}
 		return object;
 	}
-	
-    public static String recupererValueProperty(String pro){
-		//Permet de charger un fichier properties
-    	ResourceBundle prop = ResourceBundle.getBundle("configuration");
-		String value = prop.getString(pro);
-		return value;
-    }
 }

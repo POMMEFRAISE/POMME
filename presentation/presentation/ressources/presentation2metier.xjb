@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jaxb:bindings xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0"
+    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+    jaxb:extensionBindingPrefixes="xjc"
+    xmlns:ns="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb">
+
+     <ns:annotation>
+       <ns:appinfo>
+          <jaxb:globalBindings>
+              <xjc:superInterface name="xml.presentation2metier.Commande"/>
+          </jaxb:globalBindings>
+       </ns:appinfo>
+    </ns:annotation>
+    
+</jaxb:bindings>
