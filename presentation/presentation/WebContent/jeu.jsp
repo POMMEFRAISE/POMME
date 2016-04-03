@@ -13,28 +13,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title><fmt:message key="jeu" /></title>
 <%@include file="header.jsp"%>
+<%@include file="menu.jsp"%>
 </head>
 <body>
 
-	<!-- sidebar -->
-	<div id="sidebar-nav">
-		<ul id="dashboard-menu">
-			<li><a href="accueil"> <i class="icon-home"></i> <span><fmt:message key="jeu.accueil" /></span>
-			</a></li>
-			<li><a class="dropdown-toggle" href="#"> <i
-					class="icon-group"></i> <span><fmt:message key="jeu.jouer" /></span> <i
-					class="icon-chevron-down"></i>
-			</a>
-				<ul class="submenu">
-					<li><a href="creerpartie"><fmt:message key="jeu.creer.partie" /></a></li>
-					<li><a href="rejoindrepartie"><fmt:message key="jeu.rejoindre.partie" /></a></li>
-				</ul></li>
-		</ul>
-	</div>
-	<!-- end sidebar -->
-
-	<!-- main container -->
-
+	<center>
 	<div class="content">
 		<div id="pad-wrapper" class="datatables-page">
 			<div class="row header">
@@ -79,6 +62,6 @@
 		</center>
 	</div>
 	<!-- end main container -->
-
+</center>
 </body>
 </html>
