@@ -13,7 +13,7 @@ public class ConnexionDAO {
 
 	public static Properties getProperties(){
 		properties = new Properties();
-		InputStream inStream = ConnexionDAO.class.getResourceAsStream("requetes.properties");
+		InputStream inStream = ConnexionDAO.class.getResourceAsStream("requetes.properties"); 
 		try {
 			properties.load(inStream);
 		} catch (IOException e) {
