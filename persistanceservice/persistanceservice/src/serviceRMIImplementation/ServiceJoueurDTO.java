@@ -6,9 +6,9 @@ import dao.JoueurDAOImpl;
 import dao.JoueurDAOInterface;
 import dto.JoueurDTO;
 import entites.JoueurEntite;
-import serviceRMIInterface.ServiceRMIInterface;
+import serviceRMIInterface.ServiceInterfaceJoueurDTO;
 
-public class ServiceJoueurDTO extends UnicastRemoteObject implements ServiceRMIInterface {
+public class ServiceJoueurDTO extends UnicastRemoteObject implements ServiceInterfaceJoueurDTO {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -18,11 +18,11 @@ public class ServiceJoueurDTO extends UnicastRemoteObject implements ServiceRMII
 		joueurDAOInterface = new JoueurDAOImpl();
 	}
 	
-	public JoueurDTO recupererJoueur(JoueurDTO joueurDTO) throws RemoteException{
+	public JoueurDTO recupererJoueur(Object joueurDTO) throws RemoteException{
 		System.out.println("# Connexion utilisateur:");
 		JoueurEntite joueurEntite = new JoueurEntite();
-		joueurEntite.setLogin(joueurDTO.getLogin());
-		joueurEntite.setMotDePasse(joueurDTO.getMotDePasse());
+		joueurEntite.setLogin(((JoueurDTO) joueurDTO).getLogin());
+		joueurEntite.setMotDePasse(((JoueurDTO) joueurDTO).getMotDePasse());
 		
 		if (verificationJoueur(joueurDTO)==true){
 			joueurEntite = joueurDAOInterface.recupererJoueur(joueurEntite);
@@ -31,10 +31,10 @@ public class ServiceJoueurDTO extends UnicastRemoteObject implements ServiceRMII
 		}else{
 			System.out.println("Connection impossible, les informations saisies ne sont pas correctes!\n");
 		}
-		joueurDTO.setNom(joueurEntite.getNom());
-		joueurDTO.setPrenom(joueurEntite.getPrenom());
+		((JoueurDTO) joueurDTO).setNom(joueurEntite.getNom());
+		((JoueurDTO) joueurDTO).setPrenom(joueurEntite.getPrenom());
 		
-		return joueurDTO;
+		return (JoueurDTO) joueurDTO;
 	}
 	
 	public boolean verificationJoueur(Object joueurDTO) throws RemoteException{
@@ -55,9 +55,8 @@ public class ServiceJoueurDTO extends UnicastRemoteObject implements ServiceRMII
 		return true;
 	}
 
+
 	
-
-
 	
 }
 	
