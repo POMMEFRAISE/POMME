@@ -2,43 +2,28 @@ package clientRMI;
 
 import java.lang.reflect.Constructor;
 import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.Remote;
 import java.rmi.server.RMIClassLoader;
+
 
 
 public class Client {
 	public static void main(String[] argv) throws Exception {
-    	if (System.getSecurityManager() == null) 
-			System.setProperty("java.security.policy", "file:/C:/Users/Cyrielle/git/PDS/persistanceclient/persistanceclient/bin/client.policy");
+		if (System.getSecurityManager() == null) 
+			System.setProperty("java.security.policy", "file:/C:/Users/Cyrielle/git/PDS/persistanceclient/persistanceclient/bin/clientRMI/client.policy");
 			System.setSecurityManager(new SecurityManager());
 			
-			try {
-				//Appelle de la classe JoueurDTO
+				//url
 				String url="file:/C:/Users/Cyrielle/git/PDS/persistanceservice/persistanceservice/bin/";
-				Class<?> joueurDTO = RMIClassLoader.loadClass(url,"dto.JoueurDTO");
-				Object objectJoueurDTO = joueurDTO.newInstance();
-				System.out.println(objectJoueurDTO);
 				
+				//Appelle de la classe JoueurDTO
+				Class<?> serviceJoueur = RMIClassLoader.loadClass(url,"serviceFacade.ServiceFacade");
+				Object serviceJoueurDTO = serviceJoueur.newInstance();
+				serviceJoueurDTO = serviceJoueurDTO.getClass().getDeclaredMethod("getServiceJoueurDTO", null).invoke(serviceJoueurDTO, null);
+				serviceJoueurDTO = Naming.lookup("//127.0.0.1/ServiceJoueurDTO");
+				System.out.println(serviceJoueurDTO);
 				
-				Class<?> serviceRMIInterface = RMIClassLoader.loadClass(url,"serviceClient.ServiceClient");
-				Constructor<?> c = serviceRMIInterface.getConstructor();
-				c.newInstance();
-				
-				
-				
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InstantiationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 	}
-			
-	
+		
 }
