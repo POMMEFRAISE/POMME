@@ -10,7 +10,7 @@ public class JoueurDAOImpl implements JoueurDAOInterface{
 	private ResultSet resultat = null;
 	
 	public JoueurDAOImpl(){
-
+		
 	}
 	
 	public synchronized JoueurEntite recupererJoueur(JoueurEntite joueur) {
