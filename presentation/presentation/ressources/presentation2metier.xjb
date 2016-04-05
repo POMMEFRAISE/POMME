@@ -4,14 +4,10 @@
     jaxb:extensionBindingPrefixes="xjc"
     xmlns:ns="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb">
+    xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd http://www.w3.org/2001/XMLSchema http://www.w3.org/2001/XMLSchema.xsd">
 
-     <ns:annotation>
-       <ns:appinfo>
           <jaxb:globalBindings>
               <xjc:superInterface name="xml.presentation2metier.Commande"/>
           </jaxb:globalBindings>
-       </ns:appinfo>
-    </ns:annotation>
     
 </jaxb:bindings>
