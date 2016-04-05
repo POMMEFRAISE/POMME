@@ -2,26 +2,19 @@ package serviceFacade;
 
 import java.rmi.RemoteException;
 
-import serviceRMIImplementation.ServiceJoueurDTO;
-import serviceRMIInterface.ServiceInterfaceJoueurDTO;
+import serviceRMIImplementation.ServiceJoueurImpl;
+import serviceRMIInterface.ServiceJoueurInterface;
 
 public class ServiceFacade {
-
-
-
-	private ServiceInterfaceJoueurDTO serviceJoueurDTO;
+	private ServiceJoueurInterface serviceJoueurDTO;
 	
-	public ServiceInterfaceJoueurDTO getServiceJoueurDTO() {
+	public ServiceJoueurInterface getServiceJoueur() {
 		return serviceJoueurDTO;
 	}
 
-	public ServiceFacade() {
-		try {
-			serviceJoueurDTO = new ServiceJoueurDTO();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public ServiceFacade() throws RemoteException {
+			serviceJoueurDTO = new ServiceJoueurImpl();
+
 	}
 	
 	public Object recupererJoueur (Object joueurDTO)  {
@@ -45,16 +38,6 @@ public class ServiceFacade {
 		
 	}
  
-
-	public boolean demanderAuthentification() {
-		try {
-			return serviceJoueurDTO.demanderAuthentification();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return false;
-	}
 
 	
 

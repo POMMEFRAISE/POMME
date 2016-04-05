@@ -1,8 +1,8 @@
-package dao;
+package daoInterface;
 
 import entites.JoueurEntite;
 
-public interface JoueurDAOInterface {
+public interface DaoJoueurInterface {
 	JoueurEntite recupererJoueur (JoueurEntite joueur);
 	boolean verificationJoueur (String login, String motdepasse);
 	

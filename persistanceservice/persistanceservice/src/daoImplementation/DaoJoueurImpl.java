@@ -1,16 +1,16 @@
-package dao;
+package daoImplementation;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import daoInterface.DaoJoueurInterface;
+import daoParam.ConnexionDAO;
 import entites.JoueurEntite;
 
-public class JoueurDAOImpl implements JoueurDAOInterface{
+public class DaoJoueurImpl implements DaoJoueurInterface{
 	private ResultSet resultat = null;
-	
-	public JoueurDAOImpl(){
-	
+	public DaoJoueurImpl(){
 	}
 	
 	public synchronized JoueurEntite recupererJoueur(JoueurEntite joueur) {

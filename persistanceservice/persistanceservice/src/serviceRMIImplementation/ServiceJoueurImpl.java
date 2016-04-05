@@ -2,20 +2,19 @@ package serviceRMIImplementation;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import dao.JoueurDAOImpl;
-import dao.JoueurDAOInterface;
+
+import daoImplementation.DaoJoueurImpl;
+import daoInterface.DaoJoueurInterface;
 import dto.JoueurDTO;
 import entites.JoueurEntite;
-import serviceRMIInterface.ServiceInterfaceJoueurDTO;
+import serviceRMIInterface.ServiceJoueurInterface;
 
-public class ServiceJoueurDTO extends UnicastRemoteObject implements ServiceInterfaceJoueurDTO {
+public class ServiceJoueurImpl extends UnicastRemoteObject implements ServiceJoueurInterface {
 
 	private static final long serialVersionUID = 1L;
-	
-	private JoueurDAOInterface joueurDAOInterface;
-	
-	public ServiceJoueurDTO() throws RemoteException {
-		joueurDAOInterface = new JoueurDAOImpl();
+	private DaoJoueurInterface daoJoueurInterface;
+	public ServiceJoueurImpl() throws RemoteException {
+		daoJoueurInterface = new DaoJoueurImpl();
 	}
 	
 	public JoueurDTO recupererJoueur(Object joueurDTO) throws RemoteException{
@@ -25,7 +24,7 @@ public class ServiceJoueurDTO extends UnicastRemoteObject implements ServiceInte
 		joueurEntite.setMotDePasse(((JoueurDTO) joueurDTO).getMotDePasse());
 		
 		if (verificationJoueur(joueurDTO)==true){
-			joueurEntite = joueurDAOInterface.recupererJoueur(joueurEntite);
+			joueurEntite = daoJoueurInterface.recupererJoueur(joueurEntite);
 			
 			System.out.println("Connexion établie avec succès.");	
 		}else{
@@ -40,7 +39,7 @@ public class ServiceJoueurDTO extends UnicastRemoteObject implements ServiceInte
 	public boolean verificationJoueur(Object joueurDTO) throws RemoteException{
 		
 		boolean trouve = false;
-		if (joueurDAOInterface.verificationJoueur(((JoueurDTO) joueurDTO).getLogin(), ((JoueurDTO) joueurDTO).getMotDePasse())== true){
+		if (daoJoueurInterface.verificationJoueur(((JoueurDTO) joueurDTO).getLogin(), ((JoueurDTO) joueurDTO).getMotDePasse())== true){
 			trouve= true;
 		}else{
 			trouve= false;
@@ -49,11 +48,6 @@ public class ServiceJoueurDTO extends UnicastRemoteObject implements ServiceInte
 		return trouve;
 	}
 	
-	//Enregistrement de la commande dans la bd
-	public boolean demanderAuthentification() throws RemoteException{
-		System.out.println("Demander Authentification");
-		return true;
-	}
 
 
 	

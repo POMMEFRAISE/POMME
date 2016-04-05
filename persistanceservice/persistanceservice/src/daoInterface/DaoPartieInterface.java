@@ -1,5 +1,5 @@
-package dao;
+package daoInterface;
 
-public interface PartieDAOInterface{
+public interface DaoPartieInterface{
 	boolean rejoindrePartie(String nompartie, int nbrejoueur);
 }
