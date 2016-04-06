@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jaxb:bindings xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0"
-    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
-    jaxb:extensionBindingPrefixes="xjc"
-    xmlns:ns="http://www.w3.org/2001/XMLSchema"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd http://www.w3.org/2001/XMLSchema http://www.w3.org/2001/XMLSchema.xsd">
-
-          <jaxb:globalBindings>
-              <xjc:superInterface name="xml.presentation2metier.Commande"/>
-          </jaxb:globalBindings>
-    
-</jaxb:bindings>
+<jxb:bindings version="2.0" 
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<jxb:bindings schemaLocation="presentation2metier.xsd" node="/xs:schema">
+		<jxb:schemaBindings>
+			<jxb:package name="xml.presentation2metier" />
+		</jxb:schemaBindings>
+		<jxb:bindings node=".//xs:element[@name='demanderAuthentification']">
+			<jxb:superClass name="Commande"/>
+		</jxb:bindings>	
+	</jxb:bindings>
+</jxb:bindings>
