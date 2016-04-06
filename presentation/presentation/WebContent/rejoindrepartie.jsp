@@ -15,6 +15,7 @@
 <title><fmt:message key="rejoindre.partie" /></title>
 <%@include file="header.jsp"%>
 <%@include file="menu.jsp"%>
+<%@include file="footer.jsp"%>
 </head>
 <body background="img/fond_ecran.jpg">
 

@@ -161,3 +161,11 @@ td{
 a:link{
 	text-decoration: none;
 }
+#footer{
+position:fixed;
+bottom:0;
+left:0;
+background: black;
+width:100%;
+color:white;
+}

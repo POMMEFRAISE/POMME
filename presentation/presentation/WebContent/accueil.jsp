@@ -14,6 +14,7 @@
 <title><fmt:message key="accueil" /></title>
 <%@include file="header.jsp"%>
 <%@include file="menu.jsp"%>
+<%@include file="footer.jsp"%>
 <title><fmt:message key="accueil" /></title>
 </head>
 <body>
