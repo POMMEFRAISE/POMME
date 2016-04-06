@@ -47,6 +47,8 @@ public class NavigationServlet extends HttpServlet {
 		}else if (request.getParameter("nav").equals("deconnexion")) {
 			session.invalidate();
 			response.sendRedirect("connexion");
+		}else if (request.getParameter("nav").equals("creercompte")) {
+			response.sendRedirect("creercompte.jsp");
 		}
 	}
 

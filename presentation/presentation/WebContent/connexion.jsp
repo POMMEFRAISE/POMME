@@ -34,6 +34,8 @@
                      
                     <input type="submit" value="<fmt:message key="connexion.confirmer" />" class="buttonsubmit" />
                     <input type="reset" value="<fmt:message key="connexion.effacer" />" class="buttonreset" />
+                    <br /><br />
+                    <a href="navigation?nav=creercompte"><fmt:message key="connexion.creercompte" /></a>                    
             </fieldset>
         </form>
 </body>
