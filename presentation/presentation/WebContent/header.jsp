@@ -19,9 +19,7 @@
 		<%=joueur.getLogin()%>
 	</div>
 	<!-- <div class="profil"></div> -->
-	<div class="deconnexion">
-		<a href="deconnexion"></a>
-	</div>
+		<a href="navigation?nav=deconnexion"><div class="deconnexion"></div></a>
 </div>
 </head>
 <body>
