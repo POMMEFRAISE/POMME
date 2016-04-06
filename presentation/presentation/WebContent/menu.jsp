@@ -17,9 +17,9 @@
 		<li><a href="accueil"><fmt:message key="menu.accueil" /></a></li>
 		<li><a href=""><fmt:message key="menu.jouer" /></a>
 		<ul>
-			<li><a href="creerpartie"><fmt:message
+			<li><a href="navigation?nav=creerpartie"><fmt:message
 						key="menu.creer.partie" /></a></li>
-			<li><a href="rejoindrepartie"><fmt:message
+			<li><a href="navigation?nav=rejoindrepartie"><fmt:message
 						key="menu.rejoindre.partie" /></a></li>
 		</ul>
 		</li>

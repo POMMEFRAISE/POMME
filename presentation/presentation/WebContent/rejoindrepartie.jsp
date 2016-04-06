@@ -39,7 +39,7 @@
 					<td>
 						<%
 							Partie p = new Partie("p1", 3);
-						%> <a href="jeu"><%=p.getNom()%></a>
+						%> <a href="navigation?nav=jeu"><%=p.getNom()%></a>
 
 					</td>
 					<td><%=p.getNbJoueurs()%></td>
@@ -49,7 +49,7 @@
 				<td>
 						<%
 							Partie pp = new Partie("p2", 3);
-						%> <a href="jeu"><%=pp.getNom()%></a>
+						%> <a href="navigation?nav=jeu"><%=pp.getNom()%></a>
 
 					</td>
 					<td><%=p.getNbJoueurs()%></td>
@@ -59,7 +59,7 @@
 				<td>
 						<%
 							Partie ppp = new Partie("p3", 3);
-						%> <a href="jeu"><%=ppp.getNom()%></a>
+						%> <a href="navigation?nav=jeu"><%=ppp.getNom()%></a>
 
 					</td>
 					<td><%=p.getNbJoueurs()%></td>
