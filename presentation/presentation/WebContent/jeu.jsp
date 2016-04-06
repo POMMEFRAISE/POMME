@@ -12,9 +12,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title><fmt:message key="jeu" /></title>
-<%@include file="header.jsp"%>
-<%@include file="menu.jsp"%>
-<%@include file="footer.jsp"%>
+<%@include file="include/header.jsp"%>
+<%@include file="include/menu.jsp"%>
+<%@include file="include/footer.jsp"%>
 </head>
 <body>
 
