@@ -42,13 +42,17 @@ public class NavigationServlet extends HttpServlet {
 			this.getServletContext().getRequestDispatcher("/rejoindrepartie.jsp").forward(request, response);
 		} else if (request.getParameter("nav").equals("creerpartie")) {
 			this.getServletContext().getRequestDispatcher("/creerpartie.jsp").forward(request, response);
-		}else if (request.getParameter("nav").equals("jeu")) {
+		} else if (request.getParameter("nav").equals("jeu")) {
 			this.getServletContext().getRequestDispatcher("/jeu.jsp").forward(request, response);
-		}else if (request.getParameter("nav").equals("deconnexion")) {
+		} else if (request.getParameter("nav").equals("deconnexion")) {
 			session.invalidate();
 			response.sendRedirect("connexion");
-		}else if (request.getParameter("nav").equals("creercompte")) {
+		} else if (request.getParameter("nav").equals("creercompte")) {
 			response.sendRedirect("creercompte.jsp");
+		} else if (request.getParameter("nav").equals("modifierprofil")) {
+			this.getServletContext().getRequestDispatcher("/modifierprofil.jsp").forward(request, response);
+		} else if (request.getParameter("nav").equals("consulterscore")) {
+			this.getServletContext().getRequestDispatcher("/consulterscore.jsp").forward(request, response);
 		}
 	}
 
