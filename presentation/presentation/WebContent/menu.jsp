@@ -23,6 +23,14 @@
 						key="menu.rejoindre.partie" /></a></li>
 		</ul>
 		</li>
+		<li><a href=""><fmt:message key="menu.profil" /></a>
+		<ul>
+			<li><a href="navigation?nav=modifierprofil"><fmt:message
+						key="menu.gerer.profil" /></a></li>
+			<li><a href="navigation?nav=consulterscore"><fmt:message
+						key="menu.consulter.score" /></a></li>
+		</ul>
+		</li>
 	</ul>
 </head>
 <body>
