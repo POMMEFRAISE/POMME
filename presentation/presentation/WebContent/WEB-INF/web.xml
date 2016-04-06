@@ -4,66 +4,37 @@
     <servlet-name>ConnexionServlet</servlet-name>
     <servlet-class>controller.ConnexionServlet</servlet-class>
   </servlet>
-  
   <servlet-mapping>
     <servlet-name>ConnexionServlet</servlet-name>
     <url-pattern>/connexion</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>AccueilServlet</servlet-name>
     <servlet-class>controller.AccueilServlet</servlet-class>
   </servlet>
-  
   <servlet-mapping>
     <servlet-name>AccueilServlet</servlet-name>
     <url-pattern>/accueil</url-pattern>
   </servlet-mapping>
-  
   <servlet>
-    <servlet-name>CreerPartie</servlet-name>
-    <servlet-class>controller.CreerPartie</servlet-class>
+    <servlet-name>NavigationServlet</servlet-name>
+    <servlet-class>controller.NavigationServlet</servlet-class>
   </servlet>
-  
   <servlet-mapping>
-    <servlet-name>CreerPartie</servlet-name>
-    <url-pattern>/creerpartie</url-pattern>
+    <servlet-name>NavigationServlet</servlet-name>
+    <url-pattern>/navigation</url-pattern>
   </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>RejoindrePartie</servlet-name>
-    <servlet-class>controller.RejoindrePartie</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>RejoindrePartie</servlet-name>
-    <url-pattern>/rejoindrepartie</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>Jeu</servlet-name>
-    <servlet-class>controller.Jeu</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>Jeu</servlet-name>
-    <url-pattern>/jeu</url-pattern>
-  </servlet-mapping>
-  
   <servlet>
     <servlet-name>Jouer</servlet-name>
     <servlet-class>controller.Jouer</servlet-class>
   </servlet>
-  
   <servlet-mapping>
     <servlet-name>Jouer</servlet-name>
     <url-pattern>/jouer</url-pattern>
   </servlet-mapping>
-  
   <welcome-file-list>
     <welcome-file>accueil</welcome-file>
   </welcome-file-list>
-  
   <listener>
     <listener-class>controller.JMSContextListener</listener-class>
   </listener>
