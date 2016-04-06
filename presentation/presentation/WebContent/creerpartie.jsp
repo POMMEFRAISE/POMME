@@ -16,7 +16,7 @@
 </head>
 <body background="img/fond_ecran.jpg">
 
-	<form method="post" action="creerpartie">
+	<form method="post" action="navigation?nav=creerpartie">
       <fieldset>
                 <legend><fmt:message key="creation.partie.creer.nouvelle" /></legend>
                      
