@@ -15,26 +15,29 @@
 <%@include file="include/footer.jsp"%>
 </head>
 <body background="img/fond_ecran.jpg">
-	<form method="post" action="">
+	<form method="post" action="navigation?nav=formcreercompte">
 		<fieldset class="formcreercompte">
 			<legend><fmt:message key="creation.compte.nouveau" /></legend>
 			
 			<label><fmt:message key="creation.compte.login" /> : </label> 
-			<input type="text" name="login" value="" id="login" size="30" required /><br /><br /> 
+			<input type="text" name="login" value="" id="login" size="30"  /><br /><br /> 
 			
 			<label><fmt:message key="creation.compte.mot.de.passe" /> : </label> 
-			<input type="password" name="pwd" value="" id="pwd" size="30" required /><br /><br />
+			<input type="password" name="pwd" value="" id="pwd" size="30"  /><br /><br />
 			
 			<label><fmt:message key="creation.compte.nom" /> : </label> 
-			<input type="text" name="nom" value="" id="nom" size="30" required /><br /><br />
+			<input type="text" name="nom" value="" id="nom" size="30"  /><br /><br />
 			
 			<label><fmt:message key="creation.compte.prenom" /> : </label> 
-			<input type="text" name="prenom" value="" id="prenom" size="30" required /><br /><br /><br />
+			<input type="text" name="prenom" value="" id="prenom" size="30"  /><br /><br /><br />
 			
 			<input type="submit" value="<fmt:message key="creation.compte.confirmer" />" class="buttonsubmit" /> 
 			
 			<input type="reset"	value="<fmt:message key="creation.compte.effacer" />" class="buttonreset" /><br /> 
-			
+			<br /><br />
+            <font color="red"><b>
+            ${message }
+            </b></font>
 		</fieldset>
 	</form>
 </body>
