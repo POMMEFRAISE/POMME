@@ -10,12 +10,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title></title>
+</head>
+<body>
+<nav>
 <div id="menu">
 		<fmt:message key="menu" />
 </div>
 	<ul>
-		<li><a href="accueil"><fmt:message key="menu.accueil" /></a></li>
-		<li><a href=""><fmt:message key="menu.jouer" /></a>
+		<li><a href="accueil"><img src="img/accueil.png">  <fmt:message key="menu.accueil" /></a></li>
+		<li><a href=""><img src="img/de_icone.png">  <fmt:message key="menu.jouer" /></a>
 		<ul>
 			<li><a href="navigation?nav=creerpartie"><fmt:message
 						key="menu.creer.partie" /></a></li>
@@ -23,7 +26,7 @@
 						key="menu.rejoindre.partie" /></a></li>
 		</ul>
 		</li>
-		<li><a href=""><fmt:message key="menu.profil" /></a>
+		<li><a href=""><img src="img/profil.png">  <fmt:message key="menu.profil" /></a>
 		<ul>
 			<li><a href="navigation?nav=modifierprofil"><fmt:message
 						key="menu.gerer.profil" /></a></li>
@@ -32,7 +35,7 @@
 		</ul>
 		</li>
 	</ul>
-</head>
-<body>
+</nav>
+
 </body>
 </html>
