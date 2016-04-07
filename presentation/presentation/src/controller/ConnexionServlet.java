@@ -83,7 +83,7 @@ public class ConnexionServlet extends HttpServlet {
         	this.getServletContext().getRequestDispatcher("accueil").forward(request, response);
         }*/
                 
-        response.sendRedirect("accueil");          
+        response.sendRedirect("navigation");          
 	}
 	
 }

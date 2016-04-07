@@ -37,12 +37,9 @@ public class NavigationServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		
-		/*if (session.getAttribute("utilisateur") == null) {
+		if(session.getAttribute("utilisateur") == null) {
             response.sendRedirect("connexion");
-        }else {
-            this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
-        }*/
-		
+        }else if(request.getParameter("nav")!=null){
 		switch(request.getParameter("nav")){
 			case "rejoindrepartie" :
 				this.getServletContext().getRequestDispatcher("/rejoindrepartie.jsp").forward(request, response);
@@ -57,15 +54,21 @@ public class NavigationServlet extends HttpServlet {
 				session.invalidate();
 				response.sendRedirect("connexion");
 				break;
-			case "creercompte" :
-				response.sendRedirect("creercompte.jsp");
-				break;
 			case "modifierprofil" :
 				this.getServletContext().getRequestDispatcher("/modifierprofil.jsp").forward(request, response);
 				break;
 			case "consulterscore" :
 				this.getServletContext().getRequestDispatcher("/consulterscore.jsp").forward(request, response);
 				break;
+			case "accueil" :
+				this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+				break;
+			case "creercompte" :
+				response.sendRedirect("creercompte.jsp");
+				break;
 		}
+        }else {
+        	this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+        }
 	}
 }
