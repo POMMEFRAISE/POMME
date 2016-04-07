@@ -26,7 +26,7 @@ if($sLangueNavigateur==en){
 </head>
 <body background="img/fond_ecran.jpg">
 	<form method="post" action="connexion">
-      <fieldset>
+      <fieldset class="formconnexion">
                 <legend><fmt:message key="connexion.authentification" /></legend>
                 
 <%--                Réafficher valeur en cas de erreur de saisie   
@@ -44,7 +44,7 @@ if($sLangueNavigateur==en){
                     <input type="submit" value="<fmt:message key="connexion.confirmer" />" class="buttonsubmit" />
                     <input type="reset" value="<fmt:message key="connexion.effacer" />" class="buttonreset" />
                     <br /><br />
-                    <a href="navigation?nav=creercompte"><fmt:message key="connexion.creercompte" /></a>       
+                    <a href="navigation?nav=creercompte" class="creercompte"><fmt:message key="connexion.creercompte" /></a>       
                     <br />
                    	<b style="color:red;">
                    	<%

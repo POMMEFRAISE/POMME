@@ -18,7 +18,7 @@
 <body background="img/fond_ecran.jpg">
 
 	<form method="post" action="navigation?nav=modifierprofil">
-      <fieldset>
+      <fieldset class="formmodifiercompte">
                 <legend><fmt:message key="modification.profil" /></legend>
                      
             <label><fmt:message key="modification.profil.login" /> : </label> 

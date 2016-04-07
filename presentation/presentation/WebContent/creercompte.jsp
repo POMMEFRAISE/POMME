@@ -15,8 +15,8 @@
 <%@include file="include/footer.jsp"%>
 </head>
 <body background="img/fond_ecran.jpg">
-	<form method="post" action="connexion">
-		<fieldset>
+	<form method="post" action="">
+		<fieldset class="formcreercompte">
 			<legend><fmt:message key="creation.compte.nouveau" /></legend>
 			
 			<label><fmt:message key="creation.compte.login" /> : </label> 

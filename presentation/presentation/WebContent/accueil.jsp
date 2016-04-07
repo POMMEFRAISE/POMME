@@ -18,13 +18,11 @@
 <title><fmt:message key="accueil" /></title>
 </head>
 <body>
-	<center>
+	<div class="message">
 		<h3>
 			<fmt:message key="accueil.bienvenue" /> <%=joueur.getLogin()%> <fmt:message key="accueil.point" />
 		</h3>
-		
-		<img src="img/jeux-de-des.jpg">
-	</center>
-
+		<img src="img/jeux-de-des.jpg" >
+	</div>
 </body>
 </html>

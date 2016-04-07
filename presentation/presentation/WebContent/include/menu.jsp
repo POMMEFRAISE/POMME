@@ -17,7 +17,7 @@
 		<fmt:message key="menu" />
 </div>
 	<ul>
-		<li><a href="accueil"><img src="img/accueil.png">  <fmt:message key="menu.accueil" /></a></li>
+		<li><a href="navigation?nav=accueil"><img src="img/accueil.png">  <fmt:message key="menu.accueil" /></a></li>
 		<li><a href=""><img src="img/de_icone.png">  <fmt:message key="menu.jouer" /></a>
 		<ul>
 			<li><a href="navigation?nav=creerpartie"><fmt:message

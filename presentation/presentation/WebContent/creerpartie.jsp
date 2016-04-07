@@ -18,13 +18,13 @@
 <body background="img/fond_ecran.jpg">
 
 	<form method="post" action="navigation?nav=creerpartie">
-      <fieldset>
-                <legend><fmt:message key="creation.partie.creer.nouvelle" /></legend>
+      <fieldset class="formcreerpartie">
+                <legend color="white"><fmt:message key="creation.partie.creer.nouvelle" /></legend>
                      
                     <label><fmt:message key="creation.partie.nom" /> : </label> 
                     <input type="text" name="nom"  value="" id="nom" size="30" required /><br /><br />
                     <label><fmt:message key="creation.partie.nb.joueurs" /> : </label> 
-                    <input type="password" name="nbjoueur" value="" id="nbjoueur" size="30" required /><br /><br /><br />
+                    <input type="text" name="nbjoueur" value="" id="nbjoueur" size="30" required /><br /><br /><br />
                      
                     <input type="submit" value="<fmt:message key="creation.partie.creer" />" class="buttonsubmit" />
                     <input type="reset" value="<fmt:message key="connexion.effacer" />" class="buttonreset" />
