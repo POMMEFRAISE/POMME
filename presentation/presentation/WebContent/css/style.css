@@ -116,14 +116,13 @@ ul li:hover ul{
 }
 .deconnexion{
 	top: 0.2vw;
-	left : 97vw;
-	width: 2%;
+	left : 50vw;
+	width: 50%;
 	height: 2vw;
 	position: fixed;
 	z-index: 4;
-    background-size: 100% 100%;
     background-repeat: no-repeat;
-    background-image: url("../img/deconnexion.png");
+    background-image: url("../img/glyphicons-halflings-white.png");
 }
 .profil{
 	top: 0.3vw;
@@ -168,4 +167,6 @@ left:0;
 background: black;
 width:100%;
 color:white;
+text-align:center;
 }
+
