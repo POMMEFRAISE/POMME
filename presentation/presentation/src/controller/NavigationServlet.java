@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/NavigationServlet")
 public class NavigationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -23,7 +22,6 @@ public class NavigationServlet extends HttpServlet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 	/**
 	 * @see Servlet#init(ServletConfig)
 	 */
@@ -38,22 +36,36 @@ public class NavigationServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		if (request.getParameter("nav").equals("rejoindrepartie")) {
-			this.getServletContext().getRequestDispatcher("/rejoindrepartie.jsp").forward(request, response);
-		} else if (request.getParameter("nav").equals("creerpartie")) {
-			this.getServletContext().getRequestDispatcher("/creerpartie.jsp").forward(request, response);
-		} else if (request.getParameter("nav").equals("jeu")) {
-			this.getServletContext().getRequestDispatcher("/jeu.jsp").forward(request, response);
-		} else if (request.getParameter("nav").equals("deconnexion")) {
-			session.invalidate();
-			response.sendRedirect("connexion");
-		} else if (request.getParameter("nav").equals("creercompte")) {
-			response.sendRedirect("creercompte.jsp");
-		} else if (request.getParameter("nav").equals("modifierprofil")) {
-			this.getServletContext().getRequestDispatcher("/modifierprofil.jsp").forward(request, response);
-		} else if (request.getParameter("nav").equals("consulterscore")) {
-			this.getServletContext().getRequestDispatcher("/consulterscore.jsp").forward(request, response);
+		
+		/*if (session.getAttribute("utilisateur") == null) {
+            response.sendRedirect("connexion");
+        }else {
+            this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+        }*/
+		
+		switch(request.getParameter("nav")){
+			case "rejoindrepartie" :
+				this.getServletContext().getRequestDispatcher("/rejoindrepartie.jsp").forward(request, response);
+				break;
+			case "creerpartie" :
+				this.getServletContext().getRequestDispatcher("/creerpartie.jsp").forward(request, response);
+				break;
+			case "jeu" :
+				this.getServletContext().getRequestDispatcher("/jeu.jsp").forward(request, response);
+				break;
+			case "deconnexion" :
+				session.invalidate();
+				response.sendRedirect("connexion");
+				break;
+			case "creercompte" :
+				response.sendRedirect("creercompte.jsp");
+				break;
+			case "modifierprofil" :
+				this.getServletContext().getRequestDispatcher("/modifierprofil.jsp").forward(request, response);
+				break;
+			case "consulterscore" :
+				this.getServletContext().getRequestDispatcher("/consulterscore.jsp").forward(request, response);
+				break;
 		}
 	}
-
 }

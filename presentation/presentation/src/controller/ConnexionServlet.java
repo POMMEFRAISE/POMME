@@ -70,6 +70,18 @@ public class ConnexionServlet extends HttpServlet {
 		HttpSession session = request.getSession();
         session.setAttribute("utilisateur", joueur);
         request.setAttribute("utilisateur", joueur);
+        
+        /*String message;
+        
+        if(login.trim().isEmpty() || pwd.trim().isEmpty()){
+        	message="Les champs doivent être remplis";
+        	request.setAttribute("message", message);
+        	this.getServletContext().getRequestDispatcher("connexion").forward(request, response);
+        }else {
+        	message="Connexion réussie";
+        	request.setAttribute("message", message);
+        	this.getServletContext().getRequestDispatcher("accueil").forward(request, response);
+        }*/
                 
         response.sendRedirect("accueil");          
 	}
