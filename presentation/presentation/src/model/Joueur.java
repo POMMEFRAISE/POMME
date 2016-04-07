@@ -10,6 +10,7 @@ public class Joueur implements Serializable{
 	private String login;
     private String nom;
     private String prenom;
+    private String mdp;
     
     public Joueur(){
     	
@@ -42,4 +43,14 @@ public class Joueur implements Serializable{
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
+	public String getMdp() {
+		return mdp;
+	}
+
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
+	
+	
 }
