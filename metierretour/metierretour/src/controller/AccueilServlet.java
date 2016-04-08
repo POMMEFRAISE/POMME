@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -78,13 +76,7 @@ public class AccueilServlet extends HttpServlet
 		StringReader reader;
 		
 		try {
-			URL url = null;
-			try {
-				url = new URL(getClass().getProtectionDomain().getCodeSource().getLocation(),"configuration.properties");
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			}
-			context = JAXBContext.newInstance(RecupererValueProperty.recupererValueProperty("XML_LECTEUR", url));
+			context = JAXBContext.newInstance(RecupererValueProperty.recupererValueProperty("XML_LECTEUR"));
 			unmarshaller = context.createUnmarshaller();
 			reader = new StringReader(message);
 			object = unmarshaller.unmarshal(reader);

@@ -1,20 +1,17 @@
 package controller;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
+import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import activeMQ.Producteur;
 import model.AuthentificationPresentation;
-import model.Joueur;
 import xml.presentation2metier.Authentification;
 import xml.presentation2metier.DemanderAuthentification;
 import xml.presentation2metier.ObjectFactory;
@@ -53,13 +50,7 @@ public class NavigationServlet extends HttpServlet {
 		if(request.getSession().getAttribute("utilisateur") == null && request.getParameter("nav")==null) {
 				DemanderAuthentification demandeAuthentification = objFactory.createDemanderAuthentification();
 				
-				URL url = null;
-				try {
-					url = new URL(getClass().getProtectionDomain().getCodeSource().getLocation(),"configuration.properties");
-				} catch (MalformedURLException e) {
-					e.printStackTrace();
-				}
-				new Producteur(demandeAuthentification, url);
+				new Producteur(demandeAuthentification);
 
 		        request.getRequestDispatcher("/connexion.jsp").forward(request, response);	
 		        
@@ -128,20 +119,14 @@ public class NavigationServlet extends HttpServlet {
 					SeConnecter seConnecter = objFactory.createSeConnecter();
 					seConnecter.setAuthentification(authentification);
 					
-					URL url = null;
-					try {
-						url = new URL(getClass().getProtectionDomain().getCodeSource().getLocation(),"configuration.properties");
-					} catch (MalformedURLException e) {
-						e.printStackTrace();
-					}
-					new Producteur(seConnecter, url);
+					new Producteur(seConnecter);
 					
-				    Joueur joueur = new Joueur(login);
-					HttpSession session = request.getSession();
-			        session.setAttribute("utilisateur", joueur);
-			        request.setAttribute("utilisateur", joueur);
+				    //Joueur joueur = new Joueur(login);
+					//HttpSession session = request.getSession();
+			        //session.setAttribute("utilisateur", joueur);
+			        //request.setAttribute("utilisateur", joueur);
 			        
-			        this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+			        //this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
 				break;
 		}
         } 

@@ -1,8 +1,5 @@
 package model;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import activeMQ.Producteur;
 import xml.metier2integration.Authentification;
 import xml.metier2integration.DemanderAuthentification;
@@ -33,23 +30,13 @@ public class ControleMetier {
 			SeConnecter seConnecter = objFactory.createSeConnecter();
 			seConnecter.setAuthentification(authentification);
 			
-			new Producteur(seConnecter, getURLProperties());
+			new Producteur(seConnecter);
 		}
 	}
 	
 	public void demanderAuthentification(AuthentificationMetier auth){
 		DemanderAuthentification demandeAuthentification = objFactory.createDemanderAuthentification();
 		
-		new Producteur(demandeAuthentification, getURLProperties());
-	}
-	
-	public URL getURLProperties(){
-		URL url = null;
-		try {
-			url = new URL(getClass().getProtectionDomain().getCodeSource().getLocation(),"configuration.properties");
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
-		return url;
+		new Producteur(demandeAuthentification);
 	}
 }

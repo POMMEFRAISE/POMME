@@ -1,8 +1,10 @@
 package model;
 
+import java.io.IOException;
 import java.io.StringReader;
 import java.util.ResourceBundle;
 
+import javax.servlet.ServletException;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.PropertyException;
@@ -17,6 +19,7 @@ public class ActionPresentation {
 	private String idMessage;
 	private Object typeMessage;
 	public ActionPresentation(String message, String idMessage){
+		System.out.println("Action de présentation");
 		this.message = message;
 		this.setIdMessage(idMessage);
 		getTypeMessage();
@@ -46,6 +49,7 @@ public class ActionPresentation {
     		return true;
     	}
 	}
+	
 	public Object unmarshaller(String message){
 		Object object = null;
 		Unmarshaller unmarshaller;
