@@ -5,6 +5,7 @@
 
 
 <!-- ---ICI---- -->
+
 <?php
 $sLangueNavigateur= substr($_SERVER[‘HTTP_ACCEPT_LANGUAGE’], 0, 2);
 if($sLangueNavigateur==en){
@@ -12,7 +13,7 @@ if($sLangueNavigateur==en){
 }else{
 ?><fmt:setBundle basename="internationalisation.message_fr_FR" /><?php
 }
-?>
+?> 
 <!-- ---ICI--- -->
 
 <%@page import="model.Joueur"%>
@@ -25,34 +26,20 @@ if($sLangueNavigateur==en){
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body background="img/fond_ecran.jpg">
-	<form method="post" action="connexion">
+	<form method="post" action="navigation?nav=formconnexion">
       <fieldset class="formconnexion">
                 <legend><fmt:message key="connexion.authentification" /></legend>
-                
-<%--                Réafficher valeur en cas de erreur de saisie   
-					<label>Login : </label> 
-                    <input type="text" name="login"  value="<%out.print(j.getLogin());%>" id="login" size="30" required /><br /><br />
-                    <label>Mot de passe : </label> 
-                    <input type="password" name="pwd" value="<%out.print(j.getPwd());%>" id="pwd" size="30" required /><br /><br /><br />
-                    --%>  
                      
                     <label><fmt:message key="connexion.id" /> : </label> 
-                    <input type="text" name="login"  value="" id="login" size="30"  /><br /><br />
+                    <input type="text" name="login"  value="" id="login" size="30" required /><br /><br />
                     <label><fmt:message key="connexion.mot.de.passe" /> : </label> 
-                    <input type="password" name="pwd" value="" id="pwd" size="30"  /><br /><br /><br />
+                    <input type="password" name="pwd" value="" id="pwd" size="30" required /><br /><br /><br />
                      
                     <input type="submit" value="<fmt:message key="connexion.confirmer" />" class="buttonsubmit" />
                     <input type="reset" value="<fmt:message key="connexion.effacer" />" class="buttonreset" />
                     <br /><br />
-                    <a href="navigation?nav=creercompte" class="creercompte"><fmt:message key="connexion.creercompte" /></a>       
-                    <br />
-                   	<b style="color:red;">
-                   	<%
-                   	String message = (String) request.getAttribute("message");
-                   	if(message != null){
-                   		System.out.println(message);
-                   	}
-                   	%>             
+                    <a href="navigation?nav=creercompte" class="creercompte"><fmt:message key="connexion.creercompte" /></a>
+                    <br /> 	        
             </fieldset>
         </form>
 </body>

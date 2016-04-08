@@ -17,17 +17,21 @@
 </head>
 <body background="img/fond_ecran.jpg">
 
-	<form method="post" action="navigation?nav=creerpartie">
+	<form method="post" action="navigation?nav=formcreerpartie">
       <fieldset class="formcreerpartie">
                 <legend color="white"><fmt:message key="creation.partie.creer.nouvelle" /></legend>
                      
                     <label><fmt:message key="creation.partie.nom" /> : </label> 
-                    <input type="text" name="nom"  value="" id="nom" size="30" required /><br /><br />
+                    <input type="text" name="nom"  value="" id="nom" size="30"  /><br /><br />
                     <label><fmt:message key="creation.partie.nb.joueurs" /> : </label> 
-                    <input type="text" name="nbjoueur" value="" id="nbjoueur" size="30" required /><br /><br /><br />
+                    <input type="text" name="nbjoueur" value="" id="nbjoueur" size="30"  /><br /><br /><br />
                      
                     <input type="submit" value="<fmt:message key="creation.partie.creer" />" class="buttonsubmit" />
                     <input type="reset" value="<fmt:message key="connexion.effacer" />" class="buttonreset" />
+                    <br /><br />
+                    <font color="red"><b>
+                   	${message }
+                   	</b></font> 
             </fieldset>
         </form>  
 </body>

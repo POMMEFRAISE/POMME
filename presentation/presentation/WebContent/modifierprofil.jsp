@@ -17,26 +17,29 @@
 </head>
 <body background="img/fond_ecran.jpg">
 
-	<form method="post" action="navigation?nav=modifierprofil">
+	<form method="post" action="navigation?nav=formmodifierprofil">
       <fieldset class="formmodifiercompte">
                 <legend><fmt:message key="modification.profil" /></legend>
                      
             <label><fmt:message key="modification.profil.login" /> : </label> 
-			<input type="text" name="login" value="" id="login" size="30" required /><br /><br /> 
+			<input type="text" name="login" value="" id="login" size="30"  /><br /><br /> 
 			
 			<label><fmt:message key="modification.profil.mot.de.passe" /> : </label> 
-			<input type="password" name="pwd" value="" id="pwd" size="30" required /><br /><br />
+			<input type="password" name="pwd" value="" id="pwd" size="30"  /><br /><br />
 			
 			<label><fmt:message key="modification.profil.nom" /> : </label> 
-			<input type="text" name="nom" value="" id="nom" size="30" required /><br /><br />
+			<input type="text" name="nom" value="" id="nom" size="30"  /><br /><br />
 			
 			<label><fmt:message key="modification.profil.prenom" /> : </label> 
-			<input type="text" name="prenom" value="" id="prenom" size="30" required /><br /><br /><br />
+			<input type="text" name="prenom" value="" id="prenom" size="30"  /><br /><br /><br />
 			
 			<input type="submit" value="<fmt:message key="modification.profil.confirmer" />" class="buttonsubmit" /> 
 			
 			<input type="reset"	value="<fmt:message key="modification.profil.effacer" />" class="buttonreset" /><br /> 
-			
+			<br /><br />
+            <font color="red"><b>
+            ${message }
+            </b></font>
             </fieldset>
         </form>
 </body>

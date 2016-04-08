@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,12 +12,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import activeMQ.Producteur;
+import model.AuthentificationPresentation;
+import model.Joueur;
+import xml.presentation2metier.Authentification;
+import xml.presentation2metier.DemanderAuthentification;
+import xml.presentation2metier.ObjectFactory;
+import xml.presentation2metier.SeConnecter;
+
 /**
  * Servlet implementation class NavigationServlet
  */
 @WebServlet("/NavigationServlet")
 public class NavigationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private ObjectFactory objFactory = new ObjectFactory();
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -35,24 +47,38 @@ public class NavigationServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
+
 		
-		if(session.getAttribute("utilisateur") == null) {
-            response.sendRedirect("connexion");
-        }else if(request.getParameter("nav")!=null){
+	
+		if(request.getSession().getAttribute("utilisateur") == null && request.getParameter("nav")==null) {
+				DemanderAuthentification demandeAuthentification = objFactory.createDemanderAuthentification();
+				
+				URL url = null;
+				try {
+					url = new URL(getClass().getProtectionDomain().getCodeSource().getLocation(),"configuration.properties");
+				} catch (MalformedURLException e) {
+					e.printStackTrace();
+				}
+				new Producteur(demandeAuthentification, url);
+
+		        request.getRequestDispatcher("/connexion.jsp").forward(request, response);	
+		        
+		}else if(request.getParameter("nav").equals("creercompte") && request.getSession().getAttribute("utilisateur") == null){
+			response.sendRedirect("creercompte.jsp");
+		}else {
 		switch(request.getParameter("nav")){
 			case "rejoindrepartie" :
 				this.getServletContext().getRequestDispatcher("/rejoindrepartie.jsp").forward(request, response);
 				break;
 			case "creerpartie" :
-				this.getServletContext().getRequestDispatcher("/creerpartie.jsp").forward(request, response);
+		        this.getServletContext().getRequestDispatcher("/creerpartie.jsp").forward(request, response);  
 				break;
 			case "jeu" :
 				this.getServletContext().getRequestDispatcher("/jeu.jsp").forward(request, response);
 				break;
 			case "deconnexion" :
-				session.invalidate();
-				response.sendRedirect("connexion");
+				request.getSession().invalidate();
+				response.sendRedirect("navigation");
 				break;
 			case "modifierprofil" :
 				this.getServletContext().getRequestDispatcher("/modifierprofil.jsp").forward(request, response);
@@ -63,12 +89,61 @@ public class NavigationServlet extends HttpServlet {
 			case "accueil" :
 				this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
 				break;
-			case "creercompte" :
-				response.sendRedirect("creercompte.jsp");
+			case "formcreerpartie" :
+				String nom = request.getParameter("nom");
+			    String nbjoueur = request.getParameter("nbjoueur");
+				if(nom.isEmpty() || nbjoueur.isEmpty()){
+		        	request.setAttribute("message", "Les champs doivent être remplis");
+		        }
+		        this.getServletContext().getRequestDispatcher("/creerpartie.jsp").forward(request, response);  
+				break;
+			case "formcreercompte" :
+				String login = request.getParameter("login");
+			    String pwd = request.getParameter("pwd");
+			    nom = request.getParameter("nom");
+			    String prenom = request.getParameter("prenom");
+				if(login.isEmpty() || pwd.isEmpty() || nom.isEmpty() || prenom.isEmpty()){
+		        	request.setAttribute("message", "Les champs doivent être remplis");
+		        }
+		        this.getServletContext().getRequestDispatcher("/creercompte.jsp").forward(request, response);  
+				break;
+			case "formmodifierprofil" :
+				login = request.getParameter("login");
+			    pwd = request.getParameter("pwd");
+			    nom = request.getParameter("nom");
+			    prenom = request.getParameter("prenom");
+				if(login.isEmpty() || pwd.isEmpty() || nom.isEmpty() || prenom.isEmpty()){
+		        	request.setAttribute("message", "Les champs doivent être remplis");
+		        }
+		        this.getServletContext().getRequestDispatcher("/modifierprofil.jsp").forward(request, response);  
+				break;
+			case "formconnexion" :
+					login = request.getParameter("login");
+				    pwd = request.getParameter("pwd");
+				    AuthentificationPresentation auth = new AuthentificationPresentation(login, pwd);
+				    Authentification authentification = objFactory.createAuthentification();
+				    authentification.setLoginAuthentification(login);
+				    authentification.setMdpAuthentification(pwd);
+				    
+					SeConnecter seConnecter = objFactory.createSeConnecter();
+					seConnecter.setAuthentification(authentification);
+					
+					URL url = null;
+					try {
+						url = new URL(getClass().getProtectionDomain().getCodeSource().getLocation(),"configuration.properties");
+					} catch (MalformedURLException e) {
+						e.printStackTrace();
+					}
+					new Producteur(seConnecter, url);
+					
+				    Joueur joueur = new Joueur(login);
+					HttpSession session = request.getSession();
+			        session.setAttribute("utilisateur", joueur);
+			        request.setAttribute("utilisateur", joueur);
+			        
+			        this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
 				break;
 		}
-        }else {
-        	this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
-        }
+        } 
 	}
 }
