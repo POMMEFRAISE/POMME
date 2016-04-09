@@ -9,9 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import activeMQ.Producteur;
 import model.AuthentificationPresentation;
+import model.Joueur;
 import xml.presentation2metier.Authentification;
 import xml.presentation2metier.DemanderAuthentification;
 import xml.presentation2metier.ObjectFactory;
@@ -121,12 +123,12 @@ public class NavigationServlet extends HttpServlet {
 					
 					new Producteur(seConnecter);
 					
-				    //Joueur joueur = new Joueur(login);
-					//HttpSession session = request.getSession();
-			        //session.setAttribute("utilisateur", joueur);
-			        //request.setAttribute("utilisateur", joueur);
+				    Joueur joueur = new Joueur(login);
+					HttpSession session = request.getSession();
+			        session.setAttribute("utilisateur", joueur);
+			        request.setAttribute("utilisateur", joueur);
 			        
-			        //this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+			        this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
 				break;
 		}
         } 
