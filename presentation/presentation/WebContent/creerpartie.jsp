@@ -15,7 +15,7 @@
 <%@include file="include/menu.jsp"%>
 <%@include file="include/footer.jsp"%>
 </head>
-<body background="img/fond_ecran.jpg">
+<body background="img/fond.jpg">
 
 	<form method="post" action="navigation?nav=formcreerpartie">
       <fieldset class="formcreerpartie">
@@ -34,5 +34,8 @@
                    	</b></font> 
             </fieldset>
         </form>  
+<div class="des">
+<img src="img/des.png">
+</div>
 </body>
 </html>

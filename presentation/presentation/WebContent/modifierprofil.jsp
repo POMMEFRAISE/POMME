@@ -15,7 +15,7 @@
 <%@include file="include/menu.jsp"%>
 <%@include file="include/footer.jsp"%>
 </head>
-<body background="img/fond_ecran.jpg">
+<body background="img/fond.jpg">
 
 	<form method="post" action="navigation?nav=formmodifierprofil">
       <fieldset class="formmodifiercompte">
@@ -42,5 +42,8 @@
             </b></font>
             </fieldset>
         </form>
+<div class="des">
+<img src="img/des.png">
+</div>
 </body>
 </html>

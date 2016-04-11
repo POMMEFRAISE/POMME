@@ -17,7 +17,7 @@
 <%@include file="include/menu.jsp"%>
 <%@include file="include/footer.jsp"%>
 </head>
-<body background="img/fond_ecran.jpg">
+<body background="img/fond.jpg">
 
 	<center>
 		<table cellpadding="0" cellspacing="0" border="0" class=""
@@ -69,5 +69,8 @@
 			</tbody>
 		</table>
 	</center>
+<div class="des">
+<img src="img/des.png">
+</div>
 </body>
 </html>
