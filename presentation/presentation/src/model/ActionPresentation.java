@@ -10,6 +10,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.PropertyException;
 import javax.xml.bind.Unmarshaller;
 
+import filter.Filtre;
 import xml.metier2presentation.ReponseDemanderAuthentification;
 import xml.metier2presentation.ReponseSeConnecter;
 
@@ -18,6 +19,9 @@ public class ActionPresentation {
 	private String message;
 	private String idMessage;
 	private Object typeMessage;
+	private static String enTraitement = "oui";
+	private static String pageRedirection;
+	
 	public ActionPresentation(String message, String idMessage){
 		System.out.println("Action de présentation");
 		this.message = message;
@@ -34,19 +38,23 @@ public class ActionPresentation {
         }
 	}
 
-	public boolean demanderAuthentification(){
-		return true;	
+	public void demanderAuthentification(){
+		System.out.println("Demander Authentification Présentation");
+		enTraitement = "non";
+		pageRedirection = "connexion";
 	}
 	
-	public boolean seConnecter(){
+	public void seConnecter(){
 		Joueur joueur = new Joueur();
 		joueur.setNom(((ReponseSeConnecter) typeMessage).getAuthentification().getJoueur().getNomJoueur());
     	joueur.setPrenom(((ReponseSeConnecter) typeMessage).getAuthentification().getJoueur().getPrenomJoueur());
     	joueur.setLogin(((ReponseSeConnecter) typeMessage).getAuthentification().getJoueur().getLoginJoueur());
     	if(joueur.getNom().equals("") && joueur.getPrenom().equals("") && joueur.getLogin().equals("")){
-    		return false;
+    		enTraitement = "non";
+    		pageRedirection = "connexion";
     	}else{
-    		return true;
+    		enTraitement = "non";
+    		pageRedirection = "accueil";
     	}
 	}
 	
@@ -82,5 +90,21 @@ public class ActionPresentation {
 
 	public void setIdMessage(String idMessage) {
 		this.idMessage = idMessage;
+	}
+
+	public static String getPageRedirection() {
+		return pageRedirection;
+	}
+
+	public static void setPageRedirection(String pageRedirection) {
+		ActionPresentation.pageRedirection = pageRedirection;
+	}
+
+	public static String getEnTraitement() {
+		return enTraitement;
+	}
+
+	public static void setEnTraitement(String enTraitement) {
+		ActionPresentation.enTraitement = enTraitement;
 	}
 }

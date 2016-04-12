@@ -47,15 +47,14 @@ public class NavigationServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		
+		System.out.println("Servlet Navigation");
 	
 		if(request.getSession().getAttribute("utilisateur") == null && request.getParameter("nav")==null) {
 				DemanderAuthentification demandeAuthentification = objFactory.createDemanderAuthentification();
 				
 				new Producteur(demandeAuthentification);
-
-		        request.getRequestDispatcher("/connexion.jsp").forward(request, response);	
-		        
+				this.getServletContext().getRequestDispatcher("/").forward(request, response);
+						        
 		}else if(request.getParameter("nav").equals("creercompte") && request.getSession().getAttribute("utilisateur") == null){
 			response.sendRedirect("creercompte.jsp");
 		}else {
@@ -123,12 +122,12 @@ public class NavigationServlet extends HttpServlet {
 					
 					new Producteur(seConnecter);
 					
-				    Joueur joueur = new Joueur(login);
-					HttpSession session = request.getSession();
-			        session.setAttribute("utilisateur", joueur);
-			        request.setAttribute("utilisateur", joueur);
+				 //   Joueur joueur = new Joueur(login);
+					//HttpSession session = request.getSession();
+			        //session.setAttribute("utilisateur", joueur);
+			        //request.setAttribute("utilisateur", joueur);
 			        
-			        this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+			        //this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
 				break;
 		}
         } 
