@@ -9,7 +9,6 @@
        <filter-name>Filtre</filter-name>
        <url-pattern>/*</url-pattern>
     </filter-mapping>
-
    
   <servlet>
     <servlet-name>NavigationServlet</servlet-name>

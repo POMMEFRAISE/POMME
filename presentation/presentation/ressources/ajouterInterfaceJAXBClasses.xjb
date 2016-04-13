@@ -3,6 +3,6 @@
     xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
     jaxb:extensionBindingPrefixes="xjc">
           <jaxb:globalBindings>
-              <xjc:superClass name="xml.presentation2metier.Commande"/>
+              <xjc:superInterface name="comportement.Commande"/>
           </jaxb:globalBindings>
 </jaxb:bindings>
