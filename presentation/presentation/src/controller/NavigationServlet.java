@@ -43,12 +43,24 @@ public class NavigationServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String login;
 		String pwd;
-		
-		System.out.println("Servlet Navigation");
-	
+			
 		if(request.getSession().getAttribute("utilisateur") == null && request.getParameter("nav")==null) {
 			DemanderAuthentificationComportement demanderAuthentification = new DemanderAuthentificationComportement();
 			demanderAuthentification.envoiMessage();
+			
+			Lecteur lecteur = new Lecteur();
+			
+			lecteur.start();
+			String redirection = null;
+			while(lecteur.isAlive()){
+				System.out.println("En traitement ...");
+			}
+			redirection = lecteur.getRedirection();
+
+				System.out.println("Redirection Vers JSP: "+redirection);				
+			
+
+			//System.out.println("Redirection : "+lecteur.getRedirection());
 			//this.getServletContext().getRequestDispatcher("/connexion.jsp").forward(request, response);
 						        
 		}else if(request.getParameter("nav").equals("creercompte") && request.getSession().getAttribute("utilisateur") == null){

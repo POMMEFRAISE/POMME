@@ -22,6 +22,8 @@ public class ReponseDemanderAuthentificationComportement implements Commande{
 	public String reçoiMessage() {
 		System.out.println("ReponseDemanderAuthentificationComportement");
 		pageRedirection = "connexion";
+		System.out.println("ReponseDemanderAuthentificationComportement : pageRedirection : "+pageRedirection);
+
 		return pageRedirection;
 	}
 
