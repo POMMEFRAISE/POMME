@@ -35,13 +35,9 @@ public class ClientRMI extends Thread {
 	public String serviceName;
 	public Object objetDTO;
 	public String commande;
-	private String message;
-	private String idMessage;
 	private ObjectFactory objFactory = new ObjectFactory();
 
 	public ClientRMI(String message, String idMessage) {
-		this.message = message;
-		this.idMessage = idMessage;
 		run();
 	}
 
@@ -51,19 +47,29 @@ public class ClientRMI extends Thread {
 	public void run() {	
 		
 		//Policy
-		if (System.getSecurityManager() == null) 
+		if (System.getSecurityManager() == null) {
 			System.setProperty("java.security.policy", "file:/C:/Users/Cyrielle/git/PDS/persistanceclient/persistanceclient/bin/clientRMI/client.policy");
+			System.setProperty("java.rmi.server.codebase", "file:/C:/Users/Cyrielle/git/PDS/persistanceservice/persistanceservice/bin/");
 			System.setSecurityManager(new SecurityManager());
+		}
 			try {
+				Naming.lookup("//127.0.0.1/ServiceJoueur");
+				
 				//url
 				String url="file:/C:/Users/Cyrielle/git/PDS/persistanceservice/persistanceservice/bin/";
+				
 				//Appelle de la classe JoueurDTO
 				Class<?> joueurDTO = RMIClassLoader.loadClass(url,"dto.JoueurDTO");
-				Object objectJoueurDTO = joueurDTO.newInstance();
-				
+				Object objectJoueur = joueurDTO.newInstance();
 				
 				//Charger interface 
+				Class<?> serviceJoueur = RMIClassLoader.loadClass(url,"serviceFacade.ServiceFacade");
+				serviceJoueur.newInstance();
 				
+				//Appeler les methodes 
+				objectJoueur.getClass().getDeclaredMethod("setLogin", String.class).invoke(objectJoueur, "cyrielle");
+				objectJoueur.getClass().getDeclaredMethod("setMotDePasse", String.class).invoke(objectJoueur, "jeu");
+				System.out.println(objectJoueur);
 				
 				
 			} catch (MalformedURLException e) {
@@ -76,6 +82,24 @@ public class ClientRMI extends Thread {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NotBoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
