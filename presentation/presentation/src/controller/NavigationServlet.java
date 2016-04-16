@@ -9,15 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import activeMQ.Producteur;
-import model.AuthentificationPresentation;
-import model.Joueur;
-import xml.presentation2metier.Authentification;
-import xml.presentation2metier.DemanderAuthentification;
-import xml.presentation2metier.ObjectFactory;
-import xml.presentation2metier.SeConnecter;
+import activeMQ.Lecteur;
+import comportement.Commande;
+import comportement.presentation2metier.AuthentificationComportement;
+import comportement.presentation2metier.DemanderAuthentificationComportement;
 
 /**
  * Servlet implementation class NavigationServlet
@@ -25,7 +21,6 @@ import xml.presentation2metier.SeConnecter;
 @WebServlet("/NavigationServlet")
 public class NavigationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ObjectFactory objFactory = new ObjectFactory();
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -46,14 +41,27 @@ public class NavigationServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		System.out.println("Servlet Navigation");
-	
+		String login;
+		String pwd;
+			
 		if(request.getSession().getAttribute("utilisateur") == null && request.getParameter("nav")==null) {
-				DemanderAuthentification demandeAuthentification = objFactory.createDemanderAuthentification();
-				
-				new Producteur(demandeAuthentification);
-				this.getServletContext().getRequestDispatcher("/").forward(request, response);
+			DemanderAuthentificationComportement demanderAuthentification = new DemanderAuthentificationComportement();
+			demanderAuthentification.envoiMessage();
+			
+			Lecteur lecteur = new Lecteur();
+			
+			lecteur.start();
+			String redirection = null;
+			while(lecteur.isAlive()){
+				System.out.println("En traitement ...");
+			}
+			redirection = lecteur.getRedirection();
+
+				System.out.println("Redirection Vers JSP: "+redirection);				
+			
+
+			//System.out.println("Redirection : "+lecteur.getRedirection());
+			//this.getServletContext().getRequestDispatcher("/connexion.jsp").forward(request, response);
 						        
 		}else if(request.getParameter("nav").equals("creercompte") && request.getSession().getAttribute("utilisateur") == null){
 			response.sendRedirect("creercompte.jsp");
@@ -90,8 +98,8 @@ public class NavigationServlet extends HttpServlet {
 		        this.getServletContext().getRequestDispatcher("/creerpartie.jsp").forward(request, response);  
 				break;
 			case "formcreercompte" :
-				String login = request.getParameter("login");
-			    String pwd = request.getParameter("pwd");
+				login = request.getParameter("login");
+			    pwd = request.getParameter("pwd");
 			    nom = request.getParameter("nom");
 			    String prenom = request.getParameter("prenom");
 				if(login.isEmpty() || pwd.isEmpty() || nom.isEmpty() || prenom.isEmpty()){
@@ -110,18 +118,10 @@ public class NavigationServlet extends HttpServlet {
 		        this.getServletContext().getRequestDispatcher("/modifierprofil.jsp").forward(request, response);  
 				break;
 			case "formconnexion" :
-					login = request.getParameter("login");
-				    pwd = request.getParameter("pwd");
-				    AuthentificationPresentation auth = new AuthentificationPresentation(login, pwd);
-				    Authentification authentification = objFactory.createAuthentification();
-				    authentification.setLoginAuthentification(login);
-				    authentification.setMdpAuthentification(pwd);
-				    
-					SeConnecter seConnecter = objFactory.createSeConnecter();
-					seConnecter.setAuthentification(authentification);
-					
-					new Producteur(seConnecter);
-					
+				login = request.getParameter("login");
+				pwd = request.getParameter("pwd");
+				AuthentificationComportement authentification = new AuthentificationComportement(login, pwd);
+				authentification.envoiMessage();
 				 //   Joueur joueur = new Joueur(login);
 					//HttpSession session = request.getSession();
 			        //session.setAttribute("utilisateur", joueur);

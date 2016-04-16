@@ -35,16 +35,16 @@ public class Jouer extends HttpServlet {
 		
 		int maxS = 0;
 		String premierJoueur = null;
-		ArrayList<De> lesDes = new ArrayList<>();
+		ArrayList<DeComportement> lesDes = new ArrayList<>();
 		//nombre minimum et maximum de joueurs
 		int minJ = 3;
 		int maxJ = 7;
 		int sommeDes;
-		ArrayList<Joueur> lesJoueurs = new ArrayList<>();
+		ArrayList<JoueurComportement> lesJoueurs = new ArrayList<>();
 		
 		// Création des 5 dés et ajoutés dans la liste
 		for (int d = 1; d <= 5; d++) {
-			De de = new De();
+			DeComportement de = new DeComportement();
 			lesDes.add(de);
 		}
 
@@ -61,7 +61,7 @@ public class Jouer extends HttpServlet {
 			//Création des joueurs
 			for (int i = 1; i <= nb; i++) {
 				sommeDes=0;
-				Joueur j = new Joueur();
+				JoueurComportement j = new JoueurComportement();
 				lesJoueurs.add(j);
 				System.out.println("Le nom du joueur n° "+i+" : ");
 				Scanner scj1 = new Scanner(System.in);
@@ -70,7 +70,7 @@ public class Jouer extends HttpServlet {
 				j.setLogin(nomJ);
 				
 				// Pour chaque dé, on le lance au hasard et on affiche sa valeur
-				for (De unDe : lesDes) {
+				for (DeComportement unDe : lesDes) {
 					unDe.lancer();
 					System.out.println(unDe.getValeur());
 					sommeDes = sommeDes + unDe.getValeur();
