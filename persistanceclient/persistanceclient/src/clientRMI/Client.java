@@ -23,7 +23,6 @@ public class Client {
 				//Appelle de la classe JoueurDTO
 				Class<?> joueurDTO = RMIClassLoader.loadClass(url,"dto.JoueurDTO");
 				Object objectJoueur = joueurDTO.newInstance();
-				Object objectJoueurCreationCompte = joueurDTO.newInstance();
 				Object objectJoueurMiseaJour = joueurDTO.newInstance();
 
 
@@ -49,25 +48,9 @@ public class Client {
 					System.out.println("Prenom joueur : "+objectJoueur.getClass().getMethod("getPrenom").invoke(objectJoueur));
 					System.out.println("Login joueur : "+objectJoueur.getClass().getMethod("getLogin").invoke(objectJoueur));
 				}
-					//Appeler les methodes joueur
-				objectJoueurCreationCompte.getClass().getDeclaredMethod("setNom", String.class).invoke(objectJoueurCreationCompte, "TOMATE");
-				objectJoueurCreationCompte.getClass().getDeclaredMethod("setPrenom", String.class).invoke(objectJoueurCreationCompte, "Paul");
-				objectJoueurCreationCompte.getClass().getDeclaredMethod("setEmail", String.class).invoke(objectJoueurCreationCompte, "Paul@yahoo.com");
-				objectJoueurCreationCompte.getClass().getDeclaredMethod("setLogin", String.class).invoke(objectJoueurCreationCompte, "Paulp");
-				objectJoueurCreationCompte.getClass().getDeclaredMethod("setMotDePasse", String.class).invoke(objectJoueurCreationCompte, "Paul1");
 					
 				//Appeler les methodes CreationCompte
-					
-				boolean creationJoueur = (boolean) objectServiceJoueur.getClass().getDeclaredMethod("creationCompte",Object.class).invoke(objectServiceJoueur, objectJoueurCreationCompte);
-
-				if(trouveJoueur == true){
-					if (creationJoueur == true){
-						System.out.println("Nom joueur : "+objectJoueur.getClass().getMethod("getNom").invoke(objectJoueurCreationCompte));
-						System.out.println("Prenom joueur : "+objectJoueur.getClass().getMethod("getPrenom").invoke(objectJoueurCreationCompte));
-						System.out.println("Email joueur : "+objectJoueur.getClass().getMethod("getEmail").invoke(objectJoueurCreationCompte));
-						System.out.println("Login joueur : "+objectJoueur.getClass().getMethod("getLogin").invoke(objectJoueurCreationCompte));	
-					}
-				}
+				
 					
 				
 					
