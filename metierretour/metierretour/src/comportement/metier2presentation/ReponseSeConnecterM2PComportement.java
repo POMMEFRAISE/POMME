@@ -9,11 +9,11 @@ import xml.metier2presentation.ObjectFactory;
 import xml.metier2presentation.ReponseSeConnecterM2P;
 
 public class ReponseSeConnecterM2PComportement implements Commande{
-	private JoueurMetierRetour joueur;
+	private JoueurMetierRetour joueurMetier;
 	private String messageErreur;
 	
-	public ReponseSeConnecterM2PComportement(JoueurMetierRetour joueur, String messageErreur){
-		this.joueur = joueur;
+	public ReponseSeConnecterM2PComportement(JoueurMetierRetour joueurMetier, String messageErreur){
+		this.joueurMetier = joueurMetier;
 		this.messageErreur = messageErreur;
 	}
 	
@@ -24,9 +24,9 @@ public class ReponseSeConnecterM2PComportement implements Commande{
 	public void envoiMessage() {
 		ObjectFactory objFactory = new ObjectFactory();
 		JoueurM2P joueur = objFactory.createJoueurM2P();
-		joueur.setLoginJoueur(joueur.getLoginJoueur());
-		joueur.setNomJoueur(joueur.getNomJoueur());
-		joueur.setPrenomJoueur(joueur.getPrenomJoueur());
+		joueur.setLoginJoueur(joueurMetier.getLoginJoueur());
+		joueur.setNomJoueur(joueurMetier.getNomJoueur());
+		joueur.setPrenomJoueur(joueurMetier.getPrenomJoueur());
 		AuthentificationM2P authentification = objFactory.createAuthentificationM2P();
 		authentification.setJoueur(joueur);
 		authentification.setMessageErreur(messageErreur);
@@ -44,11 +44,11 @@ public class ReponseSeConnecterM2PComportement implements Commande{
 		this.messageErreur = messageErreur;
 	}
 
-	public JoueurMetierRetour getJoueur() {
-		return joueur;
+	public JoueurMetierRetour getJoueurMetier() {
+		return joueurMetier;
 	}
 
-	public void setJoueur(JoueurMetierRetour joueur) {
-		this.joueur = joueur;
+	public void setJoueur(JoueurMetierRetour joueurMetier) {
+		this.joueurMetier = joueurMetier;
 	}
 }
