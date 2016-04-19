@@ -1,4 +1,4 @@
-package daoInterface;
+package daointerface;
 
 import entites.JoueurEntite;
 import entites.PartieEntite;

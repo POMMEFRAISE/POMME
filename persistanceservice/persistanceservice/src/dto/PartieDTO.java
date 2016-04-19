@@ -1,6 +1,7 @@
 package dto;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class PartieDTO implements Serializable {
 	
@@ -12,6 +13,23 @@ public class PartieDTO implements Serializable {
 	protected String nomPartie;
 	protected int nbredejoueur;
 	protected String statut;
+	protected Date datedecreation;
+	
+	public PartieDTO(int id, String nomPartie, int nbredejoueur, String statut, Date datedecreation) {
+		this.id = id;
+		this.nomPartie = nomPartie;
+		this.nbredejoueur = nbredejoueur;
+		this.statut = statut;
+		this.datedecreation = datedecreation;
+	}
+	
+	public PartieDTO() {
+		this.id = 0;
+		this.nomPartie = "";
+		this.nbredejoueur = 0;
+		this.statut = "";
+		this.datedecreation = null;
+	}
 	
 	public int getId() {
 		return id;
@@ -36,6 +54,12 @@ public class PartieDTO implements Serializable {
 	}
 	public void setStatut(String statut) {
 		this.statut = statut;
+	}
+	public Date getDatedecreation() {
+		return datedecreation;
+	}
+	public void setDatedecreation(Date datedecreation) {
+		this.datedecreation = datedecreation;
 	}
 	@Override
 	public String toString() {

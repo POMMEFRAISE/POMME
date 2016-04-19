@@ -1,23 +1,34 @@
 package entites;
 
+import java.sql.Date;
+
 public class PartieEntite {
 	
+	
+
 	protected int id;
 	protected String nomPartie;
 	protected int nbredejoueur;
 	protected String statut;
-	
-	
-	
-	public PartieEntite(int id, String nomPartie) {
-		this.id = id;
-		this.nomPartie = nomPartie;
-	}
+	protected Date datedecreation;
 
 
 	public PartieEntite() {
 		this.id = 0;
-		this.nomPartie = "";	
+		this.nomPartie = "";
+		this.nbredejoueur = 0;
+		this.statut = "";
+		this.datedecreation = null;
+	}
+
+
+	public PartieEntite(int id, String nomPartie, int nbredejoueur, String statut, Date datedecreation) {
+		super();
+		this.id = id;
+		this.nomPartie = nomPartie;
+		this.nbredejoueur = nbredejoueur;
+		this.statut = statut;
+		this.datedecreation = datedecreation;
 	}
 
 
@@ -61,13 +72,19 @@ public class PartieEntite {
 	}
 
 
-	@Override
-	public String toString() {
-		return "Partie [id=" + id + ", nomPartie=" + nomPartie + "]";
+	public Date getDatedecreation() {
+		return datedecreation;
+	}
+
+
+	public void setDatedecreation(Date datedecreation) {
+		this.datedecreation = datedecreation;
 	}
 	
-	
-	
+	@Override
+	public String toString() {
+		return "Partie [id=" + id + ", nomPartie=" + nomPartie + ", datedecreation=" + datedecreation + "]";
+	}
 	
 
 }

@@ -1,11 +1,11 @@
-package serviceRMIImplementation;
+package servicermiimplementation;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import daoImplementation.DaoScoreImpl;
-import daoInterface.DaoScoreInterface;
-import serviceRMIInterface.ServiceScoreInterface;
+import daoimplementation.DaoScoreImpl;
+import daointerface.DaoScoreInterface;
+import servicermiinterface.ServiceScoreInterface;
 
 public class ServiceScoreImpl extends UnicastRemoteObject implements ServiceScoreInterface {
 
