@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.02.28 à 03:23:34 PM CET 
+// Généré le : 2016.04.18 à 09:26:46 PM CEST 
 //
 
 
@@ -37,51 +37,51 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DemanderAuthentification }
+     * Create an instance of {@link SeConnecterP2M }
      * 
      */
-    public DemanderAuthentification createDemanderAuthentification() {
-        return new DemanderAuthentification();
+    public SeConnecterP2M createSeConnecterP2M() {
+        return new SeConnecterP2M();
     }
 
     /**
-     * Create an instance of {@link SeConnecter }
+     * Create an instance of {@link AuthentificationP2M }
      * 
      */
-    public SeConnecter createSeConnecter() {
-        return new SeConnecter();
+    public AuthentificationP2M createAuthentificationP2M() {
+        return new AuthentificationP2M();
     }
 
     /**
-     * Create an instance of {@link Authentification }
+     * Create an instance of {@link DemanderAuthentificationP2M }
      * 
      */
-    public Authentification createAuthentification() {
-        return new Authentification();
+    public DemanderAuthentificationP2M createDemanderAuthentificationP2M() {
+        return new DemanderAuthentificationP2M();
     }
 
     /**
-     * Create an instance of {@link De }
+     * Create an instance of {@link DeP2M }
      * 
      */
-    public De createDe() {
-        return new De();
+    public DeP2M createDeP2M() {
+        return new DeP2M();
     }
 
     /**
-     * Create an instance of {@link Joueur }
+     * Create an instance of {@link JoueurP2M }
      * 
      */
-    public Joueur createJoueur() {
-        return new Joueur();
+    public JoueurP2M createJoueurP2M() {
+        return new JoueurP2M();
     }
 
     /**
-     * Create an instance of {@link Partie }
+     * Create an instance of {@link PartieP2M }
      * 
      */
-    public Partie createPartie() {
-        return new Partie();
+    public PartieP2M createPartieP2M() {
+        return new PartieP2M();
     }
 
 }

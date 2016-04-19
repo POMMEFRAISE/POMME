@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.02.28 à 03:23:34 PM CET 
+// Généré le : 2016.04.18 à 09:26:46 PM CEST 
 //
 
 
@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
- *     &lt;extension base="{http://pds.m1.upec.fr/xml/presentation2metier}RequeteHead">
+ *     &lt;extension base="{http://pds.m1.upec.fr/xml/presentation2metier}RequeteHeadP2M">
  *     &lt;/extension>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -32,9 +32,9 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-@XmlRootElement(name = "demanderAuthentification")
-public class DemanderAuthentification
-    extends RequeteHead
+@XmlRootElement(name = "demanderAuthentificationP2M")
+public class DemanderAuthentificationP2M
+    extends RequeteHeadP2M
 {
 
 

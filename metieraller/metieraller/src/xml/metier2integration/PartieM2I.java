@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.02.28 à 03:23:46 PM CET 
+// Généré le : 2016.04.18 à 09:28:35 PM CEST 
 //
 
 
@@ -20,17 +20,17 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Classe Java pour Partie complex type.
+ * <p>Classe Java pour PartieM2I complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="Partie">
+ * &lt;complexType name="PartieM2I">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="listeJoueurs" type="{http://pds.m1.upec.fr/xml/metier2integration}Joueur" maxOccurs="7"/>
- *         &lt;element name="listeDe" type="{http://pds.m1.upec.fr/xml/metier2integration}De" maxOccurs="5"/>
+ *         &lt;element name="listeJoueurs" type="{http://pds.m1.upec.fr/xml/metier2integration}JoueurM2I" maxOccurs="7"/>
+ *         &lt;element name="listeDe" type="{http://pds.m1.upec.fr/xml/metier2integration}DeM2I" maxOccurs="5"/>
  *       &lt;/sequence>
  *       &lt;attribute name="nomPartie" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="nbJoueur" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -44,16 +44,16 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Partie", propOrder = {
+@XmlType(name = "PartieM2I", propOrder = {
     "listeJoueurs",
     "listeDe"
 })
-public class Partie {
+public class PartieM2I {
 
     @XmlElement(required = true)
-    protected List<Joueur> listeJoueurs;
+    protected List<JoueurM2I> listeJoueurs;
     @XmlElement(required = true)
-    protected List<De> listeDe;
+    protected List<DeM2I> listeDe;
     @XmlAttribute(name = "nomPartie")
     protected String nomPartie;
     @XmlAttribute(name = "nbJoueur")
@@ -82,13 +82,13 @@ public class Partie {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Joueur }
+     * {@link JoueurM2I }
      * 
      * 
      */
-    public List<Joueur> getListeJoueurs() {
+    public List<JoueurM2I> getListeJoueurs() {
         if (listeJoueurs == null) {
-            listeJoueurs = new ArrayList<Joueur>();
+            listeJoueurs = new ArrayList<JoueurM2I>();
         }
         return this.listeJoueurs;
     }
@@ -111,13 +111,13 @@ public class Partie {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link De }
+     * {@link DeM2I }
      * 
      * 
      */
-    public List<De> getListeDe() {
+    public List<DeM2I> getListeDe() {
         if (listeDe == null) {
-            listeDe = new ArrayList<De>();
+            listeDe = new ArrayList<DeM2I>();
         }
         return this.listeDe;
     }

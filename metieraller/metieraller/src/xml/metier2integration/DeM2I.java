@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.02.28 à 03:23:46 PM CET 
+// Généré le : 2016.04.18 à 09:28:35 PM CEST 
 //
 
 
@@ -15,12 +15,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour De complex type.
+ * <p>Classe Java pour DeM2I complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="De">
+ * &lt;complexType name="DeM2I">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;attribute name="identifiantDe" type="{http://www.w3.org/2001/XMLSchema}int" />
@@ -34,8 +34,8 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "De")
-public class De {
+@XmlType(name = "DeM2I")
+public class DeM2I {
 
     @XmlAttribute(name = "identifiantDe")
     protected Integer identifiantDe;
