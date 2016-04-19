@@ -1,4 +1,4 @@
-package serviceRMIInterface;
+package servicermiinterface;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

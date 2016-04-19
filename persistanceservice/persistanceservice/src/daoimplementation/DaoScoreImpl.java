@@ -1,11 +1,11 @@
-package daoImplementation;
+package daoimplementation;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import daoInterface.DaoScoreInterface;
-import daoParam.ConnexionDAO;
+import daointerface.DaoScoreInterface;
+import daoparam.ConnexionDAO;
 import entites.JoueurEntite;
 import entites.PartieEntite;
 import entites.ScoreEntite;

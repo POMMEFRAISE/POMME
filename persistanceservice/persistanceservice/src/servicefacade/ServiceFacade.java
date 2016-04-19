@@ -1,9 +1,9 @@
-package serviceFacade;
+package servicefacade;
 
 import java.rmi.RemoteException;
 
-import serviceRMIImplementation.ServiceJoueurImpl;
-import serviceRMIInterface.ServiceJoueurInterface;
+import servicermiimplementation.ServiceJoueurImpl;
+import servicermiinterface.ServiceJoueurInterface;
 
 public class ServiceFacade {
 	private ServiceJoueurInterface serviceJoueurDTO;
@@ -27,9 +27,9 @@ public class ServiceFacade {
 		return joueurDTO;
 	}
 	
-	public boolean verificationJoueur (Object joueurDTO) {
+	public boolean verifierJoueur (Object joueurDTO) {
 		try {
-			return serviceJoueurDTO.verificationJoueur(joueurDTO);
+			return serviceJoueurDTO.verifierJoueur(joueurDTO);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

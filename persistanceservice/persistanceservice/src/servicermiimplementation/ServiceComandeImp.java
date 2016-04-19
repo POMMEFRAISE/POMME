@@ -1,11 +1,11 @@
-package serviceRMIImplementation;
+package servicermiimplementation;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import daoImplementation.DaoComandeImpl;
-import daoInterface.DaoComandeInterface;
-import serviceRMIInterface.ServiceComandeInterface;
+import daoimplementation.DaoComandeImpl;
+import daointerface.DaoComandeInterface;
+import servicermiinterface.ServiceComandeInterface;
 
 public class ServiceComandeImp extends UnicastRemoteObject implements ServiceComandeInterface{
 
