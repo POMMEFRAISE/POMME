@@ -2,13 +2,13 @@ package model;
 
 import java.io.Serializable;
 
-public class JoueurMetier implements Serializable{
+public class JoueurMetierRetour implements Serializable{
 	private static final long serialVersionUID = 5948214634151906312L;
 	private String nomJoueur;
 	private String prenomJoueur;
 	private String loginJoueur;
 	
-	public JoueurMetier(String nomJoueur, String prenomJoueur, String loginJoueur){
+	public JoueurMetierRetour(String nomJoueur, String prenomJoueur, String loginJoueur){
 		this.nomJoueur = nomJoueur;
 		this.prenomJoueur = prenomJoueur;
 		this.loginJoueur = loginJoueur;

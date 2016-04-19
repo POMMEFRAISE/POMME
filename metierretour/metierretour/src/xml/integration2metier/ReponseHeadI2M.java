@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.03.01 à 05:05:22 PM CET 
+// Généré le : 2016.04.18 à 09:59:58 PM CEST 
 //
 
 
@@ -18,12 +18,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Classe Java pour ReponseHead complex type.
+ * <p>Classe Java pour ReponseHeadI2M complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="ReponseHead">
+ * &lt;complexType name="ReponseHeadI2M">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;attribute name="statutMessage" type="{http://www.w3.org/2001/XMLSchema}string" default="Traitée" />
@@ -37,12 +37,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ReponseHead")
+@XmlType(name = "ReponseHeadI2M")
 @XmlSeeAlso({
-    ReponseSeConnecter.class,
-    ReponseDemanderAuthentification.class
+    ReponseDemanderAuthentificationI2M.class,
+    ReponseSeConnecterI2M.class
 })
-public abstract class ReponseHead {
+public abstract class ReponseHeadI2M {
 
     @XmlAttribute(name = "statutMessage")
     protected String statutMessage;

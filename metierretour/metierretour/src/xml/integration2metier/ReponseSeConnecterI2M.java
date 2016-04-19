@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.03.01 à 05:05:22 PM CET 
+// Généré le : 2016.04.18 à 09:59:58 PM CEST 
 //
 
 
@@ -23,9 +23,9 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
- *     &lt;extension base="{http://pds.m1.upec.fr/xml/integration2metier}ReponseHead">
+ *     &lt;extension base="{http://pds.m1.upec.fr/xml/integration2metier}ReponseHeadI2M">
  *       &lt;sequence>
- *         &lt;element name="Authentification" type="{http://pds.m1.upec.fr/xml/integration2metier}Authentification"/>
+ *         &lt;element name="Authentification" type="{http://pds.m1.upec.fr/xml/integration2metier}AuthentificationI2M"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -38,23 +38,23 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "authentification"
 })
-@XmlRootElement(name = "reponseSeConnecter")
-public class ReponseSeConnecter
-    extends ReponseHead
+@XmlRootElement(name = "reponseSeConnecterI2M")
+public class ReponseSeConnecterI2M
+    extends ReponseHeadI2M
 {
 
     @XmlElement(name = "Authentification", required = true)
-    protected Authentification authentification;
+    protected AuthentificationI2M authentification;
 
     /**
      * Obtient la valeur de la propriété authentification.
      * 
      * @return
      *     possible object is
-     *     {@link Authentification }
+     *     {@link AuthentificationI2M }
      *     
      */
-    public Authentification getAuthentification() {
+    public AuthentificationI2M getAuthentification() {
         return authentification;
     }
 
@@ -63,10 +63,10 @@ public class ReponseSeConnecter
      * 
      * @param value
      *     allowed object is
-     *     {@link Authentification }
+     *     {@link AuthentificationI2M }
      *     
      */
-    public void setAuthentification(Authentification value) {
+    public void setAuthentification(AuthentificationI2M value) {
         this.authentification = value;
     }
 

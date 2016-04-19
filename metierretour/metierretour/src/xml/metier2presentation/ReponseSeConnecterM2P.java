@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.03.01 à 05:05:51 PM CET 
+// Généré le : 2016.04.18 à 09:59:37 PM CEST 
 //
 
 
@@ -23,9 +23,9 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
- *     &lt;extension base="{http://pds.m1.upec.fr/xml/integration2metier}ReponseHead">
+ *     &lt;extension base="{http://pds.m1.upec.fr/xml/integration2metier}ReponseHeadM2P">
  *       &lt;sequence>
- *         &lt;element name="Authentification" type="{http://pds.m1.upec.fr/xml/integration2metier}Authentification"/>
+ *         &lt;element name="Authentification" type="{http://pds.m1.upec.fr/xml/integration2metier}AuthentificationM2P"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -38,23 +38,23 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "authentification"
 })
-@XmlRootElement(name = "reponseSeConnecter")
-public class ReponseSeConnecter
-    extends ReponseHead
+@XmlRootElement(name = "reponseSeConnecterM2P")
+public class ReponseSeConnecterM2P
+    extends ReponseHeadM2P
 {
 
     @XmlElement(name = "Authentification", required = true)
-    protected Authentification authentification;
+    protected AuthentificationM2P authentification;
 
     /**
      * Obtient la valeur de la propriété authentification.
      * 
      * @return
      *     possible object is
-     *     {@link Authentification }
+     *     {@link AuthentificationM2P }
      *     
      */
-    public Authentification getAuthentification() {
+    public AuthentificationM2P getAuthentification() {
         return authentification;
     }
 
@@ -63,10 +63,10 @@ public class ReponseSeConnecter
      * 
      * @param value
      *     allowed object is
-     *     {@link Authentification }
+     *     {@link AuthentificationM2P }
      *     
      */
-    public void setAuthentification(Authentification value) {
+    public void setAuthentification(AuthentificationM2P value) {
         this.authentification = value;
     }
 

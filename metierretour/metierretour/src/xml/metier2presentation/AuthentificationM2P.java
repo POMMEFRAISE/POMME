@@ -2,11 +2,11 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.03.01 à 05:05:22 PM CET 
+// Généré le : 2016.04.18 à 09:59:37 PM CEST 
 //
 
 
-package xml.integration2metier;
+package xml.metier2presentation;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -16,16 +16,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour Authentification complex type.
+ * <p>Classe Java pour AuthentificationM2P complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="Authentification">
+ * &lt;complexType name="AuthentificationM2P">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="joueur" type="{http://pds.m1.upec.fr/xml/integration2metier}Joueur"/>
+ *         &lt;element name="joueur" type="{http://pds.m1.upec.fr/xml/integration2metier}JoueurM2P"/>
  *       &lt;/sequence>
  *       &lt;attribute name="messageErreur" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
@@ -36,13 +36,13 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Authentification", propOrder = {
+@XmlType(name = "AuthentificationM2P", propOrder = {
     "joueur"
 })
-public class Authentification {
+public class AuthentificationM2P {
 
     @XmlElement(required = true)
-    protected Joueur joueur;
+    protected JoueurM2P joueur;
     @XmlAttribute(name = "messageErreur")
     protected String messageErreur;
 
@@ -51,10 +51,10 @@ public class Authentification {
      * 
      * @return
      *     possible object is
-     *     {@link Joueur }
+     *     {@link JoueurM2P }
      *     
      */
-    public Joueur getJoueur() {
+    public JoueurM2P getJoueur() {
         return joueur;
     }
 
@@ -63,10 +63,10 @@ public class Authentification {
      * 
      * @param value
      *     allowed object is
-     *     {@link Joueur }
+     *     {@link JoueurM2P }
      *     
      */
-    public void setJoueur(Joueur value) {
+    public void setJoueur(JoueurM2P value) {
         this.joueur = value;
     }
 
