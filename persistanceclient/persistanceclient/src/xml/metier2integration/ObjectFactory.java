@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.03.01 à 11:17:32 AM CET 
+// Généré le : 2016.04.19 à 07:28:29 PM CEST 
 //
 
 
@@ -37,51 +37,51 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DemanderAuthentification }
+     * Create an instance of {@link DemanderAuthentificationM2I }
      * 
      */
-    public DemanderAuthentification createDemanderAuthentification() {
-        return new DemanderAuthentification();
+    public DemanderAuthentificationM2I createDemanderAuthentificationM2I() {
+        return new DemanderAuthentificationM2I();
     }
 
     /**
-     * Create an instance of {@link SeConnecter }
+     * Create an instance of {@link SeConnecterM2I }
      * 
      */
-    public SeConnecter createSeConnecter() {
-        return new SeConnecter();
+    public SeConnecterM2I createSeConnecterM2I() {
+        return new SeConnecterM2I();
     }
 
     /**
-     * Create an instance of {@link Authentification }
+     * Create an instance of {@link AuthentificationM2I }
      * 
      */
-    public Authentification createAuthentification() {
-        return new Authentification();
+    public AuthentificationM2I createAuthentificationM2I() {
+        return new AuthentificationM2I();
     }
 
     /**
-     * Create an instance of {@link De }
+     * Create an instance of {@link JoueurM2I }
      * 
      */
-    public De createDe() {
-        return new De();
+    public JoueurM2I createJoueurM2I() {
+        return new JoueurM2I();
     }
 
     /**
-     * Create an instance of {@link Joueur }
+     * Create an instance of {@link PartieM2I }
      * 
      */
-    public Joueur createJoueur() {
-        return new Joueur();
+    public PartieM2I createPartieM2I() {
+        return new PartieM2I();
     }
 
     /**
-     * Create an instance of {@link Partie }
+     * Create an instance of {@link DeM2I }
      * 
      */
-    public Partie createPartie() {
-        return new Partie();
+    public DeM2I createDeM2I() {
+        return new DeM2I();
     }
 
 }

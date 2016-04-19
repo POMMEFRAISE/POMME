@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.03.01 à 11:17:07 AM CET 
+// Généré le : 2016.04.19 à 07:28:44 PM CEST 
 //
 
 
@@ -37,35 +37,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ReponseDemanderAuthentification }
+     * Create an instance of {@link ReponseSeConnecterI2M }
      * 
      */
-    public ReponseDemanderAuthentification createReponseDemanderAuthentification() {
-        return new ReponseDemanderAuthentification();
+    public ReponseSeConnecterI2M createReponseSeConnecterI2M() {
+        return new ReponseSeConnecterI2M();
     }
 
     /**
-     * Create an instance of {@link ReponseSeConnecter }
+     * Create an instance of {@link AuthentificationI2M }
      * 
      */
-    public ReponseSeConnecter createReponseSeConnecter() {
-        return new ReponseSeConnecter();
+    public AuthentificationI2M createAuthentificationI2M() {
+        return new AuthentificationI2M();
     }
 
     /**
-     * Create an instance of {@link Authentification }
+     * Create an instance of {@link ReponseDemanderAuthentificationI2M }
      * 
      */
-    public Authentification createAuthentification() {
-        return new Authentification();
+    public ReponseDemanderAuthentificationI2M createReponseDemanderAuthentificationI2M() {
+        return new ReponseDemanderAuthentificationI2M();
     }
 
     /**
-     * Create an instance of {@link Joueur }
+     * Create an instance of {@link JoueurI2M }
      * 
      */
-    public Joueur createJoueur() {
-        return new Joueur();
+    public JoueurI2M createJoueurI2M() {
+        return new JoueurI2M();
     }
 
 }
