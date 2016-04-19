@@ -13,7 +13,7 @@ public class DaoPartieImpl implements DaoPartieInterface {
 	public DaoPartieImpl(){
 	}
 	
-	public synchronized boolean creerPartieSQL(PartieEntite partie) {
+	public synchronized boolean creerPartie(PartieEntite partie) {
 		PartieEntite partieEntite = new PartieEntite();
 		boolean bool = false;
 
@@ -89,7 +89,7 @@ public class DaoPartieImpl implements DaoPartieInterface {
 	}
 
 	
-	public synchronized boolean fermerPartieSQL(PartieEntite partie) {
+	public synchronized boolean fermerPartie(PartieEntite partie) {
 		boolean bool = false;
 		PartieEntite partieEntite = new PartieEntite();
 		
@@ -149,6 +149,31 @@ public class DaoPartieImpl implements DaoPartieInterface {
 				return bool;
 			}
 			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return bool;
+	}
+
+	@Override
+	public boolean verifierPartie(String nompartie) {
+		boolean bool = false;
+		try {
+			String verifierPartieSQL = ConnexionDAO.getProperties().getProperty("verifierPartieSQL");
+			PreparedStatement preparedStatement = ConnexionDAO.getInstance().prepareCall(verifierPartieSQL);
+			preparedStatement.setString(1, nompartie);
+			resultat = preparedStatement.executeQuery();
+			
+			if (resultat.next()){
+				System.out.println("La Partie existe bien.");
+				bool= true;
+				return bool;
+			}
+			else{
+				System.out.println("La Partie n'existe pas ");
+				bool= false;
+				return bool;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -18,7 +18,6 @@ public class ServiceJoueurImpl extends UnicastRemoteObject implements ServiceJou
 	}
 	
 	public JoueurDTO recupererJoueur(Object joueurDTO) throws RemoteException{
-		System.out.println("# Connexion utilisateur:");
 		JoueurEntite joueurEntite = new JoueurEntite();
 		joueurEntite.setLogin(((JoueurDTO) joueurDTO).getLogin());
 		joueurEntite.setMotDePasse(((JoueurDTO) joueurDTO).getMotDePasse());
@@ -32,7 +31,8 @@ public class ServiceJoueurImpl extends UnicastRemoteObject implements ServiceJou
 		}
 		((JoueurDTO) joueurDTO).setNom(joueurEntite.getNom());
 		((JoueurDTO) joueurDTO).setPrenom(joueurEntite.getPrenom());
-		
+		((JoueurDTO) joueurDTO).setEmail(joueurEntite.getEmail());
+		((JoueurDTO) joueurDTO).setLogin(joueurEntite.getLogin());
 		return (JoueurDTO) joueurDTO;
 	}
 	
@@ -44,13 +44,57 @@ public class ServiceJoueurImpl extends UnicastRemoteObject implements ServiceJou
 		}else{
 			trouve= false;
 		}
-		
 		return trouve;
 	}
 
-	
-	
+	public JoueurDTO creerCompte(Object joueurDTO) throws RemoteException {
+		JoueurEntite joueurEntite = new JoueurEntite();
+		joueurEntite.setLogin(((JoueurDTO) joueurDTO).getLogin());
+		joueurEntite.setNom(((JoueurDTO) joueurDTO).getNom());
+		joueurEntite.setPrenom(((JoueurDTO) joueurDTO).getPrenom());
+		joueurEntite.setEmail(((JoueurDTO) joueurDTO).getEmail());
+		joueurEntite.setMotDePasse(((JoueurDTO) joueurDTO).getMotDePasse());
+		
+		boolean enregistrer = false; 
+		
+		if (verifierJoueur(joueurDTO)==true){
+			enregistrer = daoJoueurInterface.creerCompte(joueurEntite);
+			System.out.println("Connexion établie avec succès.");	
+		}else{
+			System.out.println("Connection impossible, les informations saisies ne sont pas correctes!\n");
+		}
+		if (enregistrer == true ) {
+			joueurEntite = daoJoueurInterface.recupererJoueur(joueurEntite);
+			System.out.println("Creation du compte");
+		}
+		else {
+			System.out.println("Impossible de creer un joueur");
+		}
+		return (JoueurDTO) joueurDTO;
+		
+			
+	}
 
+	public JoueurDTO gererProfil(Object joueurDTO) throws RemoteException {
+		JoueurEntite joueurEntite = new JoueurEntite();
+		joueurEntite.setId(((JoueurDTO) joueurDTO).getId());
+		joueurEntite.setLogin(((JoueurDTO) joueurDTO).getLogin());
+		joueurEntite.setNom(((JoueurDTO) joueurDTO).getNom());
+		joueurEntite.setPrenom(((JoueurDTO) joueurDTO).getPrenom());
+		joueurEntite.setEmail(((JoueurDTO) joueurDTO).getEmail());
+		joueurEntite.setMotDePasse(((JoueurDTO) joueurDTO).getMotDePasse());
+	
+		if (daoJoueurInterface.gererProfil(joueurEntite)== true){
+			joueurEntite = daoJoueurInterface.recupererJoueur(joueurEntite);
+		}else{
+				System.out.println("Impossible de modifier les champs!\n");
+			}
+			((JoueurDTO) joueurDTO).setNom(joueurEntite.getNom());
+			((JoueurDTO) joueurDTO).setPrenom(joueurEntite.getPrenom());
+			((JoueurDTO) joueurDTO).setEmail(joueurEntite.getEmail());
+			((JoueurDTO) joueurDTO).setLogin(joueurEntite.getLogin());
+			return (JoueurDTO) joueurDTO;
+	}
 
 	
 	

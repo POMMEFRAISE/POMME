@@ -4,25 +4,31 @@ import java.sql.Date;
 
 public class PartieEntite {
 	
+	
+
 	protected int id;
 	protected String nomPartie;
 	protected int nbredejoueur;
 	protected String statut;
 	protected Date datedecreation;
-	
-	
-	
-	public PartieEntite(int id, String nomPartie, Date datedecreation) {
-		this.id = id;
-		this.nomPartie = nomPartie;
-		this.datedecreation = datedecreation;
-	}
 
 
 	public PartieEntite() {
 		this.id = 0;
 		this.nomPartie = "";
+		this.nbredejoueur = 0;
+		this.statut = "";
 		this.datedecreation = null;
+	}
+
+
+	public PartieEntite(int id, String nomPartie, int nbredejoueur, String statut, Date datedecreation) {
+		super();
+		this.id = id;
+		this.nomPartie = nomPartie;
+		this.nbredejoueur = nbredejoueur;
+		this.statut = statut;
+		this.datedecreation = datedecreation;
 	}
 
 

@@ -59,7 +59,7 @@ public class DaoJoueurImpl implements DaoJoueurInterface{
 		return bool;
 	}
 
-	@Override
+	
 	public synchronized boolean creerCompte(JoueurEntite joueur) {
 		JoueurEntite joueurEntite = new JoueurEntite();
 		boolean bool = false;

@@ -13,7 +13,7 @@ public class ServiceFacade {
 	}
 
 	public ServiceFacade() throws RemoteException {
-			serviceJoueurDTO = new ServiceJoueurImpl();
+		serviceJoueurDTO = new ServiceJoueurImpl();
 
 	}
 	

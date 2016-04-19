@@ -4,8 +4,9 @@ import entites.PartieEntite;
 
 public interface DaoPartieInterface{
 	PartieEntite recupererPartie (PartieEntite partie);
-	boolean creerPartieSQL (PartieEntite partie);
+	boolean verifierPartie  (String nompartie);
+	boolean creerPartie (PartieEntite partie);
 	boolean rejoindrePartie(PartieEntite partie);
 	String afficherEtatPartie (String nompartie);
-	boolean fermerPartieSQL (PartieEntite partie);
+	boolean fermerPartie (PartieEntite partie);
 }
