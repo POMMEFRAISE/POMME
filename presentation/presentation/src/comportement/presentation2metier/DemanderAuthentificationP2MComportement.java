@@ -2,18 +2,18 @@ package comportement.presentation2metier;
 
 import activeMQ.Producteur;
 import comportement.Commande;
-import xml.presentation2metier.DemanderAuthentification;
+import xml.presentation2metier.DemanderAuthentificationP2M;
 import xml.presentation2metier.ObjectFactory;
 
-public class DemanderAuthentificationComportement implements Commande{
+public class DemanderAuthentificationP2MComportement implements Commande{
 	
-	public DemanderAuthentificationComportement(){
+	public DemanderAuthentificationP2MComportement(){
 
 	}
 
 	public void envoiMessage() {
 		ObjectFactory objFactory = new ObjectFactory();
-		DemanderAuthentification demandeAuthentification = objFactory.createDemanderAuthentification();
+		DemanderAuthentificationP2M demandeAuthentification = objFactory.createDemanderAuthentificationP2M();
 		
 		new Producteur(demandeAuthentification);	
 	}

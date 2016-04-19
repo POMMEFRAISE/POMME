@@ -1,8 +1,8 @@
-package comportement.commun;
+package model;
 
 import java.io.Serializable;
 
-public class JoueurComportement implements Serializable{
+public class JoueurPresentation implements Serializable{
     /**
 	 * 
 	 */
@@ -12,11 +12,11 @@ public class JoueurComportement implements Serializable{
     private String prenom;
     private String mdp;
     
-    public JoueurComportement(){
+    public JoueurPresentation(){
     	
     }
     
-    public JoueurComportement(String login){
+    public JoueurPresentation(String login){
         this.login=login;
     }
     

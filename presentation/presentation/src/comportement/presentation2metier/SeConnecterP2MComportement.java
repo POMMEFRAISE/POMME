@@ -1,19 +1,16 @@
 package comportement.presentation2metier;
 
-import java.io.Serializable;
-
 import activeMQ.Producteur;
 import comportement.Commande;
-import xml.presentation2metier.Authentification;
+import xml.presentation2metier.AuthentificationP2M;
 import xml.presentation2metier.ObjectFactory;
-import xml.presentation2metier.SeConnecter;
+import xml.presentation2metier.SeConnecterP2M;
 
-public class AuthentificationComportement implements Serializable, Commande{
-	private static final long serialVersionUID = 6648558566588800219L;
+public class SeConnecterP2MComportement implements Commande{
 	private String login;
 	private String mdp;
 	
-	public AuthentificationComportement(String login, String mdp){
+	public SeConnecterP2MComportement(String login, String mdp){
 		this.login = login;
 		this.mdp = mdp;
 	}
@@ -37,11 +34,11 @@ public class AuthentificationComportement implements Serializable, Commande{
 	public void envoiMessage() {
 		ObjectFactory objFactory = new ObjectFactory();
 
-	    Authentification authentification = objFactory.createAuthentification();
+	    AuthentificationP2M authentification = objFactory.createAuthentificationP2M();
 	    authentification.setLoginAuthentification(login);
 	    authentification.setMdpAuthentification(mdp);
 	    
-		SeConnecter seConnecter = objFactory.createSeConnecter();
+		SeConnecterP2M seConnecter = objFactory.createSeConnecterP2M();
 		seConnecter.setAuthentification(authentification);
 		
 		new Producteur(seConnecter);		

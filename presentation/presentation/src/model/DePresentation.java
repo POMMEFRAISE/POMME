@@ -1,8 +1,8 @@
-package comportement.commun;
+package model;
 
 import java.util.ArrayList;
 
-public class DeComportement {
+public class DePresentation {
 
 	public int valeur;
 
@@ -24,9 +24,9 @@ public class DeComportement {
 	}
 
 	// liste des dés
-	public static ArrayList<DeComportement> lesDes = new ArrayList<DeComportement>();
+	public static ArrayList<DePresentation> lesDes = new ArrayList<DePresentation>();
 	// liste des joueurs
-	public static ArrayList<JoueurComportement> lesJoueurs = new ArrayList<JoueurComportement>();
+	public static ArrayList<JoueurPresentation> lesJoueurs = new ArrayList<JoueurPresentation>();
 	
 	public static int sommeDes;
 
@@ -34,6 +34,6 @@ public class DeComportement {
 		return sommeDes;
 	}
 	public static void setSommeDes(int sommeDes) {
-		DeComportement.sommeDes = sommeDes;
+		DePresentation.sommeDes = sommeDes;
 	}
 }

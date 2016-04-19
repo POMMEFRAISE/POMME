@@ -1,16 +1,14 @@
 package comportement.metier2presentation;
 
 import comportement.Commande;
-import comportement.commun.JoueurComportement;
-import xml.metier2presentation.ReponseSeConnecter;
+import model.JoueurPresentation;
+import xml.metier2presentation.ReponseSeConnecterM2P;
 
-public class ReponseSeConnecterComportement implements Commande{
-
-	private String pageRedirection = "";
-	private ReponseSeConnecter reponseSeConnecter;
-	private JoueurComportement joueurComportement;
+public class ReponseSeConnecterM2PComportement implements Commande{
+	private ReponseSeConnecterM2P reponseSeConnecter;
+	private JoueurPresentation joueurComportement;
 	
-	public ReponseSeConnecterComportement(ReponseSeConnecter reponseSeConnecter){
+	public ReponseSeConnecterM2PComportement(ReponseSeConnecterM2P reponseSeConnecter){
 		this.reponseSeConnecter = reponseSeConnecter;
 	}
 	
@@ -20,7 +18,7 @@ public class ReponseSeConnecterComportement implements Commande{
 
 	public String reçoiMessage() {
 		System.out.println("ReponseSeConnecterComportements");
-		joueurComportement = new JoueurComportement();
+		joueurComportement = new JoueurPresentation();
 		joueurComportement.setNom(reponseSeConnecter.getAuthentification().getJoueur().getNomJoueur());
 		joueurComportement.setPrenom(reponseSeConnecter.getAuthentification().getJoueur().getPrenomJoueur());
 		joueurComportement.setLogin(reponseSeConnecter.getAuthentification().getJoueur().getLoginJoueur());
@@ -30,10 +28,9 @@ public class ReponseSeConnecterComportement implements Commande{
 	
 	public String verifierInformations(){
 	   	if(joueurComportement.getNom().equals("") && joueurComportement.getPrenom().equals("")){
-	   		pageRedirection = "connexion";
+	   		return "connexion";
     	}else{
-    		pageRedirection = "accueil";
+    		return "accueil";
     	}
-	   	return pageRedirection;
 	}
 }

@@ -1,6 +1,8 @@
 package controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
@@ -10,10 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import activeMQ.Lecteur;
-import comportement.Commande;
-import comportement.presentation2metier.AuthentificationComportement;
-import comportement.presentation2metier.DemanderAuthentificationComportement;
+import comportement.presentation2metier.DemanderAuthentificationP2MComportement;
+import comportement.presentation2metier.SeConnecterP2MComportement;
+import model.ActionPresentation;
 
 /**
  * Servlet implementation class NavigationServlet
@@ -45,24 +46,23 @@ public class NavigationServlet extends HttpServlet {
 		String pwd;
 			
 		if(request.getSession().getAttribute("utilisateur") == null && request.getParameter("nav")==null) {
-			DemanderAuthentificationComportement demanderAuthentification = new DemanderAuthentificationComportement();
+			DemanderAuthentificationP2MComportement demanderAuthentification = new DemanderAuthentificationP2MComportement();
 			demanderAuthentification.envoiMessage();
 			
-			Lecteur lecteur = new Lecteur();
+/*			Lecteur lecteur = new Lecteur();
 			
 			lecteur.start();
-			String redirection = null;
+			String redirection = "";
 			while(lecteur.isAlive()){
-				System.out.println("En traitement ...");
+				//System.out.println("En traitement ...");
 			}
 			redirection = lecteur.getRedirection();
-
+			lecteur.interrupt();
 				System.out.println("Redirection Vers JSP: "+redirection);				
 			
 
-			//System.out.println("Redirection : "+lecteur.getRedirection());
-			//this.getServletContext().getRequestDispatcher("/connexion.jsp").forward(request, response);
-						        
+			this.getServletContext().getRequestDispatcher("/"+redirection+".jsp").forward(request, response);
+				*/		        
 		}else if(request.getParameter("nav").equals("creercompte") && request.getSession().getAttribute("utilisateur") == null){
 			response.sendRedirect("creercompte.jsp");
 		}else {
@@ -120,7 +120,7 @@ public class NavigationServlet extends HttpServlet {
 			case "formconnexion" :
 				login = request.getParameter("login");
 				pwd = request.getParameter("pwd");
-				AuthentificationComportement authentification = new AuthentificationComportement(login, pwd);
+				SeConnecterP2MComportement authentification = new SeConnecterP2MComportement(login, pwd);
 				authentification.envoiMessage();
 				 //   Joueur joueur = new Joueur(login);
 					//HttpSession session = request.getSession();
@@ -128,6 +128,39 @@ public class NavigationServlet extends HttpServlet {
 			        //request.setAttribute("utilisateur", joueur);
 			        
 			        //this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+/*				Lecteur lecteur2 = new Lecteur();
+			System.out.println("Lecteur 2");
+				lecteur2.start();
+				String redirection = "";
+				while(lecteur2.isAlive()){
+					//System.out.println("En traitement ...");
+				}
+				redirection = lecteur2.getRedirection();
+				lecteur2.interrupt();
+					System.out.println("Redirection Vers JSP: "+redirection);				
+				
+
+				this.getServletContext().getRequestDispatcher("/"+redirection+".jsp").forward(request, response);
+				*/
+				break;
+			case "reponseMessage":
+				System.out.println("REPONSE MESSAGE");
+				String idMessage;
+				String message = "";
+		        BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
+
+		        idMessage = reader.readLine();
+		        while(reader.ready()){
+		        	message = message + reader.readLine();
+		        }
+		        reader.close();
+		        		        
+		        System.out.println("idMessage :"+idMessage);
+		        System.out.println("message :"+message);
+				ActionPresentation actionPresentation = new ActionPresentation(message, idMessage);
+				System.out.println("Redirection Présentation : "+actionPresentation.getRedirection());
+				this.getServletContext().getRequestDispatcher("/"+actionPresentation.getRedirection()+".jsp").forward(request, response);
+
 				break;
 		}
         } 

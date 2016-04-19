@@ -1,6 +1,6 @@
-package comportement.commun;
+package model;
 
-public class PartieComportement {
+public class PartiePresentation {
 
     private String nom;
     private int nbJoueurs;
@@ -19,7 +19,7 @@ public class PartieComportement {
 		this.nbJoueurs = nbJoueurs;
 	}
 
-    public PartieComportement(String nom, int nbJoueurs){
+    public PartiePresentation(String nom, int nbJoueurs){
         this.nom=nom;
         this.nbJoueurs=nbJoueurs;
     }

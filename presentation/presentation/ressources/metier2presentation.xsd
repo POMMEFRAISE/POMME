@@ -3,39 +3,39 @@
 	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
 	xmlns:tns="http://pds.m1.upec.fr/xml/integration2metier">
 
-	<complexType name="ReponseHead" abstract="true">
+	<complexType name="ReponseHeadM2P" abstract="true">
 		<attribute name="statutMessage" type="string"></attribute>
 		<attribute name="dateCreationMessage" type="dateTime"></attribute>
 		<attribute name="idMessagePresentation2Metier" type="string"></attribute>
 	</complexType>
 
-	<complexType name="Joueur">
+	<complexType name="JoueurM2P">
 		<attribute name="nomJoueur" type="string"></attribute>
 		<attribute name="prenomJoueur" type="string"></attribute>
 		<attribute name="loginJoueur" type="string"></attribute>
 	</complexType>
 
-	<complexType name="Authentification">
+	<complexType name="AuthentificationM2P">
 		<sequence>
-			<element name="joueur" type="tns:Joueur"></element>
+			<element name="joueur" type="tns:JoueurM2P"></element>
 		</sequence>
 		<attribute name="messageErreur" type="string"></attribute>
 	</complexType>
 
-	<element name="reponseDemanderAuthentification">
+	<element name="reponseDemanderAuthentificationM2P">
 		<complexType>
 			<complexContent>
-				<extension base="tns:ReponseHead"></extension>
+				<extension base="tns:ReponseHeadM2P"></extension>
 			</complexContent>
 		</complexType>
 	</element>
 
-	<element name="reponseSeConnecter">
+	<element name="reponseSeConnecterM2P">
 		<complexType>
 			<complexContent>
-				<extension base="tns:ReponseHead">
+				<extension base="tns:ReponseHeadM2P">
 					<sequence>
-						<element name="Authentification" type="tns:Authentification"></element>
+						<element name="Authentification" type="tns:AuthentificationM2P"></element>
 					</sequence>
 				</extension>
 			</complexContent>
