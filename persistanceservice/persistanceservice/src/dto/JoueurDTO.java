@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 
 
+
 public class JoueurDTO implements Serializable  {
 	
 	/**
@@ -13,11 +14,37 @@ public class JoueurDTO implements Serializable  {
 	private static final long serialVersionUID = 1L;
 	
 	protected int id;
+	
 	protected String nom;
 	protected String prenom;
 	protected String email;
 	protected String login;
 	protected String motDePasse;
+	
+	public JoueurDTO(int id, String nom, String prenom, String email, String login, String motDePasse) {
+		
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.login = login;
+		this.motDePasse = motDePasse;
+	}
+	public JoueurDTO(JoueurDTO joueur) {
+		this.nom = joueur.nom;
+		this.prenom = joueur.prenom;
+		this.email = joueur.email;
+		this.login = joueur.login;
+		this.motDePasse = joueur.motDePasse;
+	}
+	
+	public JoueurDTO() {
+		this.nom = "";
+		this.prenom = "";
+		this.email = "";
+		this.login = "";
+		this.motDePasse = "";	}
+
+	
 	
 	public int getId() {
 		return id;

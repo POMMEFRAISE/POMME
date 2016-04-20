@@ -16,7 +16,6 @@ public class PartieDTO implements Serializable {
 	protected Date datedecreation;
 	
 	public PartieDTO(int id, String nomPartie, int nbredejoueur, String statut, Date datedecreation) {
-		this.id = id;
 		this.nomPartie = nomPartie;
 		this.nbredejoueur = nbredejoueur;
 		this.statut = statut;
@@ -24,7 +23,6 @@ public class PartieDTO implements Serializable {
 	}
 	
 	public PartieDTO() {
-		this.id = 0;
 		this.nomPartie = "";
 		this.nbredejoueur = 0;
 		this.statut = "";

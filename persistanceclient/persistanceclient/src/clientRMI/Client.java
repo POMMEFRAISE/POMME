@@ -15,48 +15,86 @@ public class Client {
 		}
 			try {
 				Naming.lookup("//127.0.0.1/ServiceJoueur");
-				
+				Naming.lookup("//127.0.0.1/ServicePartie");
+				Naming.lookup("//127.0.0.1/ServiceCommande");
 				//Appelle de la classe JoueurDTO
 				Object objectJoueur = ChargerService.chargerDTO("JoueurDTO");
-				
+				Object objectPartie = ChargerService.chargerDTO("PartieDTO");
 				//Charger interface 
-				Object objectServiceJoueur = ChargerService.chargerInterface();
+				Object objectService = ChargerService.chargerInterface();
 
 				//Appeler les methodes joueur
-				objectJoueur.getClass().getDeclaredMethod("setLogin", String.class).invoke(objectJoueur, "cyrielle1");
-				objectJoueur.getClass().getDeclaredMethod("setMotDePasse", String.class).invoke(objectJoueur, "jeux1");
-				//System.out.println(objectJoueur);
-				
+				/*objectJoueur.getClass().getDeclaredMethod("setLogin", String.class).invoke(objectJoueur, "jean");
+				objectJoueur.getClass().getDeclaredMethod("setMotDePasse", String.class).invoke(objectJoueur, "jean1");
+				System.out.println(objectJoueur);
+				*/
 				//Appeler les methodes verificationJoueur
-				boolean trouveJoueur = (boolean) objectServiceJoueur.getClass().getDeclaredMethod("verificationJoueur",Object.class).invoke(objectServiceJoueur, objectJoueur);
+				//boolean trouveJoueur = (boolean) objectService.getClass().getDeclaredMethod("verifierJoueur",Object.class).invoke(objectService,objectJoueur);	
 				//System.out.println("SeConnecter : "+trouveJoueur);
 				
 				//Appeler les methodes recupererJoueur
-				if(trouveJoueur == true){
+				/*Object recupereJoueur = objectService.getClass().getDeclaredMethod("recupererJoueur",Object.class).invoke(objectService,objectJoueur);
+				System.out.println("Recuperation du joueur "+recupereJoueur);*/
+				
+				//Creation de compte
+					//Remplir Joueur
+				/*objectJoueur.getClass().getDeclaredMethod("setNom", String.class).invoke(objectJoueur, "MAUILIS");
+				objectJoueur.getClass().getDeclaredMethod("setPrenom", String.class).invoke(objectJoueur, "Cyrielle");
+				objectJoueur.getClass().getDeclaredMethod("setEmail", String.class).invoke(objectJoueur, "cyrielle@yahoo.com");
+				objectJoueur.getClass().getDeclaredMethod("setLogin", String.class).invoke(objectJoueur, "cyrielle");
+				objectJoueur.getClass().getDeclaredMethod("setMotDePasse", String.class).invoke(objectJoueur, "cyrielle1");
+				System.out.println("Joueur "+objectJoueur);
+
+				Object creationcompte = objectService.getClass().getDeclaredMethod("creerCompte", Object.class).invoke(objectService,objectJoueur );
+				System.out.println("enregistrement "+creationcompte);
+				
+				//Appeler les methodes partie
+				objectPartie.getClass().getDeclaredMethod("setNomPartie", String.class).invoke(objectPartie, "Poll");
+				System.out.println(objectPartie);
+				
+				//CreationPartie
+				Object creerPartie = objectService.getClass().getDeclaredMethod("creerPartie", Object.class).invoke(objectService,objectPartie );
+				System.out.println("enregistrement "+creerPartie);
+				
+				//Appeler les methodes verificationPartie
+				boolean trouvePartie = (boolean) objectService.getClass().getDeclaredMethod("verifierPartie",Object.class).invoke(objectService,objectPartie);	
+				System.out.println("trouverla Partie : "+trouvePartie);
+				
+					//AfficherEtatPArtie
+					String afficherEtatPartie = (String) objectService.getClass().getDeclaredMethod("afficherEtatPartie",Object.class).invoke(objectService,objectPartie);	
+					System.out.println("afficherEtatPartie : "+afficherEtatPartie);
+			
+				
+				boolean fermerPartie =false;
+				while (fermerPartie != true){
+					//Appeler les methodes recupererJoueur
+					Object recuperePartie = objectService.getClass().getDeclaredMethod("recupererPartie",Object.class).invoke(objectService,objectPartie);
+					System.out.println("Recuperation du joueur "+recuperePartie);
 					
-					objectJoueur = objectServiceJoueur.getClass().getDeclaredMethod("recupererJoueur",Object.class).invoke(objectServiceJoueur, objectJoueur);
-					System.out.println("Nom joueur : "+objectJoueur.getClass().getMethod("getNom").invoke(objectJoueur));
-					System.out.println("Prenom joueur : "+objectJoueur.getClass().getMethod("getPrenom").invoke(objectJoueur));
-					System.out.println("Login joueur : "+objectJoueur.getClass().getMethod("getLogin").invoke(objectJoueur));
-				}else{
-					//Retourner un message d'erreur
+					//Appeler les methodes rejoindrePartie
+					boolean rejoindrePartie = (boolean) objectService.getClass().getDeclaredMethod("rejoindrePartie",Object.class).invoke(objectService,objectPartie);	
+					System.out.println("rejoindrePartie : "+rejoindrePartie);
+					//FermerPartie
+					 fermerPartie = (boolean) objectService.getClass().getDeclaredMethod("fermerPartie",Object.class).invoke(objectService,objectPartie);	
+					System.out.println("fermerPartie : "+fermerPartie);
+						
 				}
 					
+					*/
+					
+				//Appeller commande
+				//boolean enregisrerDemanderAuthentification = (boolean) objectService.getClass().getDeclaredMethod("demanderAuthentification",Object.class).invoke(objectService,"DemandeAuthentification");	
+				//System.out.println("enregisrerDemanderAuthentification "+enregisrerDemanderAuthentification);
+
 			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
 				e.printStackTrace();
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			} catch (NotBoundException e) {
 				e.printStackTrace();
-			} catch (NoSuchMethodException e) {
-				e.printStackTrace();
 			} catch (SecurityException e) {
 				e.printStackTrace();
 			} catch (IllegalArgumentException e) {
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
 				e.printStackTrace();
 			}
 	}

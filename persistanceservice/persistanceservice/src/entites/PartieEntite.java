@@ -14,7 +14,6 @@ public class PartieEntite {
 
 
 	public PartieEntite() {
-		this.id = 0;
 		this.nomPartie = "";
 		this.nbredejoueur = 0;
 		this.statut = "";
@@ -22,9 +21,12 @@ public class PartieEntite {
 	}
 
 
-	public PartieEntite(int id, String nomPartie, int nbredejoueur, String statut, Date datedecreation) {
-		super();
-		this.id = id;
+	public PartieEntite(String nomPartie) {
+		this.nomPartie = nomPartie;
+		
+	}
+	
+	public PartieEntite(String nomPartie, int nbredejoueur, String statut, Date datedecreation) {
 		this.nomPartie = nomPartie;
 		this.nbredejoueur = nbredejoueur;
 		this.statut = statut;

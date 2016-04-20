@@ -17,65 +17,54 @@ public class ServiceJoueurImpl extends UnicastRemoteObject implements ServiceJou
 		daoJoueurInterface = new DaoJoueurImpl();
 	}
 	
-	public JoueurDTO recupererJoueur(Object joueurDTO) throws RemoteException{
+	public synchronized JoueurDTO recupererJoueur(Object joueurDTO) throws RemoteException{
 		JoueurEntite joueurEntite = new JoueurEntite();
 		joueurEntite.setLogin(((JoueurDTO) joueurDTO).getLogin());
 		joueurEntite.setMotDePasse(((JoueurDTO) joueurDTO).getMotDePasse());
 		
 		if (verifierJoueur(joueurDTO)==true){
 			joueurEntite = daoJoueurInterface.recupererJoueur(joueurEntite);
-			
-			System.out.println("Connexion établie avec succès.");	
-		}else{
-			System.out.println("Connection impossible, les informations saisies ne sont pas correctes!\n");
 		}
 		((JoueurDTO) joueurDTO).setNom(joueurEntite.getNom());
 		((JoueurDTO) joueurDTO).setPrenom(joueurEntite.getPrenom());
 		((JoueurDTO) joueurDTO).setEmail(joueurEntite.getEmail());
 		((JoueurDTO) joueurDTO).setLogin(joueurEntite.getLogin());
+		((JoueurDTO) joueurDTO).setId(joueurEntite.getId());
+
 		return (JoueurDTO) joueurDTO;
 	}
 	
-	public boolean verifierJoueur(Object joueurDTO) throws RemoteException{
+	public synchronized boolean verifierJoueur(Object joueurDTO) throws RemoteException{
 		
 		boolean trouve = false;
 		if (daoJoueurInterface.verifierJoueur(((JoueurDTO) joueurDTO).getLogin(), ((JoueurDTO) joueurDTO).getMotDePasse())== true){
 			trouve= true;
-		}else{
-			trouve= false;
 		}
 		return trouve;
 	}
 
-	public JoueurDTO creerCompte(Object joueurDTO) throws RemoteException {
+	public synchronized boolean creerCompte(Object joueurDTO) throws RemoteException {
 		JoueurEntite joueurEntite = new JoueurEntite();
-		joueurEntite.setLogin(((JoueurDTO) joueurDTO).getLogin());
 		joueurEntite.setNom(((JoueurDTO) joueurDTO).getNom());
 		joueurEntite.setPrenom(((JoueurDTO) joueurDTO).getPrenom());
 		joueurEntite.setEmail(((JoueurDTO) joueurDTO).getEmail());
+		joueurEntite.setLogin(((JoueurDTO) joueurDTO).getLogin());
 		joueurEntite.setMotDePasse(((JoueurDTO) joueurDTO).getMotDePasse());
-		
+		boolean trouve = false;
 		boolean enregistrer = false; 
-		
-		if (verifierJoueur(joueurDTO)==true){
-			enregistrer = daoJoueurInterface.creerCompte(joueurEntite);
-			System.out.println("Connexion établie avec succès.");	
-		}else{
-			System.out.println("Connection impossible, les informations saisies ne sont pas correctes!\n");
-		}
+		enregistrer = daoJoueurInterface.creerCompte(joueurEntite);
 		if (enregistrer == true ) {
+			System.out.print("Joueur Créee");
+
 			joueurEntite = daoJoueurInterface.recupererJoueur(joueurEntite);
-			System.out.println("Creation du compte");
+			trouve= true;
 		}
-		else {
-			System.out.println("Impossible de creer un joueur");
-		}
-		return (JoueurDTO) joueurDTO;
+		return trouve;
 		
 			
 	}
 
-	public JoueurDTO gererProfil(Object joueurDTO) throws RemoteException {
+	public synchronized boolean gererProfil(Object joueurDTO) throws RemoteException {
 		JoueurEntite joueurEntite = new JoueurEntite();
 		joueurEntite.setId(((JoueurDTO) joueurDTO).getId());
 		joueurEntite.setLogin(((JoueurDTO) joueurDTO).getLogin());
@@ -83,17 +72,18 @@ public class ServiceJoueurImpl extends UnicastRemoteObject implements ServiceJou
 		joueurEntite.setPrenom(((JoueurDTO) joueurDTO).getPrenom());
 		joueurEntite.setEmail(((JoueurDTO) joueurDTO).getEmail());
 		joueurEntite.setMotDePasse(((JoueurDTO) joueurDTO).getMotDePasse());
-	
+		boolean trouve = false;
+
 		if (daoJoueurInterface.gererProfil(joueurEntite)== true){
 			joueurEntite = daoJoueurInterface.recupererJoueur(joueurEntite);
-		}else{
-				System.out.println("Impossible de modifier les champs!\n");
-			}
+			trouve= true;
+
+		}
 			((JoueurDTO) joueurDTO).setNom(joueurEntite.getNom());
 			((JoueurDTO) joueurDTO).setPrenom(joueurEntite.getPrenom());
 			((JoueurDTO) joueurDTO).setEmail(joueurEntite.getEmail());
 			((JoueurDTO) joueurDTO).setLogin(joueurEntite.getLogin());
-			return (JoueurDTO) joueurDTO;
+			return trouve;
 	}
 
 	

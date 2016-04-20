@@ -8,8 +8,7 @@ public class JoueurEntite{
 	protected String login;
 	protected String motDePasse;
 	
-	public JoueurEntite(int id, String nom, String prenom, String email, String login, String motDePasse) {
-		this.id = id;
+	public JoueurEntite( String nom, String prenom, String email, String login, String motDePasse) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
@@ -18,7 +17,6 @@ public class JoueurEntite{
 	}
 	
 	public JoueurEntite(JoueurEntite joueur) {
-		this.id = joueur.id;
 		this.nom = joueur.nom;
 		this.prenom = joueur.prenom;
 		this.email = joueur.email;
@@ -28,7 +26,6 @@ public class JoueurEntite{
 	
 	
 	public JoueurEntite() {
-		this.id = 0;
 		this.nom = "";
 		this.prenom = "";
 		this.email = "";

@@ -27,6 +27,9 @@ public class DaoJoueurImpl implements DaoJoueurInterface{
 				joueurEntite.setLogin(resultat.getString("login"));
 				joueurEntite.setNom(resultat.getString("nom"));
 				joueurEntite.setPrenom(resultat.getString("prenom"));
+				joueurEntite.setEmail(resultat.getString("email"));
+				joueurEntite.setId(resultat.getInt("id"));
+
 			}
 		} catch (SQLException e) {
 			e.getMessage();
@@ -37,8 +40,8 @@ public class DaoJoueurImpl implements DaoJoueurInterface{
 	public synchronized boolean verifierJoueur(String login, String motdepasse) {
 		boolean bool = false;
 		try {
-			String verificationSQL = ConnexionDAO.getProperties().getProperty("verificationJoueurSQL");
-			PreparedStatement preparedStatement = ConnexionDAO.getInstance().prepareCall(verificationSQL);
+			String verifierJoueurSQL = ConnexionDAO.getProperties().getProperty("verifierJoueurSQL");
+			PreparedStatement preparedStatement = ConnexionDAO.getInstance().prepareCall(verifierJoueurSQL);
 			preparedStatement.setString(1, login);
 			preparedStatement.setString(2, motdepasse);
 			resultat = preparedStatement.executeQuery();
@@ -61,36 +64,33 @@ public class DaoJoueurImpl implements DaoJoueurInterface{
 
 	
 	public synchronized boolean creerCompte(JoueurEntite joueur) {
-		JoueurEntite joueurEntite = new JoueurEntite();
 		boolean bool = false;
 		try {
-			String creerCompteSQL = ConnexionDAO.getProperties().getProperty("creerCompteSQL");
-			PreparedStatement preparedStatement = ConnexionDAO.getInstance().prepareCall(creerCompteSQL);
-			
-			preparedStatement.setString(1, joueurEntite.getNom());
-			preparedStatement.setString(2, joueurEntite.getPrenom());
-			preparedStatement.setString(3, joueurEntite.getEmail());
-			preparedStatement.setString(4, joueurEntite.getLogin());
-			preparedStatement.setString(5, joueurEntite.getMotDePasse());
-			
-			int resultat = preparedStatement.executeUpdate();
-			ConnexionDAO.getInstance().commit();
+			if (verifierJoueur (joueur.getLogin(),joueur.getMotDePasse()) == false){
+				String creerCompteSQL = ConnexionDAO.getProperties().getProperty("creerCompteSQL");
+				PreparedStatement preparedStatement = ConnexionDAO.getInstance().prepareCall(creerCompteSQL);
+				
+				preparedStatement.setString(1, joueur.getNom());
+				preparedStatement.setString(2, joueur.getPrenom());
+				preparedStatement.setString(3, joueur.getEmail());
+				preparedStatement.setString(4, joueur.getLogin());
+				preparedStatement.setString(5, joueur.getMotDePasse());
+				
+				int resultat = preparedStatement.executeUpdate();
 
+				
+				if (resultat>=1) {
+					bool= true;
+					return bool;
+				}else {
+					bool= false;
+					return bool;
+				}
 			
-			if (resultat>=1) {
-				System.out.print("Joueur Créee");
-				bool= true;
-				return bool;
-			}else {
-				System.out.print("Imposible de créer un joueur");
-				bool= false;
-				return bool;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} 
+		}	catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
+			}
 		return bool;
 	}
 
@@ -110,7 +110,6 @@ public class DaoJoueurImpl implements DaoJoueurInterface{
 			preparedStatement.setInt(6, joueurEntite.getId());
 			
 			int resultat = preparedStatement.executeUpdate();
-			ConnexionDAO.getInstance().commit();
 
 			if (resultat>=1) {
 				System.out.print("Profil Modifié");
