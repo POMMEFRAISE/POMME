@@ -28,13 +28,15 @@ public class ClientRMI extends Thread {
 	public void run() {	
 		//Policy
 		if (System.getSecurityManager() == null) {
-			System.setProperty("java.security.policy", "file:/C:/Users/Cyrielle/git/PDS/persistanceclient/persistanceclient/bin/clientRMI/client.policy");
-			System.setProperty("java.rmi.server.codebase", "file:/C:/Users/Cyrielle/git/PDS/persistanceservice/persistanceservice/bin/");
+			System.setProperty("java.security.policy", "file:/C:/Users/Dylan/git/PDS/persistanceclient/persistanceclient/bin/clientRMI/client.policy");
+			System.setProperty("java.rmi.server.codebase", "file:/C:/Users/Dylan/git/PDS/persistanceservice/persistanceservice/bin/");
 			System.setSecurityManager(new SecurityManager());
 		}
 		
 		try {
 			Naming.lookup("//127.0.0.1/ServiceJoueur");
+			Naming.lookup("//127.0.0.1/ServicePartie");
+			Naming.lookup("//127.0.0.1/ServiceCommande");
 			convertirMessageObjet(message);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();

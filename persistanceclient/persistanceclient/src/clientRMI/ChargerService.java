@@ -4,7 +4,7 @@ import java.net.MalformedURLException;
 import java.rmi.server.RMIClassLoader;
 
 public class ChargerService {
-	private static String url="file:/C:/Users/Cyrielle/git/PDS/persistanceservice/persistanceservice/bin/";
+	private static String url="file:/C:/Users/Dylan/git/PDS/persistanceservice/persistanceservice/bin/";
 	
 	public static Object chargerDTO(String DTOACharger){
 		Object objetDTO = null;

@@ -16,7 +16,11 @@
     <element name="reponseDemanderAuthentificationI2M">
     	<complexType>
     		<complexContent>
-    			<extension base="tns:ReponseHeadI2M"></extension>
+    			<extension base="tns:ReponseHeadI2M">
+    				<sequence>
+    					<element name="commande" type="tns:CommandeI2M"></element>
+    				</sequence>
+    			</extension>
     		</complexContent>
     	</complexType></element>
 
@@ -36,5 +40,9 @@
     		<element name="joueur" type="tns:JoueurI2M"></element>
     	</sequence>
     	<attribute name="messageErreur" type="string"></attribute>
+    </complexType>
+
+    <complexType name="CommandeI2M">
+    	<attribute name="enregistrer" type="boolean"></attribute>
     </complexType>
 </schema>
