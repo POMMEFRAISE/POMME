@@ -99,6 +99,7 @@ public class ServiceFacade {
 			e.printStackTrace();
 		}
 		return partieDTO;
+		
 	}
 	public synchronized Object verifierPartie(Object partieDTO){
 		try {
@@ -129,6 +130,8 @@ public class ServiceFacade {
 		}
 		return String.class;
 	}
+	
+	
 	public synchronized Object fermerPartie(Object partieDTO){
 		try {
 			return servicePartie.fermerPartie(partieDTO);
@@ -143,9 +146,9 @@ public class ServiceFacade {
 	//Commande
 	
 
-	public synchronized boolean demanderAuthentification (Object message)  {
+	public synchronized boolean enregistrerCommande (Object message)  {
 		try {
-			return serviceCommande.demanderAuthentification(message);
+			return serviceCommande.enregistrerCommande(message);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -153,5 +156,17 @@ public class ServiceFacade {
 		return false;
 	}
 	
+	
+	public synchronized Object afficherCommande(){
+		try {
+			return serviceCommande.afficherCommande();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return Object.class;
+		
+		
+	}
 
 }

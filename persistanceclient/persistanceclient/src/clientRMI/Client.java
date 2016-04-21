@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public class Client {
 	public static void main(String[] argv) throws Exception {
@@ -20,6 +21,7 @@ public class Client {
 				//Appelle de la classe JoueurDTO
 				Object objectJoueur = ChargerService.chargerDTO("JoueurDTO");
 				Object objectPartie = ChargerService.chargerDTO("PartieDTO");
+				Object objectcommande = ChargerService.chargerDTO("CommandesDTO");
 				//Charger interface 
 				Object objectService = ChargerService.chargerInterface();
 
@@ -80,11 +82,33 @@ public class Client {
 						
 				}
 					
-					*/
+				
 					
 				//Appeller commande
-				//boolean enregisrerDemanderAuthentification = (boolean) objectService.getClass().getDeclaredMethod("demanderAuthentification",Object.class).invoke(objectService,"DemandeAuthentification");	
-				//System.out.println("enregisrerDemanderAuthentification "+enregisrerDemanderAuthentification);
+				boolean enregistrerComande = (boolean) objectService.getClass().getDeclaredMethod("enregistrerCommande",Object.class).invoke(objectService,"DemandeAuthentification");	
+				System.out.println("enregisrerDemanderAuthentification "+enregistrerComande);
+					
+				*/
+				
+				//Appeler les methodes joueur
+				System.out.println(objectService.getClass().getDeclaredMethod("afficherCommande").invoke(objectService));
+
+
+				int commandesTailles = (int) objectcommande.getClass().getDeclaredMethod("getTaille").invoke(objectcommande);
+			//	System.out.println(commandes);
+
+				System.out.println(commandesTailles);
+				if (commandesTailles == 0){
+					System.out.println("Accune données");
+					
+				}
+				
+				//Appeler les methodes Commande
+				
+				//objectService.getClass().getDeclaredMethod("afficherCommande").invoke(objectService);	
+				//System.out.println(objectService.getClass().getDeclaredMethod("afficherCommande").invoke(objectService));	
+
+
 
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
