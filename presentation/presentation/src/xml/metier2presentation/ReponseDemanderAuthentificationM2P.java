@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.04.18 à 11:00:24 PM CEST 
+// Généré le : 2016.04.20 à 07:22:08 PM CEST 
 //
 
 
@@ -10,6 +10,7 @@ package xml.metier2presentation;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -23,6 +24,9 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;extension base="{http://pds.m1.upec.fr/xml/integration2metier}ReponseHeadM2P">
+ *       &lt;sequence>
+ *         &lt;element name="commande" type="{http://pds.m1.upec.fr/xml/integration2metier}CommandeM2P"/>
+ *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -31,11 +35,39 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
+@XmlType(name = "", propOrder = {
+    "commande"
+})
 @XmlRootElement(name = "reponseDemanderAuthentificationM2P")
 public class ReponseDemanderAuthentificationM2P
     extends ReponseHeadM2P
 {
 
+    @XmlElement(required = true)
+    protected CommandeM2P commande;
+
+    /**
+     * Obtient la valeur de la propriété commande.
+     * 
+     * @return
+     *     possible object is
+     *     {@link CommandeM2P }
+     *     
+     */
+    public CommandeM2P getCommande() {
+        return commande;
+    }
+
+    /**
+     * Définit la valeur de la propriété commande.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link CommandeM2P }
+     *     
+     */
+    public void setCommande(CommandeM2P value) {
+        this.commande = value;
+    }
 
 }

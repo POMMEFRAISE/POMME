@@ -15,18 +15,20 @@ public class DemanderAuthentificationM2IComportement implements Commande{
 	}
 	
 	public void reçoiMessage() {
-		boolean enregisrerDemanderAuthentification = false;
+		boolean enregistrerComande = false;
+		
+
 		try {
 			Object objectServiceCommande = ChargerService.chargerInterface();
 			//Appeller commande
-			enregisrerDemanderAuthentification = (boolean) objectServiceCommande.getClass().getDeclaredMethod("demanderAuthentification",Object.class).invoke(objectServiceCommande,"DemandeAuthentification");
+			enregistrerComande = (boolean) objectServiceCommande.getClass().getDeclaredMethod("enregistrerCommande",Object.class).invoke(objectServiceCommande,"DemandeAuthentification");
+			System.out.println("enregisrerDemanderAuthentification "+enregistrerComande);
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
 				| SecurityException e) {
 			e.printStackTrace();
 		}	
-		System.out.println("enregisrerDemanderAuthentification "+enregisrerDemanderAuthentification);
 
-		ReponseDemanderAuthentificationI2MComportement reponseDemanderAuthentificationI2MComportement = new ReponseDemanderAuthentificationI2MComportement(enregisrerDemanderAuthentification);
+		ReponseDemanderAuthentificationI2MComportement reponseDemanderAuthentificationI2MComportement = new ReponseDemanderAuthentificationI2MComportement(enregistrerComande);
 		reponseDemanderAuthentificationI2MComportement.envoiMessage();
 	}
 	

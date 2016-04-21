@@ -7,10 +7,10 @@ import xml.metier2presentation.ReponseDemanderAuthentificationM2P;
 // OK : ON AFFICHE CONNEXION.JSP
 // KO : ON AFFICHE UNE PAGE ERREUR
 public class ReponseDemanderAuthentificationM2PComportement implements Commande{
-	private ReponseDemanderAuthentificationM2P reponseDemanderAuthentification;
+	private ReponseDemanderAuthentificationM2P reponseDemanderAuthentificationM2P;
 	
-	public ReponseDemanderAuthentificationM2PComportement(ReponseDemanderAuthentificationM2P reponseDemanderAuthentification){
-		this.reponseDemanderAuthentification = reponseDemanderAuthentification;
+	public ReponseDemanderAuthentificationM2PComportement(ReponseDemanderAuthentificationM2P reponseDemanderAuthentificationM2P){
+		this.reponseDemanderAuthentificationM2P = reponseDemanderAuthentificationM2P;
 	}
 
 	public void envoiMessage() {
@@ -20,15 +20,18 @@ public class ReponseDemanderAuthentificationM2PComportement implements Commande{
 	public String reçoiMessage() {
 		System.out.println("ReponseDemanderAuthentificationComportement");
 		System.out.println("ReponseDemanderAuthentificationComportement : pageRedirection : connexion");
-
-		return "connexion";
+		if(reponseDemanderAuthentificationM2P.getCommande().isEnregistrer() == true){
+			return "connexion";			
+		}else{
+			return "erreur";
+		}
 	}
 
-	public ReponseDemanderAuthentificationM2P getReponseDemanderAuthentification() {
-		return reponseDemanderAuthentification;
+	public ReponseDemanderAuthentificationM2P getReponseDemanderAuthentificationM2P() {
+		return reponseDemanderAuthentificationM2P;
 	}
 
-	public void setReponseDemanderAuthentification(ReponseDemanderAuthentificationM2P reponseDemanderAuthentification) {
-		this.reponseDemanderAuthentification = reponseDemanderAuthentification;
+	public void setReponseDemanderAuthentificationM2P(ReponseDemanderAuthentificationM2P reponseDemanderAuthentificationM2P) {
+		this.reponseDemanderAuthentificationM2P = reponseDemanderAuthentificationM2P;
 	}
 }

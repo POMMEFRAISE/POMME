@@ -3,7 +3,7 @@ package servicermiimplementation;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import daoimplementation.DaoScoreImpl;
+import daoimplementation.DaoCommandeImpl;
 import daointerface.DaoCommandeInterface;
 import servicermiinterface.ServiceCommandeInterface;
 
@@ -11,18 +11,23 @@ public class ServiceCommandeImpl extends UnicastRemoteObject implements ServiceC
 
 	private static final long serialVersionUID = 1L;
 	private DaoCommandeInterface daoComandeInterface;
+	
 	public ServiceCommandeImpl() throws RemoteException {
-		daoComandeInterface = new DaoScoreImpl();
+		daoComandeInterface = new DaoCommandeImpl();
 	}
+	
 	@Override
-	public boolean demanderAuthentification(Object message) throws RemoteException {
+	public boolean enregistrerCommande(Object message) throws RemoteException {
 		boolean enregistrer = false; 
-		if (daoComandeInterface.demanderAuthentification((String) message) == true){
+		if (daoComandeInterface.enregistrerCommande((String) message) == true){
 			enregistrer = true;
 		}
 		return enregistrer;
 	}
 
+	@Override
+	public Object afficherCommande() throws RemoteException {
 
-
+		return null;
+	}	
 }

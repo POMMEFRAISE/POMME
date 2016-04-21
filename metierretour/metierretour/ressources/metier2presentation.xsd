@@ -23,7 +23,11 @@
     <element name="reponseDemanderAuthentificationM2P">
     	<complexType>
     		<complexContent>
-    			<extension base="tns:ReponseHeadM2P"></extension>
+    			<extension base="tns:ReponseHeadM2P">
+    				<sequence>
+    					<element name="commande" type="tns:CommandeM2P"></element>
+    				</sequence>
+    			</extension>
     		</complexContent>
     	</complexType></element>
 
@@ -37,4 +41,8 @@
     			</extension>
     		</complexContent>
     	</complexType></element>
+
+    <complexType name="CommandeM2P">
+    	<attribute name="enregistrer" type="boolean"></attribute>
+    </complexType>
 </schema>

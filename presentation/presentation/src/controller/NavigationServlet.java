@@ -42,9 +42,19 @@ public class NavigationServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String idMessage;
+		String message = "";
+		BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
+
+        idMessage = reader.readLine();
+        while(reader.ready()){
+        	message = message + reader.readLine();
+        }
+        reader.close();
+        
 		String login;
 		String pwd;
-			
+		String redirection = null;	
 		if(request.getSession().getAttribute("utilisateur") == null && request.getParameter("nav")==null) {
 			DemanderAuthentificationP2MComportement demanderAuthentification = new DemanderAuthentificationP2MComportement();
 			demanderAuthentification.envoiMessage();
@@ -144,25 +154,15 @@ public class NavigationServlet extends HttpServlet {
 				*/
 				break;
 			case "reponseMessage":
-				System.out.println("REPONSE MESSAGE");
-				String idMessage;
-				String message = "";
-		        BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
-
-		        idMessage = reader.readLine();
-		        while(reader.ready()){
-		        	message = message + reader.readLine();
-		        }
-		        reader.close();
-		        		        
-		        System.out.println("idMessage :"+idMessage);
-		        System.out.println("message :"+message);
 				ActionPresentation actionPresentation = new ActionPresentation(message, idMessage);
-				System.out.println("Redirection Présentation : "+actionPresentation.getRedirection());
-				this.getServletContext().getRequestDispatcher("/"+actionPresentation.getRedirection()+".jsp").forward(request, response);
-
+				redirection = actionPresentation.getRedirection();
 				break;
 		}
+		
+		while(redirection.equals(null)){
+			System.out.println("En attente de traitement ...");
+		}
+		this.getServletContext().getRequestDispatcher("/"+redirection+".jsp").forward(request, response);
         } 
 	}
 }

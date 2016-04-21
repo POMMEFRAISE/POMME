@@ -12,7 +12,7 @@ public class ReponseDemanderAuthentificationI2MComportement implements Commande{
 	}
 	
 	public void reçoiMessage() {
-		ReponseDemanderAuthentificationM2PComportement reponseDemanderAuthentificationComportement = new ReponseDemanderAuthentificationM2PComportement();
+		ReponseDemanderAuthentificationM2PComportement reponseDemanderAuthentificationComportement = new ReponseDemanderAuthentificationM2PComportement(reponseDemanderAuthentificationI2M.getCommande().isEnregistrer());
 		reponseDemanderAuthentificationComportement.envoiMessage();	
 	}
 
