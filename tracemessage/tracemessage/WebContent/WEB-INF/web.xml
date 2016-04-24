@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" 
-xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-  <display-name>Gestion des messages</display-name>
-  <description>Gestion des messages</description>
-  
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
   <servlet>
-    <servlet-name>AccueilServlet</servlet-name>
-    <servlet-class>controller.AccueilServlet</servlet-class>
+    <servlet-name>NavigationServlet</servlet-name>
+    <servlet-class>controller.NavigationServlet</servlet-class>
   </servlet>
-  
   <servlet-mapping>
-    <servlet-name>AccueilServlet</servlet-name>
-    <url-pattern>/accueil</url-pattern>
+    <servlet-name>NavigationServlet</servlet-name>
+    <url-pattern>/navigation</url-pattern>
   </servlet-mapping>
-  
   <welcome-file-list>
-    <welcome-file>accueil</welcome-file>
+    <welcome-file>navigation</welcome-file>
   </welcome-file-list>
 </web-app>

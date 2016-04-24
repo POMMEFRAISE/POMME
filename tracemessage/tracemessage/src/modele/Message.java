@@ -2,20 +2,18 @@ package modele;
 
 import java.io.Serializable;
 
-public class Message implements Serializable 
-{
+public class Message implements Serializable{
 	private static final long serialVersionUID = 1L;
-	
 	private String identifiantMessage;
-	private String typeMessage;
+	private String message;
 	private String statutMessage;
 	private String sourceMessage;
 	
-	public Message (String identifiantMessage, String typeMessage) {
+	public Message (String identifiantMessage, String message, String sourceMessage) {
 		this.identifiantMessage = identifiantMessage;
 		this.statutMessage = "EnCours";
-		//this.sourceMessage = sourceMessage;
-		this.typeMessage = typeMessage;
+		this.sourceMessage = sourceMessage;
+		this.message = message;
 	}
 
 	public Message (String identifiantMessage) {
@@ -31,12 +29,12 @@ public class Message implements Serializable
 		this.identifiantMessage = identifiantMessage;
 	}
 
-	public String getTypeMessage() {
-		return typeMessage;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setTypeMessage(String typeMessage) {
-		this.typeMessage = typeMessage;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	public String getStatutMessage() {
