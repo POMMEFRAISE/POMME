@@ -4,7 +4,7 @@ import activeMQ.Lecteur;
 
 public class Lanceur {
 	public static void main(String[] args) {
-        Thread thread = new Thread(new Lecteur());
-        thread.start();	
+		Lecteur lecteur = new Lecteur();
+		lecteur.lireMessage();
 	}
 }

@@ -6,7 +6,8 @@ import xml.metier2presentation.ReponseSeConnecterM2P;
 
 public class ReponseSeConnecterM2PComportement implements Commande{
 	private ReponseSeConnecterM2P reponseSeConnecter;
-	private JoueurPresentation joueurComportement;
+	private JoueurPresentation joueurPresentation;
+	private String messageErreur;
 	
 	public ReponseSeConnecterM2PComportement(ReponseSeConnecterM2P reponseSeConnecter){
 		this.reponseSeConnecter = reponseSeConnecter;
@@ -18,19 +19,21 @@ public class ReponseSeConnecterM2PComportement implements Commande{
 
 	public String reçoiMessage() {
 		System.out.println("ReponseSeConnecterComportements");
-		joueurComportement = new JoueurPresentation();
-		joueurComportement.setNom(reponseSeConnecter.getAuthentification().getJoueur().getNomJoueur());
-		joueurComportement.setPrenom(reponseSeConnecter.getAuthentification().getJoueur().getPrenomJoueur());
-		joueurComportement.setLogin(reponseSeConnecter.getAuthentification().getJoueur().getLoginJoueur());
+		joueurPresentation = new JoueurPresentation();
+		joueurPresentation.setNom(reponseSeConnecter.getAuthentification().getJoueur().getNomJoueur());
+		joueurPresentation.setPrenom(reponseSeConnecter.getAuthentification().getJoueur().getPrenomJoueur());
+		joueurPresentation.setLogin(reponseSeConnecter.getAuthentification().getJoueur().getLoginJoueur());
 		
+		messageErreur = reponseSeConnecter.getAuthentification().getMessageErreur();
+		System.out.println("Message Erreur présentation : "+messageErreur);
 		return verifierInformations();
 	}
 	
 	public String verifierInformations(){
-	   	if(joueurComportement.getNom().equals("") && joueurComportement.getPrenom().equals("")){
-	   		return "connexion";
+	   	if(messageErreur.equals("")){
+	   		return "accueil";
     	}else{
-    		return "accueil";
+    		return "connexion";
     	}
 	}
 }

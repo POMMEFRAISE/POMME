@@ -44,6 +44,7 @@ public class NavigationServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String idMessage;
 		String message = "";
+		
 		BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
 
         idMessage = reader.readLine();
@@ -54,10 +55,11 @@ public class NavigationServlet extends HttpServlet {
         
 		String login;
 		String pwd;
-		String redirection = null;	
+		String redirection = "";	
 		if(request.getSession().getAttribute("utilisateur") == null && request.getParameter("nav")==null) {
 			DemanderAuthentificationP2MComportement demanderAuthentification = new DemanderAuthentificationP2MComportement();
 			demanderAuthentification.envoiMessage();
+
 			
 /*			Lecteur lecteur = new Lecteur();
 			
@@ -70,9 +72,8 @@ public class NavigationServlet extends HttpServlet {
 			lecteur.interrupt();
 				System.out.println("Redirection Vers JSP: "+redirection);				
 			
-
-			this.getServletContext().getRequestDispatcher("/"+redirection+".jsp").forward(request, response);
-				*/		        
+		*/
+				      
 		}else if(request.getParameter("nav").equals("creercompte") && request.getSession().getAttribute("utilisateur") == null){
 			response.sendRedirect("creercompte.jsp");
 		}else {
@@ -156,13 +157,24 @@ public class NavigationServlet extends HttpServlet {
 			case "reponseMessage":
 				ActionPresentation actionPresentation = new ActionPresentation(message, idMessage);
 				redirection = actionPresentation.getRedirection();
+				//getServletContext().getRequestDispatcher("/"+redirection+".jsp").forward(request, response);
+
 				break;
 		}
-		
-		while(redirection.equals(null)){
-			System.out.println("En attente de traitement ...");
-		}
-		this.getServletContext().getRequestDispatcher("/"+redirection+".jsp").forward(request, response);
         } 
+//		synchronized(redirection){
+//			try {	
+//				redirection.wait();
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//		
+//		synchronized(redirection){
+//
+//		redirection.notify();
+//		}
+
 	}
 }

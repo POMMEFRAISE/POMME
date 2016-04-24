@@ -1,6 +1,5 @@
 package clientRMI;
 
-import java.io.StringReader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
@@ -8,13 +7,8 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.PropertyException;
-import javax.xml.bind.Unmarshaller;
-
 import comportement.Commande;
-import util.RecupererValueProperty;
+import util.JAXB;
 
 public class ClientRMI extends Thread {
 	private String message;
@@ -52,7 +46,7 @@ public class ClientRMI extends Thread {
 	}
 			
 	public void convertirMessageObjet(String message){
-		Object typeMessage = unmarshaller(message);
+		Object typeMessage = JAXB.unmarshaller(message);
         String messageClasse = typeMessage.getClass().getSimpleName();
         Class<?> messageComportement;
 		try {
@@ -71,25 +65,6 @@ public class ClientRMI extends Thread {
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public Object unmarshaller(String message){
-		Object object = null;
-		Unmarshaller unmarshaller;
-		JAXBContext context;
-		StringReader reader;
-		
-		try {
-			context = JAXBContext.newInstance(RecupererValueProperty.recupererValueProperty("XML_LECTEUR"));
-			unmarshaller = context.createUnmarshaller();
-			reader = new StringReader(message);
-			object = unmarshaller.unmarshal(reader);
-		} catch (PropertyException e) {
-			e.printStackTrace();
-		} catch (JAXBException e) {
-			e.printStackTrace();
-		}
-		return object;
 	}
 
 	public String getIdMessage() {

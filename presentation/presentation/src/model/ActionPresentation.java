@@ -1,16 +1,10 @@
 package model;
 
-import java.io.StringReader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.PropertyException;
-import javax.xml.bind.Unmarshaller;
-
 import comportement.Commande;
-import util.RecupererValueProperty;
+import util.JAXB;
 
 //VOIR SI ON PEUT LA METTRE DANS LE JAR UTIL AVEC DANS FICHIER DE CONFIGURATION LE PACKAGE CONCERNER PAR LES CLASSES COMPORTEMENTS
 //CONCERNE JUSTE LE RETOUR
@@ -28,7 +22,7 @@ public class ActionPresentation {
 	}
 	
 	public void convertirMessageObjet(){
-		Object typeMessage = unmarshaller(message);
+		Object typeMessage = JAXB.unmarshaller(message);
         String messageClasse = typeMessage.getClass().getSimpleName();
         Class<?> messageComportement;
 		try {
@@ -50,23 +44,12 @@ public class ActionPresentation {
 		}
 	}
 	
-	public Object unmarshaller(String message){
-		Object object = null;
-		Unmarshaller unmarshaller;
-		JAXBContext context;
-		StringReader reader;
-		
-		try {
-			context = JAXBContext.newInstance(RecupererValueProperty.recupererValueProperty("XML_LECTEUR"));
-			unmarshaller = context.createUnmarshaller();
-			reader = new StringReader(message);
-			object = unmarshaller.unmarshal(reader);
-		} catch (PropertyException e) {
-			e.printStackTrace();
-		} catch (JAXBException e) {
-			e.printStackTrace();
-		}
-		return object;
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 	
 	public String getIdMessage() {
