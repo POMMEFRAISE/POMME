@@ -1,6 +1,11 @@
 package comportement.metier2presentation;
 
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
+
 import comportement.Commande;
+import model.MonEvent;
+import model.Redirection;
 import xml.metier2presentation.ReponseDemanderAuthentificationM2P;
 
 //PEUT ETRE RAJOUTER UN BOOLEAN DANS LE MESSAGE ET DONC ICI POUR SI OK OU KO POUR EXECUTER LA COMMANDE
@@ -8,6 +13,7 @@ import xml.metier2presentation.ReponseDemanderAuthentificationM2P;
 // KO : ON AFFICHE UNE PAGE ERREUR
 public class ReponseDemanderAuthentificationM2PComportement implements Commande{
 	private ReponseDemanderAuthentificationM2P reponseDemanderAuthentificationM2P;
+	private @Inject Event<MonEvent> monEventEmetteur;
 	
 	public ReponseDemanderAuthentificationM2PComportement(ReponseDemanderAuthentificationM2P reponseDemanderAuthentificationM2P){
 		this.reponseDemanderAuthentificationM2P = reponseDemanderAuthentificationM2P;
@@ -17,14 +23,17 @@ public class ReponseDemanderAuthentificationM2PComportement implements Commande{
 		
 	}
 
-	public String reçoiMessage() {
-		System.out.println("ReponseDemanderAuthentificationComportement");
-		System.out.println("ReponseDemanderAuthentificationComportement : pageRedirection : connexion");
+	public void reçoiMessage() {
+		Redirection redirection = new Redirection();
+		MonEvent event = new MonEvent();
 		if(reponseDemanderAuthentificationM2P.getCommande().isEnregistrer() == true){
-			return "connexion";			
+			redirection.setRedirection("connexion");			
 		}else{
-			return "erreur";
+			redirection.setRedirection("erreur");
 		}
+		event.setRedirection(redirection);
+		System.out.println("Authentification : "+event.getRedirection().getRedirection());
+		monEventEmetteur.fire(event);
 	}
 
 	public ReponseDemanderAuthentificationM2P getReponseDemanderAuthentificationM2P() {

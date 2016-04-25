@@ -29,8 +29,7 @@ public class ActionPresentation {
 			messageComportement = Class.forName("comportement.metier2presentation."+messageClasse+"Comportement");
 	        Constructor<?>[] constructors = messageComportement.getConstructors();
 	        Commande commande = (Commande) constructors[0].newInstance(typeMessage);
-	        redirection = commande.reçoiMessage();
-	        System.out.println("Action Presentation : redirection : "+redirection);
+	        commande.reçoiMessage();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (InstantiationException e) {

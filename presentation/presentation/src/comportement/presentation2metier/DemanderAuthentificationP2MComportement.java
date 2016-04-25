@@ -18,7 +18,7 @@ public class DemanderAuthentificationP2MComportement implements Commande{
 		new Producteur(demandeAuthentification);	
 	}
 
-	public String reçoiMessage() {
-		return "";
+	public void reçoiMessage() {
+		
 	}
 }

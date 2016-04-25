@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import javax.enterprise.event.Observes;
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import comportement.presentation2metier.DemanderAuthentificationP2MComportement;
 import comportement.presentation2metier.SeConnecterP2MComportement;
 import model.ActionPresentation;
+import model.MonEvent;
 
 /**
  * Servlet implementation class NavigationServlet
@@ -162,19 +164,9 @@ public class NavigationServlet extends HttpServlet {
 				break;
 		}
         } 
-//		synchronized(redirection){
-//			try {	
-//				redirection.wait();
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-//		
-//		synchronized(redirection){
-//
-//		redirection.notify();
-//		}
-
+	}
+	public void receptionEvenement(@Observes MonEvent event) {
+		System.out.println("Reception Evenement");
+		System.out.println("Presentation : "+event.getRedirection().getRedirection());
 	}
 }

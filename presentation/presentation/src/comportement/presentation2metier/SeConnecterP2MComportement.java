@@ -44,7 +44,7 @@ public class SeConnecterP2MComportement implements Commande{
 		new Producteur(seConnecter);		
 	}
 
-	public String reçoiMessage() {
-		return "";
+	public void reçoiMessage() {
+		
 	}
 }
