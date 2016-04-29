@@ -2,8 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Redirection implements Serializable{
-	private static final long serialVersionUID = 1L;
+public class Redirection{
 	private String redirection;
 	private String message;
 	

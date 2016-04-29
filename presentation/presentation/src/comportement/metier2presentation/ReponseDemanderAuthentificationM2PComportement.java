@@ -4,7 +4,6 @@ import javax.enterprise.event.Event;
 import javax.inject.Inject;
 
 import comportement.Commande;
-import model.MonEvent;
 import model.Redirection;
 import xml.metier2presentation.ReponseDemanderAuthentificationM2P;
 
@@ -13,27 +12,19 @@ import xml.metier2presentation.ReponseDemanderAuthentificationM2P;
 // KO : ON AFFICHE UNE PAGE ERREUR
 public class ReponseDemanderAuthentificationM2PComportement implements Commande{
 	private ReponseDemanderAuthentificationM2P reponseDemanderAuthentificationM2P;
-	private @Inject Event<MonEvent> monEventEmetteur;
 	
 	public ReponseDemanderAuthentificationM2PComportement(ReponseDemanderAuthentificationM2P reponseDemanderAuthentificationM2P){
 		this.reponseDemanderAuthentificationM2P = reponseDemanderAuthentificationM2P;
 	}
 
-	public void envoiMessage() {
-		
-	}
-
-	public void reçoiMessage() {
+	public Redirection reçoiMessage() {
 		Redirection redirection = new Redirection();
-		MonEvent event = new MonEvent();
 		if(reponseDemanderAuthentificationM2P.getCommande().isEnregistrer() == true){
 			redirection.setRedirection("connexion");			
 		}else{
 			redirection.setRedirection("erreur");
 		}
-		event.setRedirection(redirection);
-		System.out.println("Authentification : "+event.getRedirection().getRedirection());
-		monEventEmetteur.fire(event);
+		return redirection;
 	}
 
 	public ReponseDemanderAuthentificationM2P getReponseDemanderAuthentificationM2P() {

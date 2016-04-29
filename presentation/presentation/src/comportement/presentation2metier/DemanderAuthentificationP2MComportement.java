@@ -5,7 +5,7 @@ import comportement.Commande;
 import xml.presentation2metier.DemanderAuthentificationP2M;
 import xml.presentation2metier.ObjectFactory;
 
-public class DemanderAuthentificationP2MComportement implements Commande{
+public class DemanderAuthentificationP2MComportement{
 	
 	public DemanderAuthentificationP2MComportement(){
 
@@ -16,9 +16,5 @@ public class DemanderAuthentificationP2MComportement implements Commande{
 		DemanderAuthentificationP2M demandeAuthentification = objFactory.createDemanderAuthentificationP2M();
 		
 		new Producteur(demandeAuthentification);	
-	}
-
-	public void reçoiMessage() {
-		
 	}
 }

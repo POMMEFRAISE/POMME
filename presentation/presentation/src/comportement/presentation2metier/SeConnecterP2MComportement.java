@@ -6,7 +6,7 @@ import xml.presentation2metier.AuthentificationP2M;
 import xml.presentation2metier.ObjectFactory;
 import xml.presentation2metier.SeConnecterP2M;
 
-public class SeConnecterP2MComportement implements Commande{
+public class SeConnecterP2MComportement{
 	private String login;
 	private String mdp;
 	
@@ -42,9 +42,5 @@ public class SeConnecterP2MComportement implements Commande{
 		seConnecter.setAuthentification(authentification);
 		
 		new Producteur(seConnecter);		
-	}
-
-	public void reçoiMessage() {
-		
 	}
 }

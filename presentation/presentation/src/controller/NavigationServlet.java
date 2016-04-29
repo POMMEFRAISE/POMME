@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import javax.enterprise.event.Observes;
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import comportement.presentation2metier.DemanderAuthentificationP2MComportement;
 import comportement.presentation2metier.SeConnecterP2MComportement;
 import model.ActionPresentation;
-import model.MonEvent;
+import model.Redirection;
 
 /**
  * Servlet implementation class NavigationServlet
@@ -57,25 +56,12 @@ public class NavigationServlet extends HttpServlet {
         
 		String login;
 		String pwd;
-		String redirection = "";	
+		Redirection redirection = null;	
 		if(request.getSession().getAttribute("utilisateur") == null && request.getParameter("nav")==null) {
 			DemanderAuthentificationP2MComportement demanderAuthentification = new DemanderAuthentificationP2MComportement();
 			demanderAuthentification.envoiMessage();
 
-			
-/*			Lecteur lecteur = new Lecteur();
-			
-			lecteur.start();
-			String redirection = "";
-			while(lecteur.isAlive()){
-				//System.out.println("En traitement ...");
-			}
-			redirection = lecteur.getRedirection();
-			lecteur.interrupt();
-				System.out.println("Redirection Vers JSP: "+redirection);				
-			
-		*/
-				      
+			getServletContext().getRequestDispatcher("/attente.jsp").forward(request, response);
 		}else if(request.getParameter("nav").equals("creercompte") && request.getSession().getAttribute("utilisateur") == null){
 			response.sendRedirect("creercompte.jsp");
 		}else {
@@ -159,14 +145,36 @@ public class NavigationServlet extends HttpServlet {
 			case "reponseMessage":
 				ActionPresentation actionPresentation = new ActionPresentation(message, idMessage);
 				redirection = actionPresentation.getRedirection();
+
+				synchronized(redirection){
+					notify();
+
+				}
+				
+				System.out.println("Redirection : reponseMessage : "+redirection.getRedirection());
+
 				//getServletContext().getRequestDispatcher("/"+redirection+".jsp").forward(request, response);
 
 				break;
-		}
+			case "redirection":
+				System.out.println("REQUETE AJAX");
+				synchronized(redirection){
+					while(redirection == null){
+						try {
+							wait();
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+				}
+
+					
+					System.out.println("Redirection : redirection : "+redirection.getRedirection());
+					//getServletContext().getRequestDispatcher("/"+redirection+".jsp").forward(request, response);
+					response.setContentType("text/xml");
+					response.setHeader("Cache-Control", "no-cache");
+					response.getWriter().write("<message>"+redirection.getRedirection()+"</message>");
+				}
+			}
         } 
-	}
-	public void receptionEvenement(@Observes MonEvent event) {
-		System.out.println("Reception Evenement");
-		System.out.println("Presentation : "+event.getRedirection().getRedirection());
 	}
 }

@@ -1,6 +1,7 @@
 package comportement;
 
+import model.Redirection;
+
 public interface Commande {
-	public void envoiMessage();
-	public void reçoiMessage();
+	public Redirection reçoiMessage();
 }
