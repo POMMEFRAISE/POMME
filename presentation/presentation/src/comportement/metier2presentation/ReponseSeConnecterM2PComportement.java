@@ -1,8 +1,5 @@
 package comportement.metier2presentation;
 
-import javax.enterprise.event.Event;
-import javax.inject.Inject;
-
 import comportement.Commande;
 import model.JoueurPresentation;
 import model.Redirection;

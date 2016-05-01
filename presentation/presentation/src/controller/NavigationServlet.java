@@ -56,7 +56,6 @@ public class NavigationServlet extends HttpServlet {
         
 		String login;
 		String pwd;
-		Redirection redirection = null;	
 		if(request.getSession().getAttribute("utilisateur") == null && request.getParameter("nav")==null) {
 			DemanderAuthentificationP2MComportement demanderAuthentification = new DemanderAuthentificationP2MComportement();
 			demanderAuthentification.envoiMessage();
@@ -142,38 +141,38 @@ public class NavigationServlet extends HttpServlet {
 				this.getServletContext().getRequestDispatcher("/"+redirection+".jsp").forward(request, response);
 				*/
 				break;
-			case "reponseMessage":
-				ActionPresentation actionPresentation = new ActionPresentation(message, idMessage);
-				redirection = actionPresentation.getRedirection();
-
-				synchronized(redirection){
-					notify();
-
-				}
-				
-				System.out.println("Redirection : reponseMessage : "+redirection.getRedirection());
-
-				//getServletContext().getRequestDispatcher("/"+redirection+".jsp").forward(request, response);
-
-				break;
 			case "redirection":
 				System.out.println("REQUETE AJAX");
+				Redirection redirection = new Redirection();
+				System.out.println("Redirection redirection : "+redirection);
+
 				synchronized(redirection){
-					while(redirection == null){
+					redirection.notify();
+					while(redirection.getRedirection() == null){
 						try {
-							wait();
+							redirection.wait();
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
+					}
 				}
-
 					
 					System.out.println("Redirection : redirection : "+redirection.getRedirection());
-					//getServletContext().getRequestDispatcher("/"+redirection+".jsp").forward(request, response);
 					response.setContentType("text/xml");
 					response.setHeader("Cache-Control", "no-cache");
 					response.getWriter().write("<message>"+redirection.getRedirection()+"</message>");
+					break;
+			case "reponseMessage":
+				ActionPresentation actionPresentation = new ActionPresentation(message, idMessage);
+				redirection = actionPresentation.getRedirection();
+				System.out.println("Redirection reponseMessage : "+redirection);
+				synchronized(redirection){
+
+
+				redirection.notify();
 				}
+
+				break;
 			}
         } 
 	}

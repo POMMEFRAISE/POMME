@@ -27,6 +27,8 @@
 				var messageTag = requete.responseXML.getElementsByTagName("redirection")[0];
 				message = messageTag.childNodes[0].nodeValue;
 				mdiv = document.getElementById("validationMessage");
+				mdiv.innerHTML = message
+				window.location.href = "/"+message+".jsp";
 			}
 		}
 	};

@@ -18,6 +18,7 @@ public class ActionPresentation {
 		System.out.println("Action de présentation");
 		this.message = message;
 		this.setIdMessage(idMessage);
+		//redirection = new Redirection();
 		convertirMessageObjet();
 	}
 	
@@ -30,6 +31,7 @@ public class ActionPresentation {
 	        Constructor<?>[] constructors = messageComportement.getConstructors();
 	        Commande commande = (Commande) constructors[0].newInstance(typeMessage);
 	        redirection = commande.reçoiMessage();
+	        System.out.println("Redirection Action Presentation : "+redirection.getRedirection());
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (InstantiationException e) {
