@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class JoueurPresentation implements Serializable{
+public class Joueur implements Serializable{
     /**
 	 * 
 	 */
@@ -12,11 +12,11 @@ public class JoueurPresentation implements Serializable{
     private String prenom;
     private String mdp;
     
-    public JoueurPresentation(){
+    public Joueur(){
     	
     }
     
-    public JoueurPresentation(String login){
+    public Joueur(String login){
         this.login=login;
     }
     

@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-public class DePresentation {
+public class De {
 
 	public int valeur;
 
@@ -24,9 +24,9 @@ public class DePresentation {
 	}
 
 	// liste des dés
-	public static ArrayList<DePresentation> lesDes = new ArrayList<DePresentation>();
+	public static ArrayList<De> lesDes = new ArrayList<De>();
 	// liste des joueurs
-	public static ArrayList<JoueurPresentation> lesJoueurs = new ArrayList<JoueurPresentation>();
+	public static ArrayList<Joueur> lesJoueurs = new ArrayList<Joueur>();
 	
 	public static int sommeDes;
 
@@ -34,6 +34,6 @@ public class DePresentation {
 		return sommeDes;
 	}
 	public static void setSommeDes(int sommeDes) {
-		DePresentation.sommeDes = sommeDes;
+		De.sommeDes = sommeDes;
 	}
 }

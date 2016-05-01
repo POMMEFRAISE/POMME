@@ -1,6 +1,6 @@
 package model;
 
-public class PartiePresentation {
+public class Partie {
 
     private String nom;
     private int nbJoueurs;
@@ -19,7 +19,7 @@ public class PartiePresentation {
 		this.nbJoueurs = nbJoueurs;
 	}
 
-    public PartiePresentation(String nom, int nbJoueurs){
+    public Partie(String nom, int nbJoueurs){
         this.nom=nom;
         this.nbJoueurs=nbJoueurs;
     }

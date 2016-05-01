@@ -1,13 +1,13 @@
 package comportement.metier2presentation;
 
 import comportement.Commande;
-import model.JoueurPresentation;
+import model.Joueur;
 import model.Redirection;
 import xml.metier2presentation.ReponseSeConnecterM2P;
 
 public class ReponseSeConnecterM2PComportement implements Commande{
 	private ReponseSeConnecterM2P reponseSeConnecter;
-	private JoueurPresentation joueurPresentation;
+	private Joueur joueurPresentation;
 	private String messageErreur;
 
 	public ReponseSeConnecterM2PComportement(ReponseSeConnecterM2P reponseSeConnecter){
@@ -16,7 +16,7 @@ public class ReponseSeConnecterM2PComportement implements Commande{
 
 	public Redirection reçoiMessage() {
 		System.out.println("ReponseSeConnecterComportements");
-		joueurPresentation = new JoueurPresentation();
+		joueurPresentation = new Joueur();
 		joueurPresentation.setNom(reponseSeConnecter.getAuthentification().getJoueur().getNomJoueur());
 		joueurPresentation.setPrenom(reponseSeConnecter.getAuthentification().getJoueur().getPrenomJoueur());
 		joueurPresentation.setLogin(reponseSeConnecter.getAuthentification().getJoueur().getLoginJoueur());
