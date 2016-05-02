@@ -1,7 +1,7 @@
 package comportement;
 
-import model.Redirection;
+import model.MessageErreur;
 
 public interface Commande {
-	public Redirection reçoiMessage();
+	public String reçoiMessage();
 }

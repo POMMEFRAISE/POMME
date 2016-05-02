@@ -1,21 +1,16 @@
 package controller;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
-import javax.servlet.Servlet;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import activeMQ.Lecteur;
 import comportement.presentation2metier.DemanderAuthentificationP2MComportement;
 import comportement.presentation2metier.SeConnecterP2MComportement;
-import model.ActionPresentation;
-import model.Redirection;
 
 /**
  * Servlet implementation class NavigationServlet
@@ -23,44 +18,29 @@ import model.Redirection;
 @WebServlet("/NavigationServlet")
 public class NavigationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public NavigationServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	/**
-	 * @see Servlet#init(ServletConfig)
-	 */
-	/*
-	 * public void init(ServletConfig config) throws ServletException { // TODO
-	 * Auto-generated method stub
-	 * 
-	 * }
-	 */
-
+	
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String idMessage;
-		String message = "";
-		
-		BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
-
-        idMessage = reader.readLine();
-        while(reader.ready()){
-        	message = message + reader.readLine();
-        }
-        reader.close();
-        
+//		String idMessage;
+//		String message = "";
+//		
+//		BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
+//
+//        idMessage = reader.readLine();
+//        while(reader.ready()){
+//        	message = message + reader.readLine();
+//        }
+//        reader.close();
+//        
 		String login;
 		String pwd;
+		
+		System.out.println("NAV : "+request.getParameter("nav"));
 		if(request.getSession().getAttribute("utilisateur") == null && request.getParameter("nav")==null) {
 			DemanderAuthentificationP2MComportement demanderAuthentification = new DemanderAuthentificationP2MComportement();
 			demanderAuthentification.envoiMessage();
-
-			getServletContext().getRequestDispatcher("/attente.jsp").forward(request, response);
+			response.sendRedirect("/attente.jsp");
+		//	getServletContext().getRequestDispatcher("/attente.jsp").forward(request, response);
 		}else if(request.getParameter("nav").equals("creercompte") && request.getSession().getAttribute("utilisateur") == null){
 			response.sendRedirect("creercompte.jsp");
 		}else {
@@ -117,6 +97,7 @@ public class NavigationServlet extends HttpServlet {
 				break;
 			case "formconnexion" :
 				login = request.getParameter("login");
+				System.out.println("SERVLET : LOGIN "+login);
 				pwd = request.getParameter("pwd");
 				SeConnecterP2MComportement authentification = new SeConnecterP2MComportement(login, pwd);
 				authentification.envoiMessage();
@@ -124,55 +105,63 @@ public class NavigationServlet extends HttpServlet {
 					//HttpSession session = request.getSession();
 			        //session.setAttribute("utilisateur", joueur);
 			        //request.setAttribute("utilisateur", joueur);
-			        
-			        //this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
-/*				Lecteur lecteur2 = new Lecteur();
-			System.out.println("Lecteur 2");
-				lecteur2.start();
-				String redirection = "";
-				while(lecteur2.isAlive()){
-					//System.out.println("En traitement ...");
-				}
-				redirection = lecteur2.getRedirection();
-				lecteur2.interrupt();
-					System.out.println("Redirection Vers JSP: "+redirection);				
-				
+				response.sendRedirect("/attente.jsp");
 
-				this.getServletContext().getRequestDispatcher("/"+redirection+".jsp").forward(request, response);
-				*/
+				//getServletContext().getRequestDispatcher("/attente.jsp").forward(request, response);
+
 				break;
 			case "redirection":
 				System.out.println("REQUETE AJAX");
-				Redirection redirection = new Redirection();
-				System.out.println("Redirection redirection : "+redirection);
+//				Redirection redirection = new Redirection();
+//				System.out.println("Redirection redirection : "+redirection);
+//
+//				synchronized(redirection){
+//					redirection.notify();
+//					while(redirection.getRedirection() == null){
+//						try {
+//							redirection.wait();
+//						} catch (InterruptedException e) {
+//							e.printStackTrace();
+//						}
+//					}
+//				}
+//					
+				Lecteur lecteur = new Lecteur();
+				Thread thread = new Thread(lecteur);
+				thread.start();
+				//lecteur.lireMessage();
+				//Redirection redirection = lecteur.getRedirection();
+				//System.out.println("Redirection : redirection servlet : "+lecteur.getRedirection().getRedirection());
 
-				synchronized(redirection){
-					redirection.notify();
-					while(redirection.getRedirection() == null){
+				synchronized(thread){
+					while(lecteur.getRedirection() == null){
 						try {
-							redirection.wait();
+							thread.wait();
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
 					}
 				}
-					
-					System.out.println("Redirection : redirection : "+redirection.getRedirection());
+				String redirection = lecteur.getRedirection();
+
+
+				
+					System.out.println("Redirection : redirection servlet : "+redirection);
 					response.setContentType("text/xml");
 					response.setHeader("Cache-Control", "no-cache");
-					response.getWriter().write("<message>"+redirection.getRedirection()+"</message>");
+					response.getWriter().write("<redirection>"+redirection+"</redirection>");
 					break;
-			case "reponseMessage":
-				ActionPresentation actionPresentation = new ActionPresentation(message, idMessage);
-				redirection = actionPresentation.getRedirection();
-				System.out.println("Redirection reponseMessage : "+redirection);
-				synchronized(redirection){
-
-
-				redirection.notify();
-				}
-
-				break;
+//			case "reponseMessage":
+//				ActionPresentation actionPresentation = new ActionPresentation(message, idMessage);
+//				redirection = actionPresentation.getRedirection();
+//				System.out.println("Redirection reponseMessage : "+redirection);
+//				synchronized(redirection){
+//
+//
+//				redirection.notify();
+//				}
+//
+//				break;
 			}
         } 
 	}

@@ -24,10 +24,9 @@ public class SeConnecterM2IComportement implements Commande{
 		
 		String messageErreur;
 		messageErreur = seConnecter.getAuthentification().getMessageErreur();
-		System.out.println("messageErreur : "+seConnecter.getAuthentification().getMessageErreur());
+		System.out.println("messageErreur : "+messageErreur);
 
-		//Voir si cela retour vite ou null pour garder que un seul test
-		if(!messageErreur.equals("") || !messageErreur.equals(null)){			
+		if(messageErreur == null){			
 			//Charger interface 
 			Object objectServiceJoueur = ChargerService.chargerInterface();
 	
@@ -37,7 +36,7 @@ public class SeConnecterM2IComportement implements Commande{
 				objectJoueur.getClass().getDeclaredMethod("setMotDePasse", String.class).invoke(objectJoueur, seConnecter.getAuthentification().getMdpAuthentification());
 				
 				//Appeler les methodes verificationJoueur
-				boolean trouveJoueur = (boolean) objectServiceJoueur.getClass().getDeclaredMethod("verificationJoueur",Object.class).invoke(objectServiceJoueur, objectJoueur);
+				boolean trouveJoueur = (boolean) objectServiceJoueur.getClass().getDeclaredMethod("verifierJoueur",Object.class).invoke(objectServiceJoueur, objectJoueur);
 				System.out.println("SeConnecter : "+trouveJoueur);
 				
 				//Appeler les methodes recupererJoueur

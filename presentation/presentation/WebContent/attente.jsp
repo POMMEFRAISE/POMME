@@ -26,16 +26,13 @@
 				// exploitation des données de la réponse
 				var messageTag = requete.responseXML.getElementsByTagName("redirection")[0];
 				message = messageTag.childNodes[0].nodeValue;
-				mdiv = document.getElementById("validationMessage");
-				mdiv.innerHTML = message
-				window.location.href = "/"+message+".jsp";
+				window.location = message+".jsp";
 			}
 		}
 	};
 </script>
 </head>
 <body onload="demandeRedirection()">
-	<h1>Page d'attente</h1>
-	<div id="validationMessage"></div>
+	<h1>Page d'attente</h1>	
 </body>
 </html>

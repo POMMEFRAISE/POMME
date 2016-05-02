@@ -6,14 +6,14 @@
 
 <!-- ---ICI---- -->
 
-<%-- <?php
+<?php
 $sLangueNavigateur= substr($_SERVER[‘HTTP_ACCEPT_LANGUAGE’], 0, 2);
 if($sLangueNavigateur==en){
 ?><fmt:setBundle basename="internationalisation.message_en_EN" /><?php
 }else{
 ?><fmt:setBundle basename="internationalisation.message_fr_FR" /><?php
 }
-?>  --%>
+?> 
 <!-- ---ICI--- -->
 
 <%@page import="model.Joueur"%>

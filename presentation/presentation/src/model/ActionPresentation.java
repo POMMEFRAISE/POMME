@@ -12,13 +12,12 @@ import util.JAXB;
 public class ActionPresentation {
 	private String message;
 	private String idMessage;
-	private Redirection redirection;
+	private String redirection;
 	
 	public ActionPresentation(String message, String idMessage){
 		System.out.println("Action de présentation");
 		this.message = message;
 		this.setIdMessage(idMessage);
-		//redirection = new Redirection();
 		convertirMessageObjet();
 	}
 	
@@ -31,7 +30,7 @@ public class ActionPresentation {
 	        Constructor<?>[] constructors = messageComportement.getConstructors();
 	        Commande commande = (Commande) constructors[0].newInstance(typeMessage);
 	        redirection = commande.reçoiMessage();
-	        System.out.println("Redirection Action Presentation : "+redirection.getRedirection());
+	        System.out.println("Redirection Action Presentation : "+redirection);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (InstantiationException e) {
@@ -61,11 +60,11 @@ public class ActionPresentation {
 		this.idMessage = idMessage;
 	}
 
-	public Redirection getRedirection() {
+	public String getRedirection() {
 		return redirection;
 	}
 
-	public void setRedirection(Redirection redirection) {
+	public void setRedirection(String redirection) {
 		this.redirection = redirection;
 	}
 }

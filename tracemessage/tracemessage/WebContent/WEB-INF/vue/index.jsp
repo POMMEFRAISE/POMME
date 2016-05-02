@@ -7,9 +7,9 @@
     <meta charset="utf-8">
     <title>Gestion des messages</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="css/stylesMiseEnPage.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../css/stylesMiseEnPage.css" rel="stylesheet">
   </head>
   <body>
 <%@ include file="../include/enTete.html" %>

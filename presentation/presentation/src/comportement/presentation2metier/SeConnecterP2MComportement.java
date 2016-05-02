@@ -1,7 +1,6 @@
 package comportement.presentation2metier;
 
 import activeMQ.Producteur;
-import comportement.Commande;
 import xml.presentation2metier.AuthentificationP2M;
 import xml.presentation2metier.ObjectFactory;
 import xml.presentation2metier.SeConnecterP2M;
@@ -32,6 +31,7 @@ public class SeConnecterP2MComportement{
 	}
 
 	public void envoiMessage() {
+		System.out.println("SeConnecterP2MComportement : login : "+login);
 		ObjectFactory objFactory = new ObjectFactory();
 
 	    AuthentificationP2M authentification = objFactory.createAuthentificationP2M();

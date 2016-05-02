@@ -8,7 +8,8 @@ import activeMQ.Lecteur;
 public class JMSListener implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent arg0) {
 		Lecteur lecteur = new Lecteur();
-		lecteur.lireMessage();
+		Thread thread = new Thread(lecteur);
+		thread.start();
 	}
 	
 	public void contextDestroyed(ServletContextEvent arg0) {
