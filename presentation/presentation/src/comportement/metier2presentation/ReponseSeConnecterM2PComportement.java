@@ -7,7 +7,7 @@ import xml.metier2presentation.ReponseSeConnecterM2P;
 
 public class ReponseSeConnecterM2PComportement implements Commande{
 	private ReponseSeConnecterM2P reponseSeConnecter;
-	private Joueur joueurPresentation;
+	private Joueur joueur;
 	private String messageErreur;
 
 	public ReponseSeConnecterM2PComportement(ReponseSeConnecterM2P reponseSeConnecter){
@@ -16,10 +16,10 @@ public class ReponseSeConnecterM2PComportement implements Commande{
 
 	public String reçoiMessage() {
 		System.out.println("ReponseSeConnecterComportements");
-		joueurPresentation = new Joueur();
-		joueurPresentation.setNom(reponseSeConnecter.getAuthentification().getJoueur().getNomJoueur());
-		joueurPresentation.setPrenom(reponseSeConnecter.getAuthentification().getJoueur().getPrenomJoueur());
-		joueurPresentation.setLogin(reponseSeConnecter.getAuthentification().getJoueur().getLoginJoueur());
+		joueur = new Joueur();
+		joueur.setNom(reponseSeConnecter.getAuthentification().getJoueur().getNomJoueur());
+		joueur.setPrenom(reponseSeConnecter.getAuthentification().getJoueur().getPrenomJoueur());
+		joueur.setLogin(reponseSeConnecter.getAuthentification().getJoueur().getLoginJoueur());
 		
 		messageErreur = reponseSeConnecter.getAuthentification().getMessageErreur();
 		System.out.println("Message Erreur présentation : "+messageErreur);

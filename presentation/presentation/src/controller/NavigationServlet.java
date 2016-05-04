@@ -20,27 +20,16 @@ public class NavigationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-//		String idMessage;
-//		String message = "";
-//		
-//		BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
-//
-//        idMessage = reader.readLine();
-//        while(reader.ready()){
-//        	message = message + reader.readLine();
-//        }
-//        reader.close();
-//        
+			throws ServletException, IOException {     
 		String login;
 		String pwd;
 		
-		System.out.println("NAV : "+request.getParameter("nav"));
 		if(request.getSession().getAttribute("utilisateur") == null && request.getParameter("nav")==null) {
+			this.getServletContext().getRequestDispatcher("/attente.jsp").forward(request, response);
+
 			DemanderAuthentificationP2MComportement demanderAuthentification = new DemanderAuthentificationP2MComportement();
 			demanderAuthentification.envoiMessage();
-			response.sendRedirect("/attente.jsp");
-		//	getServletContext().getRequestDispatcher("/attente.jsp").forward(request, response);
+
 		}else if(request.getParameter("nav").equals("creercompte") && request.getSession().getAttribute("utilisateur") == null){
 			response.sendRedirect("creercompte.jsp");
 		}else {
@@ -96,42 +85,27 @@ public class NavigationServlet extends HttpServlet {
 		        this.getServletContext().getRequestDispatcher("/modifierprofil.jsp").forward(request, response);  
 				break;
 			case "formconnexion" :
+				this.getServletContext().getRequestDispatcher("/attente.jsp").forward(request, response);
+
 				login = request.getParameter("login");
 				System.out.println("SERVLET : LOGIN "+login);
 				pwd = request.getParameter("pwd");
 				SeConnecterP2MComportement authentification = new SeConnecterP2MComportement(login, pwd);
 				authentification.envoiMessage();
+
 				 //   Joueur joueur = new Joueur(login);
 					//HttpSession session = request.getSession();
 			        //session.setAttribute("utilisateur", joueur);
 			        //request.setAttribute("utilisateur", joueur);
-				response.sendRedirect("/attente.jsp");
-
-				//getServletContext().getRequestDispatcher("/attente.jsp").forward(request, response);
 
 				break;
 			case "redirection":
 				System.out.println("REQUETE AJAX");
-//				Redirection redirection = new Redirection();
-//				System.out.println("Redirection redirection : "+redirection);
-//
-//				synchronized(redirection){
-//					redirection.notify();
-//					while(redirection.getRedirection() == null){
-//						try {
-//							redirection.wait();
-//						} catch (InterruptedException e) {
-//							e.printStackTrace();
-//						}
-//					}
-//				}
-//					
-				Lecteur lecteur = new Lecteur();
+			
+				Lecteur lecteur = new Lecteur(true);
 				Thread thread = new Thread(lecteur);
 				thread.start();
-				//lecteur.lireMessage();
-				//Redirection redirection = lecteur.getRedirection();
-				//System.out.println("Redirection : redirection servlet : "+lecteur.getRedirection().getRedirection());
+				String redirection = "";
 
 				synchronized(thread){
 					while(lecteur.getRedirection() == null){
@@ -142,26 +116,12 @@ public class NavigationServlet extends HttpServlet {
 						}
 					}
 				}
-				String redirection = lecteur.getRedirection();
-
-
-				
+					redirection = lecteur.getRedirection();
 					System.out.println("Redirection : redirection servlet : "+redirection);
-					response.setContentType("text/xml");
+					response.setContentType("text");
 					response.setHeader("Cache-Control", "no-cache");
-					response.getWriter().write("<redirection>"+redirection+"</redirection>");
+					response.getWriter().write(redirection);
 					break;
-//			case "reponseMessage":
-//				ActionPresentation actionPresentation = new ActionPresentation(message, idMessage);
-//				redirection = actionPresentation.getRedirection();
-//				System.out.println("Redirection reponseMessage : "+redirection);
-//				synchronized(redirection){
-//
-//
-//				redirection.notify();
-//				}
-//
-//				break;
 			}
         } 
 	}

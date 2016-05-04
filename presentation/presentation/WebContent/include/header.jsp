@@ -13,9 +13,10 @@
 	<div class="head"></div>
 	<div class="iconmenu"></div>
 	<div class="bienvenue">
-		<%
+<%-- 		<%
 			Joueur joueur = (Joueur) session.getAttribute("utilisateur");
-		%>
+		%> --%>
+		<jsp:useBean id="joueur" scope="application" class="model.Joueur" />
 		<%=joueur.getLogin()%>
 	</div>
 		<a href="navigation?nav=deconnexion"><img src="img/deconnexion.png" class="deconnexion"></a>

@@ -6,29 +6,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <script type="text/javascript">
-	var requete;
 	function demandeRedirection(){
+		var requete = null;
+		
 		var url = "navigation?nav=redirection";
 		if (window.XMLHttpRequest) {
 			requete = new XMLHttpRequest();
 		} else if (window.ActiveXObject) {
 			requete = new ActiveXObject("Microsoft.XMLHTTP");
 		}
-		requete.open("GET", url, true);
-		requete.onreadystatechange = reponseRedirection;
-		requete.send(null);
-	};
-	
-	function reponseRedirection(){
-		var message = "";
-		if (requete.readyState == 4) {
-			if (requete.status == 200) {
-				// exploitation des données de la réponse
-				var messageTag = requete.responseXML.getElementsByTagName("redirection")[0];
-				message = messageTag.childNodes[0].nodeValue;
-				window.location = message+".jsp";
+		requete.onreadystatechange = function(){
+			var message = "";
+			if (requete.readyState == 4) {
+				if (requete.status == 200) {
+					// exploitation des données de la réponse
+					var message = requete.responseText;
+					window.location = message+".jsp";
+				}
 			}
-		}
+		};
+
+		requete.open("GET", url, true);
+		requete.send(null);
 	};
 </script>
 </head>
