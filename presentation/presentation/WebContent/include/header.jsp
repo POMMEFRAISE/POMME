@@ -14,7 +14,8 @@
 	<div class="iconmenu"></div>
 	<div class="bienvenue">
 		<jsp:useBean id="joueur" scope="session" class="model.Joueur" />
-		<%=joueur.getLogin()%>
+		<jsp:getProperty name="joueur" property="login" />
+		<%--  <%=joueur.getLogin()%>--%>
 	</div>
 		<a href="navigation?nav=deconnexion"><img src="img/deconnexion.png" class="deconnexion"></a>
 </div>

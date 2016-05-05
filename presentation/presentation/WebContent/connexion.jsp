@@ -2,10 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
-
 <!-- ---ICI---- -->
-
 <?php
 $sLangueNavigateur= substr($_SERVER[‘HTTP_ACCEPT_LANGUAGE’], 0, 2);
 if($sLangueNavigateur==en){
@@ -27,27 +24,6 @@ if($sLangueNavigateur==en){
 <img src="img/us.png" onclick="en">
 <img src="img/es.png" onclick="es">
 </div>
-<%-- <%
-String mot=null;
-switch(mot){
-case "fr":
-	%>
-	<fmt:setBundle basename="internationalisation.message_fr_FR" />
-	<% 
-	break;
-case "en":
-	%>
-	<fmt:setBundle basename="internationalisation.message_en_EN" />
-	<% 
-	break;
-case "es":
-	%>
-	<fmt:setBundle basename="internationalisation.message_es_ES" />
-	<% 
-	break;
-}
-
-%> --%>
 <title><fmt:message key="connexion.authentification" /></title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
