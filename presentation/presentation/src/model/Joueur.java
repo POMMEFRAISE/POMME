@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Joueur implements Serializable{
+public class Joueur extends MessageErreur implements Serializable{
     /**
 	 * 
 	 */

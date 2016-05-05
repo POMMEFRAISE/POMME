@@ -2,7 +2,6 @@ package comportement.metier2presentation;
 
 import comportement.Commande;
 import model.Joueur;
-import model.MessageErreur;
 import xml.metier2presentation.ReponseSeConnecterM2P;
 
 public class ReponseSeConnecterM2PComportement implements Commande{
@@ -14,28 +13,24 @@ public class ReponseSeConnecterM2PComportement implements Commande{
 		this.reponseSeConnecter = reponseSeConnecter;
 	}
 
-	public String reçoiMessage() {
-		System.out.println("ReponseSeConnecterComportements");
+	public Joueur reçoiMessage() {
 		joueur = new Joueur();
 		joueur.setNom(reponseSeConnecter.getAuthentification().getJoueur().getNomJoueur());
 		joueur.setPrenom(reponseSeConnecter.getAuthentification().getJoueur().getPrenomJoueur());
 		joueur.setLogin(reponseSeConnecter.getAuthentification().getJoueur().getLoginJoueur());
-		
 		messageErreur = reponseSeConnecter.getAuthentification().getMessageErreur();
+		joueur.setMessage(messageErreur);
 		System.out.println("Message Erreur présentation : "+messageErreur);
 		return verifierInformations();
 	}
 	
-	public String verifierInformations(){
-		MessageErreur messageErr = new MessageErreur();
-		String redirection;
+	public Joueur verifierInformations(){
 		if(messageErreur == null){
-	   		redirection = "accueil";
+	   		joueur.setStatut(true);
     	}else{
-	   		messageErr.setMessage(messageErreur);
-    		redirection = "connexion";
-    	}
+	   		joueur.setStatut(false);
+	   	}
 		
-		return redirection;
+		return joueur;
 	}
 }

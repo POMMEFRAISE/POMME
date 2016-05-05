@@ -14,14 +14,14 @@ public class ReponseDemanderAuthentificationM2PComportement implements Commande{
 		this.reponseDemanderAuthentificationM2P = reponseDemanderAuthentificationM2P;
 	}
 
-	public String reçoiMessage() {
-		String redirection;
+	public MessageErreur reçoiMessage() {
+		MessageErreur messageErreur = new MessageErreur();
 		if(reponseDemanderAuthentificationM2P.getCommande().isEnregistrer() == true){
-			redirection = "connexion";			
+			messageErreur.setStatut(true);			
 		}else{
-			redirection = "erreur";
+			messageErreur.setStatut(false);
 		}
-		return redirection;
+		return messageErreur;
 	}
 
 	public ReponseDemanderAuthentificationM2P getReponseDemanderAuthentificationM2P() {

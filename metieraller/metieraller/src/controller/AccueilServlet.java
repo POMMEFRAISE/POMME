@@ -20,19 +20,20 @@ public class AccueilServlet extends HttpServlet
 	
 	public void service(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException{
-		String idMessage;
 		String message = "";
+		String idMessage;
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(req.getInputStream()));
         
-        idMessage = reader.readLine();
+		idMessage = reader.readLine();
         while(reader.ready()){
         	message = message + reader.readLine();
         }
         reader.close();
-		
-        System.out.println("idMessage :"+idMessage);
-        System.out.println("message :"+message);
+        
+        System.out.println("idMessage servlet metier :"+message);
+
+        System.out.println("message servlet metier :"+message);
         
         convertirMessageObjet(message);   
 	}

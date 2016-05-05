@@ -19,7 +19,4 @@
   <welcome-file-list>
     <welcome-file>navigation</welcome-file>
   </welcome-file-list>
-<!-- <listener>
-    <listener-class>listener.JMSListener</listener-class>
-  </listener> -->
 </web-app>

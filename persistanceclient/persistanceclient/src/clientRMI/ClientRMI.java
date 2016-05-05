@@ -11,11 +11,11 @@ import comportement.Commande;
 import util.JAXB;
 
 public class ClientRMI extends Thread {
-	private String message;
 	private String idMessage;
-	public ClientRMI(String message, String idMessage) {
-		this.message = message;
+	private String message;
+	public ClientRMI(String idMessage, String message) {
 		this.idMessage = idMessage;
+		this.message = message;
 		run();
 	}
 
@@ -67,16 +67,6 @@ public class ClientRMI extends Thread {
 		}
 	}
 
-	public String getIdMessage() {
-		return idMessage;
-	}
-
-
-	public void setIdMessage(String idMessage) {
-		this.idMessage = idMessage;
-	}
-
-
 	public String getMessage() {
 		return message;
 	}
@@ -84,5 +74,13 @@ public class ClientRMI extends Thread {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public String getIdMessage() {
+		return idMessage;
+	}
+
+	public void setIdMessage(String idMessage) {
+		this.idMessage = idMessage;
 	}  
 }

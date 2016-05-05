@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,26 +17,23 @@ import util.JAXB;
 public class AccueilServlet extends HttpServlet
 {
 	private static final long serialVersionUID = -84682128141930818L;
-
-	public void init(ServletConfig config) throws ServletException {
-
-	}
 	
 	public void service(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException{
-		String idMessage;
 		String message = "";
-      
-		BufferedReader reader = new BufferedReader(new InputStreamReader(req.getInputStream()));
+		String idMessage;
 
-        idMessage = reader.readLine();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(req.getInputStream()));
+        
+		idMessage = reader.readLine();
         while(reader.ready()){
         	message = message + reader.readLine();
         }
         reader.close();
+        
+        System.out.println("idMessage servlet metier :"+message);
 
-        System.out.println("idMessage :"+idMessage);
-        System.out.println("message :"+message);
+        System.out.println("message servlet metier :"+message);
        
         convertirMessageObjet(message);
 	}

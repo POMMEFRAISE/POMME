@@ -7,10 +7,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import activeMQ.Lecteur;
 import comportement.presentation2metier.DemanderAuthentificationP2MComportement;
 import comportement.presentation2metier.SeConnecterP2MComportement;
+import model.ActionPresentation;
+import model.Joueur;
+import model.MessageErreur;
 
 /**
  * Servlet implementation class NavigationServlet
@@ -18,20 +22,55 @@ import comportement.presentation2metier.SeConnecterP2MComportement;
 @WebServlet("/NavigationServlet")
 public class NavigationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private ActionPresentation actionPresentation ;
+	private String message;
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {     
+		actionPresentation = new ActionPresentation();
+		HttpSession session = request.getSession();
 		String login;
 		String pwd;
 		
-		if(request.getSession().getAttribute("utilisateur") == null && request.getParameter("nav")==null) {
-			this.getServletContext().getRequestDispatcher("/attente.jsp").forward(request, response);
-
+		if(session.getAttribute("joueur") == null && request.getParameter("nav")==null){
 			DemanderAuthentificationP2MComportement demanderAuthentification = new DemanderAuthentificationP2MComportement();
 			demanderAuthentification.envoiMessage();
+			appelLecteur();
+			System.out.println("MEssage servlet : "+message);
 
-		}else if(request.getParameter("nav").equals("creercompte") && request.getSession().getAttribute("utilisateur") == null){
+			MessageErreur messageErreur = (MessageErreur) actionPresentation.getObjetARetourner();
+			System.out.println("message Erreur servlet: " + messageErreur.isStatut());
+			if(messageErreur.isStatut() == true){
+				this.getServletContext().getRequestDispatcher("/connexion.jsp").forward(request, response);
+			}else{
+				this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(request, response);
+			}
+		}else if(session.getAttribute("joueur") != null && request.getParameter("nav")==null) {
+			this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+		}else if(request.getParameter("nav").equals("creercompte") && session.getAttribute("joueur") == null){
 			response.sendRedirect("creercompte.jsp");
+		}else if(session.getAttribute("joueur") == null && request.getParameter("nav") == "formconnexion"){
+			//this.getServletContext().getRequestDispatcher("/attente.jsp").forward(request, response);
+
+			login = request.getParameter("login");
+			pwd = request.getParameter("pwd");
+			SeConnecterP2MComportement authentification = new SeConnecterP2MComportement(login, pwd);
+			authentification.envoiMessage();
+
+			appelLecteur();
+			System.out.println("MEssage servlet : "+message);
+
+			Joueur joueur = (Joueur) actionPresentation.getObjetARetourner();
+			System.out.println("joueur : " + joueur.isStatut());
+			System.out.println("joueur : " + joueur.getLogin());
+
+			if(joueur.isStatut() == true){
+			    session.setAttribute("joueur", joueur);
+			    request.setAttribute("joueur", joueur);
+				this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+			}else{
+				this.getServletContext().getRequestDispatcher("/connexion.jsp").forward(request, response);
+			}
 		}else {
 		switch(request.getParameter("nav")){
 			case "rejoindrepartie" :
@@ -84,45 +123,27 @@ public class NavigationServlet extends HttpServlet {
 		        }
 		        this.getServletContext().getRequestDispatcher("/modifierprofil.jsp").forward(request, response);  
 				break;
-			case "formconnexion" :
-				this.getServletContext().getRequestDispatcher("/attente.jsp").forward(request, response);
-
-				login = request.getParameter("login");
-				System.out.println("SERVLET : LOGIN "+login);
-				pwd = request.getParameter("pwd");
-				SeConnecterP2MComportement authentification = new SeConnecterP2MComportement(login, pwd);
-				authentification.envoiMessage();
-
-				 //   Joueur joueur = new Joueur(login);
-					//HttpSession session = request.getSession();
-			        //session.setAttribute("utilisateur", joueur);
-			        //request.setAttribute("utilisateur", joueur);
-
-				break;
-			case "redirection":
-				System.out.println("REQUETE AJAX");
-			
-				Lecteur lecteur = new Lecteur(true);
-				Thread thread = new Thread(lecteur);
-				thread.start();
-				String redirection = "";
-
-				synchronized(thread){
-					while(lecteur.getRedirection() == null){
-						try {
-							thread.wait();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-					redirection = lecteur.getRedirection();
-					System.out.println("Redirection : redirection servlet : "+redirection);
-					response.setContentType("text");
-					response.setHeader("Cache-Control", "no-cache");
-					response.getWriter().write(redirection);
-					break;
 			}
         } 
+	}
+	
+	public void appelLecteur(){
+		Lecteur lecteur = new Lecteur();
+		Thread thread = new Thread(lecteur);
+		thread.start();
+
+		synchronized(thread){
+			while(lecteur.getMessage() == null){
+				try {
+					thread.wait();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		message = lecteur.getMessage();
+		thread.interrupt();
+		actionPresentation.setMessage(message);
+		actionPresentation.convertirMessageObjet();
 	}
 }
