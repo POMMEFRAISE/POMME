@@ -22,7 +22,6 @@ if($sLangueNavigateur==en){
 <div align="right">
 <img src="img/fr.png" onclick="fr">
 <img src="img/us.png" onclick="en">
-<img src="img/es.png" onclick="es">
 </div>
 <title><fmt:message key="connexion.authentification" /></title>
 <link rel="stylesheet" type="text/css" href="css/style.css">

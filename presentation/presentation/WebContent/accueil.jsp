@@ -28,7 +28,7 @@
 <body>
 	<div class="message">
 		<h3>
-			<fmt:message key="accueil.bienvenue" /> <%=joueur.getLogin()%> <fmt:message key="accueil.point" />
+			<fmt:message key="accueil.bienvenue" /> <jsp:getProperty name="joueur" property="prenom" /> <jsp:getProperty name="joueur" property="nom" /> <fmt:message key="accueil.point" />
 		</h3>
 		<img src="img/jeux-de-des.jpg" >
 	</div>
