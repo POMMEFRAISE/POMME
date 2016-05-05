@@ -55,4 +55,38 @@
     			<extension base="tns:ReponseHeadI2M"></extension>
     		</complexContent>
     	</complexType></element>
+
+    <element name="reponseDemanderCreerPartieI2M">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:ReponseHeadI2M">
+    				<sequence>
+    					<element name="commande" type="tns:CommandeI2M"></element>
+    				</sequence>
+    			</extension>
+    		</complexContent>
+    	</complexType></element>
+
+    <element name="reponseCreerPartieI2M">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:ReponseHeadI2M">
+    				<sequence>
+    					<element name="creationPartie" type="tns:CreationPartieI2M"></element>
+    				</sequence>
+    			</extension>
+    		</complexContent>
+    	</complexType></element>
+
+    <complexType name="PartieI2M">
+    	<attribute name="nomPartie" type="string"></attribute>
+    	<attribute name="nbJoueurPartie" type="int"></attribute>
+    </complexType>
+
+    <complexType name="CreationPartieI2M">
+    	<sequence>
+    		<element name="partie" type="tns:PartieI2M"></element>
+    	</sequence>
+    	<attribute name="messageErreur" type="string"></attribute>
+    </complexType>
 </schema>

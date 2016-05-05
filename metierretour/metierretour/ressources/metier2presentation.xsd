@@ -37,7 +37,7 @@
     		<complexContent>
     			<extension base="tns:ReponseHeadM2P">
     				<sequence>
-    					<element name="Authentification" type="tns:AuthentificationM2P"></element>
+    					<element name="authentification" type="tns:AuthentificationM2P"></element>
     				</sequence>
     			</extension>
     		</complexContent>
@@ -53,4 +53,38 @@
     			<extension base="tns:ReponseHeadM2P"></extension>
     		</complexContent>
     	</complexType></element>
+
+    <element name="reponseDemanderCreerPartieM2P">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:ReponseHeadM2P">
+    				<sequence>
+    					<element name="commande" type="tns:CommandeM2P"></element>
+    				</sequence>
+    			</extension>
+    		</complexContent>
+    	</complexType></element>
+
+    <element name="reponseCreerPartieM2P">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:ReponseHeadM2P">
+    				<sequence>
+    					<element name="creationPartie" type="tns:CreationPartieM2P"></element>
+    				</sequence>
+    			</extension>
+    		</complexContent>
+    	</complexType></element>
+
+    <complexType name="CreationPartieM2P">
+    	<sequence>
+    		<element name="partie" type="tns:PartieM2P"></element>
+    	</sequence>
+    	<attribute name="messageErreur" type="string"></attribute>
+    </complexType>
+
+    <complexType name="PartieM2P">
+    	<attribute name="nomPartie" type="string"></attribute>
+    	<attribute name="nbJoueurPartie" type="int"></attribute>
+    </complexType>
 </schema>

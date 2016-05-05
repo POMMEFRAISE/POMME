@@ -11,11 +11,11 @@ public class PartieDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	protected int id;
 	protected String nomPartie;
-	protected int nbredejoueur;
+	protected Integer nbredejoueur;
 	protected String statut;
 	protected Date datedecreation;
 	
-	public PartieDTO(int id, String nomPartie, int nbredejoueur, String statut, Date datedecreation) {
+	public PartieDTO(int id, String nomPartie, Integer nbredejoueur, String statut, Date datedecreation) {
 		this.nomPartie = nomPartie;
 		this.nbredejoueur = nbredejoueur;
 		this.statut = statut;
@@ -41,10 +41,10 @@ public class PartieDTO implements Serializable {
 	public void setNomPartie(String nomPartie) {
 		this.nomPartie = nomPartie;
 	}
-	public int getNbredejoueur() {
+	public Integer getNbredejoueur() {
 		return nbredejoueur;
 	}
-	public void setNbredejoueur(int nbredejoueur) {
+	public void setNbredejoueur(Integer nbredejoueur) {
 		this.nbredejoueur = nbredejoueur;
 	}
 	public String getStatut() {

@@ -34,6 +34,7 @@ public class ServicePartieImpl extends UnicastRemoteObject implements ServicePar
 	public synchronized boolean creerPartie(Object partieDTO) throws RemoteException {
 		PartieEntite partieEntite = new PartieEntite();
 		partieEntite.setNomPartie(((PartieDTO) partieDTO).getNomPartie());
+		partieEntite.setNbredejoueur(((PartieDTO) partieDTO).getNbredejoueur());
 		boolean creer = false;
 		boolean enregistrer = false; 
 		enregistrer = daoPartieInterface.creerPartie(partieEntite);

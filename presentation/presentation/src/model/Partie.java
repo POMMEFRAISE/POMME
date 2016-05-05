@@ -1,8 +1,11 @@
 package model;
 
-public class Partie {
+import java.io.Serializable;
 
-    private String nom;
+public class Partie extends MessageErreur implements Serializable{
+
+	private static final long serialVersionUID = 1514138537369034322L;
+	private String nom;
     private int nbJoueurs;
     private boolean statut;
     
@@ -24,6 +27,9 @@ public class Partie {
         this.nbJoueurs=nbJoueurs;
     }
 	
+	public Partie() {
+		// TODO Auto-generated constructor stub
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

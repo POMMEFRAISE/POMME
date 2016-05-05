@@ -60,7 +60,7 @@
     		<complexContent>
     			<extension base="tns:RequeteHeadM2I">
     				<sequence>
-    					<element name="Authentification" type="tns:AuthentificationM2I"></element>
+    					<element name="authentification" type="tns:AuthentificationM2I"></element>
     				</sequence>
     			</extension>
     		</complexContent>
@@ -70,6 +70,30 @@
     	<complexType>
     		<complexContent>
     			<extension base="tns:RequeteHeadM2I"></extension>
+    		</complexContent>
+    	</complexType></element>
+
+    <element name="demanderCreerPartieM2I">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:RequeteHeadM2I"></extension>
+    		</complexContent>
+    	</complexType></element>
+
+    <complexType name="CreationPartieM2I">
+    	<attribute name="nomPartie" type="string"></attribute>
+    	<attribute name="nbJoueurPartie" type="int"></attribute>
+    	<attribute name="messageErreur" type="string"></attribute>
+    </complexType>
+
+    <element name="creerPartieM2I">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:RequeteHeadM2I">
+    				<sequence>
+    					<element name="creationPartie" type="tns:CreationPartieM2I"></element>
+    				</sequence>
+    			</extension>
     		</complexContent>
     	</complexType></element>
 </schema>

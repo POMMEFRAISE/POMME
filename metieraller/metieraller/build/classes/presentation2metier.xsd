@@ -62,7 +62,7 @@
 			<complexContent>
 				<extension base="tns:RequeteHeadP2M">
 					<sequence>
-						<element name="Authentification" type="tns:AuthentificationP2M"></element>
+						<element name="authentification" type="tns:AuthentificationP2M"></element>
 					</sequence>
 				</extension>
 			</complexContent>
@@ -73,6 +73,29 @@
     	<complexType>
     		<complexContent>
     			<extension base="tns:RequeteHeadP2M"></extension>
+    		</complexContent>
+    	</complexType></element>
+
+    <element name="demanderCreerPartieP2M">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:RequeteHeadP2M"></extension>
+    		</complexContent>
+    	</complexType></element>
+
+    <complexType name="CreationPartieP2M">
+    	<attribute name="nomParrtie" type="string"></attribute>
+    	<attribute name="nbJoueurPartie" type="int"></attribute>
+    </complexType>
+
+    <element name="creerPartieP2M">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:RequeteHeadP2M">
+    				<sequence>
+    					<element name="creationPartie" type="tns:CreationPartieP2M"></element>
+    				</sequence>
+    			</extension>
     		</complexContent>
     	</complexType></element>
 </schema>

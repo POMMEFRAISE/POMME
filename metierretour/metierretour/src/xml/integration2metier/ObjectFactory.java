@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.05.05 à 04:53:16 PM CEST 
+// Généré le : 2016.05.05 à 09:31:56 PM CEST 
 //
 
 
@@ -34,6 +34,22 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link ReponseCreerPartieI2M }
+     * 
+     */
+    public ReponseCreerPartieI2M createReponseCreerPartieI2M() {
+        return new ReponseCreerPartieI2M();
+    }
+
+    /**
+     * Create an instance of {@link CreationPartieI2M }
+     * 
+     */
+    public CreationPartieI2M createCreationPartieI2M() {
+        return new CreationPartieI2M();
     }
 
     /**
@@ -77,11 +93,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ReponseDemanderCreerPartieI2M }
+     * 
+     */
+    public ReponseDemanderCreerPartieI2M createReponseDemanderCreerPartieI2M() {
+        return new ReponseDemanderCreerPartieI2M();
+    }
+
+    /**
      * Create an instance of {@link JoueurI2M }
      * 
      */
     public JoueurI2M createJoueurI2M() {
         return new JoueurI2M();
+    }
+
+    /**
+     * Create an instance of {@link PartieI2M }
+     * 
+     */
+    public PartieI2M createPartieI2M() {
+        return new PartieI2M();
     }
 
 }

@@ -22,7 +22,7 @@ public class DaoPartieImpl implements DaoPartieInterface {
 				PreparedStatement preparedStatement = ConnexionDAO.getInstance().prepareCall(creerPartieSQL);
 				
 				preparedStatement.setString(1, partie.getNomPartie());
-				preparedStatement.setInt(2, 1);
+				preparedStatement.setInt(2, partie.getNbredejoueur());
 				preparedStatement.setString(3, "ouvert");
 				java.sql.Date  sqlDate = new java.sql.Date(new java.util.Date().getTime());
 				preparedStatement.setDate(4, sqlDate);

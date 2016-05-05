@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.05.05 à 04:19:41 PM CEST 
+// Généré le : 2016.05.05 à 09:50:24 PM CEST 
 //
 
 
@@ -53,6 +53,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ReponseCreerPartieM2P }
+     * 
+     */
+    public ReponseCreerPartieM2P createReponseCreerPartieM2P() {
+        return new ReponseCreerPartieM2P();
+    }
+
+    /**
+     * Create an instance of {@link CreationPartieM2P }
+     * 
+     */
+    public CreationPartieM2P createCreationPartieM2P() {
+        return new CreationPartieM2P();
+    }
+
+    /**
      * Create an instance of {@link ReponseDemanderAuthentificationM2P }
      * 
      */
@@ -69,6 +85,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ReponseDemanderCreerPartieM2P }
+     * 
+     */
+    public ReponseDemanderCreerPartieM2P createReponseDemanderCreerPartieM2P() {
+        return new ReponseDemanderCreerPartieM2P();
+    }
+
+    /**
      * Create an instance of {@link ReponseDemanderNumeroPresentationM2P }
      * 
      */
@@ -82,6 +106,14 @@ public class ObjectFactory {
      */
     public JoueurM2P createJoueurM2P() {
         return new JoueurM2P();
+    }
+
+    /**
+     * Create an instance of {@link PartieM2P }
+     * 
+     */
+    public PartieM2P createPartieM2P() {
+        return new PartieM2P();
     }
 
 }
