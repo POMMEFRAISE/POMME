@@ -8,7 +8,7 @@ import xml.metier2integration.ObjectFactory;
 public class CreerPartieM2IComportement{
 	private String nomPartie;
 	private int nbJoueurPartie;
-	private String messageErreur;
+	private String messageErreur = "";
 	private int numeroPresentation;
 	
 	public CreerPartieM2IComportement(String nomPartie, int nbJoueurPartie, int numeroPresentation){
@@ -27,10 +27,10 @@ public class CreerPartieM2IComportement{
 	
 	public void envoiMessage() {
 		if(nomPartie.equals("") || nomPartie == null){
-			messageErreur = "Le nom de la partie doit être renseignée";
+			messageErreur = "Le nom de la partie doit être renseignée\n";
 		}
 		if(nbJoueurPartie <3 || nbJoueurPartie >7){
-			messageErreur = messageErreur+"\nLe nombre de joueur doit être compris entre 3 et 7";
+			messageErreur = messageErreur+"Le nombre de joueur doit être compris entre 3 et 7";
 		}
 		ObjectFactory objFactory = new ObjectFactory();
 		CreationPartieM2I creationPartieM2I = objFactory.createCreationPartieM2I();

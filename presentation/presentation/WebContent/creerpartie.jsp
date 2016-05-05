@@ -20,9 +20,12 @@
 	<form method="post" action="navigation?nav=formcreerpartie">
       <fieldset class="formcreerpartie">
                 <legend color="white"><fmt:message key="creation.partie.creer.nouvelle" /></legend>
-                     
+                    <jsp:useBean id="partie" scope="session" class="model.Partie" />
+                    <c:if test="${partie.getMessage() != null}">
+                    	<jsp:getProperty name="partie" property="message"/>                    
+                    </c:if>
                     <label><fmt:message key="creation.partie.nom" /> : </label> 
-                    <input type="text" name="nom"  value="" id="nom" size="30"  /><br /><br />
+                    <input type="text" name="nom" value="" id="nom" size="30"  /><br /><br />
                     <label><fmt:message key="creation.partie.nb.joueurs" /> : </label> 
                     <input type="text" name="nbjoueur" value="" id="nbjoueur" size="30"  /><br /><br /><br />
                      
