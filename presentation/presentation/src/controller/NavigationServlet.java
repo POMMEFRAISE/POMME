@@ -19,7 +19,6 @@ import model.MessageErreur;
 /**
  * Servlet implementation class NavigationServlet
  */
-@WebServlet("/NavigationServlet")
 public class NavigationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ActionPresentation actionPresentation ;
@@ -31,8 +30,13 @@ public class NavigationServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String login;
 		String pwd;
+		String url = request.getParameter("nav");
+		if(url == null){
+			url = "";
+		}
 		
-		if(session.getAttribute("joueur") == null && request.getParameter("nav")==null){
+		System.out.println("url : "+url);
+		if(session.getAttribute("joueur") == null && url.equals("")){
 			DemanderAuthentificationP2MComportement demanderAuthentification = new DemanderAuthentificationP2MComportement();
 			demanderAuthentification.envoiMessage();
 			appelLecteur();
@@ -45,39 +49,22 @@ public class NavigationServlet extends HttpServlet {
 			}else{
 				this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(request, response);
 			}
-		}else if(session.getAttribute("joueur") != null && request.getParameter("nav")==null) {
-			this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
-		}else if(request.getParameter("nav").equals("creercompte") && session.getAttribute("joueur") == null){
+		}else if(url.equals("creercompte") && session.getAttribute("joueur") == null){
 			response.sendRedirect("creercompte.jsp");
-		}else if(session.getAttribute("joueur") == null && request.getParameter("nav") == "formconnexion"){
-			//this.getServletContext().getRequestDispatcher("/attente.jsp").forward(request, response);
-
-			login = request.getParameter("login");
-			pwd = request.getParameter("pwd");
-			SeConnecterP2MComportement authentification = new SeConnecterP2MComportement(login, pwd);
-			authentification.envoiMessage();
-
-			appelLecteur();
-			System.out.println("MEssage servlet : "+message);
-
-			Joueur joueur = (Joueur) actionPresentation.getObjetARetourner();
-			System.out.println("joueur : " + joueur.isStatut());
-			System.out.println("joueur : " + joueur.getLogin());
-
-			if(joueur.isStatut() == true){
-			    session.setAttribute("joueur", joueur);
-			    request.setAttribute("joueur", joueur);
-				this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
-			}else{
-				this.getServletContext().getRequestDispatcher("/connexion.jsp").forward(request, response);
-			}
 		}else {
-		switch(request.getParameter("nav")){
+		switch(url){
+			case "":
+				this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+				break;
 			case "rejoindrepartie" :
 				this.getServletContext().getRequestDispatcher("/rejoindrepartie.jsp").forward(request, response);
 				break;
 			case "creerpartie" :
-		        this.getServletContext().getRequestDispatcher("/creerpartie.jsp").forward(request, response);  
+				if (session.getAttribute("joueur") == null){
+					response.sendRedirect("navigation?nav=");
+				}else{
+					this.getServletContext().getRequestDispatcher("/creerpartie.jsp").forward(request, response);  
+				}
 				break;
 			case "jeu" :
 				this.getServletContext().getRequestDispatcher("/jeu.jsp").forward(request, response);
@@ -122,6 +109,34 @@ public class NavigationServlet extends HttpServlet {
 		        	request.setAttribute("message", "Les champs doivent être remplis");
 		        }
 		        this.getServletContext().getRequestDispatcher("/modifierprofil.jsp").forward(request, response);  
+				break;
+			case "formconnexion" :
+				//this.getServletContext().getRequestDispatcher("/attente.jsp").forward(request, response);
+				if(session.getAttribute("joueur") != null){
+					response.sendRedirect("navigation?nav=accueil");
+				}else if (session.getAttribute("joueur") == null && request.getParameter("login") == null){
+					response.sendRedirect("navigation?nav=");
+				}else{
+					login = request.getParameter("login");
+					pwd = request.getParameter("pwd");
+					SeConnecterP2MComportement authentification = new SeConnecterP2MComportement(login, pwd);
+					authentification.envoiMessage();
+	
+					appelLecteur();
+					System.out.println("MEssage servlet : "+message);
+	
+					Joueur joueur = (Joueur) actionPresentation.getObjetARetourner();
+					System.out.println("joueur : " + joueur.isStatut());
+					System.out.println("joueur : " + joueur.getLogin());
+	
+					if(joueur.isStatut() == true){
+					    session.setAttribute("joueur", joueur);
+					    request.setAttribute("joueur", joueur);
+						this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+					}else{
+						this.getServletContext().getRequestDispatcher("/connexion.jsp").forward(request, response);
+					}
+				}
 				break;
 			}
         } 
