@@ -2,9 +2,12 @@
 <schema targetNamespace="http://pds.m1.upec.fr/xml/integration2metier" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://pds.m1.upec.fr/xml/integration2metier">
 
     <complexType name="ReponseHeadI2M" abstract="true">
-    	<attribute name="statutMessage" type="string" default="Traitée"></attribute>
+    	<attribute name="statutMessage" type="string"
+    		default="Traitée">
+    	</attribute>
     	<attribute name="dateCreationMessage" type="dateTime"></attribute>
     	<attribute name="idMessageMetier2Integration" type="string"></attribute>
+    	<attribute name="numeroPresentation" type="int"></attribute>
     </complexType>
 
     <complexType name="JoueurI2M">
@@ -45,4 +48,11 @@
     <complexType name="CommandeI2M">
     	<attribute name="enregistrer" type="boolean"></attribute>
     </complexType>
+
+    <element name="reponseDemanderNumeroPresentationI2M">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:ReponseHeadI2M"></extension>
+    		</complexContent>
+    	</complexType></element>
 </schema>
