@@ -44,7 +44,7 @@ public class NavigationServlet extends HttpServlet {
 			appelLecteur(numero);
 			numero = (Integer) actionPresentation.getObjetARetourner();
 		    session.setAttribute("numeroPresentation", numero);
-		    request.setAttribute("numeroPresentation", numero);
+		    //request.setAttribute("numeroPresentation", numero);
 		}else{
 			numero = numeroPresentation;			
 		}
@@ -86,7 +86,7 @@ public class NavigationServlet extends HttpServlet {
 				break;
 			case "deconnexion" :
 				request.getSession().invalidate();
-				response.sendRedirect("navigation");
+				response.sendRedirect("navigation?nav=");
 				break;
 			case "modifierprofil" :
 				this.getServletContext().getRequestDispatcher("/modifierprofil.jsp").forward(request, response);
@@ -146,7 +146,7 @@ public class NavigationServlet extends HttpServlet {
 	
 					if(joueur.isStatut() == true){
 					    session.setAttribute("joueur", joueur);
-					    request.setAttribute("joueur", joueur);
+					    //request.setAttribute("joueur", joueur);
 						this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
 					}else{
 						this.getServletContext().getRequestDispatcher("/connexion.jsp").forward(request, response);
