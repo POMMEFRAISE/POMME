@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.04.20 à 07:15:30 PM CEST 
+// Généré le : 2016.05.05 à 04:29:15 PM CEST 
 //
 
 
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="joueur" type="{http://pds.m1.upec.fr/xml/integration2metier}JoueurM2P"/>
+ *         &lt;element name="joueur" type="{http://pds.m1.upec.fr/xml/metier2presentation}JoueurM2P"/>
  *       &lt;/sequence>
  *       &lt;attribute name="messageErreur" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>

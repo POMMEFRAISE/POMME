@@ -28,12 +28,11 @@ public class ReponseSeConnecterI2MComportement implements Commande{
     	);
     	
 		ReponseSeConnecterM2PComportement reponseSeConnecterM2P = new ReponseSeConnecterM2PComportement(
-				joueur, reponseSeConnecterI2M.getAuthentification().getMessageErreur());
+				joueur, 
+				reponseSeConnecterI2M.getAuthentification().getMessageErreur(),
+    			reponseSeConnecterI2M.getNumeroPresentation()
+				);
 
 		reponseSeConnecterM2P.envoiMessage();
 	}
-
-	public void envoiMessage() {
-		
-	}	
 }

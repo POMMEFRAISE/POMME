@@ -3,22 +3,20 @@ package comportement.integration2metier;
 import java.lang.reflect.InvocationTargetException;
 
 import activeMQ.Producteur;
-import comportement.Commande;
 import xml.integration2metier.AuthentificationI2M;
 import xml.integration2metier.JoueurI2M;
 import xml.integration2metier.ObjectFactory;
 import xml.integration2metier.ReponseSeConnecterI2M;
 
-public class ReponseSeConnecterI2MComportement implements Commande{
+public class ReponseSeConnecterI2MComportement {
 	private String messageErreur;
 	private Object joueurDTO;
-	public ReponseSeConnecterI2MComportement(String messageErreur, Object joueurDTO){
+	private int numeroPresentation;
+	
+	public ReponseSeConnecterI2MComportement(String messageErreur, Object joueurDTO, int numeroPresentation){
 		this.messageErreur = messageErreur;	
 		this.joueurDTO = joueurDTO;
-	}
-	
-	public void reçoiMessage() {
-
+		this.numeroPresentation = numeroPresentation;
 	}
 	
 	public void envoiMessage(){
@@ -36,10 +34,11 @@ public class ReponseSeConnecterI2MComportement implements Commande{
 		AuthentificationI2M authentification = objFactory.createAuthentificationI2M();
 		authentification.setJoueur(joueur);
 		authentification.setMessageErreur(messageErreur);
-		ReponseSeConnecterI2M reponseSeConencter = objFactory.createReponseSeConnecterI2M();
-		reponseSeConencter.setAuthentification(authentification);
+		ReponseSeConnecterI2M reponseSeConnecter = objFactory.createReponseSeConnecterI2M();
+		reponseSeConnecter.setAuthentification(authentification);
+		reponseSeConnecter.setNumeroPresentation(numeroPresentation);
 		
-		new Producteur(reponseSeConencter);
+		new Producteur(reponseSeConnecter);
 	}
 
 	public String getMessageErreur() {
@@ -56,5 +55,13 @@ public class ReponseSeConnecterI2MComportement implements Commande{
 
 	public void setJoueurDTO(Object joueurDTO) {
 		this.joueurDTO = joueurDTO;
+	}
+
+	public int getNumeroPresentation() {
+		return numeroPresentation;
+	}
+
+	public void setNumeroPresentation(int numeroPresentation) {
+		this.numeroPresentation = numeroPresentation;
 	}
 }

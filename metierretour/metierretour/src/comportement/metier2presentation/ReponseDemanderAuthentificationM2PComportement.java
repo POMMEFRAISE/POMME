@@ -1,21 +1,17 @@
 package comportement.metier2presentation;
 
 import activeMQ.Producteur;
-import comportement.Commande;
 import xml.metier2presentation.CommandeM2P;
 import xml.metier2presentation.ObjectFactory;
 import xml.metier2presentation.ReponseDemanderAuthentificationM2P;
 
-
-public class ReponseDemanderAuthentificationM2PComportement implements Commande {
+public class ReponseDemanderAuthentificationM2PComportement {
 	private boolean enregisrerDemanderAuthentification;
-
-	public ReponseDemanderAuthentificationM2PComportement(boolean enregisrerDemanderAuthentification){
-		this.enregisrerDemanderAuthentification = enregisrerDemanderAuthentification;
-	}
+	private int numeroPresentation;
 	
-	public void reçoiMessage() {
-		
+	public ReponseDemanderAuthentificationM2PComportement(boolean enregisrerDemanderAuthentification, int numeroPresentation){
+		this.enregisrerDemanderAuthentification = enregisrerDemanderAuthentification;
+		this.numeroPresentation = numeroPresentation;
 	}
 
 	public void envoiMessage() {
@@ -26,7 +22,7 @@ public class ReponseDemanderAuthentificationM2PComportement implements Commande 
 		ReponseDemanderAuthentificationM2P reponseDemanderAuthentificationM2P = objFactory.createReponseDemanderAuthentificationM2P();
 		reponseDemanderAuthentificationM2P.setCommande(commande);
 		
-		new Producteur(reponseDemanderAuthentificationM2P);
+		new Producteur(reponseDemanderAuthentificationM2P, numeroPresentation);
 	}
 
 	public boolean isEnregisrerDemanderAuthentification() {
@@ -35,5 +31,13 @@ public class ReponseDemanderAuthentificationM2PComportement implements Commande 
 
 	public void setEnregisrerDemanderAuthentification(boolean enregisrerDemanderAuthentification) {
 		this.enregisrerDemanderAuthentification = enregisrerDemanderAuthentification;
+	}
+
+	public int getNumeroPresentation() {
+		return numeroPresentation;
+	}
+
+	public void setNumeroPresentation(int numeroPresentation) {
+		this.numeroPresentation = numeroPresentation;
 	}
 }

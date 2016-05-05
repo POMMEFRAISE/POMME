@@ -1,19 +1,17 @@
 package comportement.integration2metier;
 
 import activeMQ.Producteur;
-import comportement.Commande;
 import xml.integration2metier.CommandeI2M;
 import xml.integration2metier.ObjectFactory;
 import xml.integration2metier.ReponseDemanderAuthentificationI2M;
 
-public class ReponseDemanderAuthentificationI2MComportement implements Commande{
+public class ReponseDemanderAuthentificationI2MComportement{
 	private boolean enregisrerDemanderAuthentification;
-	public ReponseDemanderAuthentificationI2MComportement(boolean enregisrerDemanderAuthentification){
-		this.enregisrerDemanderAuthentification = enregisrerDemanderAuthentification;
-	}
+	private int numeroPresentation;
 	
-	public void reçoiMessage() {
-
+	public ReponseDemanderAuthentificationI2MComportement(boolean enregisrerDemanderAuthentification, int numeroPresentation){
+		this.enregisrerDemanderAuthentification = enregisrerDemanderAuthentification;
+		this.numeroPresentation = numeroPresentation;
 	}
 	
 	public void envoiMessage(){
@@ -23,6 +21,7 @@ public class ReponseDemanderAuthentificationI2MComportement implements Commande{
 		
 		ReponseDemanderAuthentificationI2M reponseDemanderAuthentificationI2M = objFactory.createReponseDemanderAuthentificationI2M();
 		reponseDemanderAuthentificationI2M.setCommande(commande);
+		reponseDemanderAuthentificationI2M.setNumeroPresentation(numeroPresentation);
 		
 		new Producteur(reponseDemanderAuthentificationI2M);
 	}
@@ -33,5 +32,13 @@ public class ReponseDemanderAuthentificationI2MComportement implements Commande{
 
 	public void setEnregisrerDemanderAuthentification(boolean enregisrerDemanderAuthentification) {
 		this.enregisrerDemanderAuthentification = enregisrerDemanderAuthentification;
+	}
+
+	public int getNumeroPresentation() {
+		return numeroPresentation;
+	}
+
+	public void setNumeroPresentation(int numeroPresentation) {
+		this.numeroPresentation = numeroPresentation;
 	}
 }

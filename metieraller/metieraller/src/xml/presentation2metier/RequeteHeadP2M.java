@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.04.18 à 09:26:46 PM CEST 
+// Généré le : 2016.05.05 à 04:24:23 PM CEST 
 //
 
 
@@ -29,6 +29,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;attribute name="idMessage" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="statutMessage" type="{http://www.w3.org/2001/XMLSchema}string" default="Créé" />
  *       &lt;attribute name="dateCreationMessage" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
+ *       &lt;attribute name="numeroPresentation" type="{http://www.w3.org/2001/XMLSchema}int" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -40,6 +41,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlType(name = "RequeteHeadP2M")
 @XmlSeeAlso({
     DemanderAuthentificationP2M.class,
+    DemanderNumeroPresentationP2M.class,
     SeConnecterP2M.class
 })
 public abstract class RequeteHeadP2M {
@@ -51,6 +53,8 @@ public abstract class RequeteHeadP2M {
     @XmlAttribute(name = "dateCreationMessage")
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar dateCreationMessage;
+    @XmlAttribute(name = "numeroPresentation")
+    protected Integer numeroPresentation;
 
     /**
      * Obtient la valeur de la propriété idMessage.
@@ -126,6 +130,30 @@ public abstract class RequeteHeadP2M {
      */
     public void setDateCreationMessage(XMLGregorianCalendar value) {
         this.dateCreationMessage = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété numeroPresentation.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getNumeroPresentation() {
+        return numeroPresentation;
+    }
+
+    /**
+     * Définit la valeur de la propriété numeroPresentation.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setNumeroPresentation(Integer value) {
+        this.numeroPresentation = value;
     }
 
 }

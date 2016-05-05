@@ -11,17 +11,13 @@ public class SeConnecterP2MComportement implements Commande{
 		this.seConnecterP2M = seConnecterP2M;
 	}
 	
-	
 	public void reçoiMessage() {
 		SeConnecterM2IComportement seConnecterM2I = new SeConnecterM2IComportement(
 				seConnecterP2M.getAuthentification().getLoginAuthentification(),
-				seConnecterP2M.getAuthentification().getMdpAuthentification()
+				seConnecterP2M.getAuthentification().getMdpAuthentification(),
+				seConnecterP2M.getNumeroPresentation()
 		);
 		seConnecterM2I.envoiMessage();
-	}
-	
-	public void envoiMessage(){
-		
 	}
 
 	public SeConnecterP2M getSeConnecterP2M() {

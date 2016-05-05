@@ -8,10 +8,12 @@ import xml.presentation2metier.SeConnecterP2M;
 public class SeConnecterP2MComportement{
 	private String login;
 	private String mdp;
-	
-	public SeConnecterP2MComportement(String login, String mdp){
+	private int numeroPresentation;
+
+	public SeConnecterP2MComportement(String login, String mdp, int numeroPresentation){
 		this.login = login;
 		this.mdp = mdp;
+		this.numeroPresentation = numeroPresentation;
 	}
 	
 	public String getLogin() {
@@ -40,7 +42,16 @@ public class SeConnecterP2MComportement{
 	    
 		SeConnecterP2M seConnecter = objFactory.createSeConnecterP2M();
 		seConnecter.setAuthentification(authentification);
+		seConnecter.setNumeroPresentation(numeroPresentation);
 		
 		new Producteur(seConnecter);		
+	}
+
+	public int getNumeroPresentation() {
+		return numeroPresentation;
+	}
+
+	public void setNumeroPresentation(int numeroPresentation) {
+		this.numeroPresentation = numeroPresentation;
 	}
 }

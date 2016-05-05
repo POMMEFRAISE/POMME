@@ -4,9 +4,6 @@ import comportement.Commande;
 import model.MessageErreur;
 import xml.metier2presentation.ReponseDemanderAuthentificationM2P;
 
-//PEUT ETRE RAJOUTER UN BOOLEAN DANS LE MESSAGE ET DONC ICI POUR SI OK OU KO POUR EXECUTER LA COMMANDE
-// OK : ON AFFICHE CONNEXION.JSP
-// KO : ON AFFICHE UNE PAGE ERREUR
 public class ReponseDemanderAuthentificationM2PComportement implements Commande{
 	private ReponseDemanderAuthentificationM2P reponseDemanderAuthentificationM2P;
 	

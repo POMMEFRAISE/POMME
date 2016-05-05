@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import activeMQ.Lecteur;
 import comportement.presentation2metier.DemanderAuthentificationP2MComportement;
+import comportement.presentation2metier.DemanderNumeroPresentationP2MComportement;
 import comportement.presentation2metier.SeConnecterP2MComportement;
 import model.ActionPresentation;
 import model.Joueur;
@@ -30,16 +30,31 @@ public class NavigationServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String login;
 		String pwd;
+		int numero = 0;
+		
 		String url = request.getParameter("nav");
 		if(url == null){
 			url = "";
 		}
 		
+		Integer numeroPresentation = (Integer) session.getAttribute("numeroPresentation");
+		if(numeroPresentation == null){
+			DemanderNumeroPresentationP2MComportement demanderNumeroPresentation = new DemanderNumeroPresentationP2MComportement();
+			demanderNumeroPresentation.envoiMessage();
+			appelLecteur(numero);
+			numero = (Integer) actionPresentation.getObjetARetourner();
+		    session.setAttribute("numeroPresentation", numero);
+		    request.setAttribute("numeroPresentation", numero);
+		}else{
+			numero = numeroPresentation;			
+		}
+		System.out.println("numero Présentation : "+numero);
+		
 		System.out.println("url : "+url);
 		if(session.getAttribute("joueur") == null && url.equals("")){
-			DemanderAuthentificationP2MComportement demanderAuthentification = new DemanderAuthentificationP2MComportement();
+			DemanderAuthentificationP2MComportement demanderAuthentification = new DemanderAuthentificationP2MComportement(numero);
 			demanderAuthentification.envoiMessage();
-			appelLecteur();
+			appelLecteur(numero);
 			System.out.println("MEssage servlet : "+message);
 
 			MessageErreur messageErreur = (MessageErreur) actionPresentation.getObjetARetourner();
@@ -119,10 +134,10 @@ public class NavigationServlet extends HttpServlet {
 				}else{
 					login = request.getParameter("login");
 					pwd = request.getParameter("pwd");
-					SeConnecterP2MComportement authentification = new SeConnecterP2MComportement(login, pwd);
+					SeConnecterP2MComportement authentification = new SeConnecterP2MComportement(login, pwd, numero);
 					authentification.envoiMessage();
 	
-					appelLecteur();
+					appelLecteur(numero);
 					System.out.println("MEssage servlet : "+message);
 	
 					Joueur joueur = (Joueur) actionPresentation.getObjetARetourner();
@@ -142,8 +157,13 @@ public class NavigationServlet extends HttpServlet {
         } 
 	}
 	
-	public void appelLecteur(){
-		Lecteur lecteur = new Lecteur();
+	public void appelLecteur(int numero){
+		Lecteur lecteur;
+		if(numero == 0){
+			lecteur = new Lecteur();
+		}else{
+			lecteur = new Lecteur(numero);
+		}
 		Thread thread = new Thread(lecteur);
 		thread.start();
 

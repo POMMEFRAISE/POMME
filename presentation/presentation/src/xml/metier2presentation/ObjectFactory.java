@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.04.20 à 07:22:08 PM CEST 
+// Généré le : 2016.05.05 à 04:19:41 PM CEST 
 //
 
 
@@ -66,6 +66,14 @@ public class ObjectFactory {
      */
     public CommandeM2P createCommandeM2P() {
         return new CommandeM2P();
+    }
+
+    /**
+     * Create an instance of {@link ReponseDemanderNumeroPresentationM2P }
+     * 
+     */
+    public ReponseDemanderNumeroPresentationM2P createReponseDemanderNumeroPresentationM2P() {
+        return new ReponseDemanderNumeroPresentationM2P();
     }
 
     /**

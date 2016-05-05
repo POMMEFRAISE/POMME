@@ -1,26 +1,23 @@
 package comportement.metier2presentation;
 
 import activeMQ.Producteur;
-import comportement.Commande;
 import model.JoueurMetierRetour;
 import xml.metier2presentation.AuthentificationM2P;
 import xml.metier2presentation.JoueurM2P;
 import xml.metier2presentation.ObjectFactory;
 import xml.metier2presentation.ReponseSeConnecterM2P;
 
-public class ReponseSeConnecterM2PComportement implements Commande{
+public class ReponseSeConnecterM2PComportement{
 	private JoueurMetierRetour joueurMetier;
 	private String messageErreur;
+	private int numeroPresentation;
 	
-	public ReponseSeConnecterM2PComportement(JoueurMetierRetour joueurMetier, String messageErreur){
+	public ReponseSeConnecterM2PComportement(JoueurMetierRetour joueurMetier, String messageErreur, int numeroPresentation){
 		this.joueurMetier = joueurMetier;
 		this.messageErreur = messageErreur;
+		this.numeroPresentation = numeroPresentation;
 	}
 	
-	public void reçoiMessage() {
-		
-	}
-
 	public void envoiMessage() {
 		ObjectFactory objFactory = new ObjectFactory();
 		JoueurM2P joueur = objFactory.createJoueurM2P();
@@ -33,7 +30,7 @@ public class ReponseSeConnecterM2PComportement implements Commande{
 		ReponseSeConnecterM2P reponseSeConencter = objFactory.createReponseSeConnecterM2P();
 		reponseSeConencter.setAuthentification(authentification);
 		
-		new Producteur(reponseSeConencter);
+		new Producteur(reponseSeConencter, numeroPresentation);
 	}
 
 	public String getMessageErreur() {
@@ -50,5 +47,13 @@ public class ReponseSeConnecterM2PComportement implements Commande{
 
 	public void setJoueur(JoueurMetierRetour joueurMetier) {
 		this.joueurMetier = joueurMetier;
+	}
+
+	public int getNumeroPresentation() {
+		return numeroPresentation;
+	}
+
+	public void setNumeroPresentation(int numeroPresentation) {
+		this.numeroPresentation = numeroPresentation;
 	}
 }

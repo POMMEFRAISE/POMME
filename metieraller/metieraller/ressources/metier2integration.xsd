@@ -39,6 +39,7 @@
 
 
     	<attribute name="idMessagePresentation2Metier" type="string"></attribute>
+    	<attribute name="numeroPresentation" type="int"></attribute>
     </complexType>
 
     <element name="demanderAuthentificationM2I">
@@ -62,6 +63,13 @@
     					<element name="Authentification" type="tns:AuthentificationM2I"></element>
     				</sequence>
     			</extension>
+    		</complexContent>
+    	</complexType></element>
+
+    <element name="demanderNumeroPresentationM2I">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:RequeteHeadM2I"></extension>
     		</complexContent>
     	</complexType></element>
 </schema>

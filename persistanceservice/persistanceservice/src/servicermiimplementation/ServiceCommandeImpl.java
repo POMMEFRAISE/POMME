@@ -5,6 +5,10 @@ import java.rmi.server.UnicastRemoteObject;
 
 import daoimplementation.DaoCommandeImpl;
 import daointerface.DaoCommandeInterface;
+import dto.CommandeDTO;
+import dto.JoueurDTO;
+import entites.CommandeEntite;
+import entites.JoueurEntite;
 import servicermiinterface.ServiceCommandeInterface;
 
 public class ServiceCommandeImpl extends UnicastRemoteObject implements ServiceCommandeInterface{
@@ -17,14 +21,25 @@ public class ServiceCommandeImpl extends UnicastRemoteObject implements ServiceC
 	}
 	
 	@Override
-	public boolean enregistrerCommande(Object message) throws RemoteException {
+	public boolean enregistrerCommande(Object commandeDTO) throws RemoteException {
+		CommandeEntite commandeEntite = new CommandeEntite();
+		commandeEntite.setMessage(((CommandeDTO) commandeDTO).getMessage());
+		commandeEntite.setNumeroPresentation(((CommandeDTO) commandeDTO).getNumeroPresentation());
+		
 		boolean enregistrer = false; 
-		if (daoComandeInterface.enregistrerCommande((String) message) == true){
+		if (daoComandeInterface.enregistrerCommande(commandeEntite) == true){
 			enregistrer = true;
 		}
 		return enregistrer;
 	}
 
+	@Override
+	public int demanderNumeroPresentation() throws RemoteException {
+		int numeroPresentation = 0; 
+		numeroPresentation = daoComandeInterface.demanderNumeroPresentation();
+		return numeroPresentation;
+	}
+	
 	@Override
 	public Object afficherCommande() throws RemoteException {
 

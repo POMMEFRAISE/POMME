@@ -1,19 +1,20 @@
 package comportement.metier2integration;
 
 import activeMQ.Producteur;
-import comportement.Commande;
 import xml.metier2integration.AuthentificationM2I;
 import xml.metier2integration.ObjectFactory;
 import xml.metier2integration.SeConnecterM2I;
 
-public class SeConnecterM2IComportement implements Commande{
+public class SeConnecterM2IComportement{
 	private String login;
 	private String mdp;
 	private String messageErreur;
+	private int numeroPresentation;
 	
-	public SeConnecterM2IComportement(String login, String mdp){
+	public SeConnecterM2IComportement(String login, String mdp, int numeroPresentation){
 		this.login = login;
 		this.mdp = mdp;
+		this.numeroPresentation = numeroPresentation;
 	}
 	
 	public String getLogin() {
@@ -55,11 +56,16 @@ public class SeConnecterM2IComportement implements Commande{
 		authentificationM2I.setMessageErreur(messageErreur);
 		SeConnecterM2I seConnecterM2I = objFactory.createSeConnecterM2I();
 		seConnecterM2I.setAuthentification(authentificationM2I);
-			
+		seConnecterM2I.setNumeroPresentation(numeroPresentation);
+		
 		new Producteur(seConnecterM2I);
 	}
-		
-	public void reçoiMessage() {
 
+	public int getNumeroPresentation() {
+		return numeroPresentation;
+	}
+
+	public void setNumeroPresentation(int numeroPresentation) {
+		this.numeroPresentation = numeroPresentation;
 	}
 }

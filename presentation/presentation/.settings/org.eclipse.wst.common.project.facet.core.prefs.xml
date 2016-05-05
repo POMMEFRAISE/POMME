@@ -1,7 +1,7 @@
 <root>
   <facet id="jpt.jaxb">
     <node name="classgen">
-      <attribute name="package" value="xml.metier2presentation"/>
+      <attribute name="package" value="xml.presentation2metier"/>
     </node>
   </facet>
   <facet id="jst.jaxrs">

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://pds.m1.upec.fr/xml/integration2metier" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://pds.m1.upec.fr/xml/integration2metier">
+<schema targetNamespace="http://pds.m1.upec.fr/xml/metier2presentation" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://pds.m1.upec.fr/xml/metier2presentation">
 
     <complexType name="ReponseHeadM2P" abstract="true">
     	<attribute name="statutMessage" type="string"></attribute>
     	<attribute name="dateCreationMessage" type="dateTime"></attribute>
     	<attribute name="idMessagePresentation2Metier" type="string"></attribute>
+    	<attribute name="numeroPresentation" type="int"></attribute>
     </complexType>
 
     <complexType name="JoueurM2P">
@@ -45,4 +46,11 @@
     <complexType name="CommandeM2P">
     	<attribute name="enregistrer" type="boolean"></attribute>
     </complexType>
+
+    <element name="reponseDemanderNumeroPresentationM2P">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:ReponseHeadM2P"></extension>
+    		</complexContent>
+    	</complexType></element>
 </schema>

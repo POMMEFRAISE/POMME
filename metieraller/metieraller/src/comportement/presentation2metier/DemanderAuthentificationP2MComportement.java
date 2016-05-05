@@ -12,12 +12,9 @@ public class DemanderAuthentificationP2MComportement implements Commande{
 	}
 	
 	public void reçoiMessage() {
-		DemanderAuthentificationM2IComportement demanderAuthentificationComportement = new DemanderAuthentificationM2IComportement();
+		DemanderAuthentificationM2IComportement demanderAuthentificationComportement = 
+				new DemanderAuthentificationM2IComportement(demanderAuthentificationP2M.getNumeroPresentation());
 		demanderAuthentificationComportement.envoiMessage();	
-	}
-	
-	public void envoiMessage(){
-
 	}
 
 	public DemanderAuthentificationP2M getDemanderAuthentification() {

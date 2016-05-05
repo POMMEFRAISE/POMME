@@ -146,9 +146,9 @@ public class ServiceFacade {
 	//Commande
 	
 
-	public synchronized boolean enregistrerCommande (Object message)  {
+	public synchronized boolean enregistrerCommande (Object commandeDTO)  {
 		try {
-			return serviceCommande.enregistrerCommande(message);
+			return serviceCommande.enregistrerCommande(commandeDTO);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -156,6 +156,14 @@ public class ServiceFacade {
 		return false;
 	}
 	
+	public synchronized int demanderNumeroPresentation ()  {
+		try {
+			return serviceCommande.demanderNumeroPresentation();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 	
 	public synchronized Object afficherCommande(){
 		try {

@@ -15,13 +15,14 @@ public class DaoCommandeImpl implements DaoCommandeInterface{
 	}
 	
 	
-	public synchronized boolean enregistrerCommande(String message) {
+	public synchronized boolean enregistrerCommande(CommandeEntite commande) {
 		boolean bool = false;
 		
 		try {
 			String enregistrerCommandeSQL = ConnexionDAO.getProperties().getProperty("enregistrerCommandeSQL");
 			PreparedStatement preparedStatement = ConnexionDAO.getInstance().prepareCall(enregistrerCommandeSQL);
-			preparedStatement.setString(1, message);
+			preparedStatement.setString(1, commande.getMessage());
+			preparedStatement.setInt(2, commande.getNumeroPresentation());
 			int resultat = preparedStatement.executeUpdate();
 			
 			if (resultat>=1) {
@@ -34,14 +35,30 @@ public class DaoCommandeImpl implements DaoCommandeInterface{
 		
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		return bool;
 	}
 
-
+	public synchronized int demanderNumeroPresentation() {
+		int numeroPresentation = 0;
+		
+		try {
+			String demanderNumeroPresentationSQL = ConnexionDAO.getProperties().getProperty("demanderNumeroPresentationSQL");
+			PreparedStatement preparedStatement = ConnexionDAO.getInstance().prepareCall(demanderNumeroPresentationSQL);
+			resultat = preparedStatement.executeQuery();
+			
+			/* Récupération des données du résultat de la requête de lecture */
+			while (resultat.next()) {	
+				numeroPresentation = resultat.getInt("numeroPresentation")+1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return numeroPresentation;
+	}
 	
 	public synchronized CommandesEntite afficherCommande() {
 		CommandesEntite commandesEntite = new CommandesEntite();

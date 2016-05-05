@@ -41,6 +41,7 @@
 		<attribute name="dateCreationMessage" type="dateTime"></attribute>
 
 
+		<attribute name="numeroPresentation" type="int"></attribute>
 	</complexType>
 
 	<element name="demanderAuthentificationP2M">
@@ -67,4 +68,11 @@
 			</complexContent>
 		</complexType>
 	</element>
+
+    <element name="demanderNumeroPresentationP2M">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:RequeteHeadP2M"></extension>
+    		</complexContent>
+    	</complexType></element>
 </schema>

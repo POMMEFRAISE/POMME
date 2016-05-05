@@ -13,12 +13,9 @@ public class SeConnecterM2IComportement implements Commande{
 	public SeConnecterM2IComportement(SeConnecterM2I seConnecter){
 		this.seConnecter = seConnecter;
 	}
-	
-	public void envoiMessage() {
 
-	}
-		
 	public void reçoiMessage() {
+		int numeroPresentation = seConnecter.getNumeroPresentation();
 		//Appelle de la classe JoueurDTO
 		Object objectJoueur = ChargerService.chargerDTO("JoueurDTO");
 		
@@ -53,7 +50,7 @@ public class SeConnecterM2IComportement implements Commande{
 				e.printStackTrace();
 			}
 		}
-		ReponseSeConnecterI2MComportement seConnecterI2M = new ReponseSeConnecterI2MComportement(messageErreur, objectJoueur);
+		ReponseSeConnecterI2MComportement seConnecterI2M = new ReponseSeConnecterI2MComportement(messageErreur, objectJoueur, numeroPresentation);
 		seConnecterI2M.envoiMessage();
 	}
 
