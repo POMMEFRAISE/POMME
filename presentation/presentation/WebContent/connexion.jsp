@@ -30,6 +30,7 @@ if($sLangueNavigateur==en){
 	<form method="post" action="navigation?nav=formconnexion">
       <fieldset class="formconnexion">
                 <legend><fmt:message key="connexion.authentification" /></legend>
+                    <jsp:useBean id="joueur" scope="request" class="model.Joueur" />
                      
                     <label><fmt:message key="connexion.id" /> : </label> 
                     <input type="text" name="login"  value="" id="login" size="30" required /><br /><br />
@@ -39,6 +40,11 @@ if($sLangueNavigateur==en){
                     <input type="submit" value="<fmt:message key="connexion.confirmer" />" class="buttonsubmit" />
                     <input type="reset" value="<fmt:message key="connexion.effacer" />" class="buttonreset" />
                     <br /><br />
+                    <c:if test="${joueur.getMessage() != null}">
+                    	<div class="messageErreur">
+                    		<jsp:getProperty name="joueur" property="message"/>
+                    	</div>
+                    </c:if>
                     <a href="navigation?nav=creercompte" class="creercompte"><fmt:message key="connexion.creercompte" /></a>
                     <br /> 	        
             </fieldset>

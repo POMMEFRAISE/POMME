@@ -31,6 +31,7 @@ public class NavigationServlet extends HttpServlet {
 			throws ServletException, IOException {     
 		actionPresentation = new ActionPresentation();
 		HttpSession session = request.getSession();
+		Joueur joueur = (Joueur) session.getAttribute("joueur");
 		int numero = 0;
 		
 		String url = request.getParameter("nav");
@@ -49,7 +50,7 @@ public class NavigationServlet extends HttpServlet {
 			numero = numeroPresentation;			
 		}
 		
-		if(session.getAttribute("joueur") == null && url.equals("")){
+		if(joueur == null && url.equals("")){
 			DemanderAuthentificationP2MComportement demanderAuthentification = new DemanderAuthentificationP2MComportement(numero);
 			demanderAuthentification.envoiMessage();
 			appelLecteur(numero);
@@ -61,7 +62,7 @@ public class NavigationServlet extends HttpServlet {
 			}else{
 				this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(request, response);
 			}
-		}else if(url.equals("creercompte") && session.getAttribute("joueur") == null){
+		}else if(url.equals("creercompte") && joueur == null){
 			response.sendRedirect("creercompte.jsp");
 		}else {
 		switch(url){
@@ -72,7 +73,7 @@ public class NavigationServlet extends HttpServlet {
 				this.getServletContext().getRequestDispatcher("/rejoindrepartie.jsp").forward(request, response);
 				break;
 			case "creerpartie" :
-				if (session.getAttribute("joueur") == null){
+				if (joueur == null){
 					response.sendRedirect("navigation?nav=");
 				}else{
 					DemanderCreerPartieP2MComportement demanderCreerPartie = new DemanderCreerPartieP2MComportement(numero);
@@ -104,7 +105,7 @@ public class NavigationServlet extends HttpServlet {
 				this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
 				break;
 			case "formcreerpartie" :
-				if (session.getAttribute("joueur") == null){
+				if (joueur == null){
 					response.sendRedirect("navigation?nav=");
 				}else{
 					String nomPartie = request.getParameter("nom");
@@ -146,9 +147,9 @@ public class NavigationServlet extends HttpServlet {
 		        this.getServletContext().getRequestDispatcher("/modifierprofil.jsp").forward(request, response);  
 				break;
 			case "formconnexion" :
-				if(session.getAttribute("joueur") != null){
+				if(joueur != null){
 					response.sendRedirect("navigation?nav=accueil");
-				}else if (session.getAttribute("joueur") == null && request.getParameter("login") == null){
+				}else if (joueur == null && request.getParameter("login") == null){
 					response.sendRedirect("navigation?nav=");
 				}else{
 					String loginConnexion = request.getParameter("login");
@@ -158,12 +159,13 @@ public class NavigationServlet extends HttpServlet {
 	
 					appelLecteur(numero);
 	
-					Joueur joueur = (Joueur) actionPresentation.getObjetARetourner();
+					joueur = (Joueur) actionPresentation.getObjetARetourner();
 	
 					if(joueur.isStatut() == true){
 					    session.setAttribute("joueur", joueur);
 						this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
 					}else{
+						request.setAttribute("joueur", joueur);
 						this.getServletContext().getRequestDispatcher("/connexion.jsp").forward(request, response);
 					}
 				}
