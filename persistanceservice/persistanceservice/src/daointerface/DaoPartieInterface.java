@@ -1,6 +1,7 @@
 package daointerface;
 
 import entites.PartieEntite;
+import entites.PartiesEntite;
 
 public interface DaoPartieInterface{
 	PartieEntite recupererPartie (PartieEntite partie);
@@ -9,4 +10,5 @@ public interface DaoPartieInterface{
 	boolean rejoindrePartie(PartieEntite partie);
 	String afficherEtatPartie (String nompartie);
 	boolean fermerPartie (PartieEntite partie);
+	PartiesEntite recupererListeParties();
 }

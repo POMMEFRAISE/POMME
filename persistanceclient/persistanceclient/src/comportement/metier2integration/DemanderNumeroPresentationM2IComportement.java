@@ -16,7 +16,7 @@ public class DemanderNumeroPresentationM2IComportement implements Commande{
 	
 	public void reçoiMessage() {
 		int numeroPresentation = 0;
-		boolean enregistrerComande = false;
+		boolean enregistrerCommande = false;
 
 		//Appelle de la classe CommandeDTO
 		Object objectCommande = ChargerService.chargerDTO("CommandeDTO");
@@ -33,8 +33,8 @@ public class DemanderNumeroPresentationM2IComportement implements Commande{
 				objectCommande.getClass().getDeclaredMethod("setNumeroPresentation", Integer.class).invoke(objectCommande, numeroPresentation);
 				
 				//Appeller commande
-				enregistrerComande = (boolean) objectServiceCommande.getClass().getDeclaredMethod("enregistrerCommande",Object.class).invoke(objectServiceCommande,objectCommande);	
-				if(enregistrerComande == false){
+				enregistrerCommande = (boolean) objectServiceCommande.getClass().getDeclaredMethod("enregistrerCommande",Object.class).invoke(objectServiceCommande,objectCommande);	
+				if(enregistrerCommande == false){
 					numeroPresentation = 0;
 				}
 			}

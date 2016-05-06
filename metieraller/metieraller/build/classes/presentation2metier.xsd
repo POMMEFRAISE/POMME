@@ -98,4 +98,18 @@
     			</extension>
     		</complexContent>
     	</complexType></element>
+
+    <element name="demanderRejoindrePartieP2M">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:RequeteHeadP2M"></extension>
+    		</complexContent>
+    	</complexType></element>
+
+    <element name="obtenirListePartiesP2M">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:RequeteHeadP2M"></extension>
+    		</complexContent>
+    	</complexType></element>
 </schema>

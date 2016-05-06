@@ -6,8 +6,6 @@
 <fmt:setLocale value="${fr_FR}" />
 <fmt:setBundle basename="internationalisation.message_fr_FR" />
 
-<%@page import="model.Partie"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,6 +23,7 @@
 			<caption>
 				<fmt:message key="rejoindre.partie.liste" />
 			</caption>
+			<jsp:useBean id="listeParties" scope="session" class="model.Parties"/>
 			<thead>
 				<tr>
 					<th rowspan="1" colspan="1"><fmt:message
@@ -32,40 +31,20 @@
 					<th rowspan="1" colspan="1"><fmt:message
 							key="rejoindre.partie.nb.joueurs" /></th>
 					<th rowspan="1" colspan="1"><fmt:message
-							key="rejoindre.partie.statut" /></th>
+							key="rejoindre.partie.rejoindre" /></th>
 				</tr>
+				<c:forEach items="${listeParties.getParties()}" var="partie">
+					<tr>
+						<td>${partie.nom}</td>
+						<td>${partie.nbJoueurs}</td>
+						<td>
+						   <input type="submit" name="nomPartie" value="${partie.nom}" class="buttonsubmit"/>
+						</td>
+					</tr>
+				</c:forEach>
 			</thead>
 			<tbody>
-				<tr>
-					<td>
-						<%
-							Partie p = new Partie("p1", 3);
-						%> <a href="navigation?nav=jeu"><%=p.getNom()%></a>
 
-					</td>
-					<td><%=p.getNbJoueurs()%></td>
-					<td>ouverte</td>
-				</tr>
-				<tr>
-				<td>
-						<%
-							Partie pp = new Partie("p2", 3);
-						%> <a href="navigation?nav=jeu"><%=pp.getNom()%></a>
-
-					</td>
-					<td><%=p.getNbJoueurs()%></td>
-					<td>ouverte</td>
-				</tr>
-				<tr>
-				<td>
-						<%
-							Partie ppp = new Partie("p3", 3);
-						%> <a href="navigation?nav=jeu"><%=ppp.getNom()%></a>
-
-					</td>
-					<td><%=p.getNbJoueurs()%></td>
-					<td>ouverte</td>
-					</tr>
 			</tbody>
 		</table>
 	</center>

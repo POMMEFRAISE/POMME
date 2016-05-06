@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.05.05 à 09:22:17 PM CEST 
+// Généré le : 2016.05.06 à 10:23:45 PM CEST 
 //
 
 
@@ -40,9 +40,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "RequeteHeadP2M")
 @XmlSeeAlso({
+    ObtenirListePartiesP2M.class,
     CreerPartieP2M.class,
     DemanderAuthentificationP2M.class,
     DemanderNumeroPresentationP2M.class,
+    DemanderRejoindrePartieP2M.class,
     DemanderCreerPartieP2M.class,
     SeConnecterP2M.class
 })

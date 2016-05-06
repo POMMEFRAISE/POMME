@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.05.05 à 09:31:56 PM CEST 
+// Généré le : 2016.05.06 à 10:27:52 PM CEST 
 //
 
 
@@ -34,6 +34,22 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link ReponseObtenirListePartiesI2M }
+     * 
+     */
+    public ReponseObtenirListePartiesI2M createReponseObtenirListePartiesI2M() {
+        return new ReponseObtenirListePartiesI2M();
+    }
+
+    /**
+     * Create an instance of {@link ListePartiesI2M }
+     * 
+     */
+    public ListePartiesI2M createListePartiesI2M() {
+        return new ListePartiesI2M();
     }
 
     /**
@@ -77,11 +93,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ReponseDemanderAuthentificationI2M }
+     * Create an instance of {@link ReponseDemanderRejoindrePartieI2M }
      * 
      */
-    public ReponseDemanderAuthentificationI2M createReponseDemanderAuthentificationI2M() {
-        return new ReponseDemanderAuthentificationI2M();
+    public ReponseDemanderRejoindrePartieI2M createReponseDemanderRejoindrePartieI2M() {
+        return new ReponseDemanderRejoindrePartieI2M();
     }
 
     /**
@@ -90,6 +106,14 @@ public class ObjectFactory {
      */
     public CommandeI2M createCommandeI2M() {
         return new CommandeI2M();
+    }
+
+    /**
+     * Create an instance of {@link ReponseDemanderAuthentificationI2M }
+     * 
+     */
+    public ReponseDemanderAuthentificationI2M createReponseDemanderAuthentificationI2M() {
+        return new ReponseDemanderAuthentificationI2M();
     }
 
     /**

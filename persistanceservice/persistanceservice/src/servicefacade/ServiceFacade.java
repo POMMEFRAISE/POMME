@@ -39,7 +39,6 @@ public class ServiceFacade {
 		try {
 			return serviceJoueur.recupererJoueur(joueurDTO);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return joueurDTO;
@@ -49,7 +48,6 @@ public class ServiceFacade {
 		try {
 			return serviceJoueur.verifierJoueur(joueurDTO);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
@@ -59,7 +57,6 @@ public class ServiceFacade {
 		try {
 			return serviceJoueur.creerCompte(joueurDTO);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return joueurDTO;
@@ -72,7 +69,6 @@ public class ServiceFacade {
 		try {
 			return serviceJoueur.gererProfil(joueurDTO);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return joueurDTO;
@@ -85,17 +81,24 @@ public class ServiceFacade {
 		try {
 			return servicePartie.recupererPartie(partieDTO);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return partieDTO;
-		
 	}
+
+	public synchronized Object recupererListeParties(){
+		try {
+			return servicePartie.recupererListeParties();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public synchronized Object creerPartie(Object partieDTO){
 		try {
 			return servicePartie.creerPartie(partieDTO);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return partieDTO;
@@ -105,7 +108,6 @@ public class ServiceFacade {
 		try {
 			return servicePartie.verifierPartie(partieDTO);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
@@ -115,7 +117,6 @@ public class ServiceFacade {
 		try {
 			return servicePartie.rejoindrePartie(partieDTO);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
@@ -125,7 +126,6 @@ public class ServiceFacade {
 			
 			return servicePartie.afficherEtatPartie(partieDTO);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return String.class;
@@ -136,7 +136,6 @@ public class ServiceFacade {
 		try {
 			return servicePartie.fermerPartie(partieDTO);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
@@ -150,7 +149,6 @@ public class ServiceFacade {
 		try {
 			return serviceCommande.enregistrerCommande(commandeDTO);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
@@ -169,12 +167,8 @@ public class ServiceFacade {
 		try {
 			return serviceCommande.afficherCommande();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return Object.class;
-		
-		
+		return Object.class;	
 	}
-
 }

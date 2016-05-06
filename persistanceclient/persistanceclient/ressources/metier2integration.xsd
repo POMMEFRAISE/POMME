@@ -96,4 +96,18 @@
     			</extension>
     		</complexContent>
     	</complexType></element>
+
+    <element name="demanderRejoindrePartieM2I">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:RequeteHeadM2I"></extension>
+    		</complexContent>
+    	</complexType></element>
+
+    <element name="obtenirListePartiesM2I">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:RequeteHeadM2I"></extension>
+    		</complexContent>
+    	</complexType></element>
 </schema>

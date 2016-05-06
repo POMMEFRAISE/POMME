@@ -6,7 +6,9 @@ import java.rmi.server.UnicastRemoteObject;
 import daoimplementation.DaoPartieImpl;
 import daointerface.DaoPartieInterface;
 import dto.PartieDTO;
+import dto.PartiesDTO;
 import entites.PartieEntite;
+import entites.PartiesEntite;
 import servicermiinterface.ServicePartieInterface;
 
 public class ServicePartieImpl extends UnicastRemoteObject implements ServicePartieInterface{
@@ -31,6 +33,21 @@ public class ServicePartieImpl extends UnicastRemoteObject implements ServicePar
 		return (PartieDTO) partieDTO;
 	}
 
+	public synchronized PartiesDTO recupererListeParties() throws RemoteException {
+		PartiesEntite partiesEntite = new PartiesEntite();
+		partiesEntite = daoPartieInterface.recupererListeParties();
+		
+		PartiesDTO partiesDTO = new PartiesDTO();
+		for(PartieEntite partieEntite : partiesEntite.getParties()){
+			PartieDTO partieDTO = new PartieDTO();
+			((PartieDTO) partieDTO).setNomPartie(partieEntite.getNomPartie());
+			((PartieDTO) partieDTO).setNbredejoueur(partieEntite.getNbredejoueur());			
+			partiesDTO.add(partieDTO);
+		}
+
+		return partiesDTO;
+	}
+	
 	public synchronized boolean creerPartie(Object partieDTO) throws RemoteException {
 		PartieEntite partieEntite = new PartieEntite();
 		partieEntite.setNomPartie(((PartieDTO) partieDTO).getNomPartie());

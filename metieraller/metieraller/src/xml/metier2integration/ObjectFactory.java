@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.05.05 à 09:21:43 PM CEST 
+// Généré le : 2016.05.06 à 10:23:57 PM CEST 
 //
 
 
@@ -42,6 +42,14 @@ public class ObjectFactory {
      */
     public DemanderAuthentificationM2I createDemanderAuthentificationM2I() {
         return new DemanderAuthentificationM2I();
+    }
+
+    /**
+     * Create an instance of {@link ObtenirListePartiesM2I }
+     * 
+     */
+    public ObtenirListePartiesM2I createObtenirListePartiesM2I() {
+        return new ObtenirListePartiesM2I();
     }
 
     /**
@@ -90,6 +98,14 @@ public class ObjectFactory {
      */
     public DemanderCreerPartieM2I createDemanderCreerPartieM2I() {
         return new DemanderCreerPartieM2I();
+    }
+
+    /**
+     * Create an instance of {@link DemanderRejoindrePartieM2I }
+     * 
+     */
+    public DemanderRejoindrePartieM2I createDemanderRejoindrePartieM2I() {
+        return new DemanderRejoindrePartieM2I();
     }
 
     /**

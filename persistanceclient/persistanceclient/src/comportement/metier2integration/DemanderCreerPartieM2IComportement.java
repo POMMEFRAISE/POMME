@@ -15,7 +15,7 @@ public class DemanderCreerPartieM2IComportement implements Commande{
 	}
 	
 	public void reçoiMessage() {
-		boolean enregistrerComande = false;
+		boolean enregistrerCommande = false;
 		int numeroPresentation = demanderCreerPartie.getNumeroPresentation();
 		
 		//Appelle de la classe CommandeDTO
@@ -29,13 +29,13 @@ public class DemanderCreerPartieM2IComportement implements Commande{
 			objectCommande.getClass().getDeclaredMethod("setNumeroPresentation", Integer.class).invoke(objectCommande, numeroPresentation);
 			
 			//Appeller commande
-			enregistrerComande = (boolean) objectServiceCommande.getClass().getDeclaredMethod("enregistrerCommande",Object.class).invoke(objectServiceCommande,objectCommande);
+			enregistrerCommande = (boolean) objectServiceCommande.getClass().getDeclaredMethod("enregistrerCommande",Object.class).invoke(objectServiceCommande,objectCommande);
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
 				| SecurityException e) {
 			e.printStackTrace();
 		}	
 
-		ReponseDemanderCreerPartieI2MComportement reponseDemanderCreerPartieI2MComportement = new ReponseDemanderCreerPartieI2MComportement(enregistrerComande, numeroPresentation);
+		ReponseDemanderCreerPartieI2MComportement reponseDemanderCreerPartieI2MComportement = new ReponseDemanderCreerPartieI2MComportement(enregistrerCommande, numeroPresentation);
 		reponseDemanderCreerPartieI2MComportement.envoiMessage();
 	}
 }

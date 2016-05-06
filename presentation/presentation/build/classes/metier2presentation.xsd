@@ -87,4 +87,33 @@
     	<attribute name="nomPartie" type="string"></attribute>
     	<attribute name="nbJoueurPartie" type="int"></attribute>
     </complexType>
+
+    <element name="reponseDemanderRejoindrePartieM2P">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:ReponseHeadM2P">
+    				<sequence>
+    					<element name="commande" type="tns:CommandeM2P"></element>
+    				</sequence>
+    			</extension>
+    		</complexContent>
+    	</complexType></element>
+
+    <complexType name="ListePartiesM2P">
+    	<sequence>
+    		<element name="listeParties" type="tns:PartieM2P" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    	<attribute name="messageErreur" type="string"></attribute>
+    </complexType>
+
+    <element name="reponseObtenirListePartiesM2P">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:ReponseHeadM2P">
+    				<sequence>
+    					<element name="listeParties" type="tns:ListePartiesM2P"></element>
+    				</sequence>
+    			</extension>
+    		</complexContent>
+    	</complexType></element>
 </schema>

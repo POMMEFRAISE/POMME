@@ -89,4 +89,33 @@
     	</sequence>
     	<attribute name="messageErreur" type="string"></attribute>
     </complexType>
+
+    <complexType name="ListePartiesI2M">
+    	<sequence>
+    		<element name="listeParties" type="tns:PartieI2M" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    	<attribute name="messageErreur" type="string"></attribute>
+    </complexType>
+
+    <element name="reponseDemanderRejoindrePartieI2M">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:ReponseHeadI2M">
+    				<sequence>
+    					<element name="commande" type="tns:CommandeI2M"></element>
+    				</sequence>
+    			</extension>
+    		</complexContent>
+    	</complexType></element>
+
+    <element name="reponseObtenirListePartiesI2M">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:ReponseHeadI2M">
+    				<sequence>
+    					<element name="listeParties" type="tns:ListePartiesI2M"></element>
+    				</sequence>
+    			</extension>
+    		</complexContent>
+    	</complexType></element>
 </schema>

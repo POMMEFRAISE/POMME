@@ -13,11 +13,14 @@ import comportement.presentation2metier.CreerPartieP2MComportement;
 import comportement.presentation2metier.DemanderAuthentificationP2MComportement;
 import comportement.presentation2metier.DemanderCreerPartieP2MComportement;
 import comportement.presentation2metier.DemanderNumeroPresentationP2MComportement;
+import comportement.presentation2metier.DemanderRejoindrePartieP2MComportement;
+import comportement.presentation2metier.ObtenirListePartiesP2MComportement;
 import comportement.presentation2metier.SeConnecterP2MComportement;
 import model.ActionPresentation;
 import model.Joueur;
 import model.MessageErreur;
 import model.Partie;
+import model.Parties;
 
 /**
  * Servlet implementation class NavigationServlet
@@ -33,7 +36,7 @@ public class NavigationServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Joueur joueur = (Joueur) session.getAttribute("joueur");
 		int numero = 0;
-		
+		MessageErreur messageErreur = null;
 		String url = request.getParameter("nav");
 		if(url == null){
 			url = "";
@@ -50,13 +53,13 @@ public class NavigationServlet extends HttpServlet {
 			numero = numeroPresentation;			
 		}
 		
-		if(joueur == null && url.equals("")){
+		if(joueur == null && !url.equals("formconnexion")){
 			DemanderAuthentificationP2MComportement demanderAuthentification = new DemanderAuthentificationP2MComportement(numero);
 			demanderAuthentification.envoiMessage();
 			appelLecteur(numero);
 
-			MessageErreur messageErreur = (MessageErreur) actionPresentation.getObjetARetourner();
-			System.out.println("message Erreur servlet: " + messageErreur.isStatut());
+			messageErreur = (MessageErreur) actionPresentation.getObjetARetourner();
+
 			if(messageErreur.isStatut() == true){
 				this.getServletContext().getRequestDispatcher("/connexion.jsp").forward(request, response);
 			}else{
@@ -70,22 +73,38 @@ public class NavigationServlet extends HttpServlet {
 				this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
 				break;
 			case "rejoindrepartie" :
-				this.getServletContext().getRequestDispatcher("/rejoindrepartie.jsp").forward(request, response);
+				DemanderRejoindrePartieP2MComportement demanderRejoindrePartie = new DemanderRejoindrePartieP2MComportement(numero);
+				demanderRejoindrePartie.envoiMessage();
+				
+				appelLecteur(numero);
+
+				messageErreur = (MessageErreur) actionPresentation.getObjetARetourner();
+				System.out.println("SERVLET REJOINDRE PARTIE : "+messageErreur.isStatut());
+
+				if(messageErreur.isStatut() == true){
+					ObtenirListePartiesP2MComportement obtenirListeParties = new ObtenirListePartiesP2MComportement(numero);
+					obtenirListeParties.envoiMessage();
+					
+					appelLecteur(numero);
+					
+					Parties listeParties = (Parties) actionPresentation.getObjetARetourner();
+					session.setAttribute("listeParties", listeParties);
+					this.getServletContext().getRequestDispatcher("/rejoindrepartie.jsp").forward(request, response);
+				}else{
+					this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(request, response);
+				}
+				
 				break;
 			case "creerpartie" :
-				if (joueur == null){
-					response.sendRedirect("navigation?nav=");
-				}else{
-					DemanderCreerPartieP2MComportement demanderCreerPartie = new DemanderCreerPartieP2MComportement(numero);
-					demanderCreerPartie.envoiMessage();
-					appelLecteur(numero);
+				DemanderCreerPartieP2MComportement demanderCreerPartie = new DemanderCreerPartieP2MComportement(numero);
+				demanderCreerPartie.envoiMessage();
+				appelLecteur(numero);
 
-					MessageErreur messageErreur = (MessageErreur) actionPresentation.getObjetARetourner();
-					if(messageErreur.isStatut() == true){
-						this.getServletContext().getRequestDispatcher("/creerpartie.jsp").forward(request, response);
-					}else{
-						this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(request, response);
-					}
+				messageErreur = (MessageErreur) actionPresentation.getObjetARetourner();
+				if(messageErreur.isStatut() == true){
+					this.getServletContext().getRequestDispatcher("/creerpartie.jsp").forward(request, response);
+				}else{
+					this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(request, response);
 				}
 				break;
 			case "jeu" :
@@ -105,25 +124,21 @@ public class NavigationServlet extends HttpServlet {
 				this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
 				break;
 			case "formcreerpartie" :
-				if (joueur == null){
-					response.sendRedirect("navigation?nav=");
+				String nomPartie = request.getParameter("nom");
+				String nbJoueurPartie = request.getParameter("nbjoueur");
+				int nbJoueur = Integer.parseInt(nbJoueurPartie);
+				System.out.println("nb Joueur : "+nbJoueur);
+				CreerPartieP2MComportement creerPartie = new CreerPartieP2MComportement(nomPartie, nbJoueur, numero);
+				creerPartie.envoiMessage();
+	
+				appelLecteur(numero);
+	
+				Partie partie = (Partie) actionPresentation.getObjetARetourner();
+				if(partie.isStatut() == true){
+					response.sendRedirect("navigation?nav=rejoindrepartie");
 				}else{
-					String nomPartie = request.getParameter("nom");
-					String nbJoueurPartie = request.getParameter("nbjoueur");
-					int nbJoueur = Integer.parseInt(nbJoueurPartie);
-					System.out.println("nb Joueur : "+nbJoueur);
-					CreerPartieP2MComportement creerPartie = new CreerPartieP2MComportement(nomPartie, nbJoueur, numero);
-					creerPartie.envoiMessage();
-	
-					appelLecteur(numero);
-	
-					Partie partie = (Partie) actionPresentation.getObjetARetourner();
-					if(partie.isStatut() == true){
-						response.sendRedirect("navigation?nav=rejoindrepartie");
-					}else{
-						request.setAttribute("partie", partie);
-						this.getServletContext().getRequestDispatcher("/creerpartie.jsp").forward(request, response);
-					}
+					request.setAttribute("partie", partie);
+					this.getServletContext().getRequestDispatcher("/creerpartie.jsp").forward(request, response);
 				}
 				break;
 			case "formcreercompte" :
@@ -149,7 +164,7 @@ public class NavigationServlet extends HttpServlet {
 			case "formconnexion" :
 				if(joueur != null){
 					response.sendRedirect("navigation?nav=accueil");
-				}else if (joueur == null && request.getParameter("login") == null){
+				}else if(joueur == null && request.getParameter("login") == null){
 					response.sendRedirect("navigation?nav=");
 				}else{
 					String loginConnexion = request.getParameter("login");

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import daointerface.DaoPartieInterface;
 import daoparam.ConnexionDAO;
 import entites.PartieEntite;
+import entites.PartiesEntite;
 
 public class DaoPartieImpl implements DaoPartieInterface {
 	private ResultSet resultat = null;
@@ -24,8 +25,8 @@ public class DaoPartieImpl implements DaoPartieInterface {
 				preparedStatement.setString(1, partie.getNomPartie());
 				preparedStatement.setInt(2, partie.getNbredejoueur());
 				preparedStatement.setString(3, "ouvert");
-				java.sql.Date  sqlDate = new java.sql.Date(new java.util.Date().getTime());
-				preparedStatement.setDate(4, sqlDate);
+				//java.sql.Date  sqlDate = new java.sql.Date(new java.util.Date().getTime());
+				//preparedStatement.setDate(4, sqlDate);
 				
 				int resultat = preparedStatement.executeUpdate();
 				
@@ -70,6 +71,29 @@ public class DaoPartieImpl implements DaoPartieInterface {
 		}
 		
 		return partieEntite;
+	}
+
+	public synchronized PartiesEntite recupererListeParties() {
+		PartiesEntite partiesEntite = new PartiesEntite();
+		
+		try {
+			String recupererPartieSQL = ConnexionDAO.getProperties().getProperty("recupererListePartieSQL");
+			PreparedStatement preparedStatement = ConnexionDAO.getInstance().prepareCall(recupererPartieSQL);
+			resultat = preparedStatement.executeQuery();
+				
+			while (resultat.next()) {	
+				PartieEntite partieEntite = new PartieEntite();
+				partieEntite.setNomPartie(resultat.getString("nomPartie"));
+				partieEntite.setStatut(resultat.getString("statut")); 
+				partieEntite.setNbredejoueur(resultat.getInt("nbredejoueur"));
+				partieEntite.setDatedecreation(resultat.getDate("datecreation"));
+				partiesEntite.add(partieEntite);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return partiesEntite;
 	}
 	
 	public synchronized String afficherEtatPartie(String nompartie) {

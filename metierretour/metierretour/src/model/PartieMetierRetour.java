@@ -11,7 +11,11 @@ public class PartieMetierRetour implements Serializable{
 		this.nomPartie = nomPartie;
 		this.nbJoueurPartie = nbJoueurPartie;
 	}
+	
+	public PartieMetierRetour(){
 
+	}
+	
 	public String getNomPartie() {
 		return nomPartie;
 	}
