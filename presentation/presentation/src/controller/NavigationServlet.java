@@ -117,11 +117,10 @@ public class NavigationServlet extends HttpServlet {
 					appelLecteur(numero);
 	
 					Partie partie = (Partie) actionPresentation.getObjetARetourner();
-	
 					if(partie.isStatut() == true){
 						response.sendRedirect("navigation?nav=rejoindrepartie");
 					}else{
-						session.setAttribute("partie", partie);
+						request.setAttribute("partie", partie);
 						this.getServletContext().getRequestDispatcher("/creerpartie.jsp").forward(request, response);
 					}
 				}

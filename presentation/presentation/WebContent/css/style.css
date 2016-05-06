@@ -75,7 +75,7 @@
 label
 {
 	display: block;
-	width: 150px;
+	width: 200px;
 	float: left;
 }
 #menubar {
@@ -221,4 +221,9 @@ nav{
 	position:absolute;
 	bottom:30px;
 	right:0;
+}
+
+.messageErreur{
+	color: red;
+	font-weight : bold;	
 }

@@ -19,11 +19,12 @@ public class ReponseCreerPartieM2PComportement implements Commande{
 		partie.setNbJoueurs(reponseCreerPartie.getCreationPartie().getPartie().getNbJoueurPartie());
 		messageErreur = reponseCreerPartie.getCreationPartie().getMessageErreur();
 		partie.setMessage(messageErreur);
+		System.out.println("Message Erreur partie : "+messageErreur);
 		return verifierInformations();
 	}
 	
 	public Partie verifierInformations(){
-		if(messageErreur == null){
+		if(messageErreur.equals("")){
 	   		partie.setStatut(true);
     	}else{
 	   		partie.setStatut(false);

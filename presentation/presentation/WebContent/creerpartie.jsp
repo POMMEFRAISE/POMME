@@ -20,21 +20,21 @@
 	<form method="post" action="navigation?nav=formcreerpartie">
       <fieldset class="formcreerpartie">
                 <legend color="white"><fmt:message key="creation.partie.creer.nouvelle" /></legend>
-                    <jsp:useBean id="partie" scope="session" class="model.Partie" />
-                    <c:if test="${partie.getMessage() != null}">
-                    	<jsp:getProperty name="partie" property="message"/>                    
-                    </c:if>
+                    <jsp:useBean id="partie" scope="request" class="model.Partie" />
+
                     <label><fmt:message key="creation.partie.nom" /> : </label> 
-                    <input type="text" name="nom" value="" id="nom" size="30"  /><br /><br />
+                    <input type="text" name="nom" value="" id="nom" size="30"  required/><br /><br />
                     <label><fmt:message key="creation.partie.nb.joueurs" /> : </label> 
-                    <input type="text" name="nbjoueur" value="" id="nbjoueur" size="30"  /><br /><br /><br />
+                    <input type="text" name="nbjoueur" value="" id="nbjoueur" size="30"  required/><br /><br /><br />
                      
                     <input type="submit" value="<fmt:message key="creation.partie.creer" />" class="buttonsubmit" />
                     <input type="reset" value="<fmt:message key="connexion.effacer" />" class="buttonreset" />
                     <br /><br />
-                    <font color="red"><b>
-                   	${message }
-                   	</b></font> 
+                    <c:if test="${partie.getMessage() != null}">
+                    	<div class="messageErreur">
+                    		<jsp:getProperty name="partie" property="message"/>
+                    	</div>
+                    </c:if>
             </fieldset>
         </form>  
 <div class="des">

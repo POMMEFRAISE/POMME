@@ -7,7 +7,7 @@ public class Partie extends MessageErreur implements Serializable{
 	private static final long serialVersionUID = 1514138537369034322L;
 	private String nom;
     private int nbJoueurs;
-    private boolean statut;
+    private boolean statutPartie;
     
     public String getNom() {
 		return nom;
@@ -36,6 +36,12 @@ public class Partie extends MessageErreur implements Serializable{
 		/*Partie p1 = new Partie("partie1", 3);
 		Partie p2 = new Partie("partie2", 4);
 		Partie p3 = new Partie("partie3", 5);*/
+	}
+	public boolean isStatutPartie() {
+		return statutPartie;
+	}
+	public void setStatutPartie(boolean statutPartie) {
+		this.statutPartie = statutPartie;
 	}
 
 }

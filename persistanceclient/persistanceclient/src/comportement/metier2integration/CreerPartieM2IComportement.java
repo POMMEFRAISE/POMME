@@ -22,7 +22,7 @@ public class CreerPartieM2IComportement implements Commande{
 		String messageErreur;
 		messageErreur = creerPartie.getCreationPartie().getMessageErreur();
 		System.out.println("nbJoueur : "+creerPartie.getCreationPartie().getNbJoueurPartie());
-		if(messageErreur == null){			
+		if(messageErreur.equals("")){			
 			//Charger interface 
 			Object objectServicePartie = ChargerService.chargerInterface();
 	
@@ -34,7 +34,7 @@ public class CreerPartieM2IComportement implements Commande{
 				//Appel methode creerPartie
 				boolean partieCree = (boolean) objectServicePartie.getClass().getDeclaredMethod("creerPartie",Object.class).invoke(objectServicePartie, objectPartie);
 				if(partieCree == false){
-					messageErreur = "Impossible de créer la partie";						
+					messageErreur = messageErreur+"Impossible de créer la partie";						
 				}
 			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
 					| NoSuchMethodException | SecurityException e) {
