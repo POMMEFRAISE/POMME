@@ -23,17 +23,18 @@ public class ReponseObtenirListePartiesI2MComportement{
 	public void envoiMessage() {
 		ObjectFactory objFactory = new ObjectFactory();
 		ListePartiesI2M parties = objFactory.createListePartiesI2M();
-		PartieI2M partie = objFactory.createPartieI2M();
 				
 		for(Object unePartie : listePartiesDTO){
+			PartieI2M partie = objFactory.createPartieI2M();
 			try {
 				partie.setNomPartie(unePartie.getClass().getMethod("getNomPartie").invoke(unePartie).toString());
 				partie.setNbJoueurPartie((Integer) unePartie.getClass().getMethod("getNbredejoueur").invoke(unePartie));
-				parties.getListeParties().add(partie);
 			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
 					| SecurityException e) {
 				e.printStackTrace();
-			}			
+			}	
+			parties.getListeParties().add(partie);
+
 		}
 		parties.setMessageErreur(messageErreur);
 		

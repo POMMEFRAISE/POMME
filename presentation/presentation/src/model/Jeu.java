@@ -1,18 +1,12 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Jeu extends MessageErreur implements Serializable{
 
 	private static final long serialVersionUID = 1514138537369034322L;
-	private List<Joueur> joueurs;
+	private Joueurs joueurs;
 	private Partie partie;
-	
-	public Jeu(){
-		joueurs = new ArrayList<Joueur>();
-	}
 	
 	public Partie getPartie() {
 		return partie;
@@ -22,11 +16,11 @@ public class Jeu extends MessageErreur implements Serializable{
 		this.partie = partie;
 	}
 
-	public List<Joueur> getJoueurs() {
+	public Joueurs getJoueurs() {
 		return joueurs;
 	}
 
-	public void setJoueurs(List<Joueur> joueurs) {
+	public void setJoueurs(Joueurs joueurs) {
 		this.joueurs = joueurs;
 	}
 }

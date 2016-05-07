@@ -30,6 +30,7 @@ public class RejoindrePartieM2IComportement{
 		rejoindreUnePartie.setJoueur(unJoueur);
 		rejoindreUnePartie.setPartie(unePartie);
 		RejoindrePartieM2I rejoindrePartieM2I = objFactory.createRejoindrePartieM2I();
+		rejoindrePartieM2I.setRejoindreUnePartie(rejoindreUnePartie);
 		rejoindrePartieM2I.setNumeroPresentation(numeroPresentation);
 		
 		new Producteur(rejoindrePartieM2I);

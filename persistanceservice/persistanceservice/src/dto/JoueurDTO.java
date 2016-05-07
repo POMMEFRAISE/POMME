@@ -20,7 +20,7 @@ public class JoueurDTO implements Serializable  {
 	protected String email;
 	protected String login;
 	protected String motDePasse;
-	
+	protected int numeroPresentation;
 	public JoueurDTO(int id, String nom, String prenom, String email, String login, String motDePasse) {
 		
 		this.nom = nom;
@@ -86,6 +86,12 @@ public class JoueurDTO implements Serializable  {
 	public String toString() {
 		return "JoueurDTO [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", login=" + login
 				+ ", motdepasse=" + motDePasse + "]";
+	}
+	public int getNumeroPresentation() {
+		return numeroPresentation;
+	}
+	public void setNumeroPresentation(int numeroPresentation) {
+		this.numeroPresentation = numeroPresentation;
 	}
 	
 	

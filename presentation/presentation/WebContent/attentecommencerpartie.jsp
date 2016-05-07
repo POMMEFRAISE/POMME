@@ -19,7 +19,7 @@
 			function demandeRedirection(){
 				var requete = null;
 				
-				var url = "navigation?nav=redirection";
+				var url = "navigation?nav=redirectionJeu";
 				if (window.XMLHttpRequest) {
 					requete = new XMLHttpRequest();
 				} else if (window.ActiveXObject) {
@@ -31,7 +31,13 @@
 						if (requete.status == 200) {
 							// exploitation des données de la réponse
 							var message = requete.responseText;
-							window.location = message+".jsp";
+							var redirection
+							if(message.equals("")){
+								redirection = "navigation?nav=jeu";
+							}else{
+								redirection ="navigation?nav=accueil&messagErreure=message";
+							}
+							window.location = redirection;
 						}
 					}
 				};
@@ -41,7 +47,11 @@
 			};
 		</script>
 	</head>
-	<body background="img/fond.jpg" onload="demandeRedirection()">
-		<h1>Page d'attente</h1>	
+	<body onload="demandeRedirection();" background="img/fond.jpg" >
+<%-- 		<jsp:useBean id="jeu" scope="session" class="model.Jeu" />
+		<jsp:useBean id="partie" scope="session" class="model.Partie" />
+		Vous avez rejoint la <jsp:getProperty name="jeu" property="partie.nom"/>
+		<br />
+		Elle va bientôt commncer ! --%>
 	</body>
 </html>

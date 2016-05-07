@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import clientRMI.ChargerService;
 import comportement.Commande;
+import comportement.integration2metier.ReponseRejoindrePartieI2MComportement;
 import xml.metier2integration.RejoindrePartieM2I;
 
 public class RejoindrePartieM2IComportement implements Commande{
@@ -14,7 +15,7 @@ public class RejoindrePartieM2IComportement implements Commande{
 	}
 
 	public void reçoiMessage() {
-		String messageErreur;
+		String messageErreur = null;
 		int numeroPresentation = rejoindrePartie.getNumeroPresentation();
 		//Appelle de la classe JoueurDTO
 		Object objectJoueur = ChargerService.chargerDTO("JoueurDTO");
@@ -45,24 +46,12 @@ public class RejoindrePartieM2IComportement implements Commande{
 			}else{
 				messageErreur = "La partie est fermée !";
 			}
-			
-			//Appeler les methodes fermerPartie
-
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
 				| NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
 		}
 		
-		
-		Fermé partie plein ou délai dépassé
-		DAns une nouvelle classe:
-		Récuperer liste joueur partie
-		Avertir tout les joueurs des parties concerné par la fermeture récédente : pour cela gérer un autre statut de partie : partie en cours : mettre à en cours une foie fermé
-		
-		
-		
-		
-		ReponseSeConnecterI2MComportement seConnecterI2M = new ReponseSeConnecterI2MComportement(messageErreur, objectJoueur, numeroPresentation);
-		seConnecterI2M.envoiMessage();
+		ReponseRejoindrePartieI2MComportement rejoindrePartieI2M = new ReponseRejoindrePartieI2MComportement(objectPartie, messageErreur, numeroPresentation);
+		rejoindrePartieI2M.envoiMessage();
 	}
 }

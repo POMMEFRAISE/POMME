@@ -26,9 +26,9 @@ public class ReponseRejoindrePartieM2PComportement{
 		PartieM2P partie = objFactory.createPartieM2P();
 		partie.setNomPartie(partieMetierRetour.getNomPartie());
 		jeu.setMessageErreur(messageErreur);
+		jeu.setPartie(partie);
 		ReponseRejoindrePartieM2P reponseRejoindrePartie = objFactory.createReponseRejoindrePartieM2P();
 		reponseRejoindrePartie.setJeu(jeu);
-		reponseRejoindrePartie.setNumeroPresentation(numeroPresentation);
 		
 		new Producteur(reponseRejoindrePartie, numeroPresentation);
 

@@ -5,9 +5,13 @@ import java.rmi.server.UnicastRemoteObject;
 
 import daoimplementation.DaoPartieImpl;
 import daointerface.DaoPartieInterface;
+import dto.JeuDTO;
+import dto.JeuxDTO;
 import dto.JoueurDTO;
 import dto.PartieDTO;
 import dto.PartiesDTO;
+import entites.JeuEntite;
+import entites.JeuxEntite;
 import entites.JoueurEntite;
 import entites.PartieEntite;
 import entites.PartiesEntite;
@@ -44,6 +48,43 @@ public class ServicePartieImpl extends UnicastRemoteObject implements ServicePar
 			PartieDTO partieDTO = new PartieDTO();
 			((PartieDTO) partieDTO).setNomPartie(partieEntite.getNomPartie());
 			((PartieDTO) partieDTO).setNbredejoueur(partieEntite.getNbredejoueur());			
+			partiesDTO.add(partieDTO);
+		}
+
+		return partiesDTO;
+	}
+	
+	public synchronized JeuxDTO recupererListePartiesPourJeu() throws RemoteException {
+		JeuxEntite jeuxEntite = new JeuxEntite();
+		jeuxEntite = daoPartieInterface.recupererListePartiesPourJeu();
+		
+		JeuxDTO jeuxDTO = new JeuxDTO();
+		for(JeuEntite jeuEntite : jeuxEntite.getJeux()){
+			JeuDTO jeuDTO = new JeuDTO();
+			for(JoueurEntite joueurEntite : jeuEntite.getJoueurs().getJoueurs()){
+				JoueurDTO joueurDTO = new JoueurDTO();
+				((JoueurDTO) joueurDTO).setLogin(joueurEntite.getLogin());
+				((JoueurDTO) joueurDTO).setNumeroPresentation(joueurEntite.getNumeroPresentation());
+				jeuDTO.getJoueurs().getJoueurs().add(joueurDTO);
+			}
+			
+			PartieDTO partieDTO = new PartieDTO();
+			((PartieDTO) partieDTO).setNomPartie(jeuEntite.getPartie().getNomPartie());
+
+			jeuxDTO.add(jeuDTO);
+		}
+
+		return jeuxDTO;
+	}
+	public synchronized PartiesDTO recupererListePartiesPourChangerEtat() throws RemoteException {
+		PartiesEntite partiesEntite = new PartiesEntite();
+		partiesEntite = daoPartieInterface.recupererListePartiesPourChangerEtat();
+		
+		PartiesDTO partiesDTO = new PartiesDTO();
+		for(PartieEntite partieEntite : partiesEntite.getParties()){
+			PartieDTO partieDTO = new PartieDTO();
+			((PartieDTO) partieDTO).setNomPartie(partieEntite.getNomPartie());
+			((PartieDTO) partieDTO).setNbredejoueur(partieEntite.getNbredejoueur());	
 			partiesDTO.add(partieDTO);
 		}
 
@@ -122,32 +163,28 @@ public class ServicePartieImpl extends UnicastRemoteObject implements ServicePar
 		return statut;
 	}
 	
-	public synchronized boolean fermerPartie(Object partieDTO) throws RemoteException {
+	public synchronized boolean fermerPartie() throws RemoteException {
 		boolean fermer = false;
-		PartieEntite partieEntite = new PartieEntite();
-		partieEntite.setNomPartie(((PartieDTO) partieDTO).getNomPartie());
-		partieEntite.setStatut(((PartieDTO) partieDTO).getStatut());
-		System.out.println(partieDTO);
-		System.out.println(partieEntite);
-		if (daoPartieInterface.verifierPartie(((PartieDTO) partieDTO).getNomPartie())== true){
-			System.out.println("Impossible de recupérer le staut");
-
-			if (((PartieDTO) partieDTO).getNbredejoueur() >= 3 ){
-				System.out.println("Impossible de recupérer le staut");
-
-				daoPartieInterface.fermerPartie(partieEntite);
-				fermer= true;
-				}
-				
-				System.out.println("Impossible de recupérer le staut");
-
-			}
-			else{
-				fermer= false;
-				System.out.println("Impossible de recupérer le staut");
-
-			}	
-			
+		PartiesEntite listeParties= daoPartieInterface.recupererListePartiesAFermer();
+		for(PartieEntite partie : listeParties.getParties()){
+			fermer = daoPartieInterface.fermerPartie(partie);
+		}
+		
 		return fermer;
+	}
+	
+	public synchronized boolean changerEtatListePartie(Object partiesDTO) throws RemoteException {
+		boolean etatChanger = false;
+		PartiesEntite partiesEntite = new PartiesEntite();
+
+		for(PartieDTO partie : ((PartiesDTO) partiesDTO).getParties()){
+			PartieEntite partieEntite = new PartieEntite();
+			partieEntite.setNomPartie(partie.getNomPartie());
+			partiesEntite.add(partieEntite);
+		}
+		
+		etatChanger = daoPartieInterface.changerEtatListePartie(partiesEntite);
+		
+		return etatChanger;
 	}
 }

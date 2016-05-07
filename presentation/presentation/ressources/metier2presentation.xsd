@@ -130,9 +130,26 @@
 
     <complexType name="JeuM2P">
     	<sequence>
-    		<element name="listeJoueurs" type="tns:JoueurM2P" minOccurs="3" maxOccurs="7"></element>
+    		<element name="listeJoueurs" type="tns:ListeJoueursM2P"></element>
     		<element name="partie" type="tns:PartieM2P"></element>
     	</sequence>
     	<attribute name="messageErreur" type="string"></attribute>
+    </complexType>
+
+    <element name="reponseAvertirCommencerJeuM2P">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:ReponseHeadM2P">
+    				<sequence>
+    					<element name="jeu" type="tns:JeuM2P"></element>
+    				</sequence>
+    			</extension>
+    		</complexContent>
+    	</complexType></element>
+
+    <complexType name="ListeJoueursM2P">
+    	<sequence>
+    		<element name="listeJoueurs" type="tns:JoueurM2P" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
     </complexType>
 </schema>

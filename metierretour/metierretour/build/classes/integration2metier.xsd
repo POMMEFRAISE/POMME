@@ -14,6 +14,7 @@
     	<attribute name="nomJoueur" type="string"></attribute>
     	<attribute name="prenomJoueur" type="string"></attribute>
     	<attribute name="loginJoueur" type="string"></attribute>
+    	<attribute name="numeroPresentation" type="int"></attribute>
     </complexType>
 
     <element name="reponseDemanderAuthentificationI2M">
@@ -121,8 +122,7 @@
 
     <complexType name="JeuI2M">
     	<sequence>
-    		<element name="joueur" type="tns:JoueurI2M" minOccurs="3"
-    			maxOccurs="7">
+    		<element name="joueurs" type="tns:ListeJoueursI2M">
     		</element>
     		<element name="partie" type="tns:PartieI2M"></element>
     	</sequence>
@@ -139,4 +139,27 @@
     			</extension>
     		</complexContent>
     	</complexType></element>
+
+    <element name="reponseAvertirCommencerJeuI2M">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:ReponseHeadI2M">
+    				<sequence>
+    					<element name="listeJeux" type="tns:ListeJeuxI2M"></element>
+    				</sequence>
+    			</extension>
+    		</complexContent>
+    	</complexType></element>
+
+    <complexType name="ListeJeuxI2M">
+    	<sequence>
+    		<element name="listeJeux" type="tns:JeuI2M" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="ListeJoueursI2M">
+    	<sequence>
+    		<element name="listeJoueurs" type="tns:JoueurI2M" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
 </schema>

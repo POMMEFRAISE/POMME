@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.05.07 à 01:52:41 AM CEST 
+// Généré le : 2016.05.07 à 03:07:27 PM CEST 
 //
 
 
@@ -93,6 +93,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ReponseAvertirCommencerJeuM2P }
+     * 
+     */
+    public ReponseAvertirCommencerJeuM2P createReponseAvertirCommencerJeuM2P() {
+        return new ReponseAvertirCommencerJeuM2P();
+    }
+
+    /**
+     * Create an instance of {@link JeuM2P }
+     * 
+     */
+    public JeuM2P createJeuM2P() {
+        return new JeuM2P();
+    }
+
+    /**
      * Create an instance of {@link ReponseObtenirListePartiesM2P }
      * 
      */
@@ -117,14 +133,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JeuM2P }
-     * 
-     */
-    public JeuM2P createJeuM2P() {
-        return new JeuM2P();
-    }
-
-    /**
      * Create an instance of {@link ReponseDemanderCreerPartieM2P }
      * 
      */
@@ -138,6 +146,14 @@ public class ObjectFactory {
      */
     public ReponseDemanderNumeroPresentationM2P createReponseDemanderNumeroPresentationM2P() {
         return new ReponseDemanderNumeroPresentationM2P();
+    }
+
+    /**
+     * Create an instance of {@link ListeJoueursM2P }
+     * 
+     */
+    public ListeJoueursM2P createListeJoueursM2P() {
+        return new ListeJoueursM2P();
     }
 
     /**

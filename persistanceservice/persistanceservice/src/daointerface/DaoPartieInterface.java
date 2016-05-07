@@ -1,5 +1,6 @@
 package daointerface;
 
+import entites.JeuxEntite;
 import entites.JoueurEntite;
 import entites.PartieEntite;
 import entites.PartiesEntite;
@@ -12,5 +13,9 @@ public interface DaoPartieInterface{
 	String afficherEtatPartie (String nompartie);
 	boolean fermerPartie (PartieEntite partie);
 	PartiesEntite recupererListeParties();
-	boolean verifierPartieRejoindre  (String nompartie);
+	PartiesEntite recupererListePartiesAFermer();
+	PartiesEntite recupererListePartiesPourChangerEtat();
+	JeuxEntite recupererListePartiesPourJeu();
+	boolean verifierPartieRejoindre (String nompartie);
+	boolean changerEtatListePartie(PartiesEntite parties);
 }

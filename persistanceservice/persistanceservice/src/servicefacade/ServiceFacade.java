@@ -86,9 +86,36 @@ public class ServiceFacade {
 		return partieDTO;
 	}
 
+	public synchronized Object changerEtatListePartie(Object partiesDTO){
+		try {
+			return servicePartie.changerEtatListePartie(partiesDTO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public synchronized Object recupererListeParties(){
 		try {
 			return servicePartie.recupererListeParties();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public synchronized Object recupererListePartiesPourChangerEtat(){
+		try {
+			return servicePartie.recupererListePartiesPourChangerEtat();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public synchronized Object recupererListePartiesPourJeu(){
+		try {
+			return servicePartie.recupererListePartiesPourJeu();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -143,9 +170,9 @@ public class ServiceFacade {
 	}
 	
 	
-	public synchronized Object fermerPartie(Object partieDTO){
+	public synchronized Object fermerPartie(){
 		try {
-			return servicePartie.fermerPartie(partieDTO);
+			return servicePartie.fermerPartie();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

@@ -27,6 +27,13 @@
 </head>
 <body>
 	<div class="message">
+		<jsp:useBean id="messageErreur" scope="request" class="model.MessageErreur" />
+		<c:if test="${messageErreur.getMessage() != null}">
+			<div class="messageErreur">
+				<jsp:getProperty name="messageErreur" property="message"/>
+			</div>
+		</c:if>
+		
 		<h3>
 			<fmt:message key="accueil.bienvenue" /> <jsp:getProperty name="joueur" property="prenom" /> <jsp:getProperty name="joueur" property="nom" /> <fmt:message key="accueil.point" />
 		</h3>

@@ -7,6 +7,7 @@ public class JoueurEntite{
 	protected String email;
 	protected String login;
 	protected String motDePasse;
+	protected int numeroPresentation;
 	
 	public JoueurEntite( String nom, String prenom, String email, String login, String motDePasse) {
 		this.nom = nom;
@@ -74,6 +75,14 @@ public class JoueurEntite{
 	public String toString() {
 		return "Joueur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", login=" + login
 				+ ", motdepasse=" + motDePasse + "]";
+	}
+
+	public int getNumeroPresentation() {
+		return numeroPresentation;
+	}
+
+	public void setNumeroPresentation(int numeroPresentation) {
+		this.numeroPresentation = numeroPresentation;
 	}
 	
 	

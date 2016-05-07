@@ -39,6 +39,8 @@ public class NavigationServlet extends HttpServlet {
 		Joueur joueur = (Joueur) session.getAttribute("joueur");
 		int numero = 0;
 		MessageErreur messageErreur = null;
+		String message = "";
+		Jeu jeu = null;
 		String url = request.getParameter("nav");
 		if(url == null){
 			url = "";
@@ -81,7 +83,6 @@ public class NavigationServlet extends HttpServlet {
 				appelLecteur(numero);
 
 				messageErreur = (MessageErreur) actionPresentation.getObjetARetourner();
-				System.out.println("SERVLET REJOINDRE PARTIE : "+messageErreur.isStatut());
 
 				if(messageErreur.isStatut() == true){
 					ObtenirListePartiesP2MComportement obtenirListeParties = new ObtenirListePartiesP2MComportement(numero);
@@ -123,6 +124,13 @@ public class NavigationServlet extends HttpServlet {
 				this.getServletContext().getRequestDispatcher("/consulterscore.jsp").forward(request, response);
 				break;
 			case "accueil" :
+				message = request.getParameter("messageErreur");
+
+				if(messageErreur == null){
+					messageErreur = new MessageErreur();
+				}
+				messageErreur.setMessage(message);
+				request.setAttribute("messageErreur", messageErreur);
 				this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
 				break;
 			case "formrejoindrepartie" :
@@ -133,10 +141,10 @@ public class NavigationServlet extends HttpServlet {
 				
 				appelLecteur(numero);
 
-				Jeu jeu = (Jeu) actionPresentation.getObjetARetourner();
+				jeu = (Jeu) actionPresentation.getObjetARetourner();
 				if(jeu.isStatut() == true){
 					session.setAttribute("jeu", jeu);
-					this.getServletContext().getRequestDispatcher("/attente.jsp").forward(request, response);
+					this.getServletContext().getRequestDispatcher("/attentecommencerpartie.jsp").forward(request, response);
 				}else{
 					request.setAttribute("jeu", jeu);
 					this.getServletContext().getRequestDispatcher("/rejoindrepartie.jsp").forward(request, response);
@@ -146,7 +154,6 @@ public class NavigationServlet extends HttpServlet {
 				String nomPartie = request.getParameter("nom");
 				String nbJoueurPartie = request.getParameter("nbjoueur");
 				int nbJoueur = Integer.parseInt(nbJoueurPartie);
-				System.out.println("nb Joueur : "+nbJoueur);
 				CreerPartieP2MComportement creerPartie = new CreerPartieP2MComportement(nomPartie, nbJoueur, numero);
 				creerPartie.envoiMessage();
 	
@@ -204,6 +211,20 @@ public class NavigationServlet extends HttpServlet {
 					}
 				}
 				break;
+			case "redirectionJeu":
+				System.out.println("Je t'appel");
+				appelLecteur(numero);
+				
+				jeu = (Jeu) actionPresentation.getObjetARetourner();
+				if(jeu.isStatut() == true){
+					message = "";
+				    session.setAttribute("jeu", jeu);
+				}else{
+					message = jeu.getMessage();
+				}
+				response.setContentType("text");
+				response.setHeader("Cache-Control", "no-cache");
+				response.getWriter().write(message);
 			}
         } 
 	}

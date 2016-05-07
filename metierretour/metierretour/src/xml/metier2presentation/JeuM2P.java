@@ -2,14 +2,12 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.05.07 à 01:52:41 AM CEST 
+// Généré le : 2016.05.07 à 03:07:27 PM CEST 
 //
 
 
 package xml.metier2presentation;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -27,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="listeJoueurs" type="{http://pds.m1.upec.fr/xml/metier2presentation}JoueurM2P" maxOccurs="7" minOccurs="3"/>
+ *         &lt;element name="listeJoueurs" type="{http://pds.m1.upec.fr/xml/metier2presentation}ListeJoueursM2P"/>
  *         &lt;element name="partie" type="{http://pds.m1.upec.fr/xml/metier2presentation}PartieM2P"/>
  *       &lt;/sequence>
  *       &lt;attribute name="messageErreur" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -46,39 +44,34 @@ import javax.xml.bind.annotation.XmlType;
 public class JeuM2P {
 
     @XmlElement(required = true)
-    protected List<JoueurM2P> listeJoueurs;
+    protected ListeJoueursM2P listeJoueurs;
     @XmlElement(required = true)
     protected PartieM2P partie;
     @XmlAttribute(name = "messageErreur")
     protected String messageErreur;
 
     /**
-     * Gets the value of the listeJoueurs property.
+     * Obtient la valeur de la propriété listeJoueurs.
      * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the listeJoueurs property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getListeJoueurs().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link JoueurM2P }
-     * 
-     * 
+     * @return
+     *     possible object is
+     *     {@link ListeJoueursM2P }
+     *     
      */
-    public List<JoueurM2P> getListeJoueurs() {
-        if (listeJoueurs == null) {
-            listeJoueurs = new ArrayList<JoueurM2P>();
-        }
-        return this.listeJoueurs;
+    public ListeJoueursM2P getListeJoueurs() {
+        return listeJoueurs;
+    }
+
+    /**
+     * Définit la valeur de la propriété listeJoueurs.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ListeJoueursM2P }
+     *     
+     */
+    public void setListeJoueurs(ListeJoueursM2P value) {
+        this.listeJoueurs = value;
     }
 
     /**
