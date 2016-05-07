@@ -110,4 +110,22 @@
     			<extension base="tns:RequeteHeadM2I"></extension>
     		</complexContent>
     	</complexType></element>
+
+    <complexType name="RejoindreUnePartieM2I">
+    	<sequence>
+    		<element name="joueur" type="tns:JoueurM2I"></element>
+    		<element name="partie" type="tns:PartieM2I"></element>
+    	</sequence>
+    </complexType>
+
+    <element name="rejoindrePartieM2I">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:RequeteHeadM2I">
+    				<sequence>
+    					<element name="rejoindreUnePartie" type="tns:RejoindreUnePartieM2I"></element>
+    				</sequence>
+    			</extension>
+    		</complexContent>
+    	</complexType></element>
 </schema>

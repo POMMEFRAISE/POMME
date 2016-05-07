@@ -15,8 +15,10 @@ import comportement.presentation2metier.DemanderCreerPartieP2MComportement;
 import comportement.presentation2metier.DemanderNumeroPresentationP2MComportement;
 import comportement.presentation2metier.DemanderRejoindrePartieP2MComportement;
 import comportement.presentation2metier.ObtenirListePartiesP2MComportement;
+import comportement.presentation2metier.RejoindrePartieP2MComportement;
 import comportement.presentation2metier.SeConnecterP2MComportement;
 import model.ActionPresentation;
+import model.Jeu;
 import model.Joueur;
 import model.MessageErreur;
 import model.Partie;
@@ -122,6 +124,23 @@ public class NavigationServlet extends HttpServlet {
 				break;
 			case "accueil" :
 				this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+				break;
+			case "formrejoindrepartie" :
+				String partieARejoindre = request.getParameter("partieARejoindre");
+				Partie unePartieARejoindre = new Partie(partieARejoindre);
+				RejoindrePartieP2MComportement rejoindrePartie = new RejoindrePartieP2MComportement(joueur, unePartieARejoindre, numero);
+				rejoindrePartie.envoiMessage();
+				
+				appelLecteur(numero);
+
+				Jeu jeu = (Jeu) actionPresentation.getObjetARetourner();
+				if(jeu.isStatut() == true){
+					session.setAttribute("jeu", jeu);
+					this.getServletContext().getRequestDispatcher("/attente.jsp").forward(request, response);
+				}else{
+					request.setAttribute("jeu", jeu);
+					this.getServletContext().getRequestDispatcher("/rejoindrepartie.jsp").forward(request, response);
+				}
 				break;
 			case "formcreerpartie" :
 				String nomPartie = request.getParameter("nom");

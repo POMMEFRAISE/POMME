@@ -20,7 +20,7 @@ public class CreerPartieP2MComportement{
 		ObjectFactory objFactory = new ObjectFactory();
 
 	    CreationPartieP2M creationPartie = objFactory.createCreationPartieP2M();
-	    creationPartie.setNomParrtie(nomPartie);
+	    creationPartie.setNomPartie(nomPartie);
 	    creationPartie.setNbJoueurPartie(nbJoueurPartie);
 	    
 		CreerPartieP2M creerPartie = objFactory.createCreerPartieP2M();

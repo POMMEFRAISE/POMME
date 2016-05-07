@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import daointerface.DaoPartieInterface;
 import daoparam.ConnexionDAO;
+import entites.JoueurEntite;
 import entites.PartieEntite;
 import entites.PartiesEntite;
 
@@ -25,8 +26,6 @@ public class DaoPartieImpl implements DaoPartieInterface {
 				preparedStatement.setString(1, partie.getNomPartie());
 				preparedStatement.setInt(2, partie.getNbredejoueur());
 				preparedStatement.setString(3, "ouvert");
-				//java.sql.Date  sqlDate = new java.sql.Date(new java.util.Date().getTime());
-				//preparedStatement.setDate(4, sqlDate);
 				
 				int resultat = preparedStatement.executeUpdate();
 				
@@ -155,34 +154,28 @@ public class DaoPartieImpl implements DaoPartieInterface {
 	
 
 
-	public synchronized boolean rejoindrePartie(PartieEntite partie) {
+	public synchronized boolean rejoindrePartie(PartieEntite partie, JoueurEntite joueur, Integer numeroPresentation) {
 		boolean bool = false;
 
 		try {
-			if (verifierPartie(partie.getNomPartie()) == true){
-				String rejoindrePartieSQL = ConnexionDAO.getProperties().getProperty("rejoindrePartieSQL");
-				PreparedStatement preparedStatement = ConnexionDAO.getInstance().prepareCall(rejoindrePartieSQL);
+			String rejoindrePartieSQL = ConnexionDAO.getProperties().getProperty("rejoindrePartieSQL");
+			PreparedStatement preparedStatement = ConnexionDAO.getInstance().prepareCall(rejoindrePartieSQL);
 				
-				preparedStatement.setString(1, partie.getNomPartie());
-				preparedStatement.setInt(2, (partie.getNbredejoueur()+1));
-				preparedStatement.setString(3, "ouvert");
-				java.sql.Date  sqlDate = new java.sql.Date(new java.util.Date().getTime());
-				preparedStatement.setDate(4, sqlDate);
+			preparedStatement.setString(1, joueur.getLogin());
+			preparedStatement.setString(2, partie.getNomPartie());
+			preparedStatement.setInt(3, numeroPresentation);
 				
-				int resultat = preparedStatement.executeUpdate();
+			int resultat = preparedStatement.executeUpdate();
 				
-				if (resultat>=1) {
-					System.out.print("Joueur Enregistré");
-					bool= true;
-					return bool;
-				}else {
-					System.out.print("Imposible d'enregistrer le joueur");
-					bool= false;
-					return bool;
-				}
-				
+			if (resultat>=1) {
+				System.out.print("Joueur Enregistré");
+				bool= true;
+				return bool;
+			}else {
+				System.out.print("Imposible d'enregistrer le joueur");
+				bool= false;
+				return bool;
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -214,4 +207,28 @@ public class DaoPartieImpl implements DaoPartieInterface {
 		return bool;
 	}
 
+	public synchronized boolean verifierPartieRejoindre(String nompartie) {
+		boolean bool = false;
+		try {
+			String verifierPartieRejoindreSQL = ConnexionDAO.getProperties().getProperty("verifierPartieRejoindreSQL");
+			PreparedStatement preparedStatement = ConnexionDAO.getInstance().prepareCall(verifierPartieRejoindreSQL);
+			preparedStatement.setString(1, nompartie);
+			preparedStatement.setString(1, nompartie);
+			resultat = preparedStatement.executeQuery();
+			
+			if (resultat.next()){
+				System.out.println("La Partie existe bien.");
+				bool= true;
+				return bool;
+			}
+			else{
+				System.out.println("La Partie n'existe pas ");
+				bool= false;
+				return bool;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return bool;
+	}
 }

@@ -28,20 +28,18 @@ public class Partie extends MessageErreur implements Serializable{
     }
 	
 	public Partie() {
-		// TODO Auto-generated constructor stub
-	}
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-		/*Partie p1 = new Partie("partie1", 3);
-		Partie p2 = new Partie("partie2", 4);
-		Partie p3 = new Partie("partie3", 5);*/
 	}
+
+	public Partie(String nom) {
+		this.nom = nom;
+	}
+	
 	public boolean isStatutPartie() {
 		return statutPartie;
 	}
+	
 	public void setStatutPartie(boolean statutPartie) {
 		this.statutPartie = statutPartie;
 	}
-
 }

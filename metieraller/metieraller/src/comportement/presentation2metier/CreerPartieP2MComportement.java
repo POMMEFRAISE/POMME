@@ -13,7 +13,7 @@ public class CreerPartieP2MComportement implements Commande{
 	
 	public void reçoiMessage() {
 		CreerPartieM2IComportement creerPartieM2I = new CreerPartieM2IComportement(
-				creerPartieP2M.getCreationPartie().getNomParrtie(),
+				creerPartieP2M.getCreationPartie().getNomPartie(),
 				creerPartieP2M.getCreationPartie().getNbJoueurPartie(),
 				creerPartieP2M.getNumeroPresentation()
 		);

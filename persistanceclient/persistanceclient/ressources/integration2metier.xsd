@@ -118,4 +118,25 @@
     			</extension>
     		</complexContent>
     	</complexType></element>
+
+    <complexType name="JeuI2M">
+    	<sequence>
+    		<element name="joueur" type="tns:JoueurI2M" minOccurs="3"
+    			maxOccurs="7">
+    		</element>
+    		<element name="partie" type="tns:PartieI2M"></element>
+    	</sequence>
+    	<attribute name="messageErreur" type="string"></attribute>
+    </complexType>
+
+    <element name="reponseRejoindrePartieI2M">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:ReponseHeadI2M">
+    				<sequence>
+    					<element name="jeu" type="tns:JeuI2M"></element>
+    				</sequence>
+    			</extension>
+    		</complexContent>
+    	</complexType></element>
 </schema>

@@ -5,8 +5,10 @@ import java.rmi.server.UnicastRemoteObject;
 
 import daoimplementation.DaoPartieImpl;
 import daointerface.DaoPartieInterface;
+import dto.JoueurDTO;
 import dto.PartieDTO;
 import dto.PartiesDTO;
+import entites.JoueurEntite;
 import entites.PartieEntite;
 import entites.PartiesEntite;
 import servicermiinterface.ServicePartieInterface;
@@ -76,37 +78,35 @@ public class ServicePartieImpl extends UnicastRemoteObject implements ServicePar
 		return trouve;
 	}
 
+	public synchronized boolean verifierPartieRejoindre(Object partieDTO) throws RemoteException {
+		boolean trouve = false;
+		if (daoPartieInterface.verifierPartieRejoindre(((PartieDTO) partieDTO).getNomPartie())== true){
+			trouve= true;
+		}else{
+			trouve= false;
+		}	
+		return trouve;
+	}
 
-	public synchronized boolean rejoindrePartie(Object partieDTO) throws RemoteException {
-		boolean rejoindre = false;
+	public synchronized boolean rejoindrePartie(Object partieDTO, Object joueurDTO, Integer numeroPresentation) throws RemoteException {
 		boolean rejoindrePartie = false;
+		boolean rejoindre = false;
 		
 		PartieEntite partieEntite = new PartieEntite();
 		partieEntite.setNomPartie(((PartieDTO) partieDTO).getNomPartie());
-		partieEntite.setStatut(((PartieDTO) partieDTO).getStatut());
-		partieEntite.setNbredejoueur(((PartieDTO) partieDTO).getNbredejoueur());
-		partieEntite.setDatedecreation(((PartieDTO) partieDTO).getDatedecreation());
-	
-		if (daoPartieInterface.verifierPartie(((PartieDTO) partieDTO).getNomPartie())== true){
-			if (((PartieDTO) partieDTO).getStatut() != "fermer"){
-				rejoindrePartie = daoPartieInterface.rejoindrePartie(partieEntite);
+
+		JoueurEntite joueurEntite = new JoueurEntite();
+		joueurEntite.setLogin(((JoueurDTO) joueurDTO).getLogin());
+		
+		rejoindrePartie = daoPartieInterface.rejoindrePartie(partieEntite, joueurEntite, numeroPresentation);
 				
-			}else{
-			
-			}
-		
-		}
-		else{
-			rejoindrePartie = false;	
-		}
-		
 		if (rejoindrePartie == true ){
 			System.out.println("Joueur rejoint la partie");
 			rejoindre= true;
 		}else{
 			System.out.println("imposible de rejoindre la partie");
 			rejoindre= false;
-			}
+		}
 		
 		return rejoindre;
 	}

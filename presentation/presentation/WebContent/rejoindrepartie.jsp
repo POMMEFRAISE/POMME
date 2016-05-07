@@ -16,7 +16,7 @@
 <%@include file="include/footer.jsp"%>
 </head>
 <body background="img/fond.jpg">
-
+	<form method="post" action="navigation?nav=formrejoindrepartie">
 	<center>
 		<table cellpadding="0" cellspacing="0" border="0" class=""
 			id="acceuil">
@@ -38,7 +38,7 @@
 						<td>${partie.nom}</td>
 						<td>${partie.nbJoueurs}</td>
 						<td>
-						   <input type="submit" name="nomPartie" value="${partie.nom}" class="buttonsubmit"/>
+						   <input type="submit" name="partieARejoindre" value="${partie.getNom()}" class="buttonsubmit"/>
 						</td>
 					</tr>
 				</c:forEach>
@@ -48,6 +48,7 @@
 			</tbody>
 		</table>
 	</center>
+	</form>
 <div class="des">
 <img src="img/des.png">
 </div>

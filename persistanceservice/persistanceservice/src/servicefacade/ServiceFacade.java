@@ -113,9 +113,20 @@ public class ServiceFacade {
 		return false;
 		
 	}
-	public synchronized Object rejoindrePartie(Object partieDTO){
+	
+	public synchronized Object verifierPartieRejoindre(Object partieDTO){
 		try {
-			return servicePartie.rejoindrePartie(partieDTO);
+			return servicePartie.verifierPartieRejoindre(partieDTO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return false;
+		
+	}
+	
+	public synchronized Object rejoindrePartie(Object partieDTO, Object joueurDTO, Integer numeroPresentation){
+		try {
+			return servicePartie.rejoindrePartie(partieDTO, joueurDTO, numeroPresentation);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

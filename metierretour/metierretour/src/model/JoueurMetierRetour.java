@@ -14,6 +14,10 @@ public class JoueurMetierRetour implements Serializable{
 		this.loginJoueur = loginJoueur;
 	}
 	
+	public JoueurMetierRetour(){
+		
+	}
+
 	public String getNomJoueur() {
 		return nomJoueur;
 	}
