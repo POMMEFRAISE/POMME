@@ -15,6 +15,7 @@
     	<attribute name="prenomJoueur" type="string"></attribute>
     	<attribute name="loginJoueur" type="string"></attribute>
     	<attribute name="numeroPresentation" type="int"></attribute>
+    	<attribute name="positionJeu" type="int"></attribute>
     </complexType>
 
     <element name="reponseDemanderAuthentificationI2M">

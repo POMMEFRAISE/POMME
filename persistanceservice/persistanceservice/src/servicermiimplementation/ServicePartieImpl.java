@@ -65,6 +65,7 @@ public class ServicePartieImpl extends UnicastRemoteObject implements ServicePar
 				JoueurDTO joueurDTO = new JoueurDTO();
 				((JoueurDTO) joueurDTO).setLogin(joueurEntite.getLogin());
 				((JoueurDTO) joueurDTO).setNumeroPresentation(joueurEntite.getNumeroPresentation());
+				((JoueurDTO) joueurDTO).setPositionJeu(joueurEntite.getPositionJeu());
 				jeuDTO.getJoueurs().getJoueurs().add(joueurDTO);
 			}
 			

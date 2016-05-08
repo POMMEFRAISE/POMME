@@ -41,6 +41,8 @@ public class ReponseAvertirCommencerJeuI2MComportement{
 					JoueurI2M joueur = objFactory.createJoueurI2M();
 					joueur.setLoginJoueur(unJoueur.getClass().getMethod("getLogin").invoke(unJoueur).toString());
 					joueur.setNumeroPresentation((Integer) unJoueur.getClass().getMethod("getNumeroPresentation").invoke(unJoueur));
+					joueur.setPositionJeu((Integer) unJoueur.getClass().getMethod("getPositionJeu").invoke(unJoueur));
+
 					joueurs.getListeJoueurs().add(joueur);
 				}
 				jeuI2M.setPartie(partie);

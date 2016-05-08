@@ -173,16 +173,31 @@ public class DaoPartieImpl implements DaoPartieInterface {
 		
 	public synchronized boolean rejoindrePartie(PartieEntite partie, JoueurEntite joueur, Integer numeroPresentation) {
 		boolean bool = false;
-
+		int numeroPositionJeu = 0;
 		try {
-			String rejoindrePartieSQL = ConnexionDAO.getProperties().getProperty("rejoindrePartieSQL");
-			PreparedStatement preparedStatement = ConnexionDAO.getInstance().prepareCall(rejoindrePartieSQL);
+			String recupMaxPositionJeuPartieSQL = ConnexionDAO.getProperties().getProperty("recupMaxPositionJeuPartieSQL");
+			PreparedStatement preparedStatement = ConnexionDAO.getInstance().prepareCall(recupMaxPositionJeuPartieSQL);
+			preparedStatement.setString(1, partie.getNomPartie());
+
+			resultat = preparedStatement.executeQuery();
 			
-			preparedStatement.setString(1, joueur.getLogin());
-			preparedStatement.setString(2, partie.getNomPartie());
-			preparedStatement.setInt(3, numeroPresentation);
-				
-			int resultat = preparedStatement.executeUpdate();
+			while(resultat.next()){
+				numeroPositionJeu = resultat.getInt("position");
+			}
+			ConnexionDAO.getInstance().close();				
+
+			numeroPositionJeu = numeroPositionJeu+1;
+			joueur.setPositionJeu(numeroPositionJeu);
+			
+			String rejoindrePartieSQL = ConnexionDAO.getProperties().getProperty("rejoindrePartieSQL");
+			PreparedStatement preparedStatement2 = ConnexionDAO.getInstance().prepareCall(rejoindrePartieSQL);
+			
+			preparedStatement2.setString(1, joueur.getLogin());
+			preparedStatement2.setString(2, partie.getNomPartie());
+			preparedStatement2.setInt(3, numeroPresentation);
+			preparedStatement2.setInt(4, joueur.getPositionJeu());
+
+			int resultat = preparedStatement2.executeUpdate();
 			ConnexionDAO.getInstance().close();				
 
 			if (resultat>=1) {
@@ -333,9 +348,9 @@ public class DaoPartieImpl implements DaoPartieInterface {
 					JoueurEntite joueurEntite = new JoueurEntite();
 					joueurEntite.setLogin(resultat2.getString("login"));
 					joueurEntite.setNumeroPresentation(resultat2.getInt("numeroPresentation"));
+					joueurEntite.setPositionJeu(resultat2.getInt("positionJeu"));
 					joeursEntite.add(joueurEntite);
 				}
-				ConnexionDAO.getInstance().close();				
 
 				jeuEntite2.setPartie(unJeu.getPartie());
 				jeuEntite2.setJoueurs(joeursEntite);
@@ -343,7 +358,7 @@ public class DaoPartieImpl implements DaoPartieInterface {
 					jeuxEntite2.getJeux().add(jeuEntite2);		
 				}
 			}
-			System.out.println("jeuxEnttie2: "+jeuxEntite2.getJeux().size());
+			ConnexionDAO.getInstance().close();				
 
 			mettreStatutEnCourJeu();
 			supprimerScorePartiesAnnuler();
@@ -395,7 +410,7 @@ public class DaoPartieImpl implements DaoPartieInterface {
 			}
 	
 			if (bool==false) {
-				System.out.print("Imposible de supprimer les jeux");
+				System.out.print("Impossible de supprimer les jeux");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

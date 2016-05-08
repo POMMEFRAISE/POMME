@@ -11,6 +11,11 @@ public class Joueur extends MessageErreur implements Serializable{
     private String nom;
     private String prenom;
     private String mdp;
+    private Joueur joueurGauche;
+    private Joueur joueurDroite;
+    private int positionJeu;
+    private int resultatPremierLancer;
+    private boolean doitJoueur;
     
     public Joueur(){
     	
@@ -50,6 +55,46 @@ public class Joueur extends MessageErreur implements Serializable{
 
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
+	}
+
+	public Joueur getJoueurGauche() {
+		return joueurGauche;
+	}
+
+	public void setJoueurGauche(Joueur joueurGauche) {
+		this.joueurGauche = joueurGauche;
+	}
+
+	public Joueur getJoueurDroite() {
+		return joueurDroite;
+	}
+
+	public void setJoueurDroite(Joueur joueurDroite) {
+		this.joueurDroite = joueurDroite;
+	}
+
+	public int getPositionJeu() {
+		return positionJeu;
+	}
+
+	public void setPositionJeu(int positionJeu) {
+		this.positionJeu = positionJeu;
+	}
+
+	public int getResultatPremierLancer() {
+		return resultatPremierLancer;
+	}
+
+	public void setResultatPremierLancer(int resultatPremierLancer) {
+		this.resultatPremierLancer = resultatPremierLancer;
+	}
+
+	public boolean isDoitJoueur() {
+		return doitJoueur;
+	}
+
+	public void setDoitJoueur(boolean doitJoueur) {
+		this.doitJoueur = doitJoueur;
 	}
 	
 	

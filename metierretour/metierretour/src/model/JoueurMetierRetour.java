@@ -8,7 +8,7 @@ public class JoueurMetierRetour implements Serializable{
 	private String prenomJoueur;
 	private String loginJoueur;
 	private int numeroPresentation;
-	
+	private int positionJeu;
 	public JoueurMetierRetour(String nomJoueur, String prenomJoueur, String loginJoueur){
 		this.nomJoueur = nomJoueur;
 		this.prenomJoueur = prenomJoueur;
@@ -49,5 +49,13 @@ public class JoueurMetierRetour implements Serializable{
 
 	public void setNumeroPresentation(int numeroPresentation) {
 		this.numeroPresentation = numeroPresentation;
+	}
+
+	public int getPositionJeu() {
+		return positionJeu;
+	}
+
+	public void setPositionJeu(int positionJeu) {
+		this.positionJeu = positionJeu;
 	}
 }

@@ -21,6 +21,7 @@ public class JoueurDTO implements Serializable  {
 	protected String login;
 	protected String motDePasse;
 	protected int numeroPresentation;
+	protected int positionJeu;
 	public JoueurDTO(int id, String nom, String prenom, String email, String login, String motDePasse) {
 		
 		this.nom = nom;
@@ -92,6 +93,12 @@ public class JoueurDTO implements Serializable  {
 	}
 	public void setNumeroPresentation(int numeroPresentation) {
 		this.numeroPresentation = numeroPresentation;
+	}
+	public int getPositionJeu() {
+		return positionJeu;
+	}
+	public void setPositionJeu(int positionJeu) {
+		this.positionJeu = positionJeu;
 	}
 	
 	

@@ -9,9 +9,18 @@
     </complexType>
 
     <complexType name="JoueurM2P">
+    	<sequence>
+    		<element name="joueurGauche" type="tns:JoueurM2P"></element>
+    		<element name="joueurDroite" type="tns:JoueurM2P"></element>
+    	</sequence>
     	<attribute name="nomJoueur" type="string"></attribute>
     	<attribute name="prenomJoueur" type="string"></attribute>
     	<attribute name="loginJoueur" type="string"></attribute>
+    	<attribute name="positionJeu" type="int"></attribute>
+    	<attribute name="resultatPremierLancer" type="int"
+    		default="0">
+    	</attribute>
+    	<attribute name="doitJoueur" type="boolean"></attribute>
     </complexType>
 
     <complexType name="AuthentificationM2P">

@@ -19,10 +19,10 @@ public class ReponseAvertirCommencerJeuM2PComportement{
 	}
 	
 	public void envoiMessage() {
-		ObjectFactory objFactory = new ObjectFactory();
-		JeuM2P jeu = objFactory.createJeuM2P();
-		System.out.println("jeuxMetier taille : "+jeuxMetier.getJeux().size());
+
 		for(JeuMetierRetour unJeu : jeuxMetier.getJeux()){
+			ObjectFactory objFactory = new ObjectFactory();
+			JeuM2P jeu = objFactory.createJeuM2P();
 			for(JoueurMetierRetour unJoueur : unJeu.getJoueurs().getJoueurs()){
 				PartieM2P partie = objFactory.createPartieM2P();
 				partie.setNomPartie(unJeu.getPartie().getNomPartie());
@@ -33,6 +33,55 @@ public class ReponseAvertirCommencerJeuM2PComportement{
 				for(JoueurMetierRetour unJoueur2 : unJeu.getJoueurs().getJoueurs()){
 					JoueurM2P joueur = objFactory.createJoueurM2P();
 					joueur.setLoginJoueur(unJoueur2.getLoginJoueur());
+					joueur.setPositionJeu(unJoueur2.getPositionJeu());
+
+					joueur.setResultatPremierLancer(0);
+					
+					JoueurM2P joueurGauche = objFactory.createJoueurM2P();
+					for(JoueurMetierRetour unJoueurGauche : unJeu.getJoueurs().getJoueurs()){
+						if((unJoueurGauche.getPositionJeu()-1) == unJoueur2.getPositionJeu()){
+							joueurGauche.setLoginJoueur(unJoueurGauche.getLoginJoueur());
+							break;
+						}
+					}
+
+					JoueurM2P joueurDroite = objFactory.createJoueurM2P();
+					for(JoueurMetierRetour unJoueurDroite : unJeu.getJoueurs().getJoueurs()){
+						if((unJoueurDroite.getPositionJeu()+1) ==(unJoueur2.getPositionJeu())){
+							joueurDroite.setLoginJoueur(unJoueurDroite.getLoginJoueur());
+							break;
+						}
+					}
+					
+					if(joueurGauche.getLoginJoueur() == null){
+						for(JoueurMetierRetour unJoueurGauche2 : unJeu.getJoueurs().getJoueurs()){
+							if(!unJoueurGauche2.getLoginJoueur().equals(unJoueur2.getLoginJoueur()) &&
+									!unJoueurGauche2.getLoginJoueur().equals(joueurDroite.getLoginJoueur())){
+								joueurGauche.setLoginJoueur(unJoueurGauche2.getLoginJoueur());
+								break;
+							}			
+						}
+					}
+					
+					if(joueurDroite.getLoginJoueur() == null){
+						for(JoueurMetierRetour unJoueurDroite2 : unJeu.getJoueurs().getJoueurs()){
+							if(!unJoueurDroite2.getLoginJoueur().equals(unJoueur2.getLoginJoueur()) &&
+									!unJoueurDroite2.getLoginJoueur().equals(joueurGauche.getLoginJoueur())){
+								joueurDroite.setLoginJoueur(unJoueurDroite2.getLoginJoueur());
+								break;
+							}			
+						}
+					}
+					
+					joueur.setJoueurGauche(joueurGauche);
+					joueur.setJoueurDroite(joueurDroite);
+
+					if(unJoueur2.getPositionJeu() == 1){
+						joueur.setDoitJoueur(true);
+					}else{
+						joueur.setDoitJoueur(false);
+					}
+					
 					listeJoueurs.getListeJoueurs().add(joueur);
 				}
 				jeu.setListeJoueurs(listeJoueurs);

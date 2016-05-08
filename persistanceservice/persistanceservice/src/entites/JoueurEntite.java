@@ -8,7 +8,7 @@ public class JoueurEntite{
 	protected String login;
 	protected String motDePasse;
 	protected int numeroPresentation;
-	
+	protected int positionJeu;
 	public JoueurEntite( String nom, String prenom, String email, String login, String motDePasse) {
 		this.nom = nom;
 		this.prenom = prenom;
@@ -83,6 +83,14 @@ public class JoueurEntite{
 
 	public void setNumeroPresentation(int numeroPresentation) {
 		this.numeroPresentation = numeroPresentation;
+	}
+
+	public int getPositionJeu() {
+		return positionJeu;
+	}
+
+	public void setPositionJeu(int positionJeu) {
+		this.positionJeu = positionJeu;
 	}
 	
 	
