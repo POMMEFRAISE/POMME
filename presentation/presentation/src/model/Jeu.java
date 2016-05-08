@@ -8,6 +8,10 @@ public class Jeu extends MessageErreur implements Serializable{
 	private Joueurs joueurs;
 	private Partie partie;
 	
+	public Jeu(){
+		joueurs = new Joueurs();
+	}
+	
 	public Partie getPartie() {
 		return partie;
 	}

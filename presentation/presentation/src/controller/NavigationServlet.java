@@ -38,9 +38,9 @@ public class NavigationServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Joueur joueur = (Joueur) session.getAttribute("joueur");
 		int numero = 0;
-		MessageErreur messageErreur = null;
+		MessageErreur messageErreur = new MessageErreur();
 		String message = "";
-		Jeu jeu = null;
+		Jeu jeu = new Jeu();
 		String url = request.getParameter("nav");
 		if(url == null){
 			url = "";
@@ -124,12 +124,10 @@ public class NavigationServlet extends HttpServlet {
 				this.getServletContext().getRequestDispatcher("/consulterscore.jsp").forward(request, response);
 				break;
 			case "accueil" :
-				message = request.getParameter("messageErreur");
-
-				if(messageErreur == null){
-					messageErreur = new MessageErreur();
-				}
-				messageErreur.setMessage(message);
+				jeu = (Jeu) session.getAttribute("jeu");
+				messageErreur.setMessage(jeu.getMessage());					
+				jeu.setMessage(null);
+				session.setAttribute("jeu", jeu);
 				request.setAttribute("messageErreur", messageErreur);
 				this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
 				break;
@@ -212,14 +210,11 @@ public class NavigationServlet extends HttpServlet {
 				}
 				break;
 			case "redirectionJeu":
-				System.out.println("Je t'appel");
 				appelLecteur(numero);
 				
 				jeu = (Jeu) actionPresentation.getObjetARetourner();
-				if(jeu.isStatut() == true){
-					message = "";
-				    session.setAttribute("jeu", jeu);
-				}else{
+				session.setAttribute("jeu", jeu);
+				if(jeu.getMessage() != null){
 					message = jeu.getMessage();
 				}
 				response.setContentType("text");

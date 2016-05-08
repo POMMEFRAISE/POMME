@@ -70,7 +70,7 @@ public class ServicePartieImpl extends UnicastRemoteObject implements ServicePar
 			
 			PartieDTO partieDTO = new PartieDTO();
 			((PartieDTO) partieDTO).setNomPartie(jeuEntite.getPartie().getNomPartie());
-
+			jeuDTO.setPartie(partieDTO);
 			jeuxDTO.add(jeuDTO);
 		}
 

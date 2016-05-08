@@ -12,7 +12,7 @@ public class JeuDTO implements Serializable {
 	protected JoueursDTO joueurs;
 	
 	public JeuDTO() {
-
+		joueurs = new JoueursDTO();
 	}
 
 	public JeuDTO(PartieDTO partie, JoueursDTO joueurs) {

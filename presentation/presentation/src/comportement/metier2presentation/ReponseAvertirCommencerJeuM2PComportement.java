@@ -36,7 +36,8 @@ public class ReponseAvertirCommencerJeuM2PComportement implements Commande{
 	
 	public Jeu verifierInformations(){
 		String messageErreur = "";
-		if(jeu.getJoueurs().getTaille() == 0){
+		System.out.println("LISTE JOUEURS : "+jeu.getJoueurs().getJoueurs().size());
+		if(jeu.getJoueurs().getJoueurs().size() < 3){
 			messageErreur = "Désolé mais la partie n'a pas requis le nombre jouer minimum nécessaire pour commencer !";
 			messageErreur = messageErreur +"\n Vous pouvez choisir une autre partie ou en créer une nouvelle !";
 			jeu.setMessage(messageErreur);

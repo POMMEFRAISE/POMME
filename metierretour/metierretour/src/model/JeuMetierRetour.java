@@ -13,7 +13,7 @@ public class JeuMetierRetour implements Serializable{
 	}
 	
 	public JeuMetierRetour(){
-
+		joueurs = new JoueursMetierRetour();
 	}
 
 	public PartieMetierRetour getPartie() {

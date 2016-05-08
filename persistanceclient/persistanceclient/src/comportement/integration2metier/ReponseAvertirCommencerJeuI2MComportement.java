@@ -29,17 +29,17 @@ public class ReponseAvertirCommencerJeuI2MComportement{
 			PartieI2M partie = objFactory.createPartieI2M();
 			try {
 				Object partieDTO = unJeu.getClass().getMethod("getPartie").invoke(unJeu);
+				partie.setNomPartie(partieDTO.getClass().getMethod("getNomPartie").invoke(partieDTO).toString());
+				
+				Object listeJoueurs  = unJeu.getClass().getMethod("getJoueurs").invoke(unJeu);
 
-				if(partieDTO.getClass().getMethod("getNomPartie").invoke(partieDTO).toString() != null){
-					partie.setNomPartie(partieDTO.getClass().getMethod("getNomPartie").invoke(partieDTO).toString());
-				}
-				ArrayList<Object> listeJoueursDTO = (ArrayList<Object>) (unJeu.getClass().getMethod("getJoueurs.getJoueurs").invoke(unJeu));
+				ArrayList<Object> listeJoueursDTO = (ArrayList<Object>) (listeJoueurs.getClass().getMethod("getJoueurs").invoke(listeJoueurs));
 				
 				ListeJoueursI2M joueurs = objFactory.createListeJoueursI2M();
 				for(Object unJoueur : listeJoueursDTO){
 					JoueurI2M joueur = objFactory.createJoueurI2M();
-					joueur.setLoginJoueur(unJoueur.getClass().getMethod("getLogin").invoke(unJeu).toString());
-					joueur.setNumeroPresentation((Integer) unJoueur.getClass().getMethod("getNumeroPresentation").invoke(unJeu));
+					joueur.setLoginJoueur(unJoueur.getClass().getMethod("getLogin").invoke(unJoueur).toString());
+					joueur.setNumeroPresentation((Integer) unJoueur.getClass().getMethod("getNumeroPresentation").invoke(unJoueur));
 					joueurs.getListeJoueurs().add(joueur);
 				}
 				jeuI2M.setPartie(partie);

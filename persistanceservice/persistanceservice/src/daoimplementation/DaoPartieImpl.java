@@ -314,16 +314,18 @@ public class DaoPartieImpl implements DaoPartieInterface {
 				String recupererJoueursPartieSQL = ConnexionDAO.getProperties().getProperty("recupererJoueursPartieSQL");
 				PreparedStatement preparedStatement2 = ConnexionDAO.getInstance().prepareCall(recupererJoueursPartieSQL);
 				preparedStatement2.setString(1, partieEntite.getNomPartie());
-				resultat = preparedStatement2.executeQuery();
+				ResultSet resultat2 = preparedStatement2.executeQuery();
 				
-				while (resultat.next()) {	
+				while (resultat2.next()) {	
 					JoueurEntite joueurEntite = new JoueurEntite();
-					joueurEntite.setLogin(resultat.getString("login"));
-					joueurEntite.setNumeroPresentation(resultat.getInt("numeroPresentation"));
+					joueurEntite.setLogin(resultat2.getString("login"));
+					joueurEntite.setNumeroPresentation(resultat2.getInt("numeroPresentation"));
 					joeursEntite.add(joueurEntite);
 				}
 				jeuEntite.setJoueurs(joeursEntite);
-				jeuxEntite.add(jeuEntite);
+				if(jeuEntite.getJoueurs().getJoueurs().size() >0){
+					jeuxEntite.add(jeuEntite);					
+				}
 			}
 			
 			supprimerScorePartiesAnnuler();

@@ -31,11 +31,12 @@
 						if (requete.status == 200) {
 							// exploitation des données de la réponse
 							var message = requete.responseText;
-							var redirection
-							if(message.equals("")){
+							var redirection;
+							console.log(message);
+							if(message === ""){
 								redirection = "navigation?nav=jeu";
 							}else{
-								redirection ="navigation?nav=accueil&messagErreure=message";
+								redirection ="navigation?nav=accueil";
 							}
 							window.location = redirection;
 						}
@@ -48,10 +49,10 @@
 		</script>
 	</head>
 	<body onload="demandeRedirection();" background="img/fond.jpg" >
-<%-- 		<jsp:useBean id="jeu" scope="session" class="model.Jeu" />
+ 		<jsp:useBean id="jeu" scope="session" class="model.Jeu" />
 		<jsp:useBean id="partie" scope="session" class="model.Partie" />
-		Vous avez rejoint la <jsp:getProperty name="jeu" property="partie.nom"/>
+		Vous avez rejoint la ${jeu.getPartie().getNom()}</>
 		<br />
-		Elle va bientôt commncer ! --%>
+		Elle va commencer dans moins de 2 minutes !
 	</body>
 </html>
