@@ -23,7 +23,7 @@
 			<caption>
 				<fmt:message key="rejoindre.partie.liste" />
 			</caption>
-			<jsp:useBean id="listeParties" scope="session" class="model.Parties"/>
+			<jsp:useBean id="listeParties" scope="request" class="model.Parties"/>
 			<thead>
 				<tr>
 					<th rowspan="1" colspan="1"><fmt:message

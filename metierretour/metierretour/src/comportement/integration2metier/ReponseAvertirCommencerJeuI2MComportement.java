@@ -25,7 +25,7 @@ public class ReponseAvertirCommencerJeuI2MComportement implements Commande{
 			
 			PartieMetierRetour partie = new PartieMetierRetour();
 			partie.setNomPartie(unJeu.getPartie().getNomPartie());
-			
+			partie.setNbJoueurPartie(unJeu.getPartie().getNbJoueurPartie());
 			for(JoueurI2M unJoueur : unJeu.getJoueurs().getListeJoueurs()){
 				JoueurMetierRetour joueur = new JoueurMetierRetour();
 				joueur.setLoginJoueur(unJoueur.getLoginJoueur());

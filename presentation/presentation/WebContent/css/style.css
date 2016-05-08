@@ -227,3 +227,8 @@ nav{
 	color: red;
 	font-weight : bold;	
 }
+
+.attenteMessage{
+	text-align: center;
+	font-weight : bold;
+}

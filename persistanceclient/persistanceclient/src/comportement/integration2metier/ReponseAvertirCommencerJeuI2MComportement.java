@@ -22,7 +22,7 @@ public class ReponseAvertirCommencerJeuI2MComportement{
 	public void envoiMessage() {
 		ObjectFactory objFactory = new ObjectFactory();
 		ListeJeuxI2M jeux = objFactory.createListeJeuxI2M();
-		
+		System.out.println("listeJeuxDTO response : "+listeJeuxDTO.size());
 		for(Object unJeu : listeJeuxDTO){
 			JeuI2M jeuI2M = objFactory.createJeuI2M();
 			
@@ -30,7 +30,8 @@ public class ReponseAvertirCommencerJeuI2MComportement{
 			try {
 				Object partieDTO = unJeu.getClass().getMethod("getPartie").invoke(unJeu);
 				partie.setNomPartie(partieDTO.getClass().getMethod("getNomPartie").invoke(partieDTO).toString());
-				
+				partie.setNbJoueurPartie((Integer) partieDTO.getClass().getMethod("getNbredejoueur").invoke(partieDTO));
+
 				Object listeJoueurs  = unJeu.getClass().getMethod("getJoueurs").invoke(unJeu);
 
 				ArrayList<Object> listeJoueursDTO = (ArrayList<Object>) (listeJoueurs.getClass().getMethod("getJoueurs").invoke(listeJoueurs));

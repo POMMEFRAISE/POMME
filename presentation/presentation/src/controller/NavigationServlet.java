@@ -31,38 +31,43 @@ public class NavigationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ActionPresentation actionPresentation ;
 	private String message;
-	
+	private MessageErreur messageErreur;
+	private Jeu jeu;
+
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {     
 		actionPresentation = new ActionPresentation();
 		HttpSession session = request.getSession();
 		Joueur joueur = (Joueur) session.getAttribute("joueur");
 		int numero = 0;
-		MessageErreur messageErreur = new MessageErreur();
 		String message = "";
-		Jeu jeu = new Jeu();
 		String url = request.getParameter("nav");
 		if(url == null){
 			url = "";
 		}
 		
-		Integer numeroPresentation = (Integer) session.getAttribute("numeroPresentation");
-		if(numeroPresentation == null){
+		if(session.getAttribute("numeroPresentation") != null){
+			numero = (Integer) session.getAttribute("numeroPresentation");
+			System.out.println("Numérp Présentation :"+numero);
+		}else{
+			remiseVideVariable();
 			DemanderNumeroPresentationP2MComportement demanderNumeroPresentation = new DemanderNumeroPresentationP2MComportement();
 			demanderNumeroPresentation.envoiMessage();
 			appelLecteur(numero);
 			numero = (Integer) actionPresentation.getObjetARetourner();
-		    session.setAttribute("numeroPresentation", numero);
-		}else{
-			numero = numeroPresentation;			
+			actionPresentation.setObjetARetourner(null);
+			session.setAttribute("numeroPresentation", numero);
 		}
 		
 		if(joueur == null && !url.equals("formconnexion")){
+			remiseVideVariable();
+			
 			DemanderAuthentificationP2MComportement demanderAuthentification = new DemanderAuthentificationP2MComportement(numero);
 			demanderAuthentification.envoiMessage();
 			appelLecteur(numero);
 
 			messageErreur = (MessageErreur) actionPresentation.getObjetARetourner();
+			actionPresentation.setObjetARetourner(null);
 
 			if(messageErreur.isStatut() == true){
 				this.getServletContext().getRequestDispatcher("/connexion.jsp").forward(request, response);
@@ -77,21 +82,27 @@ public class NavigationServlet extends HttpServlet {
 				this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
 				break;
 			case "rejoindrepartie" :
+				remiseVideVariable();
+				
 				DemanderRejoindrePartieP2MComportement demanderRejoindrePartie = new DemanderRejoindrePartieP2MComportement(numero);
 				demanderRejoindrePartie.envoiMessage();
 				
 				appelLecteur(numero);
 
 				messageErreur = (MessageErreur) actionPresentation.getObjetARetourner();
+				actionPresentation.setObjetARetourner(null);
 
 				if(messageErreur.isStatut() == true){
+					remiseVideVariable();
+
 					ObtenirListePartiesP2MComportement obtenirListeParties = new ObtenirListePartiesP2MComportement(numero);
 					obtenirListeParties.envoiMessage();
 					
 					appelLecteur(numero);
-					
+					System.out.println("actionPresentation : "+actionPresentation.getObjetARetourner().getClass());
 					Parties listeParties = (Parties) actionPresentation.getObjetARetourner();
-					session.setAttribute("listeParties", listeParties);
+					actionPresentation.setObjetARetourner(null);
+					request.setAttribute("listeParties", listeParties);
 					this.getServletContext().getRequestDispatcher("/rejoindrepartie.jsp").forward(request, response);
 				}else{
 					this.getServletContext().getRequestDispatcher("/erreur.jsp").forward(request, response);
@@ -99,11 +110,14 @@ public class NavigationServlet extends HttpServlet {
 				
 				break;
 			case "creerpartie" :
+				remiseVideVariable();
+				
 				DemanderCreerPartieP2MComportement demanderCreerPartie = new DemanderCreerPartieP2MComportement(numero);
 				demanderCreerPartie.envoiMessage();
 				appelLecteur(numero);
 
 				messageErreur = (MessageErreur) actionPresentation.getObjetARetourner();
+				actionPresentation.setObjetARetourner(null);
 				if(messageErreur.isStatut() == true){
 					this.getServletContext().getRequestDispatcher("/creerpartie.jsp").forward(request, response);
 				}else{
@@ -124,14 +138,19 @@ public class NavigationServlet extends HttpServlet {
 				this.getServletContext().getRequestDispatcher("/consulterscore.jsp").forward(request, response);
 				break;
 			case "accueil" :
-				jeu = (Jeu) session.getAttribute("jeu");
-				messageErreur.setMessage(jeu.getMessage());					
-				jeu.setMessage(null);
+				if(session.getAttribute("jeu")!= null){
+					jeu = (Jeu) session.getAttribute("jeu");
+					messageErreur = new MessageErreur();
+					messageErreur.setMessage(jeu.getMessage());					
+					jeu.setMessage(null);
+				}
 				session.setAttribute("jeu", jeu);
 				request.setAttribute("messageErreur", messageErreur);
 				this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
 				break;
 			case "formrejoindrepartie" :
+				remiseVideVariable();
+				
 				String partieARejoindre = request.getParameter("partieARejoindre");
 				Partie unePartieARejoindre = new Partie(partieARejoindre);
 				RejoindrePartieP2MComportement rejoindrePartie = new RejoindrePartieP2MComportement(joueur, unePartieARejoindre, numero);
@@ -140,6 +159,7 @@ public class NavigationServlet extends HttpServlet {
 				appelLecteur(numero);
 
 				jeu = (Jeu) actionPresentation.getObjetARetourner();
+				actionPresentation.setObjetARetourner(null);
 				if(jeu.isStatut() == true){
 					session.setAttribute("jeu", jeu);
 					this.getServletContext().getRequestDispatcher("/attentecommencerpartie.jsp").forward(request, response);
@@ -158,6 +178,8 @@ public class NavigationServlet extends HttpServlet {
 				appelLecteur(numero);
 	
 				Partie partie = (Partie) actionPresentation.getObjetARetourner();
+				actionPresentation.setObjetARetourner(null);
+
 				if(partie.isStatut() == true){
 					response.sendRedirect("navigation?nav=rejoindrepartie");
 				}else{
@@ -199,7 +221,8 @@ public class NavigationServlet extends HttpServlet {
 					appelLecteur(numero);
 	
 					joueur = (Joueur) actionPresentation.getObjetARetourner();
-	
+					actionPresentation.setObjetARetourner(null);
+
 					if(joueur.isStatut() == true){
 					    session.setAttribute("joueur", joueur);
 						this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
@@ -210,9 +233,13 @@ public class NavigationServlet extends HttpServlet {
 				}
 				break;
 			case "redirectionJeu":
+				remiseVideVariable();
+				
 				appelLecteur(numero);
 				
 				jeu = (Jeu) actionPresentation.getObjetARetourner();
+				actionPresentation.setObjetARetourner(null);
+
 				session.setAttribute("jeu", jeu);
 				if(jeu.getMessage() != null){
 					message = jeu.getMessage();
@@ -247,5 +274,10 @@ public class NavigationServlet extends HttpServlet {
 		thread.interrupt();
 		actionPresentation.setMessage(message);
 		actionPresentation.convertirMessageObjet();
+	}
+	
+	public void remiseVideVariable(){
+		messageErreur = null;
+		jeu = null;
 	}
 }

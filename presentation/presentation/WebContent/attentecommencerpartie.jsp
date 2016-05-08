@@ -50,9 +50,13 @@
 	</head>
 	<body onload="demandeRedirection();" background="img/fond.jpg" >
  		<jsp:useBean id="jeu" scope="session" class="model.Jeu" />
-		<jsp:useBean id="partie" scope="session" class="model.Partie" />
-		Vous avez rejoint la ${jeu.getPartie().getNom()}</>
-		<br />
-		Elle va commencer dans moins de 2 minutes !
+ 		<div class="attenteMessage">
+ 		 	<fmt:message key="attente.message1" /> ${jeu.getPartie().getNom()}
+ 		 	<br />
+ 			<fmt:message key="attente.message2"/>
+ 			<br />
+ 			<img src="img/loading.gif"/>
+ 		</div>
+		
 	</body>
 </html>

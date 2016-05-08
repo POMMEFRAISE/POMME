@@ -70,9 +70,12 @@ public class ServicePartieImpl extends UnicastRemoteObject implements ServicePar
 			
 			PartieDTO partieDTO = new PartieDTO();
 			((PartieDTO) partieDTO).setNomPartie(jeuEntite.getPartie().getNomPartie());
+			((PartieDTO) partieDTO).setNbredejoueur(jeuEntite.getPartie().getNbredejoueur());
 			jeuDTO.setPartie(partieDTO);
 			jeuxDTO.add(jeuDTO);
 		}
+
+		System.out.println("jeuxDTO : "+jeuxDTO.getJeux().size());
 
 		return jeuxDTO;
 	}
@@ -84,7 +87,6 @@ public class ServicePartieImpl extends UnicastRemoteObject implements ServicePar
 		for(PartieEntite partieEntite : partiesEntite.getParties()){
 			PartieDTO partieDTO = new PartieDTO();
 			((PartieDTO) partieDTO).setNomPartie(partieEntite.getNomPartie());
-			((PartieDTO) partieDTO).setNbredejoueur(partieEntite.getNbredejoueur());	
 			partiesDTO.add(partieDTO);
 		}
 

@@ -19,7 +19,7 @@ public class ReponseAvertirCommencerJeuM2PComportement implements Commande{
 	public Jeu reçoiMessage() {
 		Partie partie = new Partie();
 		partie.setNom(reponseAvertirCommencerJeuM2P.getJeu().getPartie().getNomPartie());
-		
+		partie.setNbJoueurs(reponseAvertirCommencerJeuM2P.getJeu().getPartie().getNbJoueurPartie());
 		Joueurs listeJoueurs = new Joueurs();
 		
 		for(JoueurM2P unJoueur : reponseAvertirCommencerJeuM2P.getJeu().getListeJoueurs().getListeJoueurs()){
@@ -36,8 +36,7 @@ public class ReponseAvertirCommencerJeuM2PComportement implements Commande{
 	
 	public Jeu verifierInformations(){
 		String messageErreur = "";
-		System.out.println("LISTE JOUEURS : "+jeu.getJoueurs().getJoueurs().size());
-		if(jeu.getJoueurs().getJoueurs().size() < 3){
+		if(jeu.getJoueurs().getJoueurs().size() < jeu.getPartie().getNbJoueurs()){
 			messageErreur = "Désolé mais la partie n'a pas requis le nombre jouer minimum nécessaire pour commencer !";
 			messageErreur = messageErreur +"\n Vous pouvez choisir une autre partie ou en créer une nouvelle !";
 			jeu.setMessage(messageErreur);

@@ -29,18 +29,13 @@ public class AvertirCommencerJeuM2IComportement implements Runnable{
 			objectParties = objectServicePartie.getClass().getDeclaredMethod("recupererListePartiesPourChangerEtat").invoke(objectServicePartie);
 			lesParties = (ArrayList<Object>) objectParties.getClass().getDeclaredMethod("getParties").invoke(objectParties);
 			
-			if(lesParties.size() > 0){
-				boolean mettreStatut = (boolean) objectServicePartie.getClass().getDeclaredMethod("changerEtatListePartie", Object.class).invoke(objectServicePartie, objectParties);
-				
-				if(mettreStatut == true){
-					objectJeux = objectServicePartie.getClass().getDeclaredMethod("recupererListePartiesPourJeu").invoke(objectServicePartie);
-					lesJeux = (ArrayList<Object>) objectJeux.getClass().getDeclaredMethod("getJeux").invoke(objectJeux);
-			
-					ReponseAvertirCommencerJeuI2MComportement avertirCommencerJeuI2MComportement = new ReponseAvertirCommencerJeuI2MComportement(lesJeux);
-					avertirCommencerJeuI2MComportement.envoiMessage();
-				}
-				
+			objectServicePartie.getClass().getDeclaredMethod("changerEtatListePartie", Object.class).invoke(objectServicePartie, objectParties);
 
+			objectJeux = objectServicePartie.getClass().getDeclaredMethod("recupererListePartiesPourJeu").invoke(objectServicePartie);
+			lesJeux = (ArrayList<Object>) objectJeux.getClass().getDeclaredMethod("getJeux").invoke(objectJeux);
+			if(lesJeux.size() >0){
+				ReponseAvertirCommencerJeuI2MComportement avertirCommencerJeuI2MComportement = new ReponseAvertirCommencerJeuI2MComportement(lesJeux);
+				avertirCommencerJeuI2MComportement.envoiMessage();
 			}
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
 				| NoSuchMethodException | SecurityException e) {
