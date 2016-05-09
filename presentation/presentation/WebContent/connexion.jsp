@@ -19,10 +19,6 @@ if($sLangueNavigateur==en){
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<div align="right">
-<img src="img/fr.png" onclick="fr">
-<img src="img/us.png" onclick="en">
-</div>
 <title><fmt:message key="connexion.authentification" /></title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
