@@ -29,19 +29,14 @@ public class ReponseAvertirCommencerJeuM2PComportement implements Commande{
 			Joueur joueurGauche = new Joueur();
 			joueurGauche.setLogin(unJoueur.getJoueurGauche().getLoginJoueur());
 			joueur.setJoueurGauche(joueurGauche);
-			System.out.println("Joueur Gauche : "+unJoueur.getJoueurGauche().getLoginJoueur());
-			System.out.println("Joueur Gauche : "+joueur.getJoueurGauche().getLogin());
 
 			Joueur joueurDroite = new Joueur();
 			joueurDroite.setLogin(unJoueur.getJoueurDroite().getLoginJoueur());
 			joueur.setJoueurDroite(joueurDroite);
 			joueur.setResultatPremierLancer(unJoueur.getResultatPremierLancer());
-			System.out.println("Joueur Droite : "+joueur.getJoueurDroite().getLogin());
-			System.out.println("Joueur Droite : "+unJoueur.getJoueurDroite().getLoginJoueur());
-
 			joueur.setPositionJeu(unJoueur.getPositionJeu());
-			joueur.setDoitJoueur(unJoueur.isDoitJoueur());
-			
+			joueur.setDoitJouer(unJoueur.isDoitJoueur());
+			joueur.setNumeroPresentation(unJoueur.getNumeroPresentation());
 			listeJoueurs.add(joueur);
 		}
 		

@@ -8,6 +8,7 @@ import daointerface.DaoPartieInterface;
 import dto.JeuDTO;
 import dto.JeuxDTO;
 import dto.JoueurDTO;
+import dto.JoueursDTO;
 import dto.PartieDTO;
 import dto.PartiesDTO;
 import entites.JeuEntite;
@@ -61,18 +62,21 @@ public class ServicePartieImpl extends UnicastRemoteObject implements ServicePar
 		JeuxDTO jeuxDTO = new JeuxDTO();
 		for(JeuEntite jeuEntite : jeuxEntite.getJeux()){
 			JeuDTO jeuDTO = new JeuDTO();
+			JoueursDTO joueursDTO = new JoueursDTO();
 			for(JoueurEntite joueurEntite : jeuEntite.getJoueurs().getJoueurs()){
 				JoueurDTO joueurDTO = new JoueurDTO();
 				((JoueurDTO) joueurDTO).setLogin(joueurEntite.getLogin());
 				((JoueurDTO) joueurDTO).setNumeroPresentation(joueurEntite.getNumeroPresentation());
 				((JoueurDTO) joueurDTO).setPositionJeu(joueurEntite.getPositionJeu());
-				jeuDTO.getJoueurs().getJoueurs().add(joueurDTO);
+				joueursDTO.add(joueurDTO);
 			}
 			
 			PartieDTO partieDTO = new PartieDTO();
 			((PartieDTO) partieDTO).setNomPartie(jeuEntite.getPartie().getNomPartie());
 			((PartieDTO) partieDTO).setNbredejoueur(jeuEntite.getPartie().getNbredejoueur());
 			jeuDTO.setPartie(partieDTO);
+			jeuDTO.setJoueurs(joueursDTO);
+
 			jeuxDTO.add(jeuDTO);
 		}
 

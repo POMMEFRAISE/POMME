@@ -2,9 +2,17 @@
 <schema targetNamespace="http://pds.m1.upec.fr/xml/metier2integration" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://pds.m1.upec.fr/xml/metier2integration">
 
     <complexType name="JoueurM2I">
+    	<sequence>
+    		<element name="joueurGauche" type="tns:JoueurM2I"></element>
+    		<element name="joueurDroite" type="tns:JoueurM2I"></element>
+    	</sequence>
     	<attribute name="nomJoueur" type="string"></attribute>
     	<attribute name="prenomJoueur" type="string"></attribute>
     	<attribute name="loginJoueur" type="string"></attribute>
+    	<attribute name="positionJeu" type="int"></attribute>
+    	<attribute name="resultatPremierLancer" type="int"></attribute>
+    	<attribute name="doitJoueur" type="boolean"></attribute>
+    	<attribute name="numeroPresentation" type="int"></attribute>
     </complexType>
 
     <complexType name="PartieM2I">
@@ -21,9 +29,7 @@
 
 
     <complexType name="DeM2I">
-    	<attribute name="identifiantDe" type="int"></attribute>
     	<attribute name="resultatDe" type="int"></attribute>
-    	<attribute name="positionDe" type="string"></attribute>
     </complexType>
 
 
@@ -124,6 +130,37 @@
     			<extension base="tns:RequeteHeadM2I">
     				<sequence>
     					<element name="rejoindreUnePartie" type="tns:RejoindreUnePartieM2I"></element>
+    				</sequence>
+    			</extension>
+    		</complexContent>
+    	</complexType></element>
+
+    <complexType name="ListeDesM2I">
+    	<sequence>
+    		<element name="listeDes" type="tns:DeM2I" minOccurs="0" maxOccurs="5"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="ListeJoueursM2I">
+    	<sequence>
+    		<element name="listeJoueurs" type="tns:JoueurM2I" maxOccurs="7" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="JeuM2I">
+    	<sequence>
+    		<element name="listeJoueurs" type="tns:ListeJoueursM2I"></element>
+    		<element name="partie" type="tns:PartieM2I"></element>
+    		<element name="listeDes" type="tns:ListeDesM2I"></element>
+    	</sequence>
+    </complexType>
+
+    <element name="demanderPremierLancerJeuM2I">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:RequeteHeadM2I">
+    				<sequence>
+    					<element name="jeu" type="tns:JeuM2I"></element>
     				</sequence>
     			</extension>
     		</complexContent>

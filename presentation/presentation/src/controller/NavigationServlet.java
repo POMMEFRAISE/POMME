@@ -13,6 +13,7 @@ import comportement.presentation2metier.CreerPartieP2MComportement;
 import comportement.presentation2metier.DemanderAuthentificationP2MComportement;
 import comportement.presentation2metier.DemanderCreerPartieP2MComportement;
 import comportement.presentation2metier.DemanderNumeroPresentationP2MComportement;
+import comportement.presentation2metier.DemanderPremierLancerJeuP2MComportement;
 import comportement.presentation2metier.DemanderRejoindrePartieP2MComportement;
 import comportement.presentation2metier.ObtenirListePartiesP2MComportement;
 import comportement.presentation2metier.RejoindrePartieP2MComportement;
@@ -165,6 +166,14 @@ public class NavigationServlet extends HttpServlet {
 					this.getServletContext().getRequestDispatcher("/attentecommencerpartie.jsp").forward(request, response);
 				}else{
 					request.setAttribute("jeu", jeu);
+					remiseVideVariable();
+					ObtenirListePartiesP2MComportement obtenirListeParties = new ObtenirListePartiesP2MComportement(numero);
+					obtenirListeParties.envoiMessage();
+					
+					appelLecteur(numero);
+					Parties listeParties = (Parties) actionPresentation.getObjetARetourner();
+					actionPresentation.setObjetARetourner(null);
+					request.setAttribute("listeParties", listeParties);
 					this.getServletContext().getRequestDispatcher("/rejoindrepartie.jsp").forward(request, response);
 				}
 				break;
@@ -247,6 +256,17 @@ public class NavigationServlet extends HttpServlet {
 				response.setContentType("text");
 				response.setHeader("Cache-Control", "no-cache");
 				response.getWriter().write(message);
+				break;
+			case "formjeupremierlancer" :
+				remiseVideVariable();
+				DemanderPremierLancerJeuP2MComportement demanderPremierLancerJeu = new DemanderPremierLancerJeuP2MComportement(numero, (Jeu) session.getAttribute("jeu"));
+				demanderPremierLancerJeu.envoiMessage();
+				
+				this.getServletContext().getRequestDispatcher("/attentecommencerpartie.jsp").forward(request, response);
+				break;
+			case "formjeujoueur":
+				
+				break;
 			}
         } 
 	}

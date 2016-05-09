@@ -351,6 +351,7 @@ public class DaoPartieImpl implements DaoPartieInterface {
 					joueurEntite.setPositionJeu(resultat2.getInt("positionJeu"));
 					joeursEntite.add(joueurEntite);
 				}
+				ConnexionDAO.getInstance().close();				
 
 				jeuEntite2.setPartie(unJeu.getPartie());
 				jeuEntite2.setJoueurs(joeursEntite);
@@ -358,7 +359,6 @@ public class DaoPartieImpl implements DaoPartieInterface {
 					jeuxEntite2.getJeux().add(jeuEntite2);		
 				}
 			}
-			ConnexionDAO.getInstance().close();				
 
 			mettreStatutEnCourJeu();
 			supprimerScorePartiesAnnuler();

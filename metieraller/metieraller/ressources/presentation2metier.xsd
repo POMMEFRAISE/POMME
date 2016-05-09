@@ -3,9 +3,17 @@
 	xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://pds.m1.upec.fr/xml/presentation2metier">
 
 	<complexType name="JoueurP2M">
+		<sequence>
+			<element name="joueurGauche" type="tns:JoueurP2M"></element>
+			<element name="joueurDroite" type="tns:JoueurP2M"></element>
+		</sequence>
 		<attribute name="nomJoueur" type="string"></attribute>
 		<attribute name="prenomJoueur" type="string"></attribute>
 		<attribute name="loginJoueur" type="string"></attribute>
+		<attribute name="positionJeu" type="int"></attribute>
+		<attribute name="resultatPremierLancer" type="int"></attribute>
+		<attribute name="doitJoueur" type="boolean"></attribute>
+		<attribute name="numeroPresentation" type="int"></attribute>
 	</complexType>
 
 	<complexType name="PartieP2M">
@@ -24,9 +32,7 @@
 
 
 	<complexType name="DeP2M">
-		<attribute name="identifiantDe" type="int"></attribute>
 		<attribute name="resultatDe" type="int"></attribute>
-		<attribute name="positionDe" type="string"></attribute>
 	</complexType>
 
 
@@ -130,4 +136,35 @@
     		<element name="partie" type="tns:PartieP2M"></element>
     	</sequence>
     </complexType>
+
+    <complexType name="JeuP2M">
+    	<sequence>
+    		<element name="listeJoueurs" type="tns:ListeJoueursP2M"></element>
+    		<element name="partie" type="tns:PartieP2M"></element>
+    		<element name="listeDes" type="tns:ListeDesP2M"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="ListeDesP2M">
+    	<sequence>
+    		<element name="listeDes" type="tns:DeP2M" minOccurs="0" maxOccurs="5"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="ListeJoueursP2M">
+    	<sequence>
+    		<element name="listeJoueurs" type="tns:JoueurP2M" maxOccurs="7" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+
+    <element name="demanderPremierLancerJeuP2M">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:RequeteHeadP2M">
+    				<sequence>
+    					<element name="jeu" type="tns:JeuP2M"></element>
+    				</sequence>
+    			</extension>
+    		</complexContent>
+    	</complexType></element>
 </schema>

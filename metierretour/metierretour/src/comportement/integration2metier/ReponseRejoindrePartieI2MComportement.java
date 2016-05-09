@@ -1,12 +1,8 @@
 package comportement.integration2metier;
 
-import java.util.ArrayList;
-
 import comportement.Commande;
 import comportement.metier2presentation.ReponseRejoindrePartieM2PComportement;
-import model.JoueurMetierRetour;
 import model.PartieMetierRetour;
-import xml.integration2metier.JoueurI2M;
 import xml.integration2metier.PartieI2M;
 import xml.integration2metier.ReponseRejoindrePartieI2M;
 

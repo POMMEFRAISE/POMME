@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.05.07 à 12:53:35 AM CEST 
+// Généré le : 2016.05.09 à 12:01:15 AM CEST 
 //
 
 
@@ -66,6 +66,22 @@ public class ObjectFactory {
      */
     public AuthentificationP2M createAuthentificationP2M() {
         return new AuthentificationP2M();
+    }
+
+    /**
+     * Create an instance of {@link DemanderPremierLancerJeuP2M }
+     * 
+     */
+    public DemanderPremierLancerJeuP2M createDemanderPremierLancerJeuP2M() {
+        return new DemanderPremierLancerJeuP2M();
+    }
+
+    /**
+     * Create an instance of {@link JeuP2M }
+     * 
+     */
+    public JeuP2M createJeuP2M() {
+        return new JeuP2M();
     }
 
     /**
@@ -133,11 +149,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ListeJoueursP2M }
+     * 
+     */
+    public ListeJoueursP2M createListeJoueursP2M() {
+        return new ListeJoueursP2M();
+    }
+
+    /**
      * Create an instance of {@link JoueurP2M }
      * 
      */
     public JoueurP2M createJoueurP2M() {
         return new JoueurP2M();
+    }
+
+    /**
+     * Create an instance of {@link ListeDesP2M }
+     * 
+     */
+    public ListeDesP2M createListeDesP2M() {
+        return new ListeDesP2M();
     }
 
     /**

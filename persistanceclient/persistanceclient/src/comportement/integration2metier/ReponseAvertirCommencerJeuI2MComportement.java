@@ -22,7 +22,6 @@ public class ReponseAvertirCommencerJeuI2MComportement{
 	public void envoiMessage() {
 		ObjectFactory objFactory = new ObjectFactory();
 		ListeJeuxI2M jeux = objFactory.createListeJeuxI2M();
-		System.out.println("listeJeuxDTO response : "+listeJeuxDTO.size());
 		for(Object unJeu : listeJeuxDTO){
 			JeuI2M jeuI2M = objFactory.createJeuI2M();
 			

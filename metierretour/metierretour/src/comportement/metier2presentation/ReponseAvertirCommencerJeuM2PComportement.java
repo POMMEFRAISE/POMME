@@ -34,7 +34,7 @@ public class ReponseAvertirCommencerJeuM2PComportement{
 					JoueurM2P joueur = objFactory.createJoueurM2P();
 					joueur.setLoginJoueur(unJoueur2.getLoginJoueur());
 					joueur.setPositionJeu(unJoueur2.getPositionJeu());
-
+					joueur.setNumeroPresentation(unJoueur2.getNumeroPresentation());
 					joueur.setResultatPremierLancer(0);
 					
 					JoueurM2P joueurGauche = objFactory.createJoueurM2P();

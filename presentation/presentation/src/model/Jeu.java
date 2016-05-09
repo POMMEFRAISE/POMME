@@ -7,6 +7,7 @@ public class Jeu extends MessageErreur implements Serializable{
 	private static final long serialVersionUID = 1514138537369034322L;
 	private Joueurs joueurs;
 	private Partie partie;
+	private Des des;
 	
 	public Jeu(){
 		joueurs = new Joueurs();
@@ -26,5 +27,13 @@ public class Jeu extends MessageErreur implements Serializable{
 
 	public void setJoueurs(Joueurs joueurs) {
 		this.joueurs = joueurs;
+	}
+
+	public Des getDes() {
+		return des;
+	}
+
+	public void setDes(Des des) {
+		this.des = des;
 	}
 }

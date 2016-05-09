@@ -21,6 +21,7 @@
     		default="0">
     	</attribute>
     	<attribute name="doitJoueur" type="boolean"></attribute>
+    	<attribute name="numeroPresentation" type="int"></attribute>
     </complexType>
 
     <complexType name="AuthentificationM2P">
@@ -141,6 +142,7 @@
     	<sequence>
     		<element name="listeJoueurs" type="tns:ListeJoueursM2P"></element>
     		<element name="partie" type="tns:PartieM2P"></element>
+    		<element name="listeDes" type="tns:ListeDesM2P"></element>
     	</sequence>
     	<attribute name="messageErreur" type="string"></attribute>
     </complexType>
@@ -158,7 +160,29 @@
 
     <complexType name="ListeJoueursM2P">
     	<sequence>
-    		<element name="listeJoueurs" type="tns:JoueurM2P" maxOccurs="unbounded" minOccurs="0"></element>
+    		<element name="listeJoueurs" type="tns:JoueurM2P" maxOccurs="7" minOccurs="0"></element>
     	</sequence>
+    </complexType>
+
+    <element name="reponseDemanderPremierLancerJeuM2P">
+    	<complexType>
+    		<complexContent>
+    			<extension base="tns:ReponseHeadM2P">
+    				<sequence>
+    					<element name="commande" type="tns:CommandeM2P"></element>
+    					<element name="jeu" type="tns:JeuM2P"></element>
+    				</sequence>
+    			</extension>
+    		</complexContent>
+    	</complexType></element>
+
+    <complexType name="ListeDesM2P">
+    	<sequence>
+    		<element name="listeDes" type="tns:DeM2P" minOccurs="0" maxOccurs="5"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="DeM2P">
+    	<attribute name="resultatDe" type="int"></attribute>
     </complexType>
 </schema>

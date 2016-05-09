@@ -14,9 +14,42 @@
 <%@include file="include/header.jsp"%>
 <%@include file="include/menu.jsp"%>
 <%@include file="include/footer.jsp"%>
-</head>
-<body>
 
+<script type="text/javascript">
+	function demandeRedirection(){
+		var requete = null;
+				
+		var url = "navigation?nav=redirectionJeu";
+		if (window.XMLHttpRequest) {
+			requete = new XMLHttpRequest();
+		} else if (window.ActiveXObject) {
+			requete = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		requete.onreadystatechange = function(){
+			var message = "";
+			if (requete.readyState == 4) {
+				if (requete.status == 200) {
+				// exploitation des données de la réponse
+					var message = requete.responseText;
+					var redirection;
+					console.log(message);
+					if(message === ""){
+						redirection = "navigation?nav=jeu";
+					}else{
+						redirection ="navigation?nav=accueil";
+					}
+					window.location = redirection;
+				}
+			}
+		};
+		
+		requete.open("GET", url, true);
+		requete.send(null);
+	};
+</script>
+		
+</head>
+<body onload="demandeRedirection();">
 	<center>
 	<div class="content">
 		<div id="pad-wrapper" class="datatables-page">
@@ -59,16 +92,30 @@
 				</c:forEach>
 			</table>
 		</center>
-		//Afficher résultat dés
+		
+		<fmt:message key="jeu.lancer.des.resultat" />
+		<center>
+			<table>
+				<tr>
+					<c:if test="${jeu.getDes().getDes().size() != 0}">
+						<td><img src="img/${jeu.getDes().getDes().get(0).getImage()}"></td>
+						<td><img src="img/${jeu.getDes().getDes().get(1).getImage()}"></td>
+						<td><img src="img/${jeu.getDes().getDes().get(2).getImage()}"></td>
+						<td><img src="img/${jeu.getDes().getDes().get(3).getImage()}"></td>
+						<td><img src="img/${jeu.getDes().getDes().get(4).getImage()}"></td>
+					</c:if>
+				</tr>
+			</table>
+		</center>
+
 		
 		<div id="pad-wrapper" class="datatables-page">
 			<div class="row header">
 				<div class="col-md-12">
 					<div class="col-md-11 field-box actions">
-						${jeu.getPartie().getNom()}
 						<c:forEach items="${jeu.getJoueurs().getJoueurs()}" var="unJoueur">
-							<c:if test="${unJoueur.isDoitJoueur() != false}">
-								${unJoueur.getLogin()}                
+							<c:if test="${unJoueur.isDoitJouer() != false}">
+								<fmt:message key="jeu.lancer.joueur.suivant" />${unJoueur.getLogin()}                
 							</c:if>
 						</c:forEach>
 					</div>
@@ -80,12 +127,16 @@
 				<div class="col-md-12">
 					<div class="col-md-11 field-box actions">
 						<c:forEach items="${jeu.getJoueurs().getJoueurs()}" var="unJoueur">
-							<c:if test="${unJoueur.isDoitJoueur() != false && unJoueur.getLogin() eq joueur.getLogin()}">
-								<c:if test="${unJoueur.resultatPremierLancer() == 0}">
-									<input type="submit" value="<fmt:message key="jeu.lancer.des.premier" />" class="buttonsubmit" />
+							<c:if test="${unJoueur.isDoitJouer() != false && unJoueur.getLogin() eq joueur.getLogin()}">
+								<c:if test="${unJoueur.getResultatPremierLancer() == 0}">
+									<form method="post" action="navigation?nav=formjeupremierlancer">
+										<input type="submit" value="<fmt:message key="jeu.lancer.des.premier" />" class="buttonsubmit" />
+									</form>
 								</c:if>               
-								<c:if test="${unJoueur.resultatPremierLancer() != 0}}">
-									<input type="submit" value="<fmt:message key="jeu.lancer.des.jouer" />" class="buttonsubmit" />
+								<c:if test="${unJoueur.getResultatPremierLancer() != 0}}">
+									<form method="post" action="navigation?nav=formjeujoueur">
+										<input type="submit" value="<fmt:message key="jeu.lancer.des.jouer" />" class="buttonsubmit" />
+									</form>
 								</c:if>                  
 							</c:if>
 						</c:forEach>

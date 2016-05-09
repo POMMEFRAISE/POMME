@@ -5,7 +5,6 @@ import comportement.metier2presentation.ReponseAvertirCommencerJeuM2PComportemen
 import model.JeuMetierRetour;
 import model.JeuxMetierRetour;
 import model.JoueurMetierRetour;
-import model.JoueursMetierRetour;
 import model.PartieMetierRetour;
 import xml.integration2metier.JeuI2M;
 import xml.integration2metier.JoueurI2M;

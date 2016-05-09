@@ -8,31 +8,31 @@ public class JeuDTO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	protected PartieDTO partie;
-	protected JoueursDTO joueurs;
+	protected Object partie;
+	protected Object joueurs;
 	
 	public JeuDTO() {
 		joueurs = new JoueursDTO();
 	}
 
-	public JeuDTO(PartieDTO partie, JoueursDTO joueurs) {
+	public JeuDTO(Object partie, Object joueurs) {
 		this.partie = partie;
 		this.joueurs = joueurs;
 	}
 
-	public PartieDTO getPartie() {
+	public Object getPartie() {
 		return partie;
 	}
 
-	public void setPartie(PartieDTO partie) {
+	public void setPartie(Object partie) {
 		this.partie = partie;
 	}
 
-	public JoueursDTO getJoueurs() {
+	public Object getJoueurs() {
 		return joueurs;
 	}
 
-	public void setJoueurs(JoueursDTO joueurs) {
+	public void setJoueurs(Object joueurs) {
 		this.joueurs = joueurs;
 	}
 }

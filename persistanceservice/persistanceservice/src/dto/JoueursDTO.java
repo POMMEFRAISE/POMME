@@ -8,14 +8,14 @@ public class JoueursDTO implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -4490660562143503832L;
 	protected ArrayList<JoueurDTO> joueurs = new ArrayList<JoueurDTO>();
 	
 	public JoueursDTO(){
 	}
 	
-	public void add(JoueurDTO joueur){
-		joueurs.add(joueur);
+	public void add(Object joueur){
+		joueurs.add((JoueurDTO) joueur);
 	}
 
 	public ArrayList<JoueurDTO> getJoueurs (){

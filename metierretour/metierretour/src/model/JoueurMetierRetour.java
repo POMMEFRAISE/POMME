@@ -9,6 +9,11 @@ public class JoueurMetierRetour implements Serializable{
 	private String loginJoueur;
 	private int numeroPresentation;
 	private int positionJeu;
+	private int resultatPremierLancer;
+	private boolean doitJouer;
+	private JoueurMetierRetour joueurGauche;
+	private JoueurMetierRetour joueurDroite;
+	
 	public JoueurMetierRetour(String nomJoueur, String prenomJoueur, String loginJoueur){
 		this.nomJoueur = nomJoueur;
 		this.prenomJoueur = prenomJoueur;
@@ -57,5 +62,37 @@ public class JoueurMetierRetour implements Serializable{
 
 	public void setPositionJeu(int positionJeu) {
 		this.positionJeu = positionJeu;
+	}
+
+	public JoueurMetierRetour getJoueurGauche() {
+		return joueurGauche;
+	}
+
+	public void setJoueurGauche(JoueurMetierRetour joueurGauche) {
+		this.joueurGauche = joueurGauche;
+	}
+
+	public int getResultatPremierLancer() {
+		return resultatPremierLancer;
+	}
+
+	public void setResultatPremierLancer(int resultatPremierLancer) {
+		this.resultatPremierLancer = resultatPremierLancer;
+	}
+
+	public boolean isDoitJouer() {
+		return doitJouer;
+	}
+
+	public void setDoitJouer(boolean doitJouer) {
+		this.doitJouer = doitJouer;
+	}
+
+	public JoueurMetierRetour getJoueurDroite() {
+		return joueurDroite;
+	}
+
+	public void setJoueurDroite(JoueurMetierRetour joueurDroite) {
+		this.joueurDroite = joueurDroite;
 	}
 }

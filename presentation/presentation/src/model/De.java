@@ -1,11 +1,10 @@
 package model;
 
-import java.util.ArrayList;
-
 public class De {
 
-	public int valeur;
-
+	private int valeur;
+	private String image = "";
+	private int identifiant;
 	public int getValeur() {
 		return valeur;
 	}
@@ -14,26 +13,42 @@ public class De {
 		this.valeur = valeur;
 	}
 
-	public int min = 1;
-	public int max = 6;
-
-	// lancement du dé au hasard
-	public void lancer() {
-		valeur = (int) (Math.random() * (max + 1 - min)) + min;
-
+	public String getImage() {
+		return image;
 	}
 
-	// liste des dés
-	public static ArrayList<De> lesDes = new ArrayList<De>();
-	// liste des joueurs
-	public static ArrayList<Joueur> lesJoueurs = new ArrayList<Joueur>();
+	public void setImage(String image) {
+		this.image = image;
+	}
 	
-	public static int sommeDes;
-
-	public static int getSommeDes() {
-		return sommeDes;
+	public void associerImage(){
+		switch(valeur){
+		case 1 :
+			image = "de_1.png";
+			break;
+		case 2 :
+			image = "de_2.png";
+			break;
+		case 3 :
+			image = "de_3.png";
+			break;
+		case 4 :
+			image = "de_4.png";
+			break;
+		case 5 :
+			image = "de_5.png";
+			break;
+		case 6 :
+			image = "de_6.png";
+			break;
+		}
 	}
-	public static void setSommeDes(int sommeDes) {
-		De.sommeDes = sommeDes;
+
+	public int getIdentifiant() {
+		return identifiant;
+	}
+
+	public void setIdentifiant(int identifiant) {
+		this.identifiant = identifiant;
 	}
 }

@@ -15,7 +15,8 @@ public class Joueur extends MessageErreur implements Serializable{
     private Joueur joueurDroite;
     private int positionJeu;
     private int resultatPremierLancer;
-    private boolean doitJoueur;
+    private boolean doitJouer;
+    private int numeroPresentation;
     
     public Joueur(){
     	
@@ -89,12 +90,20 @@ public class Joueur extends MessageErreur implements Serializable{
 		this.resultatPremierLancer = resultatPremierLancer;
 	}
 
-	public boolean isDoitJoueur() {
-		return doitJoueur;
+	public boolean isDoitJouer() {
+		return doitJouer;
 	}
 
-	public void setDoitJoueur(boolean doitJoueur) {
-		this.doitJoueur = doitJoueur;
+	public void setDoitJouer(boolean doitJouer) {
+		this.doitJouer = doitJouer;
+	}
+
+	public int getNumeroPresentation() {
+		return numeroPresentation;
+	}
+
+	public void setNumeroPresentation(int numeroPresentation) {
+		this.numeroPresentation = numeroPresentation;
 	}
 	
 	

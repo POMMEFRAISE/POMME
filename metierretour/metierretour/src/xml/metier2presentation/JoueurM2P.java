@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.05.08 à 05:27:01 PM CEST 
+// Généré le : 2016.05.09 à 12:05:57 AM CEST 
 //
 
 
@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;attribute name="positionJeu" type="{http://www.w3.org/2001/XMLSchema}int" />
  *       &lt;attribute name="resultatPremierLancer" type="{http://www.w3.org/2001/XMLSchema}int" default="0" />
  *       &lt;attribute name="doitJoueur" type="{http://www.w3.org/2001/XMLSchema}boolean" />
+ *       &lt;attribute name="numeroPresentation" type="{http://www.w3.org/2001/XMLSchema}int" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -64,6 +65,8 @@ public class JoueurM2P {
     protected Integer resultatPremierLancer;
     @XmlAttribute(name = "doitJoueur")
     protected Boolean doitJoueur;
+    @XmlAttribute(name = "numeroPresentation")
+    protected Integer numeroPresentation;
 
     /**
      * Obtient la valeur de la propriété joueurGauche.
@@ -259,6 +262,30 @@ public class JoueurM2P {
      */
     public void setDoitJoueur(Boolean value) {
         this.doitJoueur = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété numeroPresentation.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getNumeroPresentation() {
+        return numeroPresentation;
+    }
+
+    /**
+     * Définit la valeur de la propriété numeroPresentation.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setNumeroPresentation(Integer value) {
+        this.numeroPresentation = value;
     }
 
 }

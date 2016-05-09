@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2016.05.07 à 01:00:50 AM CEST 
+// Généré le : 2016.05.09 à 12:02:12 AM CEST 
 //
 
 
@@ -117,6 +117,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DemanderPremierLancerJeuM2I }
+     * 
+     */
+    public DemanderPremierLancerJeuM2I createDemanderPremierLancerJeuM2I() {
+        return new DemanderPremierLancerJeuM2I();
+    }
+
+    /**
+     * Create an instance of {@link JeuM2I }
+     * 
+     */
+    public JeuM2I createJeuM2I() {
+        return new JeuM2I();
+    }
+
+    /**
      * Create an instance of {@link DemanderRejoindrePartieM2I }
      * 
      */
@@ -133,11 +149,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ListeJoueursM2I }
+     * 
+     */
+    public ListeJoueursM2I createListeJoueursM2I() {
+        return new ListeJoueursM2I();
+    }
+
+    /**
      * Create an instance of {@link PartieM2I }
      * 
      */
     public PartieM2I createPartieM2I() {
         return new PartieM2I();
+    }
+
+    /**
+     * Create an instance of {@link ListeDesM2I }
+     * 
+     */
+    public ListeDesM2I createListeDesM2I() {
+        return new ListeDesM2I();
     }
 
     /**

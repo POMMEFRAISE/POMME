@@ -20,8 +20,12 @@ public class JoueurDTO implements Serializable  {
 	protected String email;
 	protected String login;
 	protected String motDePasse;
-	protected int numeroPresentation;
-	protected int positionJeu;
+	protected Integer numeroPresentation;
+	protected Integer positionJeu;
+	protected Integer resultatPremierLancer;
+	protected Boolean doitJouer;
+	protected Object joueurGauche;
+	protected Object joueurDroite;
 	public JoueurDTO(int id, String nom, String prenom, String email, String login, String motDePasse) {
 		
 		this.nom = nom;
@@ -88,18 +92,40 @@ public class JoueurDTO implements Serializable  {
 		return "JoueurDTO [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", login=" + login
 				+ ", motdepasse=" + motDePasse + "]";
 	}
-	public int getNumeroPresentation() {
+	public Integer getNumeroPresentation() {
 		return numeroPresentation;
 	}
-	public void setNumeroPresentation(int numeroPresentation) {
+	public void setNumeroPresentation(Integer numeroPresentation) {
 		this.numeroPresentation = numeroPresentation;
 	}
-	public int getPositionJeu() {
+	public Integer getPositionJeu() {
 		return positionJeu;
 	}
-	public void setPositionJeu(int positionJeu) {
+	public void setPositionJeu(Integer positionJeu) {
 		this.positionJeu = positionJeu;
 	}
-	
-	
+	public Integer getResultatPremierLancer() {
+		return resultatPremierLancer;
+	}
+	public void setResultatPremierLancer(Integer resultatPremierLancer) {
+		this.resultatPremierLancer = resultatPremierLancer;
+	}
+	public Boolean isDoitJouer() {
+		return doitJouer;
+	}
+	public void setDoitJouer(Boolean doitJouer) {
+		this.doitJouer = doitJouer;
+	}
+	public Object getJoueurGauche() {
+		return joueurGauche;
+	}
+	public void setJoueurGauche(Object joueurGauche) {
+		this.joueurGauche = joueurGauche;
+	}
+	public Object getJoueurDroite() {
+		return joueurDroite;
+	}
+	public void setJoueurDroite(Object joueurDroite) {
+		this.joueurDroite = joueurDroite;
+	}	
 }
