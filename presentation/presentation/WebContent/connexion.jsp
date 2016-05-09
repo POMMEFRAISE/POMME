@@ -2,18 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<!-- ---ICI---- -->
-<?php
-$sLangueNavigateur= substr($_SERVER[‘HTTP_ACCEPT_LANGUAGE’], 0, 2);
-if($sLangueNavigateur==en){
-?><fmt:setBundle basename="internationalisation.message_en_EN" /><?php
-}else{
-?><fmt:setBundle basename="internationalisation.message_fr_FR" /><?php
-}
-?> 
-<!-- ---ICI--- -->
 
-<%@page import="model.Joueur"%>
+<fmt:setBundle basename="internationalisation.message_fr_FR" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

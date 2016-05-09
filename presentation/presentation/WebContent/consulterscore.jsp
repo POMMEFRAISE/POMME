@@ -16,7 +16,6 @@
 <%@include file="include/footer.jsp"%>
 </head>
 <body background="img/fond.jpg">
-
 	<center>
 		<table cellpadding="0" cellspacing="0" border="0" class=""
 			id="acceuil">
