@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <fmt:setLocale value="${fr_FR}" />
@@ -12,61 +12,52 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title><fmt:message key="jeu" /></title>
 <%@include file="include/header.jsp"%>
-<%@include file="include/menu.jsp"%>
 <%@include file="include/footer.jsp"%>
 
 <script type="text/javascript">
 	var requete = null;
 
-	function demandeRedirection(){
+	function demandeRedirection() {
 		var url = "navigation?nav=redirectionlancer";
 		if (window.XMLHttpRequest) {
 			requete = new XMLHttpRequest();
 		} else if (window.ActiveXObject) {
 			requete = new ActiveXObject("Microsoft.XMLHTTP");
 		}
-		requete.onreadystatechange = function(){
+		requete.onreadystatechange = function() {
 			var message = "";
 			if (requete.readyState == 4) {
 				if (requete.status == 200) {
-				// exploitation des données de la réponse
+					// exploitation des données de la réponse
 					var message = requete.responseText;
 					var redirection;
 					console.log(message);
-					if(message === ""){
+					if (message === "") {
 						redirection = "navigation?nav=jeu";
-					}else{
-						redirection ="navigation?nav=accueil";
+					} else {
+						redirection = "navigation?nav=accueil";
 					}
 					window.location = redirection;
 				}
 			}
 		};
-		
+
 		requete.open("GET", url, true);
 		requete.send(null);
 	};
-	
-	function interromptRequete(){
+
+	function interromptRequete() {
 		requete.abort();
 		alert("Requête interompu");
 	};
 </script>
-		
+
 </head>
 <body onload="demandeRedirection();">
 	<center>
-	<div class="content">
-		<div id="pad-wrapper" class="datatables-page">
-			<div class="row header">
-				<div class="col-md-12">
-					<div class="col-md-11 field-box actions">
-						<jsp:useBean id="jeu" scope="session" class="model.Jeu" />
-						${jeu.getPartie().getNom()}
-					</div>
-				</div>
-			</div>
-		</div>
+		<jsp:useBean id="jeu" scope="session" class="model.Jeu" />
+		${jeu.getPartie().getNom()}
+
 		<center>
 			<table>
 				<c:forEach items="${jeu.getJoueurs().getJoueurs()}" var="unJoueur">
@@ -97,7 +88,6 @@
 				</c:forEach>
 			</table>
 		</center>
-		
 		<fmt:message key="jeu.lancer.des.resultat" />
 		<center>
 			<table>
@@ -112,45 +102,30 @@
 				</tr>
 			</table>
 		</center>
-
-		
-		<div id="pad-wrapper" class="datatables-page">
-			<div class="row header">
-				<div class="col-md-12">
-					<div class="col-md-11 field-box actions">
-						<c:forEach items="${jeu.getJoueurs().getJoueurs()}" var="unJoueur">
-							<c:if test="${unJoueur.isDoitJouer() != false}">
-								<fmt:message key="jeu.lancer.joueur.suivant" />${unJoueur.getLogin()}                
+		<c:forEach items="${jeu.getJoueurs().getJoueurs()}" var="unJoueur">
+			<c:if test="${unJoueur.isDoitJouer() != false}">
+				<fmt:message key="jeu.lancer.joueur.suivant" />${unJoueur.getLogin()}                
 							</c:if>
-						</c:forEach>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="pad-wrapper" class="datatables-page">
-			<div class="row header">
-				<div class="col-md-12">
-					<div class="col-md-11 field-box actions">
-						<c:forEach items="${jeu.getJoueurs().getJoueurs()}" var="unJoueur">
-							<c:if test="${unJoueur.isDoitJouer() != false && unJoueur.getLogin() eq joueur.getLogin()}">
-								<c:if test="${unJoueur.getResultatPremierLancer() == 0}">
-									<form method="post" action="navigation?nav=formjeupremierlancer">
-										<input type="submit" onclick="interromptRequete();" value="<fmt:message key="jeu.lancer.des.premier" />" class="buttonsubmit" />
-									</form>
-								</c:if>               
-								<c:if test="${unJoueur.getResultatPremierLancer() != 0}}">
-									<form method="post" action="navigation?nav=formjeujoueur">
-										<input type="submit" onclick="interromptRequete();" value="<fmt:message key="jeu.lancer.des.jouer" />" class="buttonsubmit" />
-									</form>
-								</c:if>                  
-							</c:if>
-						</c:forEach>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end main container -->
-</center>
+		</c:forEach>
+		<c:forEach items="${jeu.getJoueurs().getJoueurs()}" var="unJoueur">
+			<c:if
+				test="${unJoueur.isDoitJouer() != false && unJoueur.getLogin() eq joueur.getLogin()}">
+				<c:if test="${unJoueur.getResultatPremierLancer() == 0}">
+					<form method="post" action="navigation?nav=formjeupremierlancer">
+						<input type="submit" onclick="interromptRequete();"
+							value="<fmt:message key="jeu.lancer.des.premier" />"
+							class="buttonsubmit" />
+					</form>
+				</c:if>
+				<c:if test="${unJoueur.getResultatPremierLancer() != 0}}">
+					<form method="post" action="navigation?nav=formjeujoueur">
+						<input type="submit" onclick="interromptRequete();"
+							value="<fmt:message key="jeu.lancer.des.jouer" />"
+							class="buttonsubmit" />
+					</form>
+				</c:if>
+			</c:if>
+		</c:forEach>
+	</center>
 </body>
 </html>

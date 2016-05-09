@@ -34,20 +34,10 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>10</td>
-					<td>5</td>
-					<td>5</td>
+					<td></td>
+					<td></td>
+					<td></td>
 				</tr>
-				<tr>
-					<td>20</td>
-					<td>15</td>
-					<td>5</td>
-				</tr>
-				<tr>
-					<td>30</td>
-					<td>10</td>
-					<td>20</td>
-					</tr>
 			</tbody>
 		</table>
 	</center>
