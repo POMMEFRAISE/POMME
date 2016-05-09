@@ -30,6 +30,24 @@ public class ReponseAvertirCommencerJeuM2PComportement{
 				jeu.setPartie(partie);
 				
 				ListeJoueursM2P listeJoueurs = objFactory.createListeJoueursM2P();
+				
+				int minJoueurGauche = 0;
+				for(JoueurMetierRetour joueurGaucheMin : unJeu.getJoueurs().getJoueurs()){
+					if(minJoueurGauche == 0){
+						minJoueurGauche = joueurGaucheMin.getPositionJeu();
+					}else if(joueurGaucheMin.getPositionJeu() < minJoueurGauche){
+						minJoueurGauche = joueurGaucheMin.getPositionJeu();
+					}
+				}
+				
+				int maxJoueurDroite = 0;
+				for(JoueurMetierRetour joueurDroiteMax : unJeu.getJoueurs().getJoueurs()){
+					if(maxJoueurDroite == 0){
+						maxJoueurDroite = joueurDroiteMax.getPositionJeu();
+					}else if(joueurDroiteMax.getPositionJeu() > maxJoueurDroite){
+						maxJoueurDroite = joueurDroiteMax.getPositionJeu();
+					}
+				}				
 				for(JoueurMetierRetour unJoueur2 : unJeu.getJoueurs().getJoueurs()){
 					JoueurM2P joueur = objFactory.createJoueurM2P();
 					joueur.setLoginJoueur(unJoueur2.getLoginJoueur());
@@ -55,8 +73,7 @@ public class ReponseAvertirCommencerJeuM2PComportement{
 					
 					if(joueurGauche.getLoginJoueur() == null){
 						for(JoueurMetierRetour unJoueurGauche2 : unJeu.getJoueurs().getJoueurs()){
-							if(!unJoueurGauche2.getLoginJoueur().equals(unJoueur2.getLoginJoueur()) &&
-									!unJoueurGauche2.getLoginJoueur().equals(joueurDroite.getLoginJoueur())){
+							if(unJoueurGauche2.getPositionJeu() == minJoueurGauche){
 								joueurGauche.setLoginJoueur(unJoueurGauche2.getLoginJoueur());
 								break;
 							}			
@@ -65,8 +82,7 @@ public class ReponseAvertirCommencerJeuM2PComportement{
 					
 					if(joueurDroite.getLoginJoueur() == null){
 						for(JoueurMetierRetour unJoueurDroite2 : unJeu.getJoueurs().getJoueurs()){
-							if(!unJoueurDroite2.getLoginJoueur().equals(unJoueur2.getLoginJoueur()) &&
-									!unJoueurDroite2.getLoginJoueur().equals(joueurGauche.getLoginJoueur())){
+							if(unJoueurDroite2.getPositionJeu() == maxJoueurDroite){
 								joueurDroite.setLoginJoueur(unJoueurDroite2.getLoginJoueur());
 								break;
 							}			

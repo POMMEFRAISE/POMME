@@ -29,9 +29,17 @@ public class ReponseDemanderPremierLancerJeuM2PComportement{
 	
 	public void envoiMessage() {
 		int resultatLancer = 0;
+		int positionJoueurLancer = 0;
 		lancerDes();
 		for(DeMetierRetour unDe : listeDes.getDes()){
 			resultatLancer = resultatLancer + unDe.getResultatDe();
+		}
+		
+		for(JoueurMetierRetour unePosition : jeuMetier.getJoueurs().getJoueurs()){
+			if(unePosition.isDoitJouer() == true){
+				positionJoueurLancer = unePosition.getPositionJeu();
+				break;
+			}
 		}
 		
 		for(JoueurMetierRetour unJoueur : jeuMetier.getJoueurs().getJoueurs()){			
@@ -41,7 +49,6 @@ public class ReponseDemanderPremierLancerJeuM2PComportement{
 			partie.setNomPartie(jeuMetier.getPartie().getNomPartie());
 			jeu.setPartie(partie);
 			
-			int positionJoueurLancer = 0;
 			ListeJoueursM2P listeJoueurs = objFactory.createListeJoueursM2P();
 			for(JoueurMetierRetour unJoueur2 : jeuMetier.getJoueurs().getJoueurs()){
 				JoueurM2P joueur = objFactory.createJoueurM2P();
@@ -51,13 +58,15 @@ public class ReponseDemanderPremierLancerJeuM2PComportement{
 				if(unJoueur2.isDoitJouer() == true){
 					joueur.setDoitJoueur(false);
 					joueur.setResultatPremierLancer(resultatLancer);
-					positionJoueurLancer = unJoueur2.getPositionJeu();
 				}else{
-					joueur.setResultatPremierLancer(0);
-					if((unJoueur2.getPositionJeu()-1) == positionJoueurLancer){
+					int positionJoueur = unJoueur2.getPositionJeu();
+					System.out.println("Position joueur : "+positionJoueur);
+					if(unJoueur2.getResultatPremierLancer() == 0 && (positionJoueur-1) == positionJoueurLancer){
 						joueur.setDoitJoueur(true);
+						joueur.setResultatPremierLancer(0);
 					}else{
 						joueur.setDoitJoueur(false);
+						joueur.setResultatPremierLancer(unJoueur2.getResultatPremierLancer());
 					}
 				}
 				

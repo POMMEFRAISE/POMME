@@ -16,10 +16,10 @@
 <%@include file="include/footer.jsp"%>
 
 <script type="text/javascript">
+	var requete = null;
+
 	function demandeRedirection(){
-		var requete = null;
-				
-		var url = "navigation?nav=redirectionJeu";
+		var url = "navigation?nav=redirectionlancer";
 		if (window.XMLHttpRequest) {
 			requete = new XMLHttpRequest();
 		} else if (window.ActiveXObject) {
@@ -45,6 +45,11 @@
 		
 		requete.open("GET", url, true);
 		requete.send(null);
+	};
+	
+	function interromptRequete(){
+		requete.abort();
+		alert("Requête interompu");
 	};
 </script>
 		
@@ -97,7 +102,7 @@
 		<center>
 			<table>
 				<tr>
-					<c:if test="${jeu.getDes().getDes().size() != 0}">
+					<c:if test="${jeu.getDes().getDes() != null}">
 						<td><img src="img/${jeu.getDes().getDes().get(0).getImage()}"></td>
 						<td><img src="img/${jeu.getDes().getDes().get(1).getImage()}"></td>
 						<td><img src="img/${jeu.getDes().getDes().get(2).getImage()}"></td>
@@ -130,12 +135,12 @@
 							<c:if test="${unJoueur.isDoitJouer() != false && unJoueur.getLogin() eq joueur.getLogin()}">
 								<c:if test="${unJoueur.getResultatPremierLancer() == 0}">
 									<form method="post" action="navigation?nav=formjeupremierlancer">
-										<input type="submit" value="<fmt:message key="jeu.lancer.des.premier" />" class="buttonsubmit" />
+										<input type="submit" onclick="interromptRequete();" value="<fmt:message key="jeu.lancer.des.premier" />" class="buttonsubmit" />
 									</form>
 								</c:if>               
 								<c:if test="${unJoueur.getResultatPremierLancer() != 0}}">
 									<form method="post" action="navigation?nav=formjeujoueur">
-										<input type="submit" value="<fmt:message key="jeu.lancer.des.jouer" />" class="buttonsubmit" />
+										<input type="submit" onclick="interromptRequete();" value="<fmt:message key="jeu.lancer.des.jouer" />" class="buttonsubmit" />
 									</form>
 								</c:if>                  
 							</c:if>

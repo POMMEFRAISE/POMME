@@ -241,14 +241,13 @@ public class NavigationServlet extends HttpServlet {
 					}
 				}
 				break;
-			case "redirectionJeu":
+			case "redirectionjeu":
 				remiseVideVariable();
 				
 				appelLecteur(numero);
-				
+
 				jeu = (Jeu) actionPresentation.getObjetARetourner();
 				actionPresentation.setObjetARetourner(null);
-
 				session.setAttribute("jeu", jeu);
 				if(jeu.getMessage() != null){
 					message = jeu.getMessage();
@@ -262,10 +261,26 @@ public class NavigationServlet extends HttpServlet {
 				DemanderPremierLancerJeuP2MComportement demanderPremierLancerJeu = new DemanderPremierLancerJeuP2MComportement(numero, (Jeu) session.getAttribute("jeu"));
 				demanderPremierLancerJeu.envoiMessage();
 				
-				this.getServletContext().getRequestDispatcher("/attentecommencerpartie.jsp").forward(request, response);
+				this.getServletContext().getRequestDispatcher("/attentelancer.jsp").forward(request, response);
 				break;
 			case "formjeujoueur":
 				
+				break;
+			case "redirectionlancer":
+				remiseVideVariable();
+				
+				appelLecteur(numero);
+				
+				jeu = (Jeu) actionPresentation.getObjetARetourner();
+				actionPresentation.setObjetARetourner(null);
+				System.out.println("JEU présentation : "+numero+" "+jeu.getClass());
+				session.setAttribute("jeu", jeu);
+				if(jeu.getMessage() != null){
+					message = jeu.getMessage();
+				}
+				response.setContentType("text");
+				response.setHeader("Cache-Control", "no-cache");
+				response.getWriter().write(message);
 				break;
 			}
         } 

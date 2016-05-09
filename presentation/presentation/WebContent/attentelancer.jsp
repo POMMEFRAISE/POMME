@@ -19,7 +19,7 @@
 			function demandeRedirection(){
 				var requete = null;
 				
-				var url = "navigation?nav=redirectionjeu";
+				var url = "navigation?nav=redirectionlancer";
 				if (window.XMLHttpRequest) {
 					requete = new XMLHttpRequest();
 				} else if (window.ActiveXObject) {
@@ -51,9 +51,9 @@
 	<body onload="demandeRedirection();" background="img/fond.jpg" >
  		<jsp:useBean id="jeu" scope="session" class="model.Jeu" />
  		<div class="attenteMessage">
- 		 	<fmt:message key="attente.message1" /> ${jeu.getPartie().getNom()}
+ 		 	<fmt:message key="attente.lancer1" /> ${jeu.getPartie().getNom()}
  		 	<br />
- 			<fmt:message key="attente.message2"/>
+ 			<fmt:message key="attente.lancer2"/>
  			<br />
  			<img src="img/loading.gif"/>
  		</div>
