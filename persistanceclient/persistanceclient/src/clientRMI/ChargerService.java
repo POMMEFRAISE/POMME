@@ -4,7 +4,7 @@ import java.net.MalformedURLException;
 import java.rmi.server.RMIClassLoader;
 
 public class ChargerService {
-	private static String url="file:/C:/Users/Dylan/git/PDS/persistanceservice/persistanceservice/bin/";
+	private static String url="http://localhost/servicermi/persistanceservice.jar";
 	
 	public static Object chargerDTO(String DTOACharger){
 		Object objetDTO = null;
@@ -24,12 +24,9 @@ public class ChargerService {
 	
 	public static Object chargerInterface(){
 		Object objetService = null;
-		//Object objetCommande = null;
 		try {
 			Class<?> classeService = RMIClassLoader.loadClass(url,"servicefacade.ServiceFacade");
-			//Class<?> classeCommande = RMIClassLoader.loadClass(url,"servicefacade.CommandeFacade");
 			objetService = classeService.newInstance();
-			//objetCommande = classeCommande.newInstance();
 		} catch (MalformedURLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (InstantiationException e) {

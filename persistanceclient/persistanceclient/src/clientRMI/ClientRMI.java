@@ -22,8 +22,8 @@ public class ClientRMI extends Thread {
 	public void run() {	
 		//Policy
 		if (System.getSecurityManager() == null) {
-			System.setProperty("java.security.policy", "file:/C:/Users/Dylan/git/PDS/persistanceclient/persistanceclient/bin/clientRMI/client.policy");
-			System.setProperty("java.rmi.server.codebase", "file:/C:/Users/Dylan/git/PDS/persistanceservice/persistanceservice/bin/");
+			System.setProperty("java.security.policy", "http://localhost/clientrmi/client.policy");
+			System.setProperty("java.rmi.server.codebase", "http://localhost/servicermi/persistanceservice.jar");
 			System.setSecurityManager(new SecurityManager());
 		}
 		
