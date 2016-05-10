@@ -12,42 +12,41 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title><fmt:message key="rejoindre.partie.attente" /></title>
 		<%@include file="include/header.jsp"%>
-		<%@include file="include/menu.jsp"%>
 		<%@include file="include/footer.jsp"%>
-		
+				
 		<script type="text/javascript">
-			function demandeRedirection(){
-				var requete = null;
-				alert("appeler");
-				var url = "navigation?nav=redirectionlancer";
-				if (window.XMLHttpRequest) {
-					requete = new XMLHttpRequest();
-				} else if (window.ActiveXObject) {
-					requete = new ActiveXObject("Microsoft.XMLHTTP");
-				}
-				requete.onreadystatechange = function(){
-					var message = "";
-					if (requete.readyState == 4) {
-						if (requete.status == 200) {
-							// exploitation des données de la réponse
-							var message = requete.responseText;
-							var redirection;
-							console.log(message);
-							alert(message);
-							if(message === ""){
-								redirection = "navigation?nav=jeu";
-							}else{
-								redirection ="navigation?nav=accueil";
-							}
-							window.location = redirection;
+		var requete = null;
+
+		function demandeRedirection() {
+			var url = "navigation?nav=redirectionlancer";
+			if (window.XMLHttpRequest) {
+				requete = new XMLHttpRequest();
+			} else if (window.ActiveXObject) {
+				requete = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			requete.onreadystatechange = function() {
+				var message = "";
+				if (requete.readyState == 4) {
+					if (requete.status == 200) {
+						// exploitation des données de la réponse
+						var message = requete.responseText;
+						var redirection;
+						console.log(message);
+						if (message === "") {
+							redirection = "navigation?nav=jeu";
+						} else {
+							redirection = "navigation?nav=accueil";
 						}
+						window.location = redirection;
 					}
-				};
-		
-				requete.open("GET", url, true);
-				requete.send(null);
+				}
 			};
-		</script>
+
+			requete.open("GET", url, true);
+			requete.send(null);
+		};
+	</script>
+
 	</head>
 	<body onload="demandeRedirection();" background="img/fond.jpg" >
  		<jsp:useBean id="jeu" scope="session" class="model.Jeu" />

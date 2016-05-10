@@ -16,6 +16,24 @@ public class SeConnecterM2IComportement implements Commande{
 
 	public void reçoiMessage() {
 		int numeroPresentation = seConnecter.getNumeroPresentation();
+		
+		//Appelle de la classe CommandeDTO
+		Object objectCommande = ChargerService.chargerDTO("CommandeDTO");
+		
+		try{
+			Object objectServiceCommande = ChargerService.chargerInterface();
+
+			//Appeler les methodes commande
+			objectCommande.getClass().getDeclaredMethod("setMessage", String.class).invoke(objectCommande, "SeConnecter");
+			objectCommande.getClass().getDeclaredMethod("setNumeroPresentation", Integer.class).invoke(objectCommande, numeroPresentation);
+			
+			//Appeller commande
+			objectServiceCommande.getClass().getDeclaredMethod("enregistrerCommande",Object.class).invoke(objectServiceCommande,objectCommande);
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
+		}
+		
 		//Appelle de la classe JoueurDTO
 		Object objectJoueur = ChargerService.chargerDTO("JoueurDTO");
 		

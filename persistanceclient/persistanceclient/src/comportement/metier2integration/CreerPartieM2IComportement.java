@@ -19,12 +19,30 @@ public class CreerPartieM2IComportement implements Commande{
 		//Appelle de la classe PartieDTO
 		Object objectPartie = ChargerService.chargerDTO("PartieDTO");
 		
+		//Appelle de la classe CommandeDTO
+		Object objectCommande = ChargerService.chargerDTO("CommandeDTO");
+		
+		try{
+			Object objectServiceCommande = ChargerService.chargerInterface();
+
+			//Appeler les methodes commande
+			objectCommande.getClass().getDeclaredMethod("setMessage", String.class).invoke(objectCommande, "CreerPartie");
+			objectCommande.getClass().getDeclaredMethod("setNumeroPresentation", Integer.class).invoke(objectCommande, numeroPresentation);
+			
+			//Appeller commande
+			objectServiceCommande.getClass().getDeclaredMethod("enregistrerCommande",Object.class).invoke(objectServiceCommande,objectCommande);
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
+		}
+		
 		String messageErreur;
 		messageErreur = creerPartie.getCreationPartie().getMessageErreur();
 		if(messageErreur.equals("")){			
 			//Charger interface 
 			Object objectServicePartie = ChargerService.chargerInterface();
 	
+
 			try {
 				//Appeler les methodes partie
 				objectPartie.getClass().getDeclaredMethod("setNomPartie", String.class).invoke(objectPartie, creerPartie.getCreationPartie().getNomPartie());

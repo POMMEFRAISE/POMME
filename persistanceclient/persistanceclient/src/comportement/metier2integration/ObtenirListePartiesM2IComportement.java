@@ -20,6 +20,23 @@ public class ObtenirListePartiesM2IComportement implements Commande{
 		//Appelle de la classe PartieDTO
 		Object objectParties = ChargerService.chargerDTO("PartiesDTO");
 		ArrayList<Object> lesParties = new ArrayList<Object>();
+	
+		//Appelle de la classe CommandeDTO
+		Object objectCommande = ChargerService.chargerDTO("CommandeDTO");
+		
+		try{
+			Object objectServiceCommande = ChargerService.chargerInterface();
+
+			//Appeler les methodes commande
+			objectCommande.getClass().getDeclaredMethod("setMessage", String.class).invoke(objectCommande, "ObtenirListeParties");
+			objectCommande.getClass().getDeclaredMethod("setNumeroPresentation", Integer.class).invoke(objectCommande, numeroPresentation);
+			
+			//Appeller commande
+			objectServiceCommande.getClass().getDeclaredMethod("enregistrerCommande",Object.class).invoke(objectServiceCommande,objectCommande);
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
+		}
 		
 		String messageErreur = null;
 		

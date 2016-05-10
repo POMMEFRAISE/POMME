@@ -12,13 +12,11 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title><fmt:message key="rejoindre.partie.attente" /></title>
 		<%@include file="include/header.jsp"%>
-		<%@include file="include/menu.jsp"%>
 		<%@include file="include/footer.jsp"%>
 		
 		<script type="text/javascript">
 			function demandeRedirection(){
 				var requete = null;
-				alert("Requete");
 				var url = "navigation?nav=redirectionjeu";
 				if (window.XMLHttpRequest) {
 					requete = new XMLHttpRequest();

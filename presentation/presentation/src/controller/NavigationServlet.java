@@ -62,7 +62,6 @@ public class NavigationServlet extends HttpServlet {
 		}
 				
 		if(joueur == null && !url.equals("formconnexion")){
-			
 			DemanderAuthentificationP2MComportement demanderAuthentification = new DemanderAuthentificationP2MComportement(numero);
 			demanderAuthentification.envoiMessage();
 			appelLecteur(numero);
@@ -83,7 +82,6 @@ public class NavigationServlet extends HttpServlet {
 				config.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
 				break;
 			case "rejoindrepartie" :
-				
 				DemanderRejoindrePartieP2MComportement demanderRejoindrePartie = new DemanderRejoindrePartieP2MComportement(numero);
 				demanderRejoindrePartie.envoiMessage();
 				
@@ -93,11 +91,11 @@ public class NavigationServlet extends HttpServlet {
 				actionPresentation.setObjetARetourner(null);
 
 				if(messageErreur.isStatut() == true){
-
 					ObtenirListePartiesP2MComportement obtenirListeParties = new ObtenirListePartiesP2MComportement(numero);
 					obtenirListeParties.envoiMessage();
 					
 					appelLecteur(numero);
+					
 					Parties listeParties = (Parties) actionPresentation.getObjetARetourner();
 					actionPresentation.setObjetARetourner(null);
 					request.setAttribute("listeParties", listeParties);
@@ -233,7 +231,6 @@ public class NavigationServlet extends HttpServlet {
 				}
 				break;
 			case "redirectionjeu":
-				
 				appelLecteur(numero);
 
 				jeu = (Jeu) actionPresentation.getObjetARetourner();
@@ -249,15 +246,14 @@ public class NavigationServlet extends HttpServlet {
 			case "formjeupremierlancer" :
 				DemanderPremierLancerJeuP2MComportement demanderPremierLancerJeu = new DemanderPremierLancerJeuP2MComportement(numero, (Jeu) session.getAttribute("jeu"));
 				demanderPremierLancerJeu.envoiMessage();
-				
-				//Essayer avec sendredirect
+
 				config.getServletContext().getRequestDispatcher("/attentelancer.jsp").forward(request, response);
 				break;
 			case "formjeujoueur":
 				
 				break;
 			case "redirectionlancer":
-				
+				jeu = null;
 				appelLecteur(numero);
 				
 				jeu = (Jeu) actionPresentation.getObjetARetourner();

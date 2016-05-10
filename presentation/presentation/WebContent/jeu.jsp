@@ -45,11 +45,10 @@
 		requete.open("GET", url, true);
 		requete.send(null);
 	};
-
-	function interromptRequete() {
+	
+	function stopRequete(){
 		requete.abort();
-		alert("Requête interompu");
-	};
+	}
 </script>
 
 </head>
@@ -90,9 +89,9 @@
 				</tr>
 			</table>
 		</center>
-		<c:forEach items="${jeu.getJoueurs().getJoueurs()}" var="unJoueurPremier">		
-			<c:if test="${unJoueurPremier.isPremier() == true}">
-					<fmt:message key="jeu.lancer.joueur.premier" />${unJoueurPremier.getLogin()}                
+		<c:forEach items="${jeu.getJoueurs().getJoueurs()}" var="premierJoueur">
+			<c:if test="${premierJoueur.isPremierJoueur() != false}">
+				<fmt:message key="jeu.lancer.joueur.suivant" />${premierJoueur.getLogin()}                
 			</c:if>
 		</c:forEach>
 		<br />
@@ -105,15 +104,15 @@
 		<c:forEach items="${jeu.getJoueurs().getJoueurs()}" var="unJoueur">
 			<c:if test="${unJoueur.isDoitJouer() != false && unJoueur.getLogin() eq joueur.getLogin()}">
 				<c:if test="${unJoueur.getResultatPremierLancer() == 0}">
-					<form method="post" action="navigation?nav=formjeupremierlancer">
-						<input type="submit" onclick="interromptRequete();"
+					<form method="post" action="navigation?nav=formjeupremierlancer" onsubmit="stopRequete();">
+						<input type="submit"
 							value="<fmt:message key="jeu.lancer.des.premier" />"
 							class="buttonsubmit" />
 					</form>
 				</c:if>
 				<c:if test="${unJoueur.getResultatPremierLancer() != 0}}">
 					<form method="post" action="navigation?nav=formjeujoueur">
-						<input type="submit" onclick="interromptRequete();"
+						<input type="submit"
 							value="<fmt:message key="jeu.lancer.des.jouer" />"
 							class="buttonsubmit" />
 					</form>

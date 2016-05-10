@@ -17,6 +17,24 @@ public class RejoindrePartieM2IComportement implements Commande{
 	public void reçoiMessage() {
 		String messageErreur = null;
 		int numeroPresentation = rejoindrePartie.getNumeroPresentation();
+		
+		//Appelle de la classe CommandeDTO
+		Object objectCommande = ChargerService.chargerDTO("CommandeDTO");
+		
+		try{
+			Object objectServiceCommande = ChargerService.chargerInterface();
+
+			//Appeler les methodes commande
+			objectCommande.getClass().getDeclaredMethod("setMessage", String.class).invoke(objectCommande, "RejoindrePartie");
+			objectCommande.getClass().getDeclaredMethod("setNumeroPresentation", Integer.class).invoke(objectCommande, numeroPresentation);
+			
+			//Appeller commande
+			objectServiceCommande.getClass().getDeclaredMethod("enregistrerCommande",Object.class).invoke(objectServiceCommande,objectCommande);
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
+		}
+		
 		//Appelle de la classe JoueurDTO
 		Object objectJoueur = ChargerService.chargerDTO("JoueurDTO");
 		
