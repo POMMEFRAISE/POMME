@@ -57,6 +57,7 @@ public class ReponseAvertirCommencerJeuI2MComportement{
 		ReponseAvertirCommencerJeuI2M reponseAvertirCommencerJeuI2M = objFactory.createReponseAvertirCommencerJeuI2M();
 		reponseAvertirCommencerJeuI2M.setListeJeux(jeux);
 		
-		new Producteur(reponseAvertirCommencerJeuI2M);
+		Thread thread = new Thread(new Producteur(reponseAvertirCommencerJeuI2M));
+		thread.start();
 	}
 }

@@ -34,7 +34,8 @@ public class ReponseObtenirListePartiesM2PComportement{
 		ReponseObtenirListePartiesM2P reponseObtenirListeParties = objFactory.createReponseObtenirListePartiesM2P();
 		reponseObtenirListeParties.setListeParties(parties);
 		
-		new Producteur(reponseObtenirListeParties, numeroPresentation);
+		Thread thread = new Thread(new Producteur(reponseObtenirListeParties, numeroPresentation));
+		thread.start();
 	}
 
 	public String getMessageErreur() {

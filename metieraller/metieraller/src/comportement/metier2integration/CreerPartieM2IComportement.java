@@ -41,7 +41,8 @@ public class CreerPartieM2IComportement{
 		creerPartieM2I.setCreationPartie(creationPartieM2I);
 		creerPartieM2I.setNumeroPresentation(numeroPresentation);
 		
-		new Producteur(creerPartieM2I);
+		Thread thread = new Thread(new Producteur(creerPartieM2I));
+		thread.start();
 	}
 
 	public int getNumeroPresentation() {

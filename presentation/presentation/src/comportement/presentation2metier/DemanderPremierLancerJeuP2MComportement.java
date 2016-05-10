@@ -51,7 +51,9 @@ public class DemanderPremierLancerJeuP2MComportement{
 		DemanderPremierLancerJeuP2M demanderPremierLancerJeu = objFactory.createDemanderPremierLancerJeuP2M();
 		demanderPremierLancerJeu.setJeu(jeuP2M);
 		demanderPremierLancerJeu.setNumeroPresentation(numeroPresentation);
-		new Producteur(demanderPremierLancerJeu);	
+		
+		Thread thread = new Thread(new Producteur(demanderPremierLancerJeu));
+		thread.start();
 	}
 
 	public int getNumeroPresentation() {

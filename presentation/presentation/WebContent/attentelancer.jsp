@@ -18,7 +18,7 @@
 		<script type="text/javascript">
 			function demandeRedirection(){
 				var requete = null;
-				
+				alert("appeler");
 				var url = "navigation?nav=redirectionlancer";
 				if (window.XMLHttpRequest) {
 					requete = new XMLHttpRequest();
@@ -33,6 +33,7 @@
 							var message = requete.responseText;
 							var redirection;
 							console.log(message);
+							alert(message);
 							if(message === ""){
 								redirection = "navigation?nav=jeu";
 							}else{

@@ -22,7 +22,8 @@ public class ReponseDemanderAuthentificationM2PComportement {
 		ReponseDemanderAuthentificationM2P reponseDemanderAuthentificationM2P = objFactory.createReponseDemanderAuthentificationM2P();
 		reponseDemanderAuthentificationM2P.setCommande(commande);
 		
-		new Producteur(reponseDemanderAuthentificationM2P, numeroPresentation);
+		Thread thread = new Thread(new Producteur(reponseDemanderAuthentificationM2P, numeroPresentation));
+		thread.start();
 	}
 
 	public boolean isEnregisrerDemanderAuthentification() {

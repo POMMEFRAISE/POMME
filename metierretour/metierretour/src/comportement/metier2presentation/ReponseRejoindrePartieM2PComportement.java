@@ -30,7 +30,7 @@ public class ReponseRejoindrePartieM2PComportement{
 		ReponseRejoindrePartieM2P reponseRejoindrePartie = objFactory.createReponseRejoindrePartieM2P();
 		reponseRejoindrePartie.setJeu(jeu);
 		
-		new Producteur(reponseRejoindrePartie, numeroPresentation);
-
+		Thread thread = new Thread(new Producteur(reponseRejoindrePartie, numeroPresentation));
+		thread.start();
 	}
 }

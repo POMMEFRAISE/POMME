@@ -34,11 +34,9 @@ public class DaoPartieImpl implements DaoPartieInterface {
 				ConnexionDAO.getInstance().close();				
 
 				if (resultat>=1) {
-					System.out.print("Partie créee");
 					bool= true;
 					return bool;
 				}else {
-					System.out.print("Imposible de créer une partie");
 					bool= false;
 					return bool;
 				}
@@ -156,11 +154,9 @@ public class DaoPartieImpl implements DaoPartieInterface {
 			ConnexionDAO.getInstance().close();				
 
 			if (resultat>=1) {
-				System.out.print("Partie fermée");
 				bool= true;
 				return bool;
 			}else {
-				System.out.print("Imposible de fermer la partie "+partie.getNomPartie());
 				bool= false;
 				return bool;
 			}
@@ -201,11 +197,9 @@ public class DaoPartieImpl implements DaoPartieInterface {
 			ConnexionDAO.getInstance().close();				
 
 			if (resultat>=1) {
-				System.out.print("Joueur Enregistré");
 				bool= true;
 				return bool;
 			}else {
-				System.out.print("Imposible d'enregistrer le joueur");
 				bool= false;
 				return bool;
 			}
@@ -226,12 +220,10 @@ public class DaoPartieImpl implements DaoPartieInterface {
 			ConnexionDAO.getInstance().close();				
 
 			if (resultat.next()){
-				System.out.println("La Partie existe bien.");
 				bool= true;
 				return bool;
 			}
 			else{
-				System.out.println("La Partie n'existe pas ");
 				bool= false;
 				return bool;
 			}
@@ -252,12 +244,10 @@ public class DaoPartieImpl implements DaoPartieInterface {
 			ConnexionDAO.getInstance().close();				
 
 			if (resultat.next()){
-				System.out.println("La Partie existe bien.");
 				bool= true;
 				return bool;
 			}
 			else{
-				System.out.println("La Partie n'existe pas ");
 				bool= false;
 				return bool;
 			}
@@ -307,7 +297,6 @@ public class DaoPartieImpl implements DaoPartieInterface {
 			}
 				
 			if (bool==false) {
-				System.out.print("Imposible de changer l'état de la partie");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -410,7 +399,6 @@ public class DaoPartieImpl implements DaoPartieInterface {
 			}
 	
 			if (bool==false) {
-				System.out.print("Impossible de supprimer les jeux");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -449,7 +437,6 @@ public class DaoPartieImpl implements DaoPartieInterface {
 			ConnexionDAO.getInstance().close();				
 	
 			if (bool2==false) {
-				System.out.print("Imposible de supprimer les jeux");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

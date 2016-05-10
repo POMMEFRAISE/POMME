@@ -22,7 +22,6 @@ public class ActionPresentation {
 	        Constructor<?>[] constructors = messageComportement.getConstructors();
 	        Commande commande = (Commande) constructors[0].newInstance(typeMessage);
 	        objetARetourner = commande.reçoiMessage();
-	        System.out.println("ObjetARetourner : "+objetARetourner);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (InstantiationException e) {

@@ -30,11 +30,7 @@ public class AccueilServlet extends HttpServlet
         	message = message + reader.readLine();
         }
         reader.close();
-        
-        System.out.println("idMessage servlet metier :"+message);
-
-        System.out.println("message servlet metier :"+message);
-        
+                
         convertirMessageObjet(message);   
 	}
 	

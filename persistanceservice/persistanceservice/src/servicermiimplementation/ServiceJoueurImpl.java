@@ -54,14 +54,10 @@ public class ServiceJoueurImpl extends UnicastRemoteObject implements ServiceJou
 		boolean enregistrer = false; 
 		enregistrer = daoJoueurInterface.creerCompte(joueurEntite);
 		if (enregistrer == true ) {
-			System.out.print("Joueur Créee");
-
 			joueurEntite = daoJoueurInterface.recupererJoueur(joueurEntite);
 			trouve= true;
 		}
 		return trouve;
-		
-			
 	}
 
 	public synchronized boolean gererProfil(Object joueurDTO) throws RemoteException {

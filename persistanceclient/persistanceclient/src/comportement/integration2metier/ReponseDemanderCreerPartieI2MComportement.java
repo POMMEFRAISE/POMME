@@ -23,7 +23,8 @@ public class ReponseDemanderCreerPartieI2MComportement{
 		reponseDemanderCreerPartieI2M.setCommande(commande);
 		reponseDemanderCreerPartieI2M.setNumeroPresentation(numeroPresentation);
 		
-		new Producteur(reponseDemanderCreerPartieI2M);
+		Thread thread = new Thread(new Producteur(reponseDemanderCreerPartieI2M));
+		thread.start();
 	}
 
 	public int getNumeroPresentation() {

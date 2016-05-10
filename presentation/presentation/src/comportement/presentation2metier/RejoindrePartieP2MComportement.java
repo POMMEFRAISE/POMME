@@ -32,7 +32,9 @@ public class RejoindrePartieP2MComportement{
 		RejoindrePartieP2M rejoindrePartie = objFactory.createRejoindrePartieP2M();
 		rejoindrePartie.setNumeroPresentation(numeroPresentation);
 		rejoindrePartie.setRejoindreUnePartie(rejoindreUnePartie);
-		new Producteur(rejoindrePartie);	
+		
+		Thread thread = new Thread(new Producteur(rejoindrePartie));
+		thread.start();
 	}
 
 	public int getNumeroPresentation() {

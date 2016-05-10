@@ -30,7 +30,8 @@ public class ReponseSeConnecterM2PComportement{
 		ReponseSeConnecterM2P reponseSeConencter = objFactory.createReponseSeConnecterM2P();
 		reponseSeConencter.setAuthentification(authentification);
 		
-		new Producteur(reponseSeConencter, numeroPresentation);
+		Thread thread = new Thread(new Producteur(reponseSeConencter, numeroPresentation));
+		thread.start();
 	}
 
 	public String getMessageErreur() {

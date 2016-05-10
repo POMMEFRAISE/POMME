@@ -20,7 +20,6 @@ public class ReponseSeConnecterM2PComportement implements Commande{
 		joueur.setLogin(reponseSeConnecter.getAuthentification().getJoueur().getLoginJoueur());
 		messageErreur = reponseSeConnecter.getAuthentification().getMessageErreur();
 		joueur.setMessage(messageErreur);
-		System.out.println("Message Erreur présentation : "+messageErreur);
 		return verifierInformations();
 	}
 	

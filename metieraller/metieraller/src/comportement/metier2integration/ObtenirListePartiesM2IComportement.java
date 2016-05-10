@@ -17,7 +17,8 @@ public class ObtenirListePartiesM2IComportement{
 		ObtenirListePartiesM2I obtenirListePartiesM2I = objFactory.createObtenirListePartiesM2I();
 		obtenirListePartiesM2I.setNumeroPresentation(numeroPresentation);
 		
-		new Producteur(obtenirListePartiesM2I);
+		Thread thread = new Thread(new Producteur(obtenirListePartiesM2I));
+		thread.start();
 	}
 
 	public int getNumeroPresentation() {

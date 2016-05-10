@@ -22,7 +22,8 @@ public class ReponseDemanderCreerPartieM2PComportement {
 		ReponseDemanderCreerPartieM2P reponseDemanderCreerPartieM2P = objFactory.createReponseDemanderCreerPartieM2P();
 		reponseDemanderCreerPartieM2P.setCommande(commande);
 		
-		new Producteur(reponseDemanderCreerPartieM2P, numeroPresentation);
+		Thread thread = new Thread(new Producteur(reponseDemanderCreerPartieM2P, numeroPresentation));
+		thread.start();
 	}
 
 	public int getNumeroPresentation() {

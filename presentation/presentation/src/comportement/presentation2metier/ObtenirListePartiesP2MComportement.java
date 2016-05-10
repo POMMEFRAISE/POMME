@@ -16,7 +16,9 @@ public class ObtenirListePartiesP2MComportement{
 		ObjectFactory objFactory = new ObjectFactory();
 		ObtenirListePartiesP2M obtenirListeParties = objFactory.createObtenirListePartiesP2M();
 		obtenirListeParties.setNumeroPresentation(numeroPresentation);
-		new Producteur(obtenirListeParties);	
+		
+		Thread thread = new Thread(new Producteur(obtenirListeParties));
+		thread.start();
 	}
 
 	public int getNumeroPresentation() {

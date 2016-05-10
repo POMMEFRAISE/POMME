@@ -16,7 +16,9 @@ public class DemanderCreerPartieP2MComportement{
 		ObjectFactory objFactory = new ObjectFactory();
 		DemanderCreerPartieP2M demandeCreerPartie = objFactory.createDemanderCreerPartieP2M();
 		demandeCreerPartie.setNumeroPresentation(numeroPresentation);
-		new Producteur(demandeCreerPartie);	
+		
+		Thread thread = new Thread(new Producteur(demandeCreerPartie));
+		thread.start();
 	}
 
 	public int getNumeroPresentation() {

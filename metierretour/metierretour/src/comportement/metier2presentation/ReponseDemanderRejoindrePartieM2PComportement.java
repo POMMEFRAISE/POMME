@@ -22,7 +22,8 @@ public class ReponseDemanderRejoindrePartieM2PComportement {
 		ReponseDemanderRejoindrePartieM2P reponseDemanderRejoindrePartieM2P = objFactory.createReponseDemanderRejoindrePartieM2P();
 		reponseDemanderRejoindrePartieM2P.setCommande(commande);
 		
-		new Producteur(reponseDemanderRejoindrePartieM2P, numeroPresentation);
+		Thread thread = new Thread(new Producteur(reponseDemanderRejoindrePartieM2P, numeroPresentation));
+		thread.start();
 	}
 
 	public int getNumeroPresentation() {

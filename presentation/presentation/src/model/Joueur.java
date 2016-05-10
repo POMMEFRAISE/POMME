@@ -17,6 +17,7 @@ public class Joueur extends MessageErreur implements Serializable{
     private int resultatPremierLancer;
     private boolean doitJouer;
     private int numeroPresentation;
+    private boolean premier;
     
     public Joueur(){
     	
@@ -104,6 +105,14 @@ public class Joueur extends MessageErreur implements Serializable{
 
 	public void setNumeroPresentation(int numeroPresentation) {
 		this.numeroPresentation = numeroPresentation;
+	}
+
+	public boolean isPremier() {
+		return premier;
+	}
+
+	public void setPremier(boolean premier) {
+		this.premier = premier;
 	}
 	
 	

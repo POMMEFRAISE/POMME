@@ -23,7 +23,8 @@ public class ReponseDemanderAuthentificationI2MComportement{
 		reponseDemanderAuthentificationI2M.setCommande(commande);
 		reponseDemanderAuthentificationI2M.setNumeroPresentation(numeroPresentation);
 		
-		new Producteur(reponseDemanderAuthentificationI2M);
+		Thread thread = new Thread(new Producteur(reponseDemanderAuthentificationI2M));
+		thread.start();
 	}
 
 	public boolean isEnregisrerDemanderAuthentification() {

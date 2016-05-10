@@ -17,7 +17,8 @@ public class DemanderCreerPartieM2IComportement{
 		DemanderCreerPartieM2I demandeCreerPartieM2I = objFactory.createDemanderCreerPartieM2I();
 		demandeCreerPartieM2I.setNumeroPresentation(numeroPresentation);
 		
-		new Producteur(demandeCreerPartieM2I);
+		Thread thread = new Thread(new Producteur(demandeCreerPartieM2I));
+		thread.start();
 	}
 
 	public int getNumeroPresentation() {

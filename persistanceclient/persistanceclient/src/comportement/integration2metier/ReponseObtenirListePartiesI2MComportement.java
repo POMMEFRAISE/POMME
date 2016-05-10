@@ -42,7 +42,8 @@ public class ReponseObtenirListePartiesI2MComportement{
 		reponseObtenirListeParties.setListeParties(parties);
 		reponseObtenirListeParties.setNumeroPresentation(numeroPresentation);
 		
-		new Producteur(reponseObtenirListeParties);
+		Thread thread = new Thread(new Producteur(reponseObtenirListeParties));
+		thread.start();
 	}
 
 	public String getMessageErreur() {

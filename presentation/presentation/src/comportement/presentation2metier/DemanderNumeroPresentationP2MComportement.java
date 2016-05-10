@@ -14,6 +14,7 @@ public class DemanderNumeroPresentationP2MComportement {
 		ObjectFactory objFactory = new ObjectFactory();
 		DemanderNumeroPresentationP2M demandeNumeroPresentation = objFactory.createDemanderNumeroPresentationP2M();
 		
-		new Producteur(demandeNumeroPresentation);	
+		Thread thread = new Thread(new Producteur(demandeNumeroPresentation));
+		thread.start();
 	}
 }

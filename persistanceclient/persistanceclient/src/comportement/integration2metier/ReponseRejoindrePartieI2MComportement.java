@@ -35,7 +35,8 @@ public class ReponseRejoindrePartieI2MComportement{
 		reponseRejoindrePartie.setJeu(jeu);
 		reponseRejoindrePartie.setNumeroPresentation(numeroPresentation);
 		
-		new Producteur(reponseRejoindrePartie);
+		Thread thread = new Thread(new Producteur(reponseRejoindrePartie));
+		thread.start();
 
 	}
 }

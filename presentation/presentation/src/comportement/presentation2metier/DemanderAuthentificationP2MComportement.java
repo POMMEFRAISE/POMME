@@ -16,7 +16,9 @@ public class DemanderAuthentificationP2MComportement{
 		ObjectFactory objFactory = new ObjectFactory();
 		DemanderAuthentificationP2M demandeAuthentification = objFactory.createDemanderAuthentificationP2M();
 		demandeAuthentification.setNumeroPresentation(numeroPresentation);
-		new Producteur(demandeAuthentification);	
+	
+		Thread thread = new Thread(new Producteur(demandeAuthentification));
+		thread.start();
 	}
 
 	public int getNumeroPresentation() {

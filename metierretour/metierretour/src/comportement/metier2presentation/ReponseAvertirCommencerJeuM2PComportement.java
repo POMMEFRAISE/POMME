@@ -105,7 +105,8 @@ public class ReponseAvertirCommencerJeuM2PComportement{
 				ReponseAvertirCommencerJeuM2P reponseAvertirCommencerJeuM2P = objFactory.createReponseAvertirCommencerJeuM2P();
 				reponseAvertirCommencerJeuM2P.setJeu(jeu);
 				
-				new Producteur(reponseAvertirCommencerJeuM2P, unJoueur.getNumeroPresentation());
+				Thread thread = new Thread(new Producteur(reponseAvertirCommencerJeuM2P, unJoueur.getNumeroPresentation()));
+				thread.start();
 			}
 		}
 	}

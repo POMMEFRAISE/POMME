@@ -6,9 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import daoimplementation.DaoCommandeImpl;
 import daointerface.DaoCommandeInterface;
 import dto.CommandeDTO;
-import dto.JoueurDTO;
 import entites.CommandeEntite;
-import entites.JoueurEntite;
 import servicermiinterface.ServiceCommandeInterface;
 
 public class ServiceCommandeImpl extends UnicastRemoteObject implements ServiceCommandeInterface{

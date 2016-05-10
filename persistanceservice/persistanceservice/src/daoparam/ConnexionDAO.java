@@ -28,7 +28,6 @@ public class ConnexionDAO {
 		try {
 			String driverName = properties.getProperty("driver");
 			Class.forName(driverName);
-			System.out.println("# Le driver est correctement chargé : " );
 		} catch (Exception e) {
 			System.err.println("# Mauvais nom du driver MySQL.");
 			e.printStackTrace();

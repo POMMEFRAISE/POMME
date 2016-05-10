@@ -55,7 +55,6 @@ public class ReponseDemanderPremierLancerJeuI2MComportement{
 				joueur.setJoueurDroite(joueurDroite);
 				
 				joueurs.getListeJoueurs().add(joueur);
-				System.out.println("Joeuur DTO : "+joueur.getLoginJoueur());
 			}
 			jeuI2M.setPartie(partie);
 			jeuI2M.setJoueurs(joueurs);
@@ -70,8 +69,8 @@ public class ReponseDemanderPremierLancerJeuI2MComportement{
 		CommandeI2M commande = objFactory.createCommandeI2M();
 		commande.setEnregistrer(enregistrerCommande);
 		reponseDemanderPremierLancerJeu.setCommande(commande);
-		new Producteur(reponseDemanderPremierLancerJeu);
-
+		Thread thread = new Thread(new Producteur(reponseDemanderPremierLancerJeu));
+		thread.start();
 	}
 
 	public Object getObjectJeu() {

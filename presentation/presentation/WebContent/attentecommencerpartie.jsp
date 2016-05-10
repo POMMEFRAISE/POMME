@@ -18,7 +18,7 @@
 		<script type="text/javascript">
 			function demandeRedirection(){
 				var requete = null;
-				
+				alert("Requete");
 				var url = "navigation?nav=redirectionjeu";
 				if (window.XMLHttpRequest) {
 					requete = new XMLHttpRequest();

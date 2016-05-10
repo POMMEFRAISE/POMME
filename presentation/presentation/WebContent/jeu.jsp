@@ -61,28 +61,16 @@
 		<center>
 			<table>
 				<c:forEach items="${jeu.getJoueurs().getJoueurs()}" var="unJoueur">
-					<c:if test="${unJoueur.getLogin() eq joueur.getLogin()}">
+					<c:if test="${unJoueur.isDoitJouer() == true}">
 						<tr>
 							<td><center>${unJoueur.getJoueurGauche().getLogin()}</center></td>
-							<td></td>
+							<td><center>${unJoueur.getLogin()}</center></td>
 							<td><center>${unJoueur.getJoueurDroite().getLogin()}</center></td>
 						</tr>
 						<tr>
 							<td><img src="img/joueur.png"></td>
-							<td><img src="img/table_ronde.png"></td>
 							<td><img src="img/joueur.png"></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><center>${unJoueur.getLogin()}</center></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><center>
-									<img src="img/joueur.png">
-								</center></td>
-							<td></td>
+							<td><img src="img/joueur.png"></td>
 						</tr>
 					</c:if>
 				</c:forEach>
@@ -102,14 +90,20 @@
 				</tr>
 			</table>
 		</center>
+		<c:forEach items="${jeu.getJoueurs().getJoueurs()}" var="unJoueurPremier">		
+			<c:if test="${unJoueurPremier.isPremier() == true}">
+					<fmt:message key="jeu.lancer.joueur.premier" />${unJoueurPremier.getLogin()}                
+			</c:if>
+		</c:forEach>
+		<br />
+		<br />
 		<c:forEach items="${jeu.getJoueurs().getJoueurs()}" var="unJoueur">
 			<c:if test="${unJoueur.isDoitJouer() != false}">
 				<fmt:message key="jeu.lancer.joueur.suivant" />${unJoueur.getLogin()}                
-							</c:if>
+			</c:if>
 		</c:forEach>
 		<c:forEach items="${jeu.getJoueurs().getJoueurs()}" var="unJoueur">
-			<c:if
-				test="${unJoueur.isDoitJouer() != false && unJoueur.getLogin() eq joueur.getLogin()}">
+			<c:if test="${unJoueur.isDoitJouer() != false && unJoueur.getLogin() eq joueur.getLogin()}">
 				<c:if test="${unJoueur.getResultatPremierLancer() == 0}">
 					<form method="post" action="navigation?nav=formjeupremierlancer">
 						<input type="submit" onclick="interromptRequete();"

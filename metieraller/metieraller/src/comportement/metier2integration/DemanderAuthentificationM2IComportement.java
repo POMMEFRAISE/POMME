@@ -17,7 +17,8 @@ public class DemanderAuthentificationM2IComportement{
 		DemanderAuthentificationM2I demandeAuthentificationM2I = objFactory.createDemanderAuthentificationM2I();
 		demandeAuthentificationM2I.setNumeroPresentation(numeroPresentation);
 		
-		new Producteur(demandeAuthentificationM2I);
+		Thread thread = new Thread(new Producteur(demandeAuthentificationM2I));
+		thread.start();
 	}
 
 	public int getNumeroPresentation() {

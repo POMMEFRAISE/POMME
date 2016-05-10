@@ -37,7 +37,8 @@ public class ReponseCreerPartieI2MComportement {
 		reponseCreerPartie.setCreationPartie(creationPartie);
 		reponseCreerPartie.setNumeroPresentation(numeroPresentation);
 		
-		new Producteur(reponseCreerPartie);
+		Thread thread = new Thread(new Producteur(reponseCreerPartie));
+		thread.start();
 	}
 
 	public String getMessageErreur() {

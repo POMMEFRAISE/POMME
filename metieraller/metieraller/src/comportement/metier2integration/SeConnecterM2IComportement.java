@@ -42,9 +42,6 @@ public class SeConnecterM2IComportement{
 	}
 	
 	public void envoiMessage() {
-		System.out.println("Login : "+login);
-		System.out.println("MDP : "+mdp);
-
 		if(login.equals("") || login == null || mdp.equals("") || mdp == null){
 			messageErreur = "Tous les champs doivent être remplis";
 
@@ -58,7 +55,8 @@ public class SeConnecterM2IComportement{
 		seConnecterM2I.setAuthentification(authentificationM2I);
 		seConnecterM2I.setNumeroPresentation(numeroPresentation);
 		
-		new Producteur(seConnecterM2I);
+		Thread thread = new Thread(new Producteur(seConnecterM2I));
+		thread.start();
 	}
 
 	public int getNumeroPresentation() {

@@ -32,7 +32,6 @@ public class DaoScoreImpl implements DaoScoreInterface{
 				
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return scoreJoueur.getResultat();

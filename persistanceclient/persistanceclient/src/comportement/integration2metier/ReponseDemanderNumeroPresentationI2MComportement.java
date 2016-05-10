@@ -16,7 +16,8 @@ public class ReponseDemanderNumeroPresentationI2MComportement{
 		ReponseDemanderNumeroPresentationI2M reponseDemanderNumeroPresentationI2M = objFactory.createReponseDemanderNumeroPresentationI2M();
 		reponseDemanderNumeroPresentationI2M.setNumeroPresentation(numeroPresentation);
 		
-		new Producteur(reponseDemanderNumeroPresentationI2M);
+		Thread thread = new Thread(new Producteur(reponseDemanderNumeroPresentationI2M));
+		thread.start();
 	}
 
 	public int getNumeroPresentation() {

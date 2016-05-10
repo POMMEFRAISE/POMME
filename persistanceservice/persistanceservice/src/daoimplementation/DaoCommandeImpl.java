@@ -51,7 +51,13 @@ public class DaoCommandeImpl implements DaoCommandeInterface{
 			
 			/* Récupération des données du résultat de la requête de lecture */
 			while (resultat.next()) {	
-				numeroPresentation = resultat.getInt("numeroPresentation")+1;
+				numeroPresentation = resultat.getInt("numeroPresentation");
+			}
+			
+			if(numeroPresentation == 0){
+				numeroPresentation = 1;
+			}else{
+				numeroPresentation = numeroPresentation+1;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -74,10 +80,7 @@ public class DaoCommandeImpl implements DaoCommandeInterface{
 				commandeEntite.setId(resultat.getInt("id"));
 				
 				commandeEntite.setMessage(resultat.getString("commandedata"));
-				System.out.println(commandeEntite);
-				commandesEntite.add(commandeEntite);
-				
-				
+				commandesEntite.add(commandeEntite);				
 			}
 		} catch (SQLException e) {
 			e.getMessage();

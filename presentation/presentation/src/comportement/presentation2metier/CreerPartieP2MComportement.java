@@ -27,7 +27,8 @@ public class CreerPartieP2MComportement{
 		creerPartie.setCreationPartie(creationPartie);
 		creerPartie.setNumeroPresentation(numeroPresentation);
 		
-		new Producteur(creerPartie);		
+		Thread thread = new Thread(new Producteur(creerPartie));
+		thread.start();
 	}
 
 	public int getNumeroPresentation() {

@@ -31,7 +31,6 @@ public class ServicePartieImpl extends UnicastRemoteObject implements ServicePar
 		partieEntite.setNomPartie(((PartieDTO) partieDTO).getNomPartie());
 		if (verifierPartie(partieDTO)==true){
 			partieEntite = daoPartieInterface.recupererPartie(partieEntite);
-			System.out.println("Partie recuperer .");	
 		}
 		((PartieDTO) partieDTO).setNomPartie(partieEntite.getNomPartie());
 		((PartieDTO) partieDTO).setStatut(partieEntite.getStatut());
@@ -79,9 +78,6 @@ public class ServicePartieImpl extends UnicastRemoteObject implements ServicePar
 
 			jeuxDTO.add(jeuDTO);
 		}
-
-		System.out.println("jeuxDTO : "+jeuxDTO.getJeux().size());
-
 		return jeuxDTO;
 	}
 	public synchronized PartiesDTO recupererListePartiesPourChangerEtat() throws RemoteException {
@@ -106,13 +102,10 @@ public class ServicePartieImpl extends UnicastRemoteObject implements ServicePar
 		boolean enregistrer = false; 
 		enregistrer = daoPartieInterface.creerPartie(partieEntite);
 		if (enregistrer == true){
-			System.out.println("Partie créee .");	
 			creer= true;
 			}else{
-				System.out.println("Impossible de creer la partie .");	
 				creer= false;
-			}
-			
+			}			
 		return creer;
 	}
 	
@@ -149,13 +142,10 @@ public class ServicePartieImpl extends UnicastRemoteObject implements ServicePar
 		rejoindrePartie = daoPartieInterface.rejoindrePartie(partieEntite, joueurEntite, numeroPresentation);
 				
 		if (rejoindrePartie == true ){
-			System.out.println("Joueur rejoint la partie");
 			rejoindre= true;
 		}else{
-			System.out.println("imposible de rejoindre la partie");
 			rejoindre= false;
-		}
-		
+		}		
 		return rejoindre;
 	}
 
@@ -163,9 +153,6 @@ public class ServicePartieImpl extends UnicastRemoteObject implements ServicePar
 		String statut = null;
 		if(daoPartieInterface.verifierPartie(((PartieDTO) partieDTO).getNomPartie())== true){
 			statut = daoPartieInterface.afficherEtatPartie(((PartieDTO) partieDTO).getNomPartie());
-			System.out.println("Staut recuperer .");
-		}else{
-			System.out.println("Impossible de recupérer le staut");
 		}
 		return statut;
 	}

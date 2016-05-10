@@ -21,7 +21,6 @@ public class CreerPartieM2IComportement implements Commande{
 		
 		String messageErreur;
 		messageErreur = creerPartie.getCreationPartie().getMessageErreur();
-		System.out.println("nbJoueur : "+creerPartie.getCreationPartie().getNbJoueurPartie());
 		if(messageErreur.equals("")){			
 			//Charger interface 
 			Object objectServicePartie = ChargerService.chargerInterface();

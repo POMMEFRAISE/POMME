@@ -25,7 +25,6 @@ public class DemanderNumeroPresentationM2IComportement implements Commande{
 			Object objectServiceCommande = ChargerService.chargerInterface();
 			//Appeller numeroPresentation
 			numeroPresentation = (int) objectServiceCommande.getClass().getDeclaredMethod("demanderNumeroPresentation").invoke(objectServiceCommande);
-			System.out.println("enregisrerDemanderNumeroPresentation "+numeroPresentation);
 			
 			if(numeroPresentation != 0){
 				//Appeler les methodes commande

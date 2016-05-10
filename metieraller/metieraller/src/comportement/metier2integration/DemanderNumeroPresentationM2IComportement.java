@@ -14,6 +14,7 @@ public class DemanderNumeroPresentationM2IComportement{
 		ObjectFactory objFactory = new ObjectFactory();
 		DemanderNumeroPresentationM2I demandeNumeroPresentationM2I = objFactory.createDemanderNumeroPresentationM2I();
 		
-		new Producteur(demandeNumeroPresentationM2I);
+		Thread thread = new Thread(new Producteur(demandeNumeroPresentationM2I));
+		thread.start();
 	}
 }

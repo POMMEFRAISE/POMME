@@ -29,7 +29,8 @@ public class ReponseCreerPartieM2PComportement{
 		ReponseCreerPartieM2P reponseCreerPartie = objFactory.createReponseCreerPartieM2P();
 		reponseCreerPartie.setCreationPartie(creationPartie);
 		
-		new Producteur(reponseCreerPartie, numeroPresentation);
+		Thread thread = new Thread(new Producteur(reponseCreerPartie, numeroPresentation));
+		thread.start();
 	}
 
 	public String getMessageErreur() {

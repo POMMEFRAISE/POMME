@@ -47,12 +47,10 @@ public class DaoJoueurImpl implements DaoJoueurInterface{
 			resultat = preparedStatement.executeQuery();
 			
 			if (resultat.next()){
-				System.out.println("Login et mot de passe trouvés dans la base de données.");
 				bool= true;
 				return bool;
 			}
 			else{
-				System.out.println("Les informations saisies n'existent pas dans la base de données !");
 				bool= false;
 				return bool;
 			}
@@ -112,17 +110,14 @@ public class DaoJoueurImpl implements DaoJoueurInterface{
 			int resultat = preparedStatement.executeUpdate();
 
 			if (resultat>=1) {
-				System.out.print("Profil Modifié");
 				bool= true;
 				return bool;
 			}else {
-				System.out.print("Imposible de modifier le profil du joueur");
 				bool= false;
 				return bool;
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

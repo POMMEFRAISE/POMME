@@ -33,7 +33,6 @@ public class SeConnecterP2MComportement{
 	}
 
 	public void envoiMessage() {
-		System.out.println("SeConnecterP2MComportement : login : "+login);
 		ObjectFactory objFactory = new ObjectFactory();
 
 	    AuthentificationP2M authentification = objFactory.createAuthentificationP2M();
@@ -44,7 +43,8 @@ public class SeConnecterP2MComportement{
 		seConnecter.setAuthentification(authentification);
 		seConnecter.setNumeroPresentation(numeroPresentation);
 		
-		new Producteur(seConnecter);		
+		Thread thread = new Thread(new Producteur(seConnecter));
+		thread.start();
 	}
 
 	public int getNumeroPresentation() {

@@ -18,7 +18,6 @@ public class DemanderPremierLancerJeuM2IComportement{
 	public DemanderPremierLancerJeuM2IComportement(JeuMetierAller jeu, int numeroPresentation){
 		this.jeu = jeu;
 		this.numeroPresentation = numeroPresentation;
-		System.out.println("numéroPrésentationé :" +numeroPresentation);
 	}
 	
 	public void envoiMessage(){
@@ -54,7 +53,8 @@ public class DemanderPremierLancerJeuM2IComportement{
 		demanderPremierLancerJeu.setJeu(jeuM2I);
 		demanderPremierLancerJeu.setNumeroPresentation(numeroPresentation);
 		
-		new Producteur(demanderPremierLancerJeu);
+		Thread thread = new Thread(new Producteur(demanderPremierLancerJeu));
+		thread.start();
 	}
 
 	public JeuMetierAller getJeu() {

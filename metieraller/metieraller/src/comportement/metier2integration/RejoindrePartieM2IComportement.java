@@ -33,7 +33,8 @@ public class RejoindrePartieM2IComportement{
 		rejoindrePartieM2I.setRejoindreUnePartie(rejoindreUnePartie);
 		rejoindrePartieM2I.setNumeroPresentation(numeroPresentation);
 		
-		new Producteur(rejoindrePartieM2I);
+		Thread thread = new Thread(new Producteur(rejoindrePartieM2I));
+		thread.start();
 	}
 
 	public int getNumeroPresentation() {

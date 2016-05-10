@@ -40,10 +40,8 @@ public class NavigationServlet extends HttpServlet {
 		}else{
 		switch(request.getParameter("nav")){
 			case "ecrireFichier" :
-		        System.out.println("messages.getMessages() : "+messages.getTaille());
 		        Message messageTrace = new Message(idMessage, message, queue);
 		        messages.add(messageTrace);
-		        System.out.println("messages.getMessages() : "+messages.getTaille());
 				ActionTechnique.ecrireFichier(messages, cheminCompletFichier);
 				break;
 		}

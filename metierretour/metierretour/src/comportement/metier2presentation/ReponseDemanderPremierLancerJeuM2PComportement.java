@@ -60,7 +60,6 @@ public class ReponseDemanderPremierLancerJeuM2PComportement{
 					joueur.setResultatPremierLancer(resultatLancer);
 				}else{
 					int positionJoueur = unJoueur2.getPositionJeu();
-					System.out.println("Position joueur : "+positionJoueur);
 					if(unJoueur2.getResultatPremierLancer() == 0 && (positionJoueur-1) == positionJoueurLancer){
 						joueur.setDoitJoueur(true);
 						joueur.setResultatPremierLancer(0);
@@ -103,9 +102,9 @@ public class ReponseDemanderPremierLancerJeuM2PComportement{
 			CommandeM2P commande = objFactory.createCommandeM2P();
 			commande.setEnregistrer(commandeEnregistrer);
 			reponseDemanderPremierLancerJeuM2P.setCommande(commande);
-			new Producteur(reponseDemanderPremierLancerJeuM2P, unJoueur.getNumeroPresentation());
-		}
-		
+			Thread thread = new Thread(new Producteur(reponseDemanderPremierLancerJeuM2P, unJoueur.getNumeroPresentation()));
+			thread.start();
+		}		
 	}
 
 	public JeuMetierRetour getJeuMetier() {
@@ -138,7 +137,6 @@ public class ReponseDemanderPremierLancerJeuM2PComportement{
 
 	      DeMetierRetour unDe = new DeMetierRetour(resultat);
 	      listeDes.add(unDe);
-	      System.out.println("unDe : "+unDe.getResultatDe());
 	    }
 	}
 

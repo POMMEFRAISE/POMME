@@ -38,7 +38,8 @@ public class ReponseSeConnecterI2MComportement {
 		reponseSeConnecter.setAuthentification(authentification);
 		reponseSeConnecter.setNumeroPresentation(numeroPresentation);
 		
-		new Producteur(reponseSeConnecter);
+		Thread thread = new Thread(new Producteur(reponseSeConnecter));
+		thread.start();
 	}
 
 	public String getMessageErreur() {

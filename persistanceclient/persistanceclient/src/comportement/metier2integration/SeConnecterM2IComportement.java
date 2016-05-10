@@ -21,7 +21,6 @@ public class SeConnecterM2IComportement implements Commande{
 		
 		String messageErreur;
 		messageErreur = seConnecter.getAuthentification().getMessageErreur();
-		System.out.println("messageErreur : "+messageErreur);
 
 		if(messageErreur == null){			
 			//Charger interface 
@@ -34,14 +33,10 @@ public class SeConnecterM2IComportement implements Commande{
 				
 				//Appeler les methodes verificationJoueur
 				boolean trouveJoueur = (boolean) objectServiceJoueur.getClass().getDeclaredMethod("verifierJoueur",Object.class).invoke(objectServiceJoueur, objectJoueur);
-				System.out.println("SeConnecter : "+trouveJoueur);
 				
 				//Appeler les methodes recupererJoueur
 				if(trouveJoueur == true){	
 					objectJoueur = objectServiceJoueur.getClass().getDeclaredMethod("recupererJoueur",Object.class).invoke(objectServiceJoueur, objectJoueur);
-					System.out.println("Nom joueur : "+objectJoueur.getClass().getMethod("getNom").invoke(objectJoueur));
-					System.out.println("Prenom joueur : "+objectJoueur.getClass().getMethod("getPrenom").invoke(objectJoueur));
-					System.out.println("Login joueur : "+objectJoueur.getClass().getMethod("getLogin").invoke(objectJoueur));
 				}else{
 					messageErreur = "Mauvais couple login / mot de passe !";
 				}

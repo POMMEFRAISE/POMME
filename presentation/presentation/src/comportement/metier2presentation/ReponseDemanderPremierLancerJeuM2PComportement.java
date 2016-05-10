@@ -62,6 +62,7 @@ public class ReponseDemanderPremierLancerJeuM2PComportement implements Commande{
 			for(Joueur unJoueur3 : listeJoueurs.getJoueurs()){
 				if(unJoueur3.getResultatPremierLancer() == max){
 					unJoueur3.setDoitJouer(true);
+					unJoueur3.setPremier(true);
 				}
 			}
 		}
